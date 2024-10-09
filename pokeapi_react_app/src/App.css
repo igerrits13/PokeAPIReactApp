@@ -1,0 +1,9 @@
+.ball {
+  transition: 0.25s;
+  transition-timing-function: ease-in-out;
+}
+
+.ball:hover,
+.ball:active {
+  transform: rotate(90deg);
+}
