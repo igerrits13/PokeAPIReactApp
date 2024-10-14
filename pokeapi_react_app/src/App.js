@@ -94,24 +94,47 @@ function App() {
   })();
 
   const SearchBar = () => {
+    const [isHovered, setIsHovered] = useState(false);
+
+    const handleHover = () => {
+      setIsHovered(true);
+    };
+
+    const handleUnHover = () => {
+      setIsHovered(false);
+    };
+
+    const currSearch = isHovered ? "showSearch" : "";
+
     return (
-      <div className="container-sm bg-light ">
-        <img
-          className="ball mx-auto d-block"
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
-          height={"64px"}
-        ></img>
-        <form className="d-flex" role="search">
-          <input
-            className="form-control me-2"
-            type="search"
-            placeholder="Search Pokémon"
-            aria-label="Search"
-          />
-          <button className="btn btn-outline-success" type="submit">
-            Search
-          </button>
-        </form>
+      <div className="container">
+        <div className="container-md d-flex justify-content-center my-5">
+          <form
+            className={`bg-secondary rounded-pill pokeSearch delay ${currSearch}`}
+            role="search"
+            onMouseEnter={handleHover}
+            onMouseLeave={handleUnHover}
+          >
+            <input
+              type="search"
+              placeholder="Search Pokémon"
+              className="h-100 w-100 rounded-pill bg-secondary pokeSearchBar"
+              aria-label="Search"
+            />
+
+            <div
+              className={
+                "rounded-circle align-self-center bg-body searchButton"
+              }
+            >
+              <i className="fa-solid fa-magnifying-glass searchIcon"></i>
+              <img
+                className="searchBall"
+                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
+              ></img>
+            </div>
+          </form>
+        </div>
       </div>
     );
   };

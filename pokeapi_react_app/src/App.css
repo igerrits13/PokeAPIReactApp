@@ -1,9 +1,91 @@
-.ball {
-  transition: 0.25s;
-  transition-timing-function: ease-in-out;
+/* Main search bar */
+
+.pokeSearch {
+  position: relative;
+  /* width: 76px;
+  height: 76px; */
+  width: 56px;
+  height: 56px;
+  padding: 10px;
+  /* box-shadow: 0 4px 24px white; */
+  overflow: hidden;
+  transition: width 0.8s cubic-bezier(0.9, 0, 0.3, 0.9);
 }
 
-.ball:hover,
-.ball:active {
+/* .delay {
+  transition-delay: 0.25s;
+} */
+
+.pokeSearchBar {
+  border: none;
+  outline: none;
+  padding-left: 14px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.5s;
+}
+
+.pokeSearchBar:-webkit-autofill {
+  box-shadow: 0 0 0 100px var(--white-color) inset;
+}
+
+.searchButton {
+  width: 56px;
+  height: 56px;
+  /* background-color: var(--dark-color); */
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  /* right: 10px; */
+  right: 0;
+  margin: auto;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: transform 0.6s cubic-bezier(0.9, 0, 0.3, 0.9);
+}
+
+.searchBall {
+  height: 64px;
+  /* transition: all 0.2s;
+  transition-timing-function: ease-in-out; */
+  image-rendering: pixelated;
+}
+
+/* .searchBall:hover,
+.searchBall:active {
   transform: rotate(90deg);
+  transition: all 0.2s;
+} */
+
+.searchBall,
+.searchIcon {
+  position: absolute;
+  transition: opacity 0.5s cubic-bezier(0.9, 0, 0.3, 0.9);
+}
+
+.searchIcon {
+  opacity: 0;
+}
+
+.showSearch {
+  width: 50%;
+}
+
+.showSearch .pokeSearchBar {
+  opacity: 1;
+  pointer-events: initial;
+}
+
+.showSearch .searchButton {
+  transform: rotate(90deg);
+}
+
+.showSearch .searchBall {
+  opacity: 0;
+}
+
+.showSearch .searchIcon {
+  opacity: 1;
 }
