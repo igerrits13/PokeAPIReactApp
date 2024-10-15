@@ -1,5 +1,6 @@
 import "./App.css";
 import { useEffect, useState } from "react";
+import SearchBar from "./components/SearchBar";
 
 function App() {
   /*!
@@ -93,47 +94,39 @@ function App() {
     // });
   })();
 
-  const SearchBar = () => {
-    const [isHovered, setIsHovered] = useState(false);
-
-    const handleHover = () => {
-      setIsHovered(true);
-    };
-
-    const handleUnHover = () => {
-      setIsHovered(false);
-    };
-
-    const currSearch = isHovered ? "showSearch" : "";
-
+  const GenHero = () => {
     return (
-      <div className="container">
+      <div className="containter">
         <div className="container-md d-flex justify-content-center my-5">
-          <form
-            className={`bg-secondary rounded-pill pokeSearch delay ${currSearch}`}
-            role="search"
-            onMouseEnter={handleHover}
-            onMouseLeave={handleUnHover}
-          >
-            <input
-              type="search"
-              placeholder="Search Pokémon"
-              className="h-100 w-100 rounded-pill bg-secondary pokeSearchBar"
-              aria-label="Search"
-            />
-
-            <div
-              className={
-                "rounded-circle align-self-center bg-body searchButton"
-              }
-            >
-              <i className="fa-solid fa-magnifying-glass searchIcon"></i>
+          <div className="row align-items-center w-75">
+            <div className="col-lg genLeft opacity-25">
               <img
-                className="searchBall"
-                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
+                className="img-fluid"
+                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png"
               ></img>
             </div>
-          </form>
+            <div className="col-lg genMid opacity-25">
+              {" "}
+              <img
+                className="img-fluid"
+                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
+              ></img>
+            </div>
+            <div className="col-lg genMid2 opacity-25">
+              {" "}
+              <img
+                className="img-fluid"
+                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png"
+              ></img>
+            </div>
+            <div className="col-lg genRight opacity-25">
+              {" "}
+              <img
+                className="img-fluid"
+                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png"
+              ></img>
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -142,6 +135,7 @@ function App() {
   return (
     <div>
       <SearchBar />
+      <GenHero />
     </div>
   );
 }
