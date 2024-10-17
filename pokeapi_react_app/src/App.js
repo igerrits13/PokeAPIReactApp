@@ -1,6 +1,8 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-import SearchBar from "./components/SearchBar";
+import HomeView from "./components/HomeView";
+import AboutView from "./components/AboutView";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   /*!
@@ -94,48 +96,12 @@ function App() {
     // });
   })();
 
-  const GenHero = () => {
-    return (
-      <div className="containter">
-        <div className="container-md d-flex justify-content-center my-5">
-          <div className="row align-items-center w-75">
-            <div className="col-lg genLeft opacity-25">
-              <img
-                className="img-fluid"
-                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png"
-              ></img>
-            </div>
-            <div className="col-lg genMid opacity-25">
-              {" "}
-              <img
-                className="img-fluid"
-                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
-              ></img>
-            </div>
-            <div className="col-lg genMid2 opacity-25">
-              {" "}
-              <img
-                className="img-fluid"
-                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png"
-              ></img>
-            </div>
-            <div className="col-lg genRight opacity-25">
-              {" "}
-              <img
-                className="img-fluid"
-                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png"
-              ></img>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  };
-
   return (
     <div>
-      <SearchBar />
-      <GenHero />
+      <Routes>
+        <Route path="/PokeAPIReactApp" exact element={<HomeView />} />
+        <Route path="/PokeAPIReactApp/about" element={<AboutView />} />
+      </Routes>
     </div>
   );
 }
