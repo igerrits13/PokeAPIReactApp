@@ -1,4 +1,5 @@
 import SearchBar from "./SearchBar";
+import { Link } from "react-router-dom";
 
 const HomeView = () => {
   const GenHero = () => {
@@ -36,6 +37,9 @@ const HomeView = () => {
             </div>
           </div>
         </div>
+        <Link to="/about" className="justify-content-center">
+          About
+        </Link>
       </div>
     );
   };
