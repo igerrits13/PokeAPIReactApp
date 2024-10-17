@@ -99,8 +99,8 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path="/PokeAPIReactApp" exact element={<HomeView />} />
-        <Route path="/PokeAPIReactApp/about" element={<AboutView />} />
+        <Route path="/" element={<HomeView />} />
+        <Route path="/about" element={<AboutView />} />
       </Routes>
     </div>
   );
