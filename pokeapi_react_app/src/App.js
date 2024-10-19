@@ -99,7 +99,7 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<HomeView />} />
+        <Route path="/" exact element={<HomeView />} />
         <Route path="/about" element={<AboutView />} />
       </Routes>
     </div>

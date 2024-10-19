@@ -4,9 +4,7 @@ const AboutView = () => {
   return (
     <div>
       About View!
-      <Link to="/" className="justify-content-center">
-        Home
-      </Link>
+      <Link to="/">Home</Link>
     </div>
   );
 };

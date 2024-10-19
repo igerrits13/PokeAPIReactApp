@@ -2,19 +2,11 @@
 
 .pokeSearch {
   position: relative;
-  /* width: 76px;
-  height: 76px; */
   width: 56px;
   height: 56px;
-  /* padding: 10px; */
-  /* box-shadow: 0 4px 24px white; */
   overflow: hidden;
   transition: width 0.8s cubic-bezier(0.9, 0, 0.3, 0.9);
 }
-
-/* .delay {
-  transition-delay: 0.25s;
-} */
 
 .pokeSearchBar {
   border: none;
@@ -32,12 +24,10 @@
 .searchButton {
   width: 56px;
   height: 56px;
-  /* background-color: var(--dark-color); */
   border-radius: 50%;
   position: absolute;
   top: 0;
   bottom: 0;
-  /* right: 10px; */
   right: 0;
   margin: auto;
   display: grid;
@@ -48,16 +38,8 @@
 
 .searchBall {
   height: 64px;
-  /* transition: all 0.2s;
-  transition-timing-function: ease-in-out; */
   image-rendering: pixelated;
 }
-
-/* .searchBall:hover,
-.searchBall:active {
-  transform: rotate(90deg);
-  transition: all 0.2s;
-} */
 
 .searchBall,
 .searchIcon {
@@ -90,40 +72,50 @@
   opacity: 1;
 }
 
-/* Gen Banners */
+/* Gen Hero */
 
 .genLeft {
-  /* background-color: yellow; */
   background-color: #f2d94e;
-  height: 160px;
-  max-height: 360px;
   clip-path: polygon(0 0, 80% 0, 100% 100%, 0 100%);
+  border-radius: 3% 0 0 3%;
   margin-inline: -3.15%;
+  overflow: hidden;
 }
 
 .genMid {
-  /* background-color: forestgreen; */
   background-color: #5fbd58;
-
-  height: 160px;
-  max-height: 360px;
   clip-path: polygon(0 0, 80% 0, 100% 100%, 20% 100%);
   margin-inline: -3.15%;
+  overflow: hidden;
 }
 
 .genMid2 {
-  /* background-color: firebrick; */
   background-color: #fba54c;
-  height: 160px;
-  max-height: 360px;
   clip-path: polygon(0 0, 80% 0, 100% 100%, 20% 100%);
   margin-inline: -3.15%;
+  overflow: hidden;
 }
 
 .genRight {
   background-color: #539ddf;
-  height: 160px;
-  max-height: 360px;
   clip-path: polygon(0 0, 100% 0, 100% 100%, 20% 100%);
+  border-radius: 0 3% 3% 0;
   margin-inline: -3.15%;
+}
+
+.genImg {
+  position: relative;
+  top: -50px;
+}
+
+@media (max-width: 992px) {
+  .genImg {
+    top: -20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .genImg {
+    top: -10px;
+  }
 }
