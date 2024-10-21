@@ -103,9 +103,16 @@
   margin-inline: -3.15%;
 }
 
+.genImgBox {
+  position: relative;
+}
+
 .genImg {
   position: relative;
   top: -50px;
+  left: 50%;
+  translate: -50%;
+  z-index: 200;
 }
 
 @media (max-width: 992px) {
@@ -118,4 +125,39 @@
   .genImg {
     top: -10px;
   }
+}
+
+.electricType {
+  position: absolute;
+  background-color: #f2d94e;
+  border-radius: 50%;
+}
+
+.grassType {
+  position: absolute;
+  background-color: #5fbd58;
+  border-radius: 50%;
+}
+
+.fireType {
+  position: absolute;
+  background-color: #fba54c;
+  border-radius: 50%;
+}
+
+.waterType {
+  position: absolute;
+  background-color: #539ddf;
+  border-radius: 50%;
+}
+
+.genImgBox .electricType,
+.genImgBox .grassType,
+.genImgBox .fireType,
+.genImgBox .waterType {
+  height: auto;
+  width: 40%;
+  left: 50%;
+  /* translate: -50%; */
+  z-index: 100;
 }
