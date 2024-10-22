@@ -74,26 +74,37 @@
 
 /* Gen Hero */
 
+.genHeroContainer {
+  position: relative;
+  z-index: 100;
+}
+
+.genHeroText {
+  position: absolute;
+  z-index: 200;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+}
+
 .genLeft {
   background-color: #f2d94e;
   clip-path: polygon(0 0, 80% 0, 100% 100%, 0 100%);
   border-radius: 3% 0 0 3%;
   margin-inline: -3.15%;
-  overflow: hidden;
 }
 
 .genMid {
   background-color: #5fbd58;
   clip-path: polygon(0 0, 80% 0, 100% 100%, 20% 100%);
   margin-inline: -3.15%;
-  overflow: hidden;
 }
 
 .genMid2 {
   background-color: #fba54c;
   clip-path: polygon(0 0, 80% 0, 100% 100%, 20% 100%);
   margin-inline: -3.15%;
-  overflow: hidden;
+  height: 100%;
 }
 
 .genRight {
@@ -101,63 +112,51 @@
   clip-path: polygon(0 0, 100% 0, 100% 100%, 20% 100%);
   border-radius: 0 3% 3% 0;
   margin-inline: -3.15%;
-}
-
-.genImgBox {
-  position: relative;
+  height: 100%;
 }
 
 .genImg {
   position: relative;
-  top: -50px;
   left: 50%;
+  /* top: -10%; */
   translate: -50%;
   z-index: 200;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-@media (max-width: 992px) {
-  .genImg {
-    top: -20px;
-  }
-}
-
-@media (max-width: 576px) {
-  .genImg {
-    top: -10px;
-  }
-}
-
-.electricType {
+/* .electricType {
   position: absolute;
   background-color: #f2d94e;
-  border-radius: 50%;
 }
 
 .grassType {
   position: absolute;
   background-color: #5fbd58;
-  border-radius: 50%;
 }
 
 .fireType {
   position: absolute;
   background-color: #fba54c;
-  border-radius: 50%;
 }
 
 .waterType {
   position: absolute;
   background-color: #539ddf;
-  border-radius: 50%;
 }
 
-.genImgBox .electricType,
-.genImgBox .grassType,
-.genImgBox .fireType,
-.genImgBox .waterType {
-  height: auto;
-  width: 40%;
-  left: 50%;
-  /* translate: -50%; */
-  z-index: 100;
+.typeImg {
+  border-radius: 100%;
+  height: 60%;
+  width: 30%;
+  margin: auto;
+  top: 5%;
+  left: 8%;
 }
+
+.typeImg img {
+  height: 60%;
+  width: 60%;
+  overflow: hidden;
+} */

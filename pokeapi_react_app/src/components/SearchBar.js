@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 
-const SearchBar = () => {
+const SearchBar = ({ searchText, setSearchText }) => {
   const [isHovered, setIsHovered] = useState(false);
 
+  // Handle whether the search bar is being hovered over of not
   const handleHover = () => {
     setIsHovered(true);
   };
@@ -11,7 +12,14 @@ const SearchBar = () => {
     setIsHovered(false);
   };
 
-  const currSearch = isHovered ? "showSearch bg-secondary " : "bg-body ";
+  // Update the text in the search bar
+  const updateSearchText = (e) => {
+    setSearchText(e.target.value);
+  };
+
+  // Display the search bar if it is being hovered over of there is a text value in it
+  const currSearch =
+    isHovered || searchText ? "showSearch bg-secondary " : "bg-body ";
 
   return (
     <div className="container-md d-flex justify-content-center p-5">
@@ -24,6 +32,8 @@ const SearchBar = () => {
         <input
           type="search"
           placeholder="Search Pokémon"
+          value={searchText}
+          onChange={updateSearchText}
           className="h-100 w-100 rounded-pill bg-secondary pokeSearchBar"
           aria-label="Search"
         />
