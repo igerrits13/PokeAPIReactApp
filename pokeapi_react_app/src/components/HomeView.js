@@ -1,6 +1,7 @@
 import SearchBar from "./SearchBar";
 import GenHero from "./GenHero";
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const HomeView = () => {
   const [searchText, setSearchText] = useState("");
@@ -24,7 +25,7 @@ const HomeView = () => {
   // }, []);
 
   return (
-    <div>
+    <div className="h-100">
       <SearchBar searchText={searchText} setSearchText={setSearchText} />
       <GenHero />
       <h1>This is where the next line goes</h1>

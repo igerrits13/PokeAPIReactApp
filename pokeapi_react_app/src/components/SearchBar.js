@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const SearchBar = ({ searchText, setSearchText }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -45,6 +46,7 @@ const SearchBar = ({ searchText, setSearchText }) => {
           <img
             className="searchBall"
             src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
+            alt="Pokéball Search Icon"
           ></img>
         </div>
       </form>

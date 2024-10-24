@@ -1,3 +1,8 @@
+#root > div {
+  height: 100vh;
+  margin: 0;
+}
+
 /* Main search bar */
 
 .pokeSearch {
@@ -75,6 +80,10 @@
 /* Gen Hero */
 
 .genHeroContainer {
+  margin: auto;
+}
+
+.genHeroImg {
   position: relative;
   z-index: 100;
 }
@@ -82,48 +91,32 @@
 .genHeroText {
   position: absolute;
   z-index: 200;
-  top: 0;
-  bottom: 0;
-  height: 100%;
 }
 
-.genLeft {
+.genLeft-4 {
   background-color: #f2d94e;
   clip-path: polygon(0 0, 80% 0, 100% 100%, 0 100%);
   border-radius: 3% 0 0 3%;
   margin-inline: -3.15%;
 }
 
-.genMid {
+.genMid-4 {
   background-color: #5fbd58;
   clip-path: polygon(0 0, 80% 0, 100% 100%, 20% 100%);
   margin-inline: -3.15%;
 }
 
-.genMid2 {
+.genMid2-4 {
   background-color: #fba54c;
   clip-path: polygon(0 0, 80% 0, 100% 100%, 20% 100%);
   margin-inline: -3.15%;
-  height: 100%;
 }
 
-.genRight {
+.genRight-4 {
   background-color: #539ddf;
   clip-path: polygon(0 0, 100% 0, 100% 100%, 20% 100%);
   border-radius: 0 3% 3% 0;
   margin-inline: -3.15%;
-  height: 100%;
-}
-
-.genImg {
-  position: relative;
-  left: 50%;
-  /* top: -10%; */
-  translate: -50%;
-  z-index: 200;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 /* .electricType {
