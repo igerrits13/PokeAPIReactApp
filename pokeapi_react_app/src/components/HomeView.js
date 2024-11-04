@@ -1,5 +1,5 @@
 import SearchBar from "./SearchBar";
-import GenHero from "./GenHero";
+import GenTable from "./GenTable";
 // import { useState, useEffect } from "react";
 import { useState } from "react";
 
@@ -27,8 +27,7 @@ const HomeView = () => {
   return (
     <div className="h-100">
       <SearchBar searchText={searchText} setSearchText={setSearchText} />
-      <GenHero />
-      <h1>This is where the next line goes</h1>
+      <GenTable />
     </div>
   );
 };

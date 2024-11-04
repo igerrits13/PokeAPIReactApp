@@ -77,10 +77,25 @@
   opacity: 1;
 }
 
+/* Gen Display */
+
+.genDisplayContainer {
+  margin: auto;
+  height: 70%;
+  width: 75%;
+}
+
+.genDisplayImg {
+  position: relative;
+  z-index: 100;
+}
+
 /* Gen Hero */
 
 .genHeroContainer {
   margin: auto;
+  height: 30%;
+  width: 90%;
 }
 
 .genHeroImg {
