@@ -23,7 +23,7 @@ const SearchBar = ({ searchText, setSearchText }) => {
     isHovered || searchText ? "showSearch bg-secondary " : "bg-body ";
 
   return (
-    <div className="container-md d-flex justify-content-center p-5">
+    <div className="container-md d-flex justify-content-center my-2">
       <form
         className={`rounded-pill pokeSearch delay ${currSearch}`}
         role="search"
