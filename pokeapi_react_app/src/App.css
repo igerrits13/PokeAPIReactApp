@@ -85,10 +85,18 @@
   opacity: 1;
 }
 
-/* Type Butttons */
+/* Type Butttons and dropdown */
+
+.typeDropdown {
+  height: auto;
+  max-height: 200px;
+  overflow-x: hidden;
+  text-shadow: 0 0 1px #000;
+}
 
 .typeBtn {
   text-shadow: 0 0 1px #000;
+  outline: 1px solid #595761;
 }
 
 .typeBtnImg {

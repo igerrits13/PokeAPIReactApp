@@ -20,6 +20,7 @@ import WaterType from "./icons/water.svg";
 
 const TypesTable = () => {
   const [typesResults, setTypesResult] = useState([]);
+  const [fullScreen, setFullScreen] = useState(false);
   let typeStyle = "";
 
   // Fetch the types for the buttons
@@ -29,6 +30,17 @@ const TypesTable = () => {
       .then((data) => {
         setTypesResult(data.results);
       });
+  }, []);
+
+  // Check screen size to see if types table should collapse
+  useEffect(() => {
+    const handleFullScreen = () => {
+      setFullScreen(window.innerWidth >= 576);
+    };
+
+    window.addEventListener("resize", handleFullScreen);
+    handleFullScreen();
+    return () => window.removeEventListener("resize", handleFullScreen);
   }, []);
 
   // Set the type attributes for the current buttoon
@@ -96,7 +108,6 @@ const TypesTable = () => {
   // Create buttons for each type
   const typesHTML = typesResults.map((obj, i) => {
     const typeIcon = getTypeIcon(obj.name);
-
     if (obj.name !== "unknown" && obj.name !== "stellar") {
       return (
         <button key={i} className={`btn m-2 fs-6 fw-bold typeBtn ${typeStyle}`}>
@@ -113,12 +124,57 @@ const TypesTable = () => {
     }
   });
 
-  return (
-    <div className="container d-flex justify-content-center align-items-center flex-wrap my-5">
-      <div className="fs-5 fw-bolder w-100">Types</div>
-      {typesHTML}
-    </div>
-  );
+  // Create a dropdown for all types
+  const typesDropdownHTML = typesResults.map((obj, i) => {
+    const typeIcon = getTypeIcon(obj.name);
+
+    if (obj.name !== "unknown" && obj.name !== "stellar") {
+      return (
+        <li key={i} className="my-1">
+          <a
+            className={`dropdown-item fs-6 fw-bold ${typeStyle}`}
+            href="./HomeView"
+          >
+            <img
+              className="me-2 typeBtnImg"
+              src={typeIcon}
+              alt={`${obj.name} type icon`}
+            ></img>
+            {obj.name.toUpperCase()}
+          </a>
+        </li>
+      );
+    } else {
+      return <div key={i}></div>;
+    }
+  });
+
+  // If the screen size is large enough, return the full types table
+  if (fullScreen) {
+    return (
+      <div className="container d-flex justify-content-center align-items-center flex-wrap my-5">
+        <div className="fs-5 fw-bolder w-100">Types</div>
+        {typesHTML}
+      </div>
+    );
+  }
+  // Otherwise, collapse it into a dropdown menu
+  else {
+    return (
+      <div className="container d-flex justify-content-center align-items-center my-5">
+        <div className="dropdown-center">
+          <button
+            className="btn dropdown-toggle typeBtn"
+            type="button"
+            data-bs-toggle="dropdown"
+          >
+            Types
+          </button>
+          <ul className="dropdown-menu typeDropdown">{typesDropdownHTML}</ul>
+        </div>
+      </div>
+    );
+  }
 };
 
 export default TypesTable;
