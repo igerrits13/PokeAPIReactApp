@@ -110,14 +110,16 @@ const TypesTable = () => {
     const typeIcon = getTypeIcon(obj.name);
     if (obj.name !== "unknown" && obj.name !== "stellar") {
       return (
-        <button key={i} className={`btn m-2 fs-6 fw-bold typeBtn ${typeStyle}`}>
-          <img
-            className="me-2 typeBtnImg"
-            src={typeIcon}
-            alt={`${obj.name} type icon`}
-          ></img>
-          {obj.name.toUpperCase()}
-        </button>
+        <a key={i} href="./HomeView">
+          <button className={`btn m-2 fs-6 fw-bold typeBtn ${typeStyle}`}>
+            <img
+              className="me-2 typeBtnImg"
+              src={typeIcon}
+              alt={`${obj.name} type icon`}
+            ></img>
+            {obj.name.toUpperCase()}
+          </button>
+        </a>
       );
     } else {
       return <div key={i}></div>;
@@ -153,7 +155,7 @@ const TypesTable = () => {
   if (fullScreen) {
     return (
       <div className="container d-flex justify-content-center align-items-center flex-wrap my-5">
-        <div className="fs-5 fw-bolder w-100">Types</div>
+        <div className="fs-5 fw-bolder w-100 my-2">Types</div>
         {typesHTML}
       </div>
     );

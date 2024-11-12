@@ -1,30 +1,25 @@
-// import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import GenSection from "./GenSection";
+// import GenHero4 from "./GenHero4";
 
 const GenTable = () => {
-  // https://pokeapi.co/api/v2/generation/1/
-  // const GenData = useEffect(() => {
-  //   fetch(`https://pokeapi.co/api/v2/generation/`)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       // console.log(data);
-  //       // console.log(data.count);
-  //       console.log("Fetch called!");
-  //     });
-  // }, []);
+  const [genData, setGenData] = useState([]);
 
-  const GenData = [];
+  // Fetch general generation data
+  useEffect(() => {
+    fetch(`https://pokeapi.co/api/v2/generation/?limit=-1`)
+      .then((response) => response.json())
+      .then((data) => {
+        setGenData(data.results);
+      });
+  }, []);
 
-  console.log(GenData);
+  // Create a section for each generation
+  const genHTML = genData.map((obj, i) => {
+    return <GenSection GenData={obj} key={i} />;
+  });
 
-  return (
-    <div className="h-100">
-      <div className="w-100 bg-warning">Warning</div>
-      <GenSection GenData={GenData} />
-      <h1 className="bg-warning my-4">Next line</h1>
-      <GenSection GenData={GenData} />
-    </div>
-  );
+  return <div>{genHTML}</div>;
 };
 
 export default GenTable;
