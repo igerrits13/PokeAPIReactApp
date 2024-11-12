@@ -16,7 +16,7 @@ const GenTable = () => {
 
   // Create a section for each generation
   const genHTML = genData.map((obj, i) => {
-    return <GenSection GenData={obj} key={i} />;
+    return <GenSection genData={obj} key={i} />;
   });
 
   return <div>{genHTML}</div>;
