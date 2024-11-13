@@ -1,14 +1,16 @@
-// import GenDisplay from "./GenDisplay";
+import GenDisplay from "./GenDisplay";
 import GenHero4 from "./GenHero4";
 import { useState, useEffect } from "react";
 
 const GenSection = ({ genData }) => {
+  // const GenSection = () => {
   const [currGen, setCurrGen] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   //  Load in data for the current generation
   useEffect(() => {
     fetch(`${genData.url}`)
+      // fetch(`https://pokeapi.co/api/v2/generation/1/`)
       .then((response) => response.json())
       .then((data) => {
         setCurrGen(data);
@@ -16,6 +18,7 @@ const GenSection = ({ genData }) => {
         // console.log(data.pokemon_species);
       });
   }, [genData]);
+  // }, []);
 
   return (
     <div>
@@ -23,8 +26,8 @@ const GenSection = ({ genData }) => {
         `Loading...`
       ) : (
         <div>
-          <GenHero4 currGen={currGen.main_region} />
-          {/* <GenDisplay currGen={currGen.pokemon_species} /> */}
+          <GenHero4 currGen={currGen} />
+          <GenDisplay currGen={currGen.pokemon_species} />
         </div>
       )}
     </div>

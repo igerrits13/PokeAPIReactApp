@@ -3,7 +3,9 @@ const GenHero4 = ({ currGen }) => {
     <div className="d-flex w-75 my-3 mx-auto align-items-center rounded genHeroContainer">
       <div className="text-center fs-1 fw-bolder w-75 genHeroText">
         {currGen.name[0].toUpperCase() + currGen.name.slice(1)} -{" "}
-        {currGen.name[0].toUpperCase() + currGen.name.slice(1)} Region
+        {currGen.main_region.name[0].toUpperCase() +
+          currGen.main_region.name.slice(1)}{" "}
+        Region
       </div>
       <div className="d-flex opacity-25 gradient">
         <div className="w-25">

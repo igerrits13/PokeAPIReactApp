@@ -20,6 +20,7 @@ const GenTable = () => {
   });
 
   return <div>{genHTML}</div>;
+  // return <GenSection />;
 };
 
 export default GenTable;
