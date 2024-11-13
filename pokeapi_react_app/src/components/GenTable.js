@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 import GenSection from "./GenSection";
 // import GenHero4 from "./GenHero4";
 
+// Container to initialize the API calls and displays for each Pokémon generation
 const GenTable = () => {
   const [genData, setGenData] = useState([]);
 
-  // Fetch general generation data
+  // Fetch basic generation data
   useEffect(() => {
     fetch(`https://pokeapi.co/api/v2/generation/?limit=-1`)
       .then((response) => response.json())

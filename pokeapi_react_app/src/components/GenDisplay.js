@@ -1,18 +1,17 @@
 import { Link } from "react-router-dom";
 
+// Display the cards for all Pokémon within the current generation
 const GenDisplay = ({ currGen }) => {
+  // Create a card for each Pokémon within the current generation
   const currGenHTML = currGen.map((obj, i) => {
-    // Split the link by '/'
+    // Seperate out the integer from the url
     const parts = obj.url.split("/");
-    // Remove empty elements from the end (due to trailing '/')
     const cleanedParts = parts.filter((part) => part !== "");
-    // Get the last part
     const lastPart = cleanedParts[cleanedParts.length - 1];
-    // Convert to a number
     const number = parseInt(lastPart, 10);
 
     return (
-      <div className="col-lg-3 col-med-3 col-6 my-4" key={i}>
+      <div className="col-lg-3 col-med-3 col-6 my-4" key={number}>
         <div className="card">
           <img
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${number}.png`}
@@ -30,6 +29,20 @@ const GenDisplay = ({ currGen }) => {
       </div>
     );
   });
+
+  // Compare used for sorting the pokemon by number for each gen
+  let compare = (a, b) => {
+    if (Number(a.key) < Number(b.key)) {
+      return -1;
+    }
+    if (Number(a.key) > Number(b.key)) {
+      return 1;
+    }
+    return 0;
+  };
+
+  // Sort the gen data based on each Pokémon's number
+  currGenHTML.sort(compare);
 
   return (
     <div className="container">

@@ -1,3 +1,4 @@
+// Generation banner for first generation
 const GenHero4 = ({ currGen }) => {
   return (
     <div className="d-flex w-75 my-3 mx-auto align-items-center rounded genHeroContainer">
@@ -7,7 +8,7 @@ const GenHero4 = ({ currGen }) => {
           currGen.main_region.name.slice(1)}{" "}
         Region
       </div>
-      <div className="d-flex opacity-25 gradient">
+      <div className="d-flex opacity-25 gradient4">
         <div className="w-25">
           <img
             className="img-fluid genImg"
