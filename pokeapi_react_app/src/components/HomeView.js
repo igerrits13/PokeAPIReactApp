@@ -1,6 +1,7 @@
 import SearchBar from "./SearchBar";
-import GenTable from "./GenTable";
+// import GenTable from "./GenTable";
 // import TypesTable from "./TypesTable";
+import TestDisplay from "./TestDisplay";
 import { useState } from "react";
 
 const HomeView = () => {
@@ -11,7 +12,8 @@ const HomeView = () => {
       <div className="fw-bolder text-center my-5 homeTitle">Pokémon Lookup</div>
       <SearchBar searchText={searchText} setSearchText={setSearchText} />
       {/* <TypesTable /> */}
-      <GenTable />
+      {/* <GenTable /> */}
+      <TestDisplay />
     </div>
   );
 };

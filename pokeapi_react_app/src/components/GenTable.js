@@ -21,6 +21,7 @@ const GenTable = () => {
   // });
 
   // return <div>{genHTML}</div>;
+
   return <GenSection />;
 };
 

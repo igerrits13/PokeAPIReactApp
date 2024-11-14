@@ -12,7 +12,7 @@ const GenSection = () => {
   //  Load in data for the current generation
   useEffect(() => {
     // fetch(`${genData.url}`)
-    fetch(`https://pokeapi.co/api/v2/generation/5/`)
+    fetch(`https://pokeapi.co/api/v2/generation/1/`)
       .then((response) => response.json())
       .then((data) => {
         setCurrGen(data);
@@ -21,6 +21,25 @@ const GenSection = () => {
       });
     // }, [genData]);
   }, []);
+
+  // return (
+  //   <div>
+  //     {isLoading ? (
+  //       `Loading...`
+  //     ) : (
+  //       <div>
+  //         <div>
+  //           {currGen.id === 1 ? (
+  //             <GenHero4 currGen={currGen} />
+  //           ) : (
+  //             <GenHero3 currGen={currGen} />
+  //           )}
+  //           <GenDisplay currGen={currGen.pokemon_species} />
+  //         </div>
+  //       </div>
+  //     )}
+  //   </div>
+  // );
 
   return (
     <div>
@@ -40,49 +59,6 @@ const GenSection = () => {
       )}
     </div>
   );
-
-  // return (
-  //   <div>
-  //     {isLoading ? (
-  //       `Loading...`
-  //     ) : (
-  //       <div>
-  //         <div>
-  //           <GenHero4 currGen={currGen} />
-  //           {/* <GenDisplay currGen={currGen.pokemon_species} /> */}
-  //           <div id="carouselExample" className="carousel slide">
-  //             <div className="carousel-inner"></div>
-  //             <GenDisplay currGen={currGen.pokemon_species} />
-  //             <button
-  //               className="carousel-control-prev"
-  //               type="button"
-  //               data-bs-target="#carouselExample"
-  //               data-bs-slide="prev"
-  //             >
-  //               <span
-  //                 className="carousel-control-prev-icon"
-  //                 aria-hidden="true"
-  //               ></span>
-  //               <span className="visually-hidden">Previous</span>
-  //             </button>
-  //             <button
-  //               className="carousel-control-next"
-  //               type="button"
-  //               data-bs-target="#carouselExample"
-  //               data-bs-slide="next"
-  //             >
-  //               <span
-  //                 className="carousel-control-next-icon"
-  //                 aria-hidden="true"
-  //               ></span>
-  //               <span className="visually-hidden">Next</span>
-  //             </button>
-  //           </div>
-  //         </div>
-  //       </div>
-  //     )}
-  //   </div>
-  // );
 };
 
 export default GenSection;
