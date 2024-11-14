@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import BugType from "./icons/bug.svg";
 import DarkType from "./icons/dark.svg";
 import DragonType from "./icons/dragon.svg";
@@ -110,7 +111,7 @@ const TypesTable = () => {
     const typeIcon = getTypeIcon(obj.name);
     if (obj.name !== "unknown" && obj.name !== "stellar") {
       return (
-        <a key={i} href="./HomeView">
+        <Link key={i} to="./">
           <button className={`btn m-2 fs-6 fw-bold typeBtn ${typeStyle}`}>
             <img
               className="me-2 typeBtnImg"
@@ -119,7 +120,7 @@ const TypesTable = () => {
             ></img>
             {obj.name.toUpperCase()}
           </button>
-        </a>
+        </Link>
       );
     } else {
       return <div key={i}></div>;

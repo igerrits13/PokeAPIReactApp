@@ -200,7 +200,7 @@
   z-index: 200;
 }
 
-.gradien4 {
+.gradient4 {
   width: auto;
   height: auto;
   background: linear-gradient(
@@ -211,6 +211,23 @@
     #fba54c 50%,
     #fba54c 75%,
     #539ddf 75%,
+    #539ddf 100%
+  );
+}
+
+.w-33 {
+  width: 33%;
+}
+
+.gradient3 {
+  width: auto;
+  height: auto;
+  background: linear-gradient(
+    77deg,
+    #5fbd58 33%,
+    #fba54c 33%,
+    #fba54c 66%,
+    #539ddf 66%,
     #539ddf 100%
   );
 }

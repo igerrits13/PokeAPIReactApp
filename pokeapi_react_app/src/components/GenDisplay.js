@@ -28,6 +28,27 @@ const GenDisplay = ({ currGen }) => {
         </div>
       </div>
     );
+
+    // return (
+    //   <div className="carousel-item active" key={number}>
+    //     <div className="col-lg-3 col-med-3 col-6 my-4 d-block w-50">
+    //       <div className="card">
+    //         <img
+    //           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${number}.png`}
+    //           className="card-img-top"
+    //           alt="..."
+    //         />
+    //         <div className="card-body">
+    //           <h5 className="card-title">{obj.name} - title </h5>
+    //           <p className="card-text">{obj.name} - text</p>
+    //           <Link to="./" className="btn btn-primary">
+    //             {number}
+    //           </Link>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </div>
+    // );
   });
 
   // Compare used for sorting the pokemon by number for each gen
