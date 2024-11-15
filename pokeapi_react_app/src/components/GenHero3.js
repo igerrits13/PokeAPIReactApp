@@ -10,7 +10,7 @@ const GenHero3 = ({ currGen }) => {
   }
 
   return (
-    <div className="d-flex w-75 my-3 mx-auto align-items-center rounded genHeroContainer">
+    <div className="d-flex w-75 my-5 mx-auto align-items-center rounded genHeroContainer">
       <div className="text-center fs-1 fw-bolder w-75 genHeroText">
         {currGen.name[0].toUpperCase() + currGen.name.slice(1)} -{" "}
         {currGen.main_region.name[0].toUpperCase() +

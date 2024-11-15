@@ -234,21 +234,14 @@
 
 /* Gen Carousel */
 
-/* .genCaurouselIcon {
-  color: #539ddf;
-  border: 5px solid yellow;
-} */
-
-/* .w-85 {
+.w-85 {
   width: 85%;
 }
 
-.carousel-item {
-  display: block;
-  margin-right: 0;
+/* .carousel-item {
   flex: 0 0 calc(100% / 3);
 } */
 
-.carousel-item {
-  flex: 0 0 calc(100% / 3);
+.slick-slide > div {
+  margin: 0 2%;
 }
