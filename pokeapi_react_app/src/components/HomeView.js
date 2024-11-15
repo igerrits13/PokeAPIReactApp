@@ -1,7 +1,6 @@
 import SearchBar from "./SearchBar";
 import GenTable from "./GenTable";
 import TypesTable from "./TypesTable";
-// import TestDisplay from "./TestDisplay";
 import { useState } from "react";
 
 const HomeView = () => {
@@ -13,7 +12,6 @@ const HomeView = () => {
       <SearchBar searchText={searchText} setSearchText={setSearchText} />
       <TypesTable />
       <GenTable />
-      {/* <TestDisplay /> */}
     </div>
   );
 };

@@ -17,29 +17,9 @@ const GenSection = ({ genData }) => {
       .then((data) => {
         setCurrGen(data);
         setIsLoading(false);
-        // console.log(data.pokemon_species);
       });
   }, [genData]);
   // }, []);
-
-  // return (
-  //   <div>
-  //     {isLoading ? (
-  //       `Loading...`
-  //     ) : (
-  //       <div>
-  //         <div>
-  //           {currGen.id === 1 ? (
-  //             <GenHero4 currGen={currGen} />
-  //           ) : (
-  //             <GenHero3 currGen={currGen} />
-  //           )}
-  //           <GenDisplay currGen={currGen.pokemon_species} />
-  //         </div>
-  //       </div>
-  //     )}
-  //   </div>
-  // );
 
   return (
     <div>
