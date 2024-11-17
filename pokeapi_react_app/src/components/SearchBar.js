@@ -23,9 +23,9 @@ const SearchBar = ({ searchText, setSearchText }) => {
     isHovered || searchText ? "showSearch bg-secondary " : "bg-body ";
 
   return (
-    <div className="container-md d-flex justify-content-center my-2">
+    <div className="container-md d-flex align-items-center my-5">
       <form
-        className={`rounded-pill pokeSearch delay ${currSearch}`}
+        className={`rounded-pill mx-auto pokeSearch delay ${currSearch}`}
         role="search"
         onMouseEnter={handleHover}
         onMouseLeave={handleUnHover}
@@ -45,11 +45,14 @@ const SearchBar = ({ searchText, setSearchText }) => {
           <i className="fa-solid fa-magnifying-glass searchIcon"></i>
           <img
             className="searchBall"
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dream-world/poke-ball.png"
             alt="Pokéball Search Icon"
           ></img>
         </div>
       </form>
+      <div className="me-0">
+        {/* <button className="btn>">Click me!</button> */}
+      </div>
     </div>
   );
 };

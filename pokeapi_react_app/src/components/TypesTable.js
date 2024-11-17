@@ -167,7 +167,7 @@ const TypesTable = () => {
       <div className="container d-flex justify-content-center align-items-center my-5">
         <div className="dropdown-center">
           <button
-            className="btn dropdown-toggle typeBtn"
+            className="btn dropdown-toggle rounded-pill typeBtn"
             type="button"
             data-bs-toggle="dropdown"
           >

@@ -8,6 +8,7 @@
 .homeTitle {
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
     1px 1px 0 #000;
+  /* padding-top: 15%; */
 }
 
 @media (max-width: 576px) {
@@ -60,8 +61,7 @@
 }
 
 .searchBall {
-  height: 64px;
-  image-rendering: pixelated;
+  height: 48px;
 }
 
 .searchBall,
