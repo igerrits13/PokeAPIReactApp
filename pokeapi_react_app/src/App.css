@@ -95,6 +95,15 @@
   opacity: 1;
 }
 
+/* Search bar autocomplete box */
+
+.autocompleteContainer {
+  position: relative;
+  background-color: #539ddf;
+  height: 250px;
+  width: 100%;
+}
+
 /* Type Butttons and dropdown */
 
 .typeDropdown {
@@ -237,10 +246,6 @@
 .w-85 {
   width: 85%;
 }
-
-/* .carousel-item {
-  flex: 0 0 calc(100% / 3);
-} */
 
 .slick-slide > div {
   margin: 0 2%;

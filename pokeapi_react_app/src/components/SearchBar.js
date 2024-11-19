@@ -1,16 +1,21 @@
 // import { useEffect, useState } from "react";
+import SearchResults from "./SearchResults";
 import { useState } from "react";
+// import { Link } from "react-router-dom";
 
-const SearchBar = ({ searchText, setSearchText }) => {
-  const [isHovered, setIsHovered] = useState(false);
+const SearchBar = () => {
+  const [searchText, setSearchText] = useState("");
+  const [isSearchHovered, setIsSearchHovered] = useState(false);
 
-  // Handle whether the search bar is being hovered over of not
-  const handleHover = () => {
-    setIsHovered(true);
+  // // Handle whether the search bar is being hovered over of not
+  const handleSearchHover = () => {
+    console.log("Hovering");
+    setIsSearchHovered(true);
   };
 
-  const handleUnHover = () => {
-    setIsHovered(false);
+  const handleSearchUnHover = () => {
+    console.log("Not hovering");
+    setIsSearchHovered(false);
   };
 
   // Update the text in the search bar
@@ -20,15 +25,44 @@ const SearchBar = ({ searchText, setSearchText }) => {
 
   // Display the search bar if it is being hovered over of there is a text value in it
   const currSearch =
-    isHovered || searchText ? "showSearch bg-secondary " : "bg-body ";
+    isSearchHovered || searchText ? "showSearch bg-secondary" : "bg-body ";
 
   return (
-    <div className="container-md d-flex align-items-center my-5">
-      <form
+    // <div className="container-md d-flex align-items-center my-5">
+    //   <form
+    //     className={`rounded-pill mx-auto pokeSearch delay ${currSearch}`}
+    //     role="search"
+    //     onMouseEnter={handleSearchHover}
+    //     onMouseLeave={handleSearchUnHover}
+    //   >
+    //     <input
+    //       type="search"
+    //       placeholder="Search Pokémon"
+    //       value={searchText}
+    //       onChange={updateSearchText}
+    //       className="h-100 w-100 rounded-pill bg-secondary pokeSearchBar"
+    //       aria-label="Search"
+    //     />
+    //     <div
+    //       className={"rounded-circle align-self-center bg-body searchButton"}
+    //     >
+    //       <i className="fa-solid fa-magnifying-glass searchIcon"></i>
+    //       <img
+    //         className="searchBall"
+    //         src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/dream-world/poke-ball.png"
+    //         alt="Pokéball Search Icon"
+    //       ></img>
+    //     </div>
+    //   </form>
+    //   <div>{isSearchHovered || searchText ? <SearchResults /> : <></>}</div>
+    // </div>
+
+    <div>
+      <div
         className={`rounded-pill mx-auto pokeSearch delay ${currSearch}`}
         role="search"
-        onMouseEnter={handleHover}
-        onMouseLeave={handleUnHover}
+        onMouseEnter={handleSearchHover}
+        onMouseLeave={handleSearchUnHover}
       >
         <input
           type="search"
@@ -38,7 +72,6 @@ const SearchBar = ({ searchText, setSearchText }) => {
           className="h-100 w-100 rounded-pill bg-secondary pokeSearchBar"
           aria-label="Search"
         />
-
         <div
           className={"rounded-circle align-self-center bg-body searchButton"}
         >
@@ -49,10 +82,8 @@ const SearchBar = ({ searchText, setSearchText }) => {
             alt="Pokéball Search Icon"
           ></img>
         </div>
-      </form>
-      <div className="me-0">
-        {/* <button className="btn>">Click me!</button> */}
       </div>
+      {isSearchHovered || searchText ? <SearchResults /> : <></>}
     </div>
   );
 };
