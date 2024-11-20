@@ -1,7 +1,5 @@
 import "./App.css";
-// import { useEffect, useState } from "react";
 import HomeView from "./components/HomeView";
-import AboutView from "./components/AboutView";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
@@ -45,7 +43,6 @@ function App() {
     <div>
       <Routes>
         <Route path="/" exact element={<HomeView />} />
-        <Route path="/about" element={<AboutView />} />
       </Routes>
     </div>
   );

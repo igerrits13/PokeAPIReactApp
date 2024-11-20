@@ -1,9 +1,7 @@
 import SearchBar from "./SearchBar";
 import GenTable from "./GenTable";
 import TypesTable from "./TypesTable";
-// import SearchResults from "./SearchResults";
 // import SortOptions from "./SortOptions";
-// import { useState } from "react";
 
 const HomeView = () => {
   return (
