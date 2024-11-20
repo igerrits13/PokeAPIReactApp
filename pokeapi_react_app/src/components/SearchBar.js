@@ -7,12 +7,10 @@ const SearchBar = () => {
 
   // // Handle whether the search bar is being hovered over of not
   const handleSearchHover = () => {
-    console.log("Hovering");
     setIsSearchHovered(true);
   };
 
   const handleSearchUnHover = () => {
-    console.log("Not hovering");
     setIsSearchHovered(false);
   };
 
