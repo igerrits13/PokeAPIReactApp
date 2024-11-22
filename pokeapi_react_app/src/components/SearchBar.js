@@ -93,7 +93,7 @@ const SearchBar = () => {
       </div>
       {isSearchHovered || isSearchFocused ? (
         <ul
-          className="dropdown-menu w-100 d-block mt-0"
+          className="dropdown-menu d-block searchResultsDropdown"
           onMouseEnter={handleSearchHover}
           onMouseLeave={handleSearchUnHover}
         >

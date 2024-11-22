@@ -103,6 +103,11 @@
   z-index: 200;
 }
 
+.searchResultsDropdown {
+  width: 88%;
+  left: 6%;
+}
+
 /* Type Butttons and dropdown */
 
 .typeDropdown {
