@@ -19,6 +19,8 @@ import RockType from "./icons/rock.svg";
 import SteelType from "./icons/steel.svg";
 import WaterType from "./icons/water.svg";
 
+// Display a table showing all types that can be used for filtering the
+// Pokémon within each generation
 const TypesTable = () => {
   const [typesResults, setTypesResult] = useState([]);
   const [fullScreen, setFullScreen] = useState(false);

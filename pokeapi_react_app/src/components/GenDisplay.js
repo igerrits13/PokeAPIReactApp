@@ -1,10 +1,10 @@
-import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-// Display the cards for all Pokémon within the current generation
+// Display the cards for all Pokémon within the current generation, displays them as cards
 const GenDisplay = ({ currGen }) => {
   const [fullScreen, setFullScreen] = useState(false);
   const [midScreen, setMidScreen] = useState(false);

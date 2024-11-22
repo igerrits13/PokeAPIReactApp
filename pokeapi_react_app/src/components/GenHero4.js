@@ -1,4 +1,4 @@
-// Generation banner for first generation
+// Display banner for any generation starter Pokémon
 const GenHero4 = ({ currGen }) => {
   return (
     <div className="d-flex w-75 mt-5 mb-3 mx-auto align-items-center rounded genHeroContainer">

@@ -1,3 +1,4 @@
+// Display options for how to sort the Pokémon within each generation
 const SortOptions = () => {
   return (
     <div className="d-flex justify-content-center align-items-center my-3">

@@ -1,4 +1,4 @@
-// Generation banner for first generation
+// Display banner for any generation that has four important pokemon
 const GenHero3 = ({ currGen }) => {
   // Seperate out the integer from the url
   const parts = currGen.pokemon_species[0].url.split("/");

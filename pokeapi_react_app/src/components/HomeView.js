@@ -3,6 +3,7 @@ import GenTable from "./GenTable";
 import TypesTable from "./TypesTable";
 // import SortOptions from "./SortOptions";
 
+// Home view display for Pokémon lookup website
 const HomeView = () => {
   return (
     <div>

@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 
-function SearchBar({ searchText, searchResults }) {
+// Filter and display the search results based on search text
+function SearchResults({ searchText, searchResults }) {
   let searchHTML;
 
-  // Create search results for each pokemon species
+  // Filter results if there is search text from the user
   if (searchText !== "") {
     // searchHTML = searchResults
     const searchResultsList = searchResults.filter((res) =>
@@ -33,4 +34,4 @@ function SearchBar({ searchText, searchResults }) {
   // return <></>;
 }
 
-export default SearchBar;
+export default SearchResults;
