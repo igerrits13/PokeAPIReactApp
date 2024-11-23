@@ -62,9 +62,7 @@ const SearchBar = () => {
   return (
     <div className="dropdown mx-auto w-25">
       <div
-        className={`rounded-pill mx-auto pokeSearch delay ${
-          isSearchHovered || isSearchFocused ? "dropdown-toggle" : ""
-        } ${currSearch}`}
+        className={`rounded-pill mx-auto pokeSearch delay ${currSearch}`}
         role="search"
         onMouseEnter={handleSearchHover}
         onMouseLeave={handleSearchUnHover}
@@ -110,3 +108,5 @@ const SearchBar = () => {
 };
 
 export default SearchBar;
+
+// ${ isSearchHovered || isSearchFocused ? "dropdown-toggle" : "" }

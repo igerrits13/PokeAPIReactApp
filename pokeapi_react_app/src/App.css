@@ -3,6 +3,20 @@
   margin: 0;
 }
 
+/* Widths */
+
+.w-15 {
+  width: 15%;
+}
+
+.w-33 {
+  width: 33%;
+}
+
+.w-85 {
+  width: 85%;
+}
+
 /* HOMEVIEW COMPONENTS */
 
 .homeTitle {
@@ -228,9 +242,9 @@
   );
 }
 
-.w-33 {
+/* .w-33 {
   width: 33%;
-}
+} */
 
 .gradient3 {
   width: auto;
@@ -247,9 +261,9 @@
 
 /* Gen Carousel */
 
-.w-85 {
+/* .w-85 {
   width: 85%;
-}
+} */
 
 .slick-slide > div {
   margin: 0 2%;
