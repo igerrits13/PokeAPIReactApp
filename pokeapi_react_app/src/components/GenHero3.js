@@ -1,13 +1,19 @@
 // Display banner for any generation that has four important pokemon
 const GenHero3 = ({ currGen }) => {
+  console.log(currGen.id);
   // Seperate out the integer from the url
-  const parts = currGen.pokemon_species[0].url.split("/");
+  const parts =
+    currGen.id === 9
+      ? currGen.pokemon_species[1].url.split("/")
+      : currGen.pokemon_species[0].url.split("/");
   const cleanedParts = parts.filter((part) => part !== "");
   const lastPart = cleanedParts[cleanedParts.length - 1];
   let number = parseInt(lastPart, 10);
   if (currGen.id === 5) {
     number++;
   }
+
+  console.log(number);
 
   return (
     <div className="d-flex w-75 mt-5 mb-3 mx-auto align-items-center rounded genHeroContainer">
