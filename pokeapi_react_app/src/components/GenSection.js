@@ -4,22 +4,22 @@ import GenHero3 from "./GenHero3";
 import GenHero4 from "./GenHero4";
 
 // Container for the current Pokémon generation used to make generational API calls and setup each generational section
-// const GenSection = ({ genData }) => {
-const GenSection = () => {
+const GenSection = ({ genData }) => {
+  // const GenSection = () => {
   const [currGen, setCurrGen] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   //  Load in data for the current generation
   useEffect(() => {
-    // fetch(`${genData.url}`)
-    fetch(`https://pokeapi.co/api/v2/generation/1/`)
+    fetch(`${genData.url}`)
+      // fetch(`https://pokeapi.co/api/v2/generation/1/`)
       .then((response) => response.json())
       .then((data) => {
         setCurrGen(data);
         setIsLoading(false);
       });
-    // }, [genData]);
-  }, []);
+  }, [genData]);
+  // }, []);
 
   return (
     <div className="my-5">

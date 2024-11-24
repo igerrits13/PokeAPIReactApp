@@ -2,19 +2,19 @@
 const SortOptions = () => {
   return (
     <div className="d-flex justify-content-center align-items-center my-3">
-      Sort by:
+      <div className="fs-5 fw-bolder my-2 me-1"> Sort by:</div>
       <div className="form-check">
         <input
-          className="form-check-input"
+          className="form-check-input mx-3"
           type="radio"
           name="flexRadioDefault"
           id="flexRadioDefault1"
         />
         <label className="form-check-label" htmlFor="flexRadioDefault1">
-          Default radio
+          Name
         </label>
       </div>
-      <div className="form-check">
+      <div className="form-check mx-3">
         <input
           className="form-check-input"
           type="radio"
@@ -23,7 +23,7 @@ const SortOptions = () => {
           checked
         />
         <label className="form-check-label" htmlFor="flexRadioDefault2">
-          Default checked radio
+          Number
         </label>
       </div>
     </div>

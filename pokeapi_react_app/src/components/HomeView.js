@@ -1,7 +1,7 @@
 import SearchBar from "./SearchBar";
 import GenTable from "./GenTable";
 import TypesTable from "./TypesTable";
-// import SortOptions from "./SortOptions";
+import SortOptions from "./SortOptions";
 
 // Home view display for Pokémon lookup website
 const HomeView = () => {
@@ -10,7 +10,7 @@ const HomeView = () => {
       <div className="fw-bolder text-center my-5 homeTitle">Pokémon Lookup</div>
       <SearchBar />
       <TypesTable />
-      {/* <SortOptions /> */}
+      <SortOptions />
       <GenTable />
     </div>
   );

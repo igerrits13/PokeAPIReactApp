@@ -242,10 +242,6 @@
   );
 }
 
-/* .w-33 {
-  width: 33%;
-} */
-
 .gradient3 {
   width: auto;
   height: auto;
@@ -258,12 +254,6 @@
     #539ddf 100%
   );
 }
-
-/* Gen Carousel */
-
-/* .w-85 {
-  width: 85%;
-} */
 
 .slick-slide > div {
   margin: 0 2%;
