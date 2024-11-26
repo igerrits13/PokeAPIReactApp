@@ -21,9 +21,8 @@ import WaterType from "./icons/water.svg";
 
 // Display a table showing all types that can be used for filtering the
 // Pokémon within each generation
-const TypesTable = () => {
+const TypesTable = ({ fullScreen }) => {
   const [typesResults, setTypesResult] = useState([]);
-  const [fullScreen, setFullScreen] = useState(false);
   let typeStyle = "";
 
   // Fetch the types for the buttons
@@ -33,17 +32,6 @@ const TypesTable = () => {
       .then((data) => {
         setTypesResult(data.results);
       });
-  }, []);
-
-  // Check screen size to see if types table should collapse
-  useEffect(() => {
-    const handleFullScreen = () => {
-      setFullScreen(window.innerWidth >= 576);
-    };
-
-    window.addEventListener("resize", handleFullScreen);
-    handleFullScreen();
-    return () => window.removeEventListener("resize", handleFullScreen);
   }, []);
 
   // Set the type attributes for the current buttoon

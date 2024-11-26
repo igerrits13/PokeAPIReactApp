@@ -2,7 +2,7 @@ import SearchResults from "./SearchResults";
 import { useState, useEffect } from "react";
 
 // Pokéball icon that expands into a search bar with dropdown results
-const SearchBar = () => {
+const SearchBar = ({ fullScreen }) => {
   const [searchText, setSearchText] = useState("");
   const [isSearchHovered, setIsSearchHovered] = useState(false);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
@@ -59,8 +59,11 @@ const SearchBar = () => {
   const currSearch =
     isSearchHovered || isSearchFocused ? "bg-secondary showSearch" : "bg-body ";
 
+  // Set width based on screen size
+  const searchBarWidth = fullScreen ? "w-25" : "w-50";
+
   return (
-    <div className="dropdown mx-auto w-25">
+    <div className={`dropdown mx-auto ${searchBarWidth}`}>
       <div
         className={`rounded-pill mx-auto pokeSearch delay ${currSearch}`}
         role="search"
