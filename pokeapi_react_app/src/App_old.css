@@ -1,0 +1,260 @@
+#root > div {
+  height: 100vh;
+  margin: 0;
+}
+
+/* Widths */
+
+.w-15 {
+  width: 15%;
+}
+
+.w-33 {
+  width: 33%;
+}
+
+.w-85 {
+  width: 85%;
+}
+
+/* HOMEVIEW COMPONENTS */
+
+.homeTitle {
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+@media (max-width: 576px) {
+  .homeTitle {
+    font-size: 36px;
+  }
+}
+
+@media (min-width: 577px) {
+  .homeTitle {
+    font-size: 72px;
+  }
+}
+
+/* Main search bar */
+.pokeSearch {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  overflow: hidden;
+  transition: width 0.8s cubic-bezier(0.9, 0, 0.3, 0.9);
+}
+
+.pokeSearchBar {
+  border: none;
+  outline: none;
+  padding-left: 14px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.5s;
+}
+
+.pokeSearchBar:-webkit-autofill {
+  box-shadow: 0 0 0 100px var(--white-color) inset;
+}
+
+.searchButton {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: transform 0.6s cubic-bezier(0.9, 0, 0.3, 0.9);
+}
+
+.searchBall {
+  height: 48px;
+}
+
+.searchBall,
+.searchIcon {
+  position: absolute;
+  transition: opacity 0.7s cubic-bezier(0.9, 0, 0.3, 0.9);
+}
+
+.searchIcon {
+  opacity: 0;
+}
+
+.showSearch {
+  width: 100%;
+}
+
+.showSearch .pokeSearchBar {
+  opacity: 1;
+  pointer-events: initial;
+}
+
+.showSearch .searchButton {
+  transform: rotate(90deg);
+}
+
+.showSearch .searchBall {
+  opacity: 0;
+}
+
+.showSearch .searchIcon {
+  opacity: 1;
+}
+
+.searchResults {
+  height: auto;
+  max-height: 350px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  overflow: hidden;
+  overflow-y: auto;
+  z-index: 200;
+}
+
+.searchResultsDropdown {
+  width: 88%;
+  left: 6%;
+}
+
+/* Type Butttons and dropdown */
+
+.typeDropdown {
+  height: auto;
+  max-height: 200px;
+  overflow-x: hidden;
+  text-shadow: 0 0 1px #000;
+}
+
+.typeBtn {
+  text-shadow: 0 0 1px #000;
+  outline: 1px solid #595761;
+}
+
+.typeBtnImg {
+  position: relative;
+  height: 25px;
+  filter: drop-shadow(0 0 2px #000);
+}
+
+.bugType {
+  background: #92bc2c;
+}
+
+.darkType {
+  background: #595761;
+}
+
+.dragonType {
+  background: #0c69c8;
+}
+
+.electricType {
+  background: #f2d94e;
+}
+
+.fireType {
+  background: #fba54c;
+}
+
+.fairyType {
+  background: #ee90e6;
+}
+
+.fightingType {
+  background: #d3425f;
+}
+
+.flyingType {
+  background: #a1bbec;
+}
+
+.ghostType {
+  background: #5f6dbc;
+}
+
+.grassType {
+  background: #5fbd58;
+}
+
+.groundType {
+  background: #da7c4d;
+}
+
+.iceType {
+  background: #75d0c1;
+}
+
+.normalType {
+  background: #a0a29f;
+}
+
+.poisonType {
+  background: #b763cf;
+}
+
+.psychicType {
+  background: #fa8581;
+}
+
+.rockType {
+  background: #c9bb8a;
+}
+
+.steelType {
+  background: #5695a3;
+}
+
+.waterType {
+  background: #539ddf;
+}
+
+/* Gen Hero */
+
+.genHeroContainer {
+  height: auto;
+  max-height: 200px;
+  overflow: hidden;
+}
+
+.genHeroText {
+  position: absolute;
+  z-index: 100;
+}
+
+.gradient4 {
+  width: auto;
+  height: auto;
+  background: linear-gradient(
+    77deg,
+    #f2d94e 25%,
+    #5fbd58 25%,
+    #5fbd58 50%,
+    #fba54c 50%,
+    #fba54c 75%,
+    #539ddf 75%,
+    #539ddf 100%
+  );
+}
+
+.gradient3 {
+  width: auto;
+  height: auto;
+  background: linear-gradient(
+    77deg,
+    #5fbd58 33%,
+    #fba54c 33%,
+    #fba54c 66%,
+    #539ddf 66%,
+    #539ddf 100%
+  );
+}
+
+.slick-slide > div {
+  margin: 0 2%;
+}
