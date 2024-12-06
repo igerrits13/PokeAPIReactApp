@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import GenSection from "./GenSection";
+import GenSection from "./GenSection_old";
 
 // Container to initialize the API calls and displays for each Pokémon generation
 const GenTable = () => {

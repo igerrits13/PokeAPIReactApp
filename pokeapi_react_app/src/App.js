@@ -1,5 +1,7 @@
 import "./App.css";
+import "./App_old.css";
 import HomeView from "./components/HomeView";
+import HomeView_old from "./components/HomeView_old";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
@@ -9,35 +11,35 @@ function App() {
    * Licensed under the Creative Commons Attribution 3.0 Unported License.
    */
 
-  (() => {
-    const getStoredTheme = () => localStorage.getItem("theme");
+  // (() => {
+  //   const getStoredTheme = () => localStorage.getItem("theme");
 
-    const getPreferredTheme = () => {
-      const storedTheme = getStoredTheme();
-      if (storedTheme) {
-        return storedTheme;
-      }
+  //   const getPreferredTheme = () => {
+  //     const storedTheme = getStoredTheme();
+  //     if (storedTheme) {
+  //       return storedTheme;
+  //     }
 
-      return window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light";
-    };
+  //     return window.matchMedia("(prefers-color-scheme: dark)").matches
+  //       ? "dark"
+  //       : "light";
+  //   };
 
-    const setTheme = (theme) => {
-      if (theme === "auto") {
-        document.documentElement.setAttribute(
-          "data-bs-theme",
-          window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "light"
-        );
-      } else {
-        document.documentElement.setAttribute("data-bs-theme", theme);
-      }
-    };
+  //   const setTheme = (theme) => {
+  //     if (theme === "auto") {
+  //       document.documentElement.setAttribute(
+  //         "data-bs-theme",
+  //         window.matchMedia("(prefers-color-scheme: dark)").matches
+  //           ? "dark"
+  //           : "light"
+  //       );
+  //     } else {
+  //       document.documentElement.setAttribute("data-bs-theme", theme);
+  //     }
+  //   };
 
-    setTheme(getPreferredTheme());
-  })();
+  //   setTheme(getPreferredTheme());
+  // })();
 
   return (
     <div>

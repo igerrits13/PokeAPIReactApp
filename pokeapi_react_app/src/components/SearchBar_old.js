@@ -1,4 +1,4 @@
-import SearchResults from "./SearchResults";
+import SearchResults from "./SearchResults_old";
 import { useState, useEffect } from "react";
 
 // Pokéball icon that expands into a search bar with dropdown results
@@ -111,5 +111,3 @@ const SearchBar = ({ fullScreen }) => {
 };
 
 export default SearchBar;
-
-// ${ isSearchHovered || isSearchFocused ? "dropdown-toggle" : "" }

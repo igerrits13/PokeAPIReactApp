@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import GenDisplay from "./GenDisplay";
-import GenHero3 from "./GenHero3";
-import GenHero4 from "./GenHero4";
+import GenDisplay from "./GenDisplay_old";
+import GenHero3 from "./GenHero3_old";
+import GenHero4 from "./GenHero4_old";
 
 // Container for the current Pokémon generation used to make generational API calls and setup each generational section
 const GenSection = ({ genData }) => {

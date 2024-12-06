@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import SearchBar from "./SearchBar";
-import GenTable from "./GenTable";
-import TypesTable from "./TypesTable";
-import SortOptions from "./SortOptions";
+import SearchBar from "./SearchBar_old";
+import GenTable from "./GenTable_old";
+import TypesTable from "./TypesTable_old";
+import SortOptions from "./SortOptions_old";
 
 // Home view display for Pokémon lookup website
-const HomeView = () => {
+const HomeView_old = () => {
   const [fullScreen, setFullScreen] = useState(false);
 
   // Check screen size to see if types table should collapse
@@ -30,4 +30,4 @@ const HomeView = () => {
   );
 };
 
-export default HomeView;
+export default HomeView_old;

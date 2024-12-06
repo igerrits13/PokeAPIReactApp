@@ -1,7 +1,10 @@
+import TypseTable from "./TypesTable";
+
 const HomeView = () => {
   return (
-    <div>
+    <div className="homeview-container">
       <div className="header">Pokémon Lookup</div>
+      <TypseTable />
     </div>
   );
 };

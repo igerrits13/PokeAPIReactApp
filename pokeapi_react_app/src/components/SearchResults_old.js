@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import SearchResultItem from "./SearchResultItem";
+import SearchResultItem from "./SearchResultItem_old";
 
 // Filter and display the search results based on search text
 function SearchBar({ searchText, searchResults }) {

@@ -1,9 +1,14 @@
+/* Root element */
+
 #root > div {
   height: 100vh;
   margin: 0;
+  padding: 0;
   box-sizing: border-box;
   background-color: #262626;
 }
+
+/* Fonts */
 
 @font-face {
   font-family: quicksand;
@@ -25,17 +30,28 @@
   src: url(../public/fonts/Josefin_Sans/static/JosefinSans-Bold.ttf);
 }
 
+/* Home page layout */
+
+.homeview-container {
+  display: grid;
+  /* gap: 10%; */
+}
+
+/* Home page header */
+
 .header {
   padding: 4rem;
   text-align: center;
   font-size: 8vw;
   font-family: josefinSans-bold, sans-serif;
-  /* font-weight: bolder; */
   color: #e5e5e5;
-  /* text-shadow: -2px -2px 0 #171717, 2px -2px 0 #171717, -2px 2px 0 #171717,
-    2px 2px 0 #171717; */
+  background-color: aquamarine;
 }
 
-.text {
-  font-family: josefinSans;
+/* Types Table */
+
+.types-table {
+  display: grid;
+  background-color: yellow;
+  min-height: 200px;
 }
