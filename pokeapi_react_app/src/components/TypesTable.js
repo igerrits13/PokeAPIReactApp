@@ -80,7 +80,31 @@ const TypseTable = () => {
   //   }
   // }
 
-  return <div className="types-table">Types Table here</div>;
+  return (
+    <div className="types-table">
+      <button className="type-item">Item 1</button>
+      <button className="type-item">Item 2</button>
+      <button className="type-item">Item 3 bruh</button>
+      <button className="type-item">Item 4</button>
+      <button className="type-item">Item 5</button>
+      <button className="type-item">Item 6</button>
+      <button className="type-item">Item 7 with</button>
+      <button className="type-item">Item 8</button>
+      <button className="type-item">Item 9 with somoe</button>
+      <button className="type-item">Item 10</button>
+      <button className="type-item">Item 11</button>
+      <button className="type-item">Item 12</button>
+      <button className="type-item">Item 13 additional</button>
+      <button className="type-item">
+        Item 14 whole lot more text going on here
+      </button>
+      <button className="type-item">Item 15</button>
+      <button className="type-item">Item 16</button>
+      <button className="type-item">Item 17 text goes here</button>
+      <button className="type-item">18</button>
+      <button className="type-item">Item 19 even more </button>
+    </div>
+  );
 };
 
 export default TypseTable;

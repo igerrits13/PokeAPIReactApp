@@ -1,7 +1,7 @@
 import "./App.css";
 import "./App_old.css";
 import HomeView from "./components/HomeView";
-import HomeView_old from "./components/HomeView_old";
+// import HomeView_old from "./components/HomeView_old";
 import { Routes, Route } from "react-router-dom";
 
 function App() {

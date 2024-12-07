@@ -3,7 +3,7 @@
 #root > div {
   height: 100vh;
   margin: 0;
-  padding: 0;
+  padding: 10%;
   box-sizing: border-box;
   background-color: #262626;
 }
@@ -51,7 +51,91 @@
 /* Types Table */
 
 .types-table {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px 40px;
   background-color: yellow;
-  min-height: 200px;
+}
+
+.type-item {
+  height: 25px;
+  margin: 20px 0;
+  text-shadow: 0 0 1px #000;
+  outline: 1px solid #595761;
+  background-color: #595761;
+  border-radius: 10px;
+}
+
+.bug-type {
+  background: #92bc2c;
+}
+
+.dark-type {
+  background: #595761;
+}
+
+.dragon-type {
+  background: #0c69c8;
+}
+
+.electric-type {
+  background: #f2d94e;
+}
+
+.fire-type {
+  background: #fba54c;
+}
+
+.fairy-type {
+  background: #ee90e6;
+}
+
+.fighting-type {
+  background: #d3425f;
+}
+
+.flying-type {
+  background: #a1bbec;
+}
+
+.ghost-type {
+  background: #5f6dbc;
+}
+
+.grass-type {
+  background: #5fbd58;
+}
+
+.ground-type {
+  background: #da7c4d;
+}
+
+.ice-type {
+  background: #75d0c1;
+}
+
+.normal-type {
+  background: #a0a29f;
+}
+
+.poison-type {
+  background: #b763cf;
+}
+
+.psychic-type {
+  background: #fa8581;
+}
+
+.rock-type {
+  background: #c9bb8a;
+}
+
+.steel-type {
+  background: #5695a3;
+}
+
+.water-type {
+  background: #539ddf;
 }
