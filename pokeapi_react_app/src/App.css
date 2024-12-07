@@ -21,6 +21,11 @@
 }
 
 @font-face {
+  font-family: josefinSans-light;
+  src: url(../public/fonts/Josefin_Sans/static/JosefinSans-Light.ttf);
+}
+
+@font-face {
   font-family: josefinSans;
   src: url(../public/fonts/Josefin_Sans/static/JosefinSans-Regular.ttf);
 }
@@ -34,7 +39,6 @@
 
 .homeview-container {
   display: grid;
-  /* gap: 10%; */
 }
 
 /* Home page header */
@@ -44,8 +48,22 @@
   text-align: center;
   font-size: 8vw;
   font-family: josefinSans-bold, sans-serif;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   color: #e5e5e5;
   background-color: aquamarine;
+}
+
+/* Home page sub-header */
+
+.sub-header {
+  padding: 0.5rem;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 3vw;
+  font-family: josefinSans-bold, sans-serif;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  color: #e5e5e5;
+  background-color: rgb(136, 33, 131);
 }
 
 /* Types Table */
@@ -54,18 +72,34 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  gap: 20px 40px;
   background-color: yellow;
+  margin-bottom: 20px;
 }
 
 .type-item {
+  /* font-size: 1.5vw; */
+  font-family: josefinSans, sans-serif;
+  /* height: 25px; */
+  height: auto;
+  line-height: 5px;
+  margin: 15px 5px;
+  padding: 0.5rem;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  border: 1px solid #595761;
+  background-color:#a1bbec;
+  border-radius: 8px;
+}
+
+.type-img {
   height: 25px;
-  margin: 20px 0;
-  text-shadow: 0 0 1px #000;
-  outline: 1px solid #595761;
-  background-color: #595761;
-  border-radius: 10px;
+  filter: drop-shadow(0 0 2px #000);
+  /* background-color: #0c69c8; */
+}
+
+.type-item:hover,
+.type-item:active {
+  /* background-image: linear-gradient(rgb(0 0 0/40%) 0 0); */
+  background-color: rgba(0,0,0,0);
 }
 
 .bug-type {
