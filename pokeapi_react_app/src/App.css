@@ -76,6 +76,7 @@
 
 .searchbar-input {
   height: 50px;
+  /* width: 100%; */
   background-color: #fba54c;
 }
 
@@ -201,8 +202,18 @@
 
 /* Sort options */
 
-.sortoptions-container {
+.sortoptions-container-small {
   display: grid;
+  padding: 10px;
+  width: 100%;
+  gap: 10px 0;
+  grid-template-rows: 1fr 1fr 1fr;
+  background-color: brown;
+}
+
+.sortoptions-container-med-large {
+  display: grid;
+  padding: 10px;
   width: 100%;
   gap: 0 10px;
   grid-template-columns: 1fr 1fr 1fr;
@@ -211,6 +222,7 @@
 
 .sortoptions-item {
   place-self: center;
+  width: 100%;
   background-color: #5695a3;
 }
 
@@ -221,4 +233,67 @@
   font-family: josefinSans-bold, sans-serif;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   color: #e5e5e5;
+}
+
+/* Pokemon display table */
+
+.pokemon-container {
+  display:grid;
+  gap: 20px 20px;
+  padding: 1rem;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  background-color: #d3425f;
+}
+
+.pokemon-card {
+  width: 100%;
+  text-decoration: none;
+  background-color: #a0a29f;
+}
+
+.pokemon-image {
+  width: 100%;
+}
+
+/* Footer */
+
+.footer-container {
+  display: grid;
+  width: 100%;
+  gap: 0 10px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: 
+    "github created logo"
+    "rights rights rights"
+    ;
+  background-color: #92bc2c;
+}
+
+.footer-item-1 {
+  background-color: chocolate;
+    width: 100%;
+  justify-self: start;
+  grid-area: github;
+}
+
+.footer-item-2 {
+  background-color:fuchsia;
+    width: 100%;
+  justify-self: center;
+  grid-area: created;
+}
+
+.footer-item-3 {
+  background-color:lightgreen;
+    width: 100%;
+  justify-self: end;
+  grid-area: logo;
+}
+
+.footer-item-4 {
+  background-color:cyan;
+  width: 100%;
+  justify-self: center;
+  grid-area: rights;
 }
