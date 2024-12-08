@@ -1,27 +1,27 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import BugType from "./icons/bug.svg";
-import DarkType from "./icons/dark.svg";
-import DragonType from "./icons/dragon.svg";
-import ElectricType from "./icons/electric.svg";
-import FairyType from "./icons/fairy.svg";
-import FightingType from "./icons/fighting.svg";
-import FireType from "./icons/fire.svg";
-import FlyingType from "./icons/flying.svg";
-import GhostType from "./icons/ghost.svg";
-import GrassType from "./icons/grass.svg";
-import GroundType from "./icons/ground.svg";
-import IceType from "./icons/ice.svg";
-import NormalType from "./icons/normal.svg";
-import PoisonType from "./icons/poison.svg";
-import PsychicType from "./icons/psychic.svg";
-import RockType from "./icons/rock.svg";
-import SteelType from "./icons/steel.svg";
-import WaterType from "./icons/water.svg";
+import BugType from "../icons/bug.svg"
+import DarkType from "../icons/dark.svg";
+import DragonType from "../icons/dragon.svg";
+import ElectricType from "../icons/electric.svg";
+import FairyType from "../icons/fairy.svg";
+import FightingType from "../icons/fighting.svg";
+import FireType from "../icons/fire.svg";
+import FlyingType from "../icons/flying.svg";
+import GhostType from "../icons/ghost.svg";
+import GrassType from "../icons/grass.svg";
+import GroundType from "../icons/ground.svg";
+import IceType from "../icons/ice.svg";
+import NormalType from "../icons/normal.svg";
+import PoisonType from "../icons/poison.svg";
+import PsychicType from "../icons/psychic.svg";
+import RockType from "../icons/rock.svg";
+import SteelType from "../icons/steel.svg";
+import WaterType from "../icons/water.svg";
 
 // Display a table showing all types that can be used for filtering the
 // Pokémon within each generation
-const TypesTable = ({ fullScreen }) => {
+const TypesTableOld = ({ fullScreen }) => {
   const [typesResults, setTypesResult] = useState([]);
   let typeStyle = "";
 
@@ -170,4 +170,4 @@ const TypesTable = ({ fullScreen }) => {
   }
 };
 
-export default TypesTable;
+export default TypesTableOld;

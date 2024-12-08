@@ -1,5 +1,5 @@
 // Display banner for any generation that has four important pokemon
-const GenHero3 = ({ currGen }) => {
+const GenHero3Old = ({ currGen }) => {
   console.log(currGen.id);
   // Seperate out the integer from the url
   const parts =
@@ -54,4 +54,4 @@ const GenHero3 = ({ currGen }) => {
   );
 };
 
-export default GenHero3;
+export default GenHero3Old;

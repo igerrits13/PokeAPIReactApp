@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import GenDisplay from "./GenDisplay_old";
-import GenHero3 from "./GenHero3_old";
-import GenHero4 from "./GenHero4_old";
+import GenDisplayOld from "./GenDisplay_old";
+import GenHero3Old from "./GenHero3_old";
+import GenHero4Old from "./GenHero4_old";
 
 // Container for the current Pokémon generation used to make generational API calls and setup each generational section
-const GenSection = ({ genData }) => {
+const GenSectionOld = ({ genData }) => {
   // const GenSection = () => {
   const [currGen, setCurrGen] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -29,11 +29,11 @@ const GenSection = ({ genData }) => {
         <div>
           <div>
             {currGen.id === 1 ? (
-              <GenHero4 currGen={currGen} />
+              <GenHero4Old currGen={currGen} />
             ) : (
-              <GenHero3 currGen={currGen} />
+              <GenHero3Old currGen={currGen} />
             )}
-            <GenDisplay currGen={currGen.pokemon_species} />
+            <GenDisplayOld currGen={currGen.pokemon_species} />
           </div>
         </div>
       )}
@@ -41,4 +41,4 @@ const GenSection = ({ genData }) => {
   );
 };
 
-export default GenSection;
+export default GenSectionOld;

@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 // Display the cards for all Pokémon within the current generation, displays them as cards
-const GenDisplay = ({ currGen }) => {
+const GenDisplayOld = ({ currGen }) => {
   const [fullScreen, setFullScreen] = useState(false);
   const [midScreen, setMidScreen] = useState(false);
 
@@ -84,4 +84,4 @@ const GenDisplay = ({ currGen }) => {
   );
 };
 
-export default GenDisplay;
+export default GenDisplayOld;

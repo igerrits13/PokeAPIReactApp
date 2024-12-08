@@ -1,5 +1,5 @@
 // Display banner for any generation starter Pokémon
-const GenHero4 = ({ currGen }) => {
+const GenHero4Old = ({ currGen }) => {
   return (
     <div className="d-flex w-75 mt-5 mb-3 mx-auto align-items-center rounded genHeroContainer">
       <div className="text-center fs-1 fw-bolder w-75 genHeroText">
@@ -42,4 +42,4 @@ const GenHero4 = ({ currGen }) => {
   );
 };
 
-export default GenHero4;
+export default GenHero4Old;

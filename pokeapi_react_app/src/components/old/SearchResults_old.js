@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import SearchResultItem from "./SearchResultItem_old";
+import SearchResultItemOld from "./SearchResultItem_old";
 
 // Filter and display the search results based on search text
-function SearchBar({ searchText, searchResults }) {
+function SearchResultsOld({ searchText, searchResults }) {
   let searchHTML;
 
   // Create search results for each pokemon species. If there is search text,
@@ -11,13 +11,13 @@ function SearchBar({ searchText, searchResults }) {
     searchHTML = searchResults
       .filter((res) => res.name.includes(`${searchText.toLowerCase()}`))
       .map((resultItem, i) => {
-        return <SearchResultItem resultItem={resultItem} key={i} />;
+        return <SearchResultItemOld resultItem={resultItem} key={i} />;
       });
   }
   // Otherwise, display all Pokémon in order
   else {
     searchHTML = searchResults.map((resultItem, i) => {
-      return <SearchResultItem resultItem={resultItem} key={i} />;
+      return <SearchResultItemOld resultItem={resultItem} key={i} />;
     });
   }
 
@@ -34,4 +34,4 @@ function SearchBar({ searchText, searchResults }) {
   );
 }
 
-export default SearchBar;
+export default SearchResultsOld;

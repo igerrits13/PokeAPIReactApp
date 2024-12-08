@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import GenSection from "./GenSection_old";
+import GenSectionOld from "./GenSection_old";
 
 // Container to initialize the API calls and displays for each Pokémon generation
-const GenTable = () => {
+const GenTableOld = () => {
   const [genData, setGenData] = useState([]);
 
   // Fetch basic generation data
@@ -16,7 +16,7 @@ const GenTable = () => {
 
   // Create a section for each generation
   const genHTML = genData.map((obj, i) => {
-    return <GenSection genData={obj} key={i} />;
+    return <GenSectionOld genData={obj} key={i} />;
   });
 
   return <div>{genHTML}</div>;
@@ -24,4 +24,4 @@ const GenTable = () => {
   // return <GenSection />;
 };
 
-export default GenTable;
+export default GenTableOld;

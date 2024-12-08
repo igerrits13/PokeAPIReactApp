@@ -1,7 +1,7 @@
 import "./App.css";
 import "./App_old.css";
 import HomeView from "./components/HomeView";
-// import HomeView_old from "./components/HomeView_old";
+import HomeViewOld from "./components/old/HomeView_old";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
@@ -45,6 +45,7 @@ function App() {
     <div>
       <Routes>
         <Route path="/" exact element={<HomeView />} />
+        <Route path="/old" element={<HomeViewOld />} />
       </Routes>
     </div>
   );

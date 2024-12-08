@@ -1,5 +1,5 @@
 // Display options for how to sort the Pokémon within each generation
-const SortOptions = () => {
+const SortOptionsOld = () => {
   return (
     <div className="d-flex justify-content-center align-items-center my-3">
       <div className="fs-5 fw-bolder my-2 me-1"> Sort by:</div>
@@ -30,4 +30,4 @@ const SortOptions = () => {
   );
 };
 
-export default SortOptions;
+export default SortOptionsOld;

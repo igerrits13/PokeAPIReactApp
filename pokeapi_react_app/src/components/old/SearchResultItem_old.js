@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const SearchResultItem = ({ resultItem }) => {
+const SearchResultItemOld = ({ resultItem }) => {
   // Function to capitalize the first letter of each name
   function capitalizeFirstLetter(name) {
     return String(name).charAt(0).toUpperCase() + String(name).slice(1);
@@ -28,4 +28,4 @@ const SearchResultItem = ({ resultItem }) => {
   );
 };
 
-export default SearchResultItem;
+export default SearchResultItemOld;
