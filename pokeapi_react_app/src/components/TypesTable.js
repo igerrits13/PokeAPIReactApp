@@ -19,7 +19,7 @@ import RockType from "./icons/rock.svg";
 import SteelType from "./icons/steel.svg";
 import WaterType from "./icons/water.svg";
 
-const TypseTable = () => {
+const TypeseTable = () => {
   const [typesResults, setTypesResult] = useState([]);
   let typeStyle = "";
 
@@ -100,10 +100,11 @@ const TypseTable = () => {
       if (obj.name !== "unknown" && obj.name !== "stellar") {
         return (
           <Link key={i} to="./">
-            <button className={`m-2 fs-6 fw-bold type-item ${typeStyle}`}>
-              <img
-                className="me-2 typeBtnImg"
-                // className="type-img"
+            {/* <button className={`m-2 fs-6 fw-bold type-item ${typeStyle}`}> */}
+            <button className={`type-item ${typeStyle}`}>
+             <img
+                // className="me-2 typeBtnImg"
+                className="type-img"
                 src={typeIcon}
                 alt={`${obj.name} type icon`}
               ></img>
@@ -129,4 +130,4 @@ const TypseTable = () => {
   );
 };
 
-export default TypseTable;
+export default TypeseTable;

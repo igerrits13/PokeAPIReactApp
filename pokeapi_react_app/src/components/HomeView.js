@@ -1,11 +1,15 @@
-import TypseTable from "./TypesTable";
+import SearchBar from "./SearchBar";
+import SortOptions from "./SortOptions";
+import TypeseTable from "./TypesTable";
 
 const HomeView = () => {
   return (
     <div className="homeview-container">
-      <div className="header">Pokémon Lookup</div>
-      {/* <div className="header"></div> */}
-      <TypseTable />
+      {/* <div className="header">Pokémon Lookup</div> */}
+      <div className="header"></div>
+      <SearchBar />
+      <TypeseTable />
+      <SortOptions />
     </div>
   );
 };

@@ -3,7 +3,7 @@
 #root > div {
   height: 100vh;
   margin: 0;
-  padding: 10%;
+  padding: 0;
   box-sizing: border-box;
   background-color: #262626;
 }
@@ -39,14 +39,20 @@
 
 .homeview-container {
   display: grid;
+  place-items: center;
+  place-content: center;
+  grid-template-rows: auto auto auto auto auto;
+  gap: 20px 0px;
+  padding: 10%;
+  background-color: #c9bb8a;
 }
 
 /* Home page header */
 
 .header {
   padding: 4rem;
-  text-align: center;
-  font-size: 8vw;
+  /* text-align: center; */
+  font-size: 6rem;
   font-family: josefinSans-bold, sans-serif;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   color: #e5e5e5;
@@ -59,11 +65,30 @@
   padding: 0.5rem;
   margin-top: 20px;
   text-align: center;
-  font-size: 3vw;
+  font-size: 2rem;
   font-family: josefinSans-bold, sans-serif;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   color: #e5e5e5;
   background-color: rgb(136, 33, 131);
+}
+
+/* Search bar */
+
+.searchbar-input {
+  height: 50px;
+  background-color: #fba54c;
+}
+
+.searchbar-icon {
+  box-sizing: border-box;
+  padding: 10px;
+  width: 42.5px;
+  height: 42.5px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 1rem;
+  transition: all 1s;
+  background-color: #5695a3;
 }
 
 /* Types Table */
@@ -73,11 +98,11 @@
   flex-wrap: wrap;
   justify-content: center;
   background-color: yellow;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 
 .type-item {
-  /* font-size: 1.5vw; */
+  font-size: 1rem;
   font-family: josefinSans, sans-serif;
   /* height: 25px; */
   height: auto;
@@ -172,4 +197,28 @@
 
 .water-type {
   background: #539ddf;
+}
+
+/* Sort options */
+
+.sortoptions-container {
+  display: grid;
+  width: 100%;
+  gap: 0 10px;
+  grid-template-columns: 1fr 1fr 1fr;
+  background-color: brown;
+}
+
+.sortoptions-item {
+  place-self: center;
+  background-color: #5695a3;
+}
+
+.sortoption-text {
+  padding: 0.5rem;
+  text-align: center;
+  font-size: 1rem;
+  font-family: josefinSans-bold, sans-serif;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  color: #e5e5e5;
 }
