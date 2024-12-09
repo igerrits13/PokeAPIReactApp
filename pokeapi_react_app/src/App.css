@@ -62,46 +62,39 @@
 
 .homeview-small {
   padding: 5% 2% 0 2%;
-  /* background-color: #f6c40f; */
 }
 
 .homeview-med {
   padding: 5% 5% 0 5%;
-  /* background-color: #13b02d; */
 }
 
 .homeview-large {
   padding: 5% 10% 0 10%;
-  /* background-color: #9d2b17; */
 }
 
 /* Home page header */
 
 .header {
   text-align: center;
-  /* font-size: 6rem; */
   font-family: josefinSans-bold, sans-serif;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
-    1px 1px 0 #000;
+  text-shadow: -1px -1px 0 #201d1f, 1px -1px 0 #201d1f, -1px 1px 0 #201d1f,
+    1px 1px 0 #201d1f;
   color: #fff9fc;
 }
 
 .header-small {
   padding: 1rem;
   font-size: 4rem;
-  /* background-color: aquamarine; */
 }
 
 .header-med {
   padding: 2rem;
   font-size: 6rem;
-  /* background-color: rgb(183, 94, 39); */
 }
 
 .header-large {
   padding: 4rem;
   font-size: 8rem;
-  /* background-color: rgb(22, 165, 46); */
 }
 
 /* Home page sub-header */
@@ -112,8 +105,8 @@
   text-align: center;
   font-size: 2rem;
   font-family: josefinSans-bold, sans-serif;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
-    1px 1px 0 #000;
+  text-shadow: -1px -1px 0 #201d1f, 1px -1px 0 #201d1f, -1px 1px 0 #201d1f,
+    1px 1px 0 #201d1f;
   color: #fff9fc;
   background-color: rgb(136, 33, 131);
 }
@@ -156,8 +149,8 @@
   line-height: 5px;
   margin: 15px 5px;
   padding: 0.5rem;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
-    1px 1px 0 #000;
+  /* text-shadow: -1px -1px 0 #201d1f, 1px -1px 0 #201d1f, -1px 1px 0 #201d1f,
+    1px 1px 0 #201d1f; */
   border: 1px solid #595761;
   background-color: #a1bbec;
   border-radius: 8px;
@@ -165,7 +158,7 @@
 
 .type-img {
   height: 25px;
-  filter: drop-shadow(0 0 2px #000);
+  filter: drop-shadow(0 0 2px #201d1f);
   /* background-color: #0c69c8; */
 }
 
@@ -278,8 +271,8 @@
   text-align: center;
   font-size: 1rem;
   font-family: josefinSans-bold, sans-serif;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
-    1px 1px 0 #000;
+  text-shadow: -1px -1px 0 #201d1f, 1px -1px 0 #201d1f, -1px 1px 0 #201d1f,
+    1px 1px 0 #201d1f;
   color: #fff9fc;
 }
 
