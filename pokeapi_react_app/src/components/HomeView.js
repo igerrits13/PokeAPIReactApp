@@ -8,23 +8,22 @@ import TypeseTable from "./TypesTable";
 const HomeView = () => {
   const [screenSize, setscreenSize] = useState("large");
 
-
   // Check screen size to see if types table should collapse
   useEffect(() => {
     const handleScreenResize = () => {
       // Handle small screen
-      if(window.innerWidth < 576) {
-        setscreenSize("small")
+      if (window.innerWidth < 576) {
+        setscreenSize("small");
       }
 
       // Handle medium screen
-      else if(window.innerWidth >= 576 && window.innerWidth < 992) {
-        setscreenSize("medium")
+      else if (window.innerWidth >= 576 && window.innerWidth < 992) {
+        setscreenSize("medium");
       }
 
       // Handle large screen
       else {
-        setscreenSize("large")
+        setscreenSize("large");
       }
     };
 
@@ -33,10 +32,31 @@ const HomeView = () => {
     return () => window.removeEventListener("resize", handleScreenResize);
   }, []);
 
+  const containerSize =
+    screenSize === "small"
+      ? "homeview-small"
+      : screenSize === "medium"
+      ? "homeview-med"
+      : "homeview-large";
+
   return (
-    <div className="homeview-container">
-      {/* <div className="header">Pokémon Lookup</div> */}
-      <div className="header"></div>
+    <div className={`homeview-container ${containerSize}`}>
+      {screenSize === "small" ? (
+        <div className="header header-small">Pokémon Lookup</div>
+      ) : screenSize === "medium" ? (
+        <div className="header header-med">Pokémon Lookup</div>
+      ) : (
+        <div className="header header-large">Pokémon Lookup</div>
+      )}
+
+      {/* {value > 10 ? (
+        <p>Value is greater than 10</p>
+      ) : value < 5 ? (
+        <p>Value is less than 5</p>
+      ) : (
+        <p>Value is between 5 and 10</p>
+      )} */}
+
       {/* <Link to={"/old"}>Click me</Link> */}
       <SearchBar />
       <TypeseTable screenSize={screenSize} />

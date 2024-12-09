@@ -94,57 +94,51 @@ const TypeseTable = ({ screenSize }) => {
     }
   }
 
-    // Create buttons for each type
-    const typesHTML = typesResults.map((obj, i) => {
-      const typeIcon = getTypeIcon(obj.name);
-      if (obj.name !== "unknown" && obj.name !== "stellar") {
-        return (
-          <Link key={i} to="./">
-            {/* <button className={`m-2 fs-6 fw-bold type-item ${typeStyle}`}> */}
-            <button className={`type-item ${typeStyle}`}>
-             <img
-                // className="me-2 typeBtnImg"
-                className="type-img"
-                src={typeIcon}
-                alt={`${obj.name} type icon`}
-              ></img>
-              {obj.name.toUpperCase()}
-            </button>
-          </Link>
-        );
-      } else {
-        return <div key={i}></div>;
-      }
-    });
-
-    if(screenSize === "small") {
+  // Create buttons for each type
+  const typesHTML = typesResults.map((obj, i) => {
+    const typeIcon = getTypeIcon(obj.name);
+    if (obj.name !== "unknown" && obj.name !== "stellar") {
       return (
-        <div className="sortoption-text">
-        <label htmlFor="types">Filter by Type</label>
-            <select name="types" id="types">
-                <option value="volvo">All</option>
-                <option value="volvo">Fire</option>
-                <option value="saab">Ice</option>
-                <option value="saab">Normal</option>
-                <option value="saab">Ghost</option>
-                <option value="saab">Sand</option>
-            </select>
-        </div>
-      )
-    }
-
-    else {
-      return (
-        <div>
-          <div className="sub-header">
-            Types
-          </div>
-          <div className="types-table">
-            {typesHTML}
-          </div>
-        </div>
+        <Link key={i} to="./">
+          {/* <button className={`m-2 fs-6 fw-bold type-item ${typeStyle}`}> */}
+          <button className={`type-item ${typeStyle}`}>
+            <img
+              // className="me-2 typeBtnImg"
+              className="type-img"
+              src={typeIcon}
+              alt={`${obj.name} type icon`}
+            ></img>
+            {obj.name.toUpperCase()}
+          </button>
+        </Link>
       );
+    } else {
+      return <div key={i}></div>;
     }
+  });
+
+  if (screenSize === "small") {
+    return (
+      <div className="sortoption-text">
+        <label htmlFor="types">Filter by Type</label>
+        <select name="types" id="types">
+          <option value="volvo">All</option>
+          <option value="volvo">Fire</option>
+          <option value="saab">Ice</option>
+          <option value="saab">Normal</option>
+          <option value="saab">Ghost</option>
+          <option value="saab">Sand</option>
+        </select>
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <div className="sub-header">Types</div>
+        <div className="types-table">{typesHTML}</div>
+      </div>
+    );
+  }
 };
 
 export default TypeseTable;

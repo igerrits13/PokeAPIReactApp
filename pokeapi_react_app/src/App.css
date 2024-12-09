@@ -1,3 +1,13 @@
+/* Color pallette */
+
+.unused {
+  background-color: #2e2a2c; /* Background color */
+  background-color: #201d1f; /* Outline color */
+  background-color: #fff9fc; /* Text color */
+  background-color: #2b2e2a;
+  background-color: #1e201d;
+}
+
 /* Root element */
 
 #root > div {
@@ -5,7 +15,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: #262626;
+  background-color: #2e2a2c;
 }
 
 /* Fonts */
@@ -35,6 +45,10 @@
   src: url(../public/fonts/Josefin_Sans/static/JosefinSans-Bold.ttf);
 }
 
+.text {
+  color: #fff9fc;
+}
+
 /* Home page layout */
 
 .homeview-container {
@@ -43,20 +57,51 @@
   place-content: center;
   grid-template-rows: auto auto auto auto auto;
   gap: 20px 0px;
-  padding: 10%;
-  background-color: #c9bb8a;
+  padding: 5% 10% 0 10%;
+}
+
+.homeview-small {
+  padding: 5% 2% 0 2%;
+  /* background-color: #f6c40f; */
+}
+
+.homeview-med {
+  padding: 5% 5% 0 5%;
+  /* background-color: #13b02d; */
+}
+
+.homeview-large {
+  padding: 5% 10% 0 10%;
+  /* background-color: #9d2b17; */
 }
 
 /* Home page header */
 
 .header {
-  padding: 4rem;
-  /* text-align: center; */
-  font-size: 6rem;
+  text-align: center;
+  /* font-size: 6rem; */
   font-family: josefinSans-bold, sans-serif;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-  color: #e5e5e5;
-  background-color: aquamarine;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+  color: #fff9fc;
+}
+
+.header-small {
+  padding: 1rem;
+  font-size: 4rem;
+  /* background-color: aquamarine; */
+}
+
+.header-med {
+  padding: 2rem;
+  font-size: 6rem;
+  /* background-color: rgb(183, 94, 39); */
+}
+
+.header-large {
+  padding: 4rem;
+  font-size: 8rem;
+  /* background-color: rgb(22, 165, 46); */
 }
 
 /* Home page sub-header */
@@ -67,8 +112,9 @@
   text-align: center;
   font-size: 2rem;
   font-family: josefinSans-bold, sans-serif;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-  color: #e5e5e5;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+  color: #fff9fc;
   background-color: rgb(136, 33, 131);
 }
 
@@ -110,9 +156,10 @@
   line-height: 5px;
   margin: 15px 5px;
   padding: 0.5rem;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
   border: 1px solid #595761;
-  background-color:#a1bbec;
+  background-color: #a1bbec;
   border-radius: 8px;
 }
 
@@ -125,7 +172,7 @@
 .type-item:hover,
 .type-item:active {
   /* background-image: linear-gradient(rgb(0 0 0/40%) 0 0); */
-  background-color: rgba(0,0,0,0);
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .bug-type {
@@ -231,14 +278,15 @@
   text-align: center;
   font-size: 1rem;
   font-family: josefinSans-bold, sans-serif;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-  color: #e5e5e5;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+  color: #fff9fc;
 }
 
 /* Pokemon display table */
 
 .pokemon-container-small {
-  display:grid;
+  display: grid;
   gap: 20px 20px;
   padding: 1rem;
   grid-template-columns: 1fr 1fr;
@@ -246,7 +294,7 @@
 }
 
 .pokemon-container-med {
-  display:grid;
+  display: grid;
   gap: 20px 20px;
   padding: 1rem;
   grid-template-columns: 1fr 1fr 1fr;
@@ -254,7 +302,7 @@
 }
 
 .pokemon-container-large {
-  display:grid;
+  display: grid;
   gap: 20px 20px;
   padding: 1rem;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -280,36 +328,35 @@
   padding: 10px;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto;
-  grid-template-areas: 
+  grid-template-areas:
     "github created logo"
-    "rights rights rights"
-    ;
+    "rights rights rights";
   background-color: #92bc2c;
 }
 
 .footer-item-1 {
   background-color: chocolate;
-    width: 100%;
+  width: 100%;
   justify-self: start;
   grid-area: github;
 }
 
 .footer-item-2 {
-  background-color:fuchsia;
-    width: 100%;
+  background-color: fuchsia;
+  width: 100%;
   justify-self: center;
   grid-area: created;
 }
 
 .footer-item-3 {
-  background-color:lightgreen;
-    width: 100%;
+  background-color: lightgreen;
+  width: 100%;
   justify-self: end;
   grid-area: logo;
 }
 
 .footer-item-4 {
-  background-color:cyan;
+  background-color: cyan;
   width: 100%;
   justify-self: center;
   grid-area: rights;
