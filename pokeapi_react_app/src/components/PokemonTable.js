@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
-const PokemonTable = () => {
-    return <div className="pokemon-container">
+const PokemonTable = ({ screenSize }) => {
+    const dataHTML =  <>       
         <Link className="pokemon-card">
             <img 
             className="pokemon-image"
@@ -212,7 +212,23 @@ const PokemonTable = () => {
                 </div>
             </div>
         </Link>
-    </div>
+    </>
+
+    if(screenSize === "small") {
+        return <div className="pokemon-container-small">
+            {dataHTML}
+        </div>
+    }
+    else if(screenSize === "medium") {
+        return <div className="pokemon-container-med">
+            {dataHTML}
+        </div>
+    }
+    else {
+        return <div className="pokemon-container-large">
+            {dataHTML}
+        </div>
+    }
 }
 
 export default PokemonTable;

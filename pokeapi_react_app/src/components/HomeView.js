@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Footer from "./Footer";
-// import PokemonTable from "./PokemonTable";
+import PokemonTable from "./PokemonTable";
 import SearchBar from "./SearchBar";
 import SortOptions from "./SortOptions";
 import TypeseTable from "./TypesTable";
@@ -41,7 +41,7 @@ const HomeView = () => {
       <SearchBar />
       <TypeseTable screenSize={screenSize} />
       <SortOptions screenSize={screenSize} />
-      {/* <PokemonTable screenSize={screenSize} /> */}
+      <PokemonTable screenSize={screenSize} />
       <Footer />
     </div>
   );

@@ -19,7 +19,7 @@ import RockType from "./icons/rock.svg";
 import SteelType from "./icons/steel.svg";
 import WaterType from "./icons/water.svg";
 
-const TypeseTable = () => {
+const TypeseTable = ({ screenSize }) => {
   const [typesResults, setTypesResult] = useState([]);
   let typeStyle = "";
 
@@ -117,17 +117,34 @@ const TypeseTable = () => {
       }
     });
 
+    if(screenSize === "small") {
+      return (
+        <div className="sortoption-text">
+        <label htmlFor="types">Filter by Type</label>
+            <select name="types" id="types">
+                <option value="volvo">All</option>
+                <option value="volvo">Fire</option>
+                <option value="saab">Ice</option>
+                <option value="saab">Normal</option>
+                <option value="saab">Ghost</option>
+                <option value="saab">Sand</option>
+            </select>
+        </div>
+      )
+    }
 
-  return (
-    <div>
-      <div className="sub-header">
-        Types
-      </div>
-      <div className="types-table">
-        {typesHTML}
-      </div>
-    </div>
-  );
+    else {
+      return (
+        <div>
+          <div className="sub-header">
+            Types
+          </div>
+          <div className="types-table">
+            {typesHTML}
+          </div>
+        </div>
+      );
+    }
 };
 
 export default TypeseTable;
