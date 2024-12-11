@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-// Table showing pokémon cards
+// Table showing Pokémon cards
 const PokemonTable = ({ screenSize }) => {
   const [pokeResults, setPokeResults] = useState([]);
 
-  // Fetch the pokémon information for cards
+  // Fetch the Pokémon information for cards
   useEffect(() => {
     fetch(`https://pokeapi.co/api/v2/pokemon-species/?limit=5000`)
       .then((response) => response.json())
@@ -13,8 +13,10 @@ const PokemonTable = ({ screenSize }) => {
         setPokeResults(data.results);
       });
   }, []);
+
+  // Create a card for each Pokémon
   const cardsHTML = pokeResults.map((obj, i) => {
-    const newNum = "00" + (i + 1);
+    const cardNum = "00" + (i + 1);
     return (
       <Link key={i} className="pokemon-card">
         <div className="pokemon-card-title">
@@ -25,16 +27,16 @@ const PokemonTable = ({ screenSize }) => {
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
             i + 1
           }.png`}
-          alt="Ditto"
+          alt={`${obj.name} card`}
         />
-        {/* <div className="pokemon-card-number">#{i + 1}</div> */}
         <div className="pokemon-card-number">
-          #{newNum.slice(newNum.length - 3)}
+          #{cardNum.slice(cardNum.length - 3)}
         </div>
       </Link>
     );
   });
 
+  // Set the Pokémon container to appropriate size based on viewport width
   if (screenSize === "small") {
     return <div className="pokemon-container-small">{cardsHTML}</div>;
   } else if (screenSize === "medium") {

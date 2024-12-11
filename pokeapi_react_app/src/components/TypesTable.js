@@ -19,6 +19,7 @@ import RockType from "./icons/rock.svg";
 import SteelType from "./icons/steel.svg";
 import WaterType from "./icons/water.svg";
 
+// Table showing all Pokémon types
 const TypeseTable = ({ screenSize }) => {
   const [typesResults, setTypesResult] = useState([]);
   let typeStyle = "";
@@ -96,62 +97,58 @@ const TypeseTable = ({ screenSize }) => {
 
   // Create buttons for each type
   const typesHTML = typesResults.map((obj, i) => {
-    console.log("Getting full list");
-    const typeIcon = getTypeIcon(obj.name);
-    if (obj.name !== "unknown" && obj.name !== "stellar") {
-      return (
-        <button key={i} className={`type-item hover-dim ${typeStyle}`}>
-          <img
-            className="type-img"
-            src={typeIcon}
-            alt={`${obj.name} type icon`}
-          ></img>
-          <div className="type-text">{obj.name.toUpperCase()}</div>
-        </button>
-      );
+    if (screenSize === "small") {
+      console.log("Getting dropdown list");
+      const typeIcon = getTypeIcon(obj.name);
+      if (obj.name !== "unknown" && obj.name !== "stellar") {
+        return (
+          <Link
+            key={i}
+            to="./"
+            className={`types-dropdown-item hover-dim ${typeStyle}`}
+          >
+            <img
+              className="type-img"
+              src={`${typeIcon}`}
+              alt={`${obj.name} type icon`}
+            />
+            {obj.name.toUpperCase()}
+          </Link>
+        );
+      } else {
+        return <div key={i}></div>;
+      }
     } else {
-      return <div key={i}></div>;
+      console.log("Getting full list");
+      const typeIcon = getTypeIcon(obj.name);
+      if (obj.name !== "unknown" && obj.name !== "stellar") {
+        return (
+          <button key={i} className={`type-item hover-dim ${typeStyle}`}>
+            <img
+              className="type-img"
+              src={typeIcon}
+              alt={`${obj.name} type icon`}
+            ></img>
+            <div className="type-text">{obj.name.toUpperCase()}</div>
+          </button>
+        );
+      } else {
+        return <div key={i}></div>;
+      }
     }
   });
 
-  // Create the small screen dropdown for each type
-  const typesHTMLDropdown = typesResults.map((obj, i) => {
-    console.log("Getting dropdown list");
-    const typeIcon = getTypeIcon(obj.name);
-    if (obj.name !== "unknown" && obj.name !== "stellar") {
-      return (
-        <Link
-          key={i}
-          to="./"
-          className={`types-dropdown-item hover-dim ${typeStyle}`}
-        >
-          <img
-            className="type-img"
-            src={`${typeIcon}`}
-            alt={`${obj.name} type icon`}
-          />
-          {obj.name.toUpperCase()}
-        </Link>
-      );
-    } else {
-      return <div key={i}></div>;
-    }
-  });
-
+  // If screen size is small, collapse types into dropdown
   if (screenSize === "small") {
     return (
-      // <div className="sortoption-text">
-      //   <label htmlFor="types">Types</label>
-      //   <select name="types" id="types">
-      //     {typesHTMLDropdown}
-      //   </select>
-      // </div>
       <div className="types-dropdown">
         <button className="types-dropdown-button">Types</button>
-        <div className="types-dropdown-content">{typesHTMLDropdown}</div>
+        <div className="types-dropdown-content">{typesHTML}</div>
       </div>
     );
-  } else {
+  }
+  // Otherwise, show full types table
+  else {
     return (
       <div>
         <div className="sub-header">Types</div>

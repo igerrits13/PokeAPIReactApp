@@ -1,3 +1,4 @@
+// Search bar for searching Pokémon
 const SearchBar = () => {
   return (
     <form>

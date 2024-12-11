@@ -1,3 +1,4 @@
+// Website footer
 const Footer = () => {
   return (
     <div className="footer-container">

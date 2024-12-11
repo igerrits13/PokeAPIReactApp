@@ -1,4 +1,6 @@
+// Show sort and filter options allowed for searching Pokémon
 const SortOptions = ({ screenSize }) => {
+  // If screen is small, have options in a column
   if (screenSize === "small") {
     return (
       <div className="sortoptions-container-small">
@@ -33,7 +35,9 @@ const SortOptions = ({ screenSize }) => {
         </div>
       </div>
     );
-  } else {
+  }
+  // Otherwise, display options in a row
+  else {
     return (
       <div className="sortoptions-container-med-large">
         <div className="sortoptions-item sortoption-text">
