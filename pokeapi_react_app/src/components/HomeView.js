@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
-import Footer from "./Footer";
-import PokemonTable from "./PokemonTable";
+import Title from "./Title";
 import SearchBar from "./SearchBar";
-import SortOptions from "./SortOptions";
 import TypeseTable from "./TypesTable";
+import SortOptions from "./SortOptions";
+import PokemonTable from "./PokemonTable";
+import Footer from "./Footer";
 
+// Homeview page of the Pokémon app
 const HomeView = () => {
   const [screenSize, setscreenSize] = useState("large");
 
@@ -32,6 +34,7 @@ const HomeView = () => {
     return () => window.removeEventListener("resize", handleScreenResize);
   }, []);
 
+  // Set what the container size for the page should be based on viewport width
   const containerSize =
     screenSize === "small"
       ? "homeview-small"
@@ -41,23 +44,7 @@ const HomeView = () => {
 
   return (
     <div className={`homeview-container ${containerSize}`}>
-      {screenSize === "small" ? (
-        <div className="header header-small">Pokémon Lookup</div>
-      ) : screenSize === "medium" ? (
-        <div className="header header-med">Pokémon Lookup</div>
-      ) : (
-        <div className="header header-large">Pokémon Lookup</div>
-      )}
-
-      {/* {value > 10 ? (
-        <p>Value is greater than 10</p>
-      ) : value < 5 ? (
-        <p>Value is less than 5</p>
-      ) : (
-        <p>Value is between 5 and 10</p>
-      )} */}
-
-      {/* <Link to={"/old"}>Click me</Link> */}
+      <Title screenSize={screenSize} />
       <SearchBar />
       <TypeseTable screenSize={screenSize} />
       <SortOptions screenSize={screenSize} />

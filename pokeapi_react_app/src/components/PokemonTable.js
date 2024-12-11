@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
+// Table showing pokémon cards
 const PokemonTable = ({ screenSize }) => {
   const [pokeResults, setPokeResults] = useState([]);
 
@@ -12,12 +13,13 @@ const PokemonTable = ({ screenSize }) => {
         setPokeResults(data.results);
       });
   }, []);
-
-  // Create buttons for each type
   const cardsHTML = pokeResults.map((obj, i) => {
+    const newNum = "00" + (i + 1);
     return (
       <Link key={i} className="pokemon-card">
-        <div className="pokemon-card-title">{obj.name}</div>
+        <div className="pokemon-card-title">
+          {obj.name[0].toUpperCase() + obj.name.slice(1)}
+        </div>
         <img
           className="pokemon-image"
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
@@ -25,7 +27,10 @@ const PokemonTable = ({ screenSize }) => {
           }.png`}
           alt="Ditto"
         />
-        <div className="pokemon-card-number">#{i + 1}</div>
+        {/* <div className="pokemon-card-number">#{i + 1}</div> */}
+        <div className="pokemon-card-number">
+          #{newNum.slice(newNum.length - 3)}
+        </div>
       </Link>
     );
   });

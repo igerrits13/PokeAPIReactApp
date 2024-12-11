@@ -351,8 +351,8 @@
   display: flex;
   flex-wrap: nowrap;
   flex-direction: column;
-  width: 100%;
-  height: auto;
+  /* width: 100%; */
+  /* height: auto; */
   padding: 1rem;
   border-radius: 5px;
   text-decoration: none;
@@ -366,7 +366,7 @@
 
 .pokemon-card-title {
   padding: 0 0 1rem 0;
-  font-size: 2rem;
+  font-size: 1rem;
   font-family: josefinSans-bold, sans-serif;
   text-shadow: -1px -1px 0 #201d1f, 1px -1px 0 #201d1f, -1px 1px 0 #201d1f,
     1px 1px 0 #201d1f;
@@ -387,7 +387,7 @@
 
 .pokemon-card-number {
   align-self: flex-end;
-  justify-self: flex-end;
+  /* justify-self: flex-end; */
   padding: 1rem 0 0 0;
   font-size: 0.75rem;
   font-family: josefinSans-bold, sans-serif;
