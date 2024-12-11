@@ -1,171 +1,41 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const PokemonTable = ({ screenSize }) => {
-  const dataHTML = (
-    <>
-      <Link className="pokemon-card">
+  const [pokeResults, setPokeResults] = useState([]);
+
+  // Fetch the pokémon information for cards
+  useEffect(() => {
+    fetch(`https://pokeapi.co/api/v2/pokemon-species/?limit=5000`)
+      .then((response) => response.json())
+      .then((data) => {
+        setPokeResults(data.results);
+      });
+  }, []);
+
+  // Create buttons for each type
+  const cardsHTML = pokeResults.map((obj, i) => {
+    return (
+      <Link key={i} className="pokemon-card">
+        <div className="pokemon-card-title">{obj.name}</div>
         <img
           className="pokemon-image"
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/132.png"
+          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
+            i + 1
+          }.png`}
           alt="Ditto"
         />
-        <div className="pokemon-card-info">
-          <p>#132</p>
-          <div className="sub-header">Ditto</div>
-        </div>
+        <div className="pokemon-card-number">#{i + 1}</div>
       </Link>
-      <Link className="pokemon-card">
-        <img
-          className="pokemon-image"
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/79.png"
-          alt="Ditto"
-        />
-        <div className="pokemon-card-info">
-          <p>#132</p>
-          <div className="sub-header">Ditto</div>
-        </div>
-      </Link>
-      <Link className="pokemon-card">
-        <img
-          className="pokemon-image"
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/82.png"
-          alt="Ditto"
-        />
-        <div className="pokemon-card-info">
-          <p>#132</p>
-          <div className="sub-header">Ditto</div>
-        </div>
-      </Link>
-      <Link className="pokemon-card">
-        <img
-          className="pokemon-image"
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/49.png"
-          alt="Ditto"
-        />
-        <div className="pokemon-card-info">
-          <p>#132</p>
-          <div className="sub-header">Ditto</div>
-        </div>
-      </Link>
-      <Link className="pokemon-card">
-        <img
-          className="pokemon-image"
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/36.png"
-          alt="Ditto"
-        />
-        <div className="pokemon-card-info">
-          <p>#132</p>
-          <div className="sub-header">Ditto</div>
-        </div>
-      </Link>
-      <Link className="pokemon-card">
-        <img
-          className="pokemon-image"
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/54.png"
-          alt="Ditto"
-        />
-        <div className="pokemon-card-info">
-          <p>#132</p>
-          <div className="sub-header">Ditto</div>
-        </div>
-      </Link>
-      <Link className="pokemon-card">
-        <img
-          className="pokemon-image"
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/67.png"
-          alt="Ditto"
-        />
-        <div className="pokemon-card-info">
-          <p>#132</p>
-          <div className="sub-header">Ditto</div>
-        </div>
-      </Link>
-      <Link className="pokemon-card">
-        <img
-          className="pokemon-image"
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/89.png"
-          alt="Ditto"
-        />
-        <div className="pokemon-card-info">
-          <p>#132</p>
-          <div className="sub-header">Ditto</div>
-        </div>
-      </Link>
-      <Link className="pokemon-card">
-        <img
-          className="pokemon-image"
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/121.png"
-          alt="Ditto"
-        />
-        <div className="pokemon-card-info">
-          <p>#132</p>
-          <div className="sub-header">Ditto</div>
-        </div>
-      </Link>
-      <Link className="pokemon-card">
-        <img
-          className="pokemon-image"
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/118.png"
-          alt="Ditto"
-        />
-        <div className="pokemon-card-info">
-          <p>#132</p>
-          <div className="sub-header">Ditto</div>
-        </div>
-      </Link>
-      <Link className="pokemon-card">
-        <img
-          className="pokemon-image"
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/22.png"
-          alt="Ditto"
-        />
-        <div className="pokemon-card-info">
-          <p>#132</p>
-          <div className="sub-header">Ditto</div>
-        </div>
-      </Link>
-      <Link className="pokemon-card">
-        <img
-          className="pokemon-image"
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/13.png"
-          alt="Ditto"
-        />
-        <div className="pokemon-card-info">
-          <p>#132</p>
-          <div className="sub-header">Ditto</div>
-        </div>
-      </Link>
-      <Link className="pokemon-card">
-        <img
-          className="pokemon-image"
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png"
-          alt="Ditto"
-        />
-        <div className="pokemon-card-info">
-          <p>#132</p>
-          <div className="sub-header">Ditto</div>
-        </div>
-      </Link>
-      <Link className="pokemon-card">
-        <img
-          className="pokemon-image"
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
-          alt="Ditto"
-        />
-        <div className="pokemon-card-info">
-          <p>#132</p>
-          <div className="sub-header">Ditto</div>
-        </div>
-      </Link>
-    </>
-  );
+    );
+  });
 
   if (screenSize === "small") {
-    return <div className="pokemon-container-small">{dataHTML}</div>;
+    return <div className="pokemon-container-small">{cardsHTML}</div>;
   } else if (screenSize === "medium") {
-    return <div className="pokemon-container-med">{dataHTML}</div>;
+    return <div className="pokemon-container-med">{cardsHTML}</div>;
   } else {
-    return <div className="pokemon-container-large">{dataHTML}</div>;
+    return <div className="pokemon-container-large">{cardsHTML}</div>;
   }
 };
 
