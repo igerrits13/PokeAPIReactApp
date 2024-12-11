@@ -9,6 +9,7 @@ import Footer from "./Footer";
 // Homeview page of the Pokémon app
 const HomeView = () => {
   const [screenSize, setscreenSize] = useState("large");
+  const [typesResults, setTypesResult] = useState([]);
   const [filterByGen, setFilterByGen] = useState("all");
   const [filterByType, setFilterByType] = useState("all");
   const [sortBy, setSortBy] = useState("number");
@@ -37,6 +38,15 @@ const HomeView = () => {
     return () => window.removeEventListener("resize", handleScreenResize);
   }, []);
 
+  // Fetch the Pokémon types
+  useEffect(() => {
+    fetch(`https://pokeapi.co/api/v2/type/?limit=-1`)
+      .then((response) => response.json())
+      .then((data) => {
+        setTypesResult(data.results);
+      });
+  }, []);
+
   // Set what the container size for the page should be based on viewport width
   const containerSize =
     screenSize === "small"
@@ -49,13 +59,14 @@ const HomeView = () => {
     <div className={`homeview-container ${containerSize}`}>
       <Title screenSize={screenSize} />
       <SearchBar />
-      <TypeseTable screenSize={screenSize} />
+      <TypeseTable screenSize={screenSize} typesResults={typesResults} />
       <SortOptions
         screenSize={screenSize}
         filterByGen={filterByGen}
         setFilterByGen={setFilterByGen}
         filterByType={filterByType}
         setFilterByType={setFilterByType}
+        typesResults={typesResults}
         sortBy={sortBy}
         setSortBy={setSortBy}
       />

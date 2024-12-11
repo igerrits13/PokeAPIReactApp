@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 // Show sort and filter options allowed for searching Pokémon
 const SortOptions = ({
   screenSize,
@@ -5,9 +7,21 @@ const SortOptions = ({
   setFilterByGen,
   filterByType,
   setFilterByType,
+  typesResults,
   sortBy,
   setSortBy,
 }) => {
+  const [genResults, setGenResults] = useState([]);
+
+  // Fetch the generations
+  useEffect(() => {
+    fetch(`https://pokeapi.co/api/v2/generation/?limit=20`)
+      .then((response) => response.json())
+      .then((data) => {
+        setGenResults(data.results);
+      });
+  }, []);
+
   const updateGen = (e) => {
     console.log(`Sort by: ${e.target.value}`);
     setFilterByGen(e.target.value);
@@ -23,6 +37,32 @@ const SortOptions = ({
     setSortBy(e.target.value);
   };
 
+  const genHTML = genResults.map((obj, i) => {
+    const genName = obj.name.split("-");
+    const formattedGenName =
+      genName[0][0].toUpperCase() +
+      genName[0].slice(1) +
+      " " +
+      genName[1].toUpperCase();
+    return (
+      <option key={i} value={`${i + 1}`}>
+        {formattedGenName}
+      </option>
+    );
+  });
+
+  const typesHTML = typesResults.map((obj, i) => {
+    if (obj.name !== "unknown" && obj.name !== "stellar") {
+      return (
+        <option key={i} value={`${obj.name}`}>
+          {obj.name}
+        </option>
+      );
+    } else {
+      return <option key={i} value="none"></option>;
+    }
+  });
+
   const sortHTML = (
     <>
       <div className="sortoptions-item sortoption-text">
@@ -34,7 +74,7 @@ const SortOptions = ({
           onChange={updateGen}
         >
           <option value="0">All</option>
-          <option value="1">Gen 1</option>
+          {genHTML}
         </select>
       </div>
       <div className="sortoptions-item sortoption-text">
@@ -46,7 +86,7 @@ const SortOptions = ({
           onChange={updateType}
         >
           <option value="all">All</option>
-          <option value="fire">Fire</option>
+          {typesHTML}
         </select>
       </div>
       <div className="sortoptions-item sortoption-text">

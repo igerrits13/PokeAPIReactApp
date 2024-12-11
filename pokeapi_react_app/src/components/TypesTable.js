@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import BugType from "./icons/bug.svg";
 import DarkType from "./icons/dark.svg";
@@ -20,18 +19,8 @@ import SteelType from "./icons/steel.svg";
 import WaterType from "./icons/water.svg";
 
 // Table showing all Pokémon types
-const TypeseTable = ({ screenSize }) => {
-  const [typesResults, setTypesResult] = useState([]);
+const TypeseTable = ({ screenSize, typesResults }) => {
   let typeStyle = "";
-
-  // Fetch the types for the buttons
-  useEffect(() => {
-    fetch(`https://pokeapi.co/api/v2/type/?limit=-1`)
-      .then((response) => response.json())
-      .then((data) => {
-        setTypesResult(data.results);
-      });
-  }, []);
 
   // Set the type attributes for the current button
   function getTypeIcon(typeName) {
