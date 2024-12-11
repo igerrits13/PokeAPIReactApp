@@ -9,6 +9,9 @@ import Footer from "./Footer";
 // Homeview page of the Pokémon app
 const HomeView = () => {
   const [screenSize, setscreenSize] = useState("large");
+  const [filterByGen, setFilterByGen] = useState("all");
+  const [filterByType, setFilterByType] = useState("all");
+  const [sortBy, setSortBy] = useState("number");
 
   // Check screen size to see if types table should collapse
   useEffect(() => {
@@ -47,8 +50,21 @@ const HomeView = () => {
       <Title screenSize={screenSize} />
       <SearchBar />
       <TypeseTable screenSize={screenSize} />
-      <SortOptions screenSize={screenSize} />
-      <PokemonTable screenSize={screenSize} />
+      <SortOptions
+        screenSize={screenSize}
+        filterByGen={filterByGen}
+        setFilterByGen={setFilterByGen}
+        filterByType={filterByType}
+        setFilterByType={setFilterByType}
+        sortBy={sortBy}
+        setSortBy={setSortBy}
+      />
+      <PokemonTable
+        screenSize={screenSize}
+        filterByGen={filterByGen}
+        filterByType={filterByType}
+        sortBy={sortBy}
+      />
       <Footer />
     </div>
   );

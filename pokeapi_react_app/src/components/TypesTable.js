@@ -98,7 +98,7 @@ const TypeseTable = ({ screenSize }) => {
   // Create buttons for each type
   const typesHTML = typesResults.map((obj, i) => {
     if (screenSize === "small") {
-      console.log("Getting dropdown list");
+      // console.log("Getting dropdown list");
       const typeIcon = getTypeIcon(obj.name);
       if (obj.name !== "unknown" && obj.name !== "stellar") {
         return (
@@ -119,7 +119,7 @@ const TypeseTable = ({ screenSize }) => {
         return <div key={i}></div>;
       }
     } else {
-      console.log("Getting full list");
+      // console.log("Getting full list");
       const typeIcon = getTypeIcon(obj.name);
       if (obj.name !== "unknown" && obj.name !== "stellar") {
         return (
