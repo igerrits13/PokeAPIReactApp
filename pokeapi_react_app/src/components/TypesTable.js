@@ -96,20 +96,41 @@ const TypeseTable = ({ screenSize }) => {
 
   // Create buttons for each type
   const typesHTML = typesResults.map((obj, i) => {
+    console.log("Getting full list");
     const typeIcon = getTypeIcon(obj.name);
     if (obj.name !== "unknown" && obj.name !== "stellar") {
       return (
-        <Link key={i} to="./">
-          {/* <button className={`m-2 fs-6 fw-bold type-item ${typeStyle}`}> */}
-          <button className={`type-item ${typeStyle}`}>
-            <img
-              // className="me-2 typeBtnImg"
-              className="type-img"
-              src={typeIcon}
-              alt={`${obj.name} type icon`}
-            ></img>
-            {obj.name.toUpperCase()}
-          </button>
+        <button key={i} className={`type-item hover-dim ${typeStyle}`}>
+          <img
+            className="type-img"
+            src={typeIcon}
+            alt={`${obj.name} type icon`}
+          ></img>
+          <div className="type-text">{obj.name.toUpperCase()}</div>
+        </button>
+      );
+    } else {
+      return <div key={i}></div>;
+    }
+  });
+
+  // Create the small screen dropdown for each type
+  const typesHTMLDropdown = typesResults.map((obj, i) => {
+    console.log("Getting dropdown list");
+    const typeIcon = getTypeIcon(obj.name);
+    if (obj.name !== "unknown" && obj.name !== "stellar") {
+      return (
+        <Link
+          key={i}
+          to="./"
+          className={`types-dropdown-item hover-dim ${typeStyle}`}
+        >
+          <img
+            className="type-img"
+            src={`${typeIcon}`}
+            alt={`${obj.name} type icon`}
+          />
+          {obj.name.toUpperCase()}
         </Link>
       );
     } else {
@@ -119,16 +140,15 @@ const TypeseTable = ({ screenSize }) => {
 
   if (screenSize === "small") {
     return (
-      <div className="sortoption-text">
-        <label htmlFor="types">Filter by Type</label>
-        <select name="types" id="types">
-          <option value="volvo">All</option>
-          <option value="volvo">Fire</option>
-          <option value="saab">Ice</option>
-          <option value="saab">Normal</option>
-          <option value="saab">Ghost</option>
-          <option value="saab">Sand</option>
-        </select>
+      // <div className="sortoption-text">
+      //   <label htmlFor="types">Types</label>
+      //   <select name="types" id="types">
+      //     {typesHTMLDropdown}
+      //   </select>
+      // </div>
+      <div className="types-dropdown">
+        <button className="types-dropdown-button">Types</button>
+        <div className="types-dropdown-content">{typesHTMLDropdown}</div>
       </div>
     );
   } else {
