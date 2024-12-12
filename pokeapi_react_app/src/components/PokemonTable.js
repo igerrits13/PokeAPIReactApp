@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import PokemonCard from "./PokemonCard";
+// import { Link } from "react-router-dom";
 
 // Table showing Pokémon cards
 const PokemonTable = ({ screenSize, filterByGen, filterByType, sortBy }) => {
@@ -16,24 +17,7 @@ const PokemonTable = ({ screenSize, filterByGen, filterByType, sortBy }) => {
 
   // Create a card for each Pokémon
   const cardsHTML = pokeResults.map((obj, i) => {
-    const cardNum = "00" + (i + 1);
-    return (
-      <Link key={i} className="pokemon-card">
-        <div className="pokemon-card-title">
-          {obj.name[0].toUpperCase() + obj.name.slice(1)}
-        </div>
-        <img
-          className="pokemon-image"
-          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
-            i + 1
-          }.png`}
-          alt={`${obj.name} card`}
-        />
-        <div className="pokemon-card-number">
-          #{cardNum.slice(cardNum.length - 3)}
-        </div>
-      </Link>
-    );
+    return <PokemonCard key={i} obj={obj} i={i} />;
   });
 
   // Compare used for sorting the pokemon by number
@@ -58,16 +42,21 @@ const PokemonTable = ({ screenSize, filterByGen, filterByType, sortBy }) => {
     return 0;
   };
 
+  // if (filterByType !== "all") {
+  //   console.log(cardsHTML);
+  //   cardsHTML.filter(filterByType);
+  //   console.log(cardsHTML);
+  // }
+
+  // Sort the cards based on name or number
   if (sortBy === "number") {
     cardsHTML.sort(compareNum);
   } else if (sortBy === "name") {
     cardsHTML.sort(compareName);
   }
 
-  console.log({ pokeResults });
-
+  // Set the Pokémon container to appropriate size based on viewport width
   if (screenSize === "small") {
-    // Set the Pokémon container to appropriate size based on viewport width
     return <div className="pokemon-container-small">{cardsHTML}</div>;
   } else if (screenSize === "medium") {
     return <div className="pokemon-container-med">{cardsHTML}</div>;

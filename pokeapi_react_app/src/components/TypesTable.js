@@ -86,6 +86,7 @@ const TypeseTable = ({ screenSize, typesResults }) => {
 
   // Create buttons for each type
   const typesHTML = typesResults.map((obj, i) => {
+    // If in small screen mode, create dropdown menu buttons
     if (screenSize === "small") {
       const typeIcon = getTypeIcon(obj.name);
       if (obj.name !== "unknown" && obj.name !== "stellar") {
@@ -106,7 +107,9 @@ const TypeseTable = ({ screenSize, typesResults }) => {
       } else {
         return <div key={i}></div>;
       }
-    } else {
+    }
+    // Otherwise, create buttons in a flex-box
+    else {
       const typeIcon = getTypeIcon(obj.name);
       if (obj.name !== "unknown" && obj.name !== "stellar") {
         return (

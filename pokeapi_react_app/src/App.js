@@ -1,50 +1,41 @@
-import "./App.css";
-import "./App_old.css";
+import { Routes, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
 import HomeView from "./components/HomeView";
 import HomeViewOld from "./components/old/HomeView_old";
-import { Routes, Route } from "react-router-dom";
+import "./App.css";
+import "./App_old.css";
 
 function App() {
-  /*!
-   * Color mode toggler for Bootstrap's docs (https://getbootstrap.com/)
-   * Copyright 2011-2024 The Bootstrap Authors
-   * Licensed under the Creative Commons Attribution 3.0 Unported License.
-   */
+  const [screenSize, setscreenSize] = useState("large");
 
-  // (() => {
-  //   const getStoredTheme = () => localStorage.getItem("theme");
+  // Check screen size to see if types table should collapse
+  useEffect(() => {
+    const handleScreenResize = () => {
+      // Handle small screen
+      if (window.innerWidth < 576) {
+        setscreenSize("small");
+      }
 
-  //   const getPreferredTheme = () => {
-  //     const storedTheme = getStoredTheme();
-  //     if (storedTheme) {
-  //       return storedTheme;
-  //     }
+      // Handle medium screen
+      else if (window.innerWidth >= 576 && window.innerWidth < 992) {
+        setscreenSize("medium");
+      }
 
-  //     return window.matchMedia("(prefers-color-scheme: dark)").matches
-  //       ? "dark"
-  //       : "light";
-  //   };
+      // Handle large screen
+      else {
+        setscreenSize("large");
+      }
+    };
 
-  //   const setTheme = (theme) => {
-  //     if (theme === "auto") {
-  //       document.documentElement.setAttribute(
-  //         "data-bs-theme",
-  //         window.matchMedia("(prefers-color-scheme: dark)").matches
-  //           ? "dark"
-  //           : "light"
-  //       );
-  //     } else {
-  //       document.documentElement.setAttribute("data-bs-theme", theme);
-  //     }
-  //   };
-
-  //   setTheme(getPreferredTheme());
-  // })();
+    window.addEventListener("resize", handleScreenResize);
+    handleScreenResize();
+    return () => window.removeEventListener("resize", handleScreenResize);
+  }, []);
 
   return (
     <div>
       <Routes>
-        <Route path="/" exact element={<HomeView />} />
+        <Route path="/" exact element={<HomeView screenSize={screenSize} />} />
         <Route path="/old" element={<HomeViewOld />} />
       </Routes>
     </div>
