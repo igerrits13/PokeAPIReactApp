@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 // Table showing Pokémon cards
-const PokemonTable = ({ screenSize }) => {
+const PokemonTable = ({ screenSize, filterByGen, filterByType, sortBy }) => {
   const [pokeResults, setPokeResults] = useState([]);
 
   // Fetch the Pokémon information for cards
@@ -36,8 +36,38 @@ const PokemonTable = ({ screenSize }) => {
     );
   });
 
-  // Set the Pokémon container to appropriate size based on viewport width
+  // Compare used for sorting the pokemon by number
+  let compareNum = (a, b) => {
+    if (Number(a.key) < Number(b.key)) {
+      return -1;
+    }
+    if (Number(a.key) > Number(b.key)) {
+      return 1;
+    }
+    return 0;
+  };
+
+  // Compare used for sorting the pokemon by name
+  let compareName = (a, b) => {
+    if (pokeResults[Number(a.key)].name < pokeResults[Number(b.key)].name) {
+      return -1;
+    }
+    if (pokeResults[Number(a.key)].name > pokeResults[Number(b.key)].name) {
+      return 1;
+    }
+    return 0;
+  };
+
+  if (sortBy === "number") {
+    cardsHTML.sort(compareNum);
+  } else if (sortBy === "name") {
+    cardsHTML.sort(compareName);
+  }
+
+  console.log({ pokeResults });
+
   if (screenSize === "small") {
+    // Set the Pokémon container to appropriate size based on viewport width
     return <div className="pokemon-container-small">{cardsHTML}</div>;
   } else if (screenSize === "medium") {
     return <div className="pokemon-container-med">{cardsHTML}</div>;

@@ -26,58 +26,58 @@ const TypeseTable = ({ screenSize, typesResults }) => {
   function getTypeIcon(typeName) {
     switch (typeName) {
       case "bug":
-        typeStyle = "bugType";
+        typeStyle = "bug-type";
         return BugType;
       case "dark":
-        typeStyle = "darkType";
+        typeStyle = "dark-type";
         return DarkType;
       case "dragon":
-        typeStyle = "dragonType";
+        typeStyle = "dragon-type";
         return DragonType;
       case "electric":
-        typeStyle = "electricType";
+        typeStyle = "electric-type";
         return ElectricType;
       case "fairy":
-        typeStyle = "fairyType";
+        typeStyle = "fairy-type";
         return FairyType;
       case "fighting":
-        typeStyle = "fightingType";
+        typeStyle = "fighting-type";
         return FightingType;
       case "fire":
-        typeStyle = "fireType";
+        typeStyle = "fire-type";
         return FireType;
       case "flying":
-        typeStyle = "flyingType";
+        typeStyle = "flying-type";
         return FlyingType;
       case "ghost":
-        typeStyle = "ghostType";
+        typeStyle = "ghost-type";
         return GhostType;
       case "grass":
-        typeStyle = "grassType";
+        typeStyle = "grass-type";
         return GrassType;
       case "ground":
-        typeStyle = "groundType";
+        typeStyle = "ground-type";
         return GroundType;
       case "ice":
-        typeStyle = "iceType";
+        typeStyle = "ice-type";
         return IceType;
       case "normal":
-        typeStyle = "normalType";
+        typeStyle = "normal-type";
         return NormalType;
       case "poison":
-        typeStyle = "poisonType";
+        typeStyle = "poison-type";
         return PoisonType;
       case "psychic":
-        typeStyle = "psychicType";
+        typeStyle = "psychic-type";
         return PsychicType;
       case "rock":
-        typeStyle = "rockType";
+        typeStyle = "rock-type";
         return RockType;
       case "steel":
-        typeStyle = "steelType";
+        typeStyle = "steel-type";
         return SteelType;
       case "water":
-        typeStyle = "waterType";
+        typeStyle = "water-type";
         return WaterType;
       default:
         return null;
@@ -87,7 +87,6 @@ const TypeseTable = ({ screenSize, typesResults }) => {
   // Create buttons for each type
   const typesHTML = typesResults.map((obj, i) => {
     if (screenSize === "small") {
-      // console.log("Getting dropdown list");
       const typeIcon = getTypeIcon(obj.name);
       if (obj.name !== "unknown" && obj.name !== "stellar") {
         return (
@@ -108,7 +107,6 @@ const TypeseTable = ({ screenSize, typesResults }) => {
         return <div key={i}></div>;
       }
     } else {
-      // console.log("Getting full list");
       const typeIcon = getTypeIcon(obj.name);
       if (obj.name !== "unknown" && obj.name !== "stellar") {
         return (
