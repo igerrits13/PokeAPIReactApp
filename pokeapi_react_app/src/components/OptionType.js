@@ -4,7 +4,8 @@ const OptionType = ({ filterByType, setFilterByType, typesResults }) => {
   const typesHTML = typesResults.map((obj, i) => {
     if (obj.name !== "unknown" && obj.name !== "stellar") {
       return (
-        <option key={i} value={`${obj.name}`}>
+        // <option key={i} value={`${obj.name}`}>
+        <option key={i} value={i + 1}>
           {obj.name}
         </option>
       );
@@ -15,7 +16,6 @@ const OptionType = ({ filterByType, setFilterByType, typesResults }) => {
 
   // Update the current type based on what value has been selected
   const updateType = (e) => {
-    console.log(`Sort by: ${e.target.value}`);
     setFilterByType(e.target.value);
   };
 

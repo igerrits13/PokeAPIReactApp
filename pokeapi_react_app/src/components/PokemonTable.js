@@ -7,16 +7,50 @@ const PokemonTable = ({ screenSize, filterByGen, filterByType, sortBy }) => {
 
   // Fetch the Pokémon information for cards
   useEffect(() => {
-    fetch(`https://pokeapi.co/api/v2/pokemon-species/?limit=5000`)
-      .then((response) => response.json())
-      .then((data) => {
-        setPokeResults(data.results);
-      });
-  }, []);
+    if (filterByGen === "all" && filterByType === "all") {
+      fetch(`https://pokeapi.co/api/v2/pokemon-species/?limit=5000`)
+        .then((response) => response.json())
+        .then((data) => {
+          setPokeResults(data.results);
+        });
+    }
+  }, [filterByGen, filterByType]);
+
+  // Fetch the Pokémon information from requested gen
+  useEffect(() => {
+    // console.log(`Filter by gen changed to ${filterByGen}`);
+    if (filterByGen !== "all") {
+      fetch(`https://pokeapi.co/api/v2/generation/${filterByGen}/`)
+        .then((response) => response.json())
+        .then((data) => {
+          // console.log(data);
+          setPokeResults(data.pokemon_species);
+          // console.log(pokeResults);
+        });
+    }
+  }, [filterByGen]);
+
+  // Fetch the Pokémon information of requested type
+  // useEffect(() => {
+  //   if (filterByType !== "all") {
+  //     const typeNum = Number(filterByType) + 1;
+  //     fetch(`https://pokeapi.co/api/v2/type/${typeNum}/`)
+  //       .then((response) => response.json())
+  //       .then((data) => {
+  //         console.log(data);
+  //         // setPokeResults(data.pokemon);
+  //       });
+  //   }
+  // }, [filterByType]);
 
   // Create a card for each Pokémon
   const cardsHTML = pokeResults.map((obj, i) => {
-    return <PokemonCard key={i} obj={obj} i={i} />;
+    // Seperate out the integer from the url
+    const urlArr = obj.url.split("/");
+    const urlNoSlash = urlArr.filter((part) => part !== "");
+    const urlNumber = urlNoSlash[urlNoSlash.length - 1];
+    const pokeNum = parseInt(urlNumber, 10);
+    return <PokemonCard key={i} obj={obj} i={pokeNum} />;
   });
 
   // Compare used for sorting the pokemon by number

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 // Create individual Pokémon cards
 const PokemonCard = ({ obj, i }) => {
-  const cardNum = "00" + (i + 1);
+  const cardNum = "00" + i;
   return (
     <Link className="pokemon-card">
       <div className="pokemon-card-title">
@@ -10,9 +10,7 @@ const PokemonCard = ({ obj, i }) => {
       </div>
       <img
         className="pokemon-image"
-        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
-          i + 1
-        }.png`}
+        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${i}.png`}
         alt={`${obj.name} card`}
       />
       <div className="pokemon-card-number">

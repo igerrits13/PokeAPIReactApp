@@ -30,7 +30,6 @@ const OptionGen = ({ filterByGen, setFilterByGen }) => {
 
   // Update the current gen based on what value has been selected
   const updateGen = (e) => {
-    console.log(`Sort by: ${e.target.value}`);
     setFilterByGen(e.target.value);
   };
 

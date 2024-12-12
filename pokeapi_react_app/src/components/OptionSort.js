@@ -2,7 +2,6 @@
 const OptionSort = ({ sortBy, setSortBy }) => {
   // Update the current sort method based on what value has been selected
   const updateSort = (e) => {
-    console.log(`Sort by: ${e.target.value}`);
     setSortBy(e.target.value);
   };
 
