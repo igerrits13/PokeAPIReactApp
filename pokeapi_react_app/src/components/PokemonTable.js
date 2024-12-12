@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import PokemonCard from "./PokemonCard";
-// import { Link } from "react-router-dom";
 
 // Table showing Pokémon cards
 const PokemonTable = ({ screenSize, filterByGen, filterByType, sortBy }) => {
@@ -41,12 +40,6 @@ const PokemonTable = ({ screenSize, filterByGen, filterByType, sortBy }) => {
     }
     return 0;
   };
-
-  // if (filterByType !== "all") {
-  //   console.log(cardsHTML);
-  //   cardsHTML.filter(filterByType);
-  //   console.log(cardsHTML);
-  // }
 
   // Sort the cards based on name or number
   if (sortBy === "number") {
