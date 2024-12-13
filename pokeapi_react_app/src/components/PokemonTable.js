@@ -6,16 +6,16 @@ const PokemonTable = ({ screenSize, filterByGen, filterByType, sortBy }) => {
   const [pokeResults, setPokeResults] = useState([]);
   const [pokeTypes, setPokeTypes] = useState([]);
 
-  // Fetch the Pokémon information for cards
+  // Fetch the Pokémon information for all Pokémon cards if no gen is selected
   useEffect(() => {
-    if (filterByGen === "all" && filterByType === "all") {
+    if (filterByGen === "all") {
       fetch(`https://pokeapi.co/api/v2/pokemon-species/?limit=5000`)
         .then((response) => response.json())
         .then((data) => {
           setPokeResults(data.results);
         });
     }
-  }, [filterByGen, filterByType]);
+  }, [filterByGen]);
 
   // Fetch the Pokémon information from the requested gen
   useEffect(() => {
@@ -39,17 +39,38 @@ const PokemonTable = ({ screenSize, filterByGen, filterByType, sortBy }) => {
     }
   }, [filterByType]);
 
-  const pokeTypesHTML = pokeTypes.map((obj, i) => {
-    const urlArr = obj.pokemon.url.split("/");
-    const urlNoSlash = urlArr.filter((part) => part !== "");
-    const urlNumber = urlNoSlash[urlNoSlash.length - 1];
-    const pokeNum = parseInt(urlNumber, 10);
-    return <PokemonCard key={i} obj={obj.pokemon} i={pokeNum} />;
-  });
+  // const newArray = pokeResults.filter((element) =>
+  //   pokeTypes.includes(element.pokemon)
+  // );
+
+  const commonElements = [];
+  for (const element of pokeTypes) {
+    for (const element2 of pokeResults) {
+      const pokeName = element2.name;
+      if (pokeName === element.pokemon.name) {
+        commonElements.push(element.pokemon);
+      }
+    }
+  }
+
+  // const newArray = pokeTypes.filter((element) =>
+  //   pokeResults.includes(element.pokemon)
+  // );
+
+  // const match = pokeResults[42].name === pokeTypes[3].pokemon.name;
 
   // Create a card for each Pokémon
   const cardsHTML = pokeResults.map((obj, i) => {
     // Seperate out the integer from the url
+    const urlArr = obj.url.split("/");
+    const urlNoSlash = urlArr.filter((part) => part !== "");
+    const urlNumber = urlNoSlash[urlNoSlash.length - 1];
+    const pokeNum = parseInt(urlNumber, 10);
+    return <PokemonCard key={i} obj={obj} i={pokeNum} />;
+  });
+
+  // Create a card for each Pokémon based on type
+  const pokeTypesHTML = commonElements.map((obj, i) => {
     const urlArr = obj.url.split("/");
     const urlNoSlash = urlArr.filter((part) => part !== "");
     const urlNumber = urlNoSlash[urlNoSlash.length - 1];
