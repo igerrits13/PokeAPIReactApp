@@ -4,6 +4,7 @@ import PokemonCard from "./PokemonCard";
 // Table showing Pokémon cards
 const PokemonTable = ({ screenSize, filterByGen, filterByType, sortBy }) => {
   const [pokeResults, setPokeResults] = useState([]);
+  const [pokeTypes, setPokeTypes] = useState([]);
 
   // Fetch the Pokémon information for cards
   useEffect(() => {
@@ -16,7 +17,7 @@ const PokemonTable = ({ screenSize, filterByGen, filterByType, sortBy }) => {
     }
   }, [filterByGen, filterByType]);
 
-  // Fetch the Pokémon information from requested gen
+  // Fetch the Pokémon information from the requested gen
   useEffect(() => {
     if (filterByGen !== "all") {
       fetch(`https://pokeapi.co/api/v2/generation/${filterByGen}/`)
@@ -26,6 +27,25 @@ const PokemonTable = ({ screenSize, filterByGen, filterByType, sortBy }) => {
         });
     }
   }, [filterByGen]);
+
+  // Fetch the Pokémon information of the requested type
+  useEffect(() => {
+    if (filterByType !== "all") {
+      fetch(`https://pokeapi.co/api/v2/type/${filterByType}/`)
+        .then((response) => response.json())
+        .then((data) => {
+          setPokeTypes(data.pokemon);
+        });
+    }
+  }, [filterByType]);
+
+  const pokeTypesHTML = pokeTypes.map((obj, i) => {
+    const urlArr = obj.pokemon.url.split("/");
+    const urlNoSlash = urlArr.filter((part) => part !== "");
+    const urlNumber = urlNoSlash[urlNoSlash.length - 1];
+    const pokeNum = parseInt(urlNumber, 10);
+    return <PokemonCard key={i} obj={obj.pokemon} i={pokeNum} />;
+  });
 
   // Create a card for each Pokémon
   const cardsHTML = pokeResults.map((obj, i) => {
@@ -39,10 +59,10 @@ const PokemonTable = ({ screenSize, filterByGen, filterByType, sortBy }) => {
 
   // Compare used for sorting the pokemon by number
   let compareNum = (a, b) => {
-    if (Number(a.key) < Number(b.key)) {
+    if (cardsHTML[Number(a.key)].props.i < cardsHTML[Number(b.key)].props.i) {
       return -1;
     }
-    if (Number(a.key) > Number(b.key)) {
+    if (cardsHTML[Number(a.key)].props.i > cardsHTML[Number(b.key)].props.i) {
       return 1;
     }
     return 0;
@@ -50,10 +70,16 @@ const PokemonTable = ({ screenSize, filterByGen, filterByType, sortBy }) => {
 
   // Compare used for sorting the pokemon by name
   let compareName = (a, b) => {
-    if (pokeResults[Number(a.key)].name < pokeResults[Number(b.key)].name) {
+    if (
+      cardsHTML[Number(a.key)].props.obj.name <
+      cardsHTML[Number(b.key)].props.obj.name
+    ) {
       return -1;
     }
-    if (pokeResults[Number(a.key)].name > pokeResults[Number(b.key)].name) {
+    if (
+      cardsHTML[Number(a.key)].props.obj.name >
+      cardsHTML[Number(b.key)].props.obj.name
+    ) {
       return 1;
     }
     return 0;
@@ -68,11 +94,23 @@ const PokemonTable = ({ screenSize, filterByGen, filterByType, sortBy }) => {
 
   // Set the Pokémon container to appropriate size based on viewport width
   if (screenSize === "small") {
-    return <div className="pokemon-container-small">{cardsHTML}</div>;
+    return (
+      <div className="pokemon-container-small">
+        {filterByType === "all" ? cardsHTML : pokeTypesHTML}
+      </div>
+    );
   } else if (screenSize === "medium") {
-    return <div className="pokemon-container-med">{cardsHTML}</div>;
+    return (
+      <div className="pokemon-container-med">
+        {filterByType === "all" ? cardsHTML : pokeTypesHTML}
+      </div>
+    );
   } else {
-    return <div className="pokemon-container-large">{cardsHTML}</div>;
+    return (
+      <div className="pokemon-container-large">
+        {filterByType === "all" ? cardsHTML : pokeTypesHTML}
+      </div>
+    );
   }
 };
 

@@ -43,7 +43,7 @@ const OptionGen = ({ filterByGen, setFilterByGen }) => {
         value={filterByGen}
         onChange={updateGen}
       >
-        <option value="0">All</option>
+        <option value="all">All</option>
         {genHTML}
       </select>
     </div>

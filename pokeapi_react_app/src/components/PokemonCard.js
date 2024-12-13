@@ -14,7 +14,7 @@ const PokemonCard = ({ obj, i }) => {
         alt={`${obj.name} card`}
       />
       <div className="pokemon-card-number">
-        #{cardNum.slice(cardNum.length - 3)}
+        #{cardNum.slice(cardNum.length - 4)}
       </div>
     </Link>
   );
