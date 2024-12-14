@@ -39,25 +39,18 @@ const PokemonTable = ({ screenSize, filterByGen, filterByType, sortBy }) => {
     }
   }, [filterByType]);
 
-  // const newArray = pokeResults.filter((element) =>
-  //   pokeTypes.includes(element.pokemon)
-  // );
-
-  const commonElements = [];
+  // Create a set of Pokémon in the current gen and of the current type to prevent duplicates
+  let commonElementsSet = new Set();
   for (const element of pokeTypes) {
     for (const element2 of pokeResults) {
       const pokeName = element2.name;
-      if (pokeName === element.pokemon.name) {
-        commonElements.push(element.pokemon);
+      if (element.pokemon.name.includes(pokeName)) {
+        commonElementsSet.add(element.pokemon);
       }
     }
   }
-
-  // const newArray = pokeTypes.filter((element) =>
-  //   pokeResults.includes(element.pokemon)
-  // );
-
-  // const match = pokeResults[42].name === pokeTypes[3].pokemon.name;
+  // Then convert back to an array
+  const commonElements = Array.from(commonElementsSet);
 
   // Create a card for each Pokémon
   const cardsHTML = pokeResults.map((obj, i) => {
