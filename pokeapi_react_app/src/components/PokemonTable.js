@@ -99,11 +99,47 @@ const PokemonTable = ({ screenSize, filterByGen, filterByType, sortBy }) => {
     return 0;
   };
 
+  // Compare used for sorting the pokemon by number
+  let compareNumTypes = (a, b) => {
+    if (
+      pokeTypesHTML[Number(a.key)].props.i <
+      pokeTypesHTML[Number(b.key)].props.i
+    ) {
+      return -1;
+    }
+    if (
+      pokeTypesHTML[Number(a.key)].props.i >
+      pokeTypesHTML[Number(b.key)].props.i
+    ) {
+      return 1;
+    }
+    return 0;
+  };
+
+  // Compare used for sorting the pokemon by name
+  let compareNameTypes = (a, b) => {
+    if (
+      pokeTypesHTML[Number(a.key)].props.obj.name <
+      pokeTypesHTML[Number(b.key)].props.obj.name
+    ) {
+      return -1;
+    }
+    if (
+      pokeTypesHTML[Number(a.key)].props.obj.name >
+      pokeTypesHTML[Number(b.key)].props.obj.name
+    ) {
+      return 1;
+    }
+    return 0;
+  };
+
   // Sort the cards based on name or number
   if (sortBy === "number") {
     cardsHTML.sort(compareNum);
+    pokeTypesHTML.sort(compareNumTypes);
   } else if (sortBy === "name") {
     cardsHTML.sort(compareName);
+    pokeTypesHTML.sort(compareNameTypes);
   }
 
   // Set the Pokémon container to appropriate size based on viewport width
