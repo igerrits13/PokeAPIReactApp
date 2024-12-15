@@ -8,7 +8,7 @@ const OptionSort = ({ sortBy, setSortBy }) => {
   return (
     <div className="sortoptions-item sortoption-text">
       <label htmlFor="sortby">Sort by</label>
-      <select name="sortby" id="sortby" value={sortBy} onChange={updateSort}>
+      <select className="sortoptions-dropdown" name="sortby" id="sortby" value={sortBy} onChange={updateSort}>
         <option value="number">Number</option>
         <option value="name">Name</option>
       </select>

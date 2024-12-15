@@ -15,6 +15,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  /* background-color: #2e2a2c; */
 }
 
 /* Fonts */
@@ -55,13 +56,15 @@
 /* Home page layout */
 
 .homeview-container {
+  min-height: 100%;
   display: grid;
   place-items: center;
   place-content: center;
-  grid-template-rows: auto auto auto auto auto;
+  grid-template-rows: auto auto auto auto 1fr auto;
+  /* grid-template-rows: auto 1fr auto; */
   gap: 20px 0px;
   padding: 5% 10% 0 10%;
-  background-color: #2e2a2c;
+  background-color: #2e2a2c; 
 }
 
 .homeview-small {
@@ -88,16 +91,21 @@
 
 .header-small {
   padding: 1rem;
-  font-size: 4rem;
+  font-size: 2.5rem;
 }
 
 .header-med {
-  padding: 2rem;
-  font-size: 6rem;
+  padding: 1rem;
+  font-size: 4rem;
 }
 
 .header-large {
-  padding: 3rem;
+  padding: 1.5rem;
+  font-size: 5rem;
+}
+
+.header-x-large {
+  padding: 1.5rem;
   font-size: 7rem;
 }
 
@@ -145,7 +153,7 @@
 .type-item {
   display: flex;
   flex-wrap: nowrap;
-  font-size: 1rem;
+  font-size: 0.75rem;
   text-decoration: none;
   padding: 0.5rem;
   border: 1px solid #201d1f;
@@ -157,17 +165,18 @@
   padding: 3px 0 0 0;
 }
 
-/* Types dropdown */
-
-.types-dropdown {
-  width: 50%;
-}
-
 /* background-color: #2e2a2c; Background color */
 /* background-color: #201d1f; Outline color */
 /* background-color: #fff9fc; Text color */
 /* background-color: #2b2e2a; */
 /* background-color: #1e201d; */
+
+/* Types dropdown */
+
+.types-dropdown {
+  width: 50%;
+  padding: 1rem 0 0 0;
+}
 
 .types-dropdown-button {
   width: 100%;
@@ -203,7 +212,7 @@
 }
 
 .type-img {
-  height: 25px;
+  height: 20px;
   filter: drop-shadow(0 0 2px #201d1f);
   margin: 0 5px 0 0;
 }
@@ -288,22 +297,37 @@
   width: 100%;
   gap: 10px 0;
   grid-template-rows: 1fr 1fr 1fr;
-  background-color: brown;
+  /* background-color: #2b2e2a; */
+  /* background-color: brown; */
 }
 
 .sortoptions-container-med-large {
   display: grid;
-  padding: 10px;
+  margin: 10px;
   width: 100%;
   gap: 0 10px;
   grid-template-columns: 1fr 1fr 1fr;
-  background-color: brown;
+  /* background-color: brown; */
 }
 
 .sortoptions-item {
+  display: flex;
+  flex-direction: column;
   place-self: center;
+  padding: 0 10px;
   width: 100%;
-  background-color: #5695a3;
+  /* background-color: #2b2e2a;
+  outline: 1px solid #1e201d; */
+  /* background-color: #5695a3; */
+}
+
+.sortoptions-dropdown {
+  place-self: center;
+  width: auto;
+border-radius: 5px;
+padding: 0.25rem 0;
+text-align: center;
+  /* background-color: #5fbd58; */
 }
 
 .sortoption-text {
@@ -336,6 +360,7 @@
   display: grid;
   gap: 20px 20px;
   padding: 2rem;
+  /* background-color: #75d0c1; */
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
@@ -410,7 +435,7 @@
 
 .github-logo {
   font-size: 1.5rem;
-  color: #2b2e2a;
+  color: #fff9fc;
   /* background-color: #c2b010; */
 }
 

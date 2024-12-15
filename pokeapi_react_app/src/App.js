@@ -22,8 +22,12 @@ function App() {
       }
 
       // Handle large screen
-      else {
+      else if (window.innerWidth >= 992 && window.innerWidth < 1200) {
         setscreenSize("large");
+      }
+
+      else {
+        setscreenSize("x-large");
       }
     };
 
