@@ -387,44 +387,67 @@
   width: 100%;
   gap: 10px 10px;
   padding: 10px;
+  align-items: center;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto;
   grid-template-areas:
-    "github created logo"
-    "rights rights rights";
-  background-color: #92bc2c;
+    "github developed api"
+    "trademark trademark trademark";
+  /* background-color: #92bc2c; */
+  font-size: 1rem;
+  font-family: josefinSans-bold, sans-serif;
+  text-shadow: -1px -1px 0 #201d1f, 1px -1px 0 #201d1f, -1px 1px 0 #201d1f,
+    1px 1px 0 #201d1f;
+  color: #fff9fc;
 }
 
 .footer-item-1 {
-  background-color: chocolate;
+  /* background-color: chocolate; */
   width: 100%;
-  justify-self: start;
+  /* justify-self: start; */
   grid-area: github;
 }
 
+.github-logo {
+  font-size: 1.5rem;
+  color: #2b2e2a;
+  /* background-color: #c2b010; */
+}
+
 .footer-item-2 {
-  background-color: fuchsia;
+  /* background-color: fuchsia; */
   width: 100%;
-  justify-self: center;
-  grid-area: created;
+  /* justify-self: center; */
+  grid-area: developed;
+  text-align: center;
 }
 
 .footer-item-3 {
-  background-color: lightgreen;
+  /* background-color: lightgreen; */
   width: 100%;
-  justify-self: end;
-  grid-area: logo;
+  /* justify-self: end; */
+  text-align: end;
+  grid-area: api;
+}
+
+.api-logo {
+  height: 1.5rem;
+  bottom: 20px;
+  margin: 5px;
+  /* background-color: #5695a3; */
 }
 
 .footer-item-4 {
-  background-color: cyan;
+  flex-wrap: nowrap;
+  /* background-color: cyan; */
   width: 100%;
-  justify-self: center;
-  grid-area: rights;
+  /* justify-self: center; */
+  text-align: center;
+  grid-area: trademark;
 }
 
 /* background-color: #2e2a2c; Background color */
 /* background-color: #201d1f; Outline color */
 /* background-color: #fff9fc; Text color */
-/* background-color: #2b2e2a; */
+/* background-color: #2b2e2a; card background color */
 /* background-color: #1e201d; */

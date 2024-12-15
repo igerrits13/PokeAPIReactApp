@@ -4,7 +4,6 @@ const OptionType = ({ filterByType, setFilterByType, typesResults }) => {
   const typesHTML = typesResults.map((obj, i) => {
     if (obj.name !== "unknown" && obj.name !== "stellar") {
       return (
-        // <option key={i} value={`${obj.name}`}>
         <option key={i} value={i + 1}>
           {obj.name[0].toUpperCase() + obj.name.slice(1)}
         </option>
