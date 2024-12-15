@@ -8,7 +8,9 @@ const Title = ({ screenSize }) => {
         <div className="header header-med">Pokémon Lookup</div>
       ) : screenSize === "large" ? (
         <div className="header header-large">Pokémon Lookup</div>
-      ) : <div className="header header-x-large">Pokémon Lookup</div>}
+      ) : (
+        <div className="header header-x-large">Pokémon Lookup</div>
+      )}
     </>
   );
 };

@@ -44,25 +44,26 @@ const PokemonTable = ({ screenSize, filterByGen, filterByType, sortBy }) => {
 
   let commonElementsSet = new Set();
 
-  if(filterByType !== "all") {
-  // Create a set of Pokémon of the current type and use set to prevent duplicates
+  if (filterByType !== "all") {
+    // Create a set of Pokémon of the current type and use set to prevent duplicates
     for (const element of pokeTypes) {
-        for (const element2 of pokeResults) {
+      for (const element2 of pokeResults) {
         const pokeName = element2.name;
         if (element.pokemon.name.includes(pokeName)) {
-            commonElementsSet.add(element.pokemon);
+          commonElementsSet.add(element.pokemon);
         }
-        }
+      }
     }
-    }
+  }
 
-let commonElements;
+  let commonElements;
 
-if(filterByType !== "all") {
-  // Then convert back to an array
-  commonElements = Array.from(commonElementsSet);}
-
-  else {commonElements = Array.from(pokeResults)}
+  if (filterByType !== "all") {
+    // Then convert back to an array
+    commonElements = Array.from(commonElementsSet);
+  } else {
+    commonElements = Array.from(pokeResults);
+  }
 
   // Create a card for each Pokémon
   const cardsHTML = commonElements.map((obj, i) => {
@@ -100,7 +101,7 @@ if(filterByType !== "all") {
       return 1;
     }
     return 0;
-  };;
+  };
 
   // Sort the cards based on name or number
   if (sortBy === "number") {
@@ -111,23 +112,11 @@ if(filterByType !== "all") {
 
   // Set the Pokémon container to appropriate size based on viewport width
   if (screenSize === "small") {
-    return (
-      <div className="pokemon-container-small">
-        {cardsHTML}
-      </div>
-    );
+    return <div className="pokemon-container-small">{cardsHTML}</div>;
   } else if (screenSize === "medium") {
-    return (
-      <div className="pokemon-container-med">
-        {cardsHTML}
-      </div>
-    );
+    return <div className="pokemon-container-med">{cardsHTML}</div>;
   } else {
-    return (
-      <div className="pokemon-container-large">
-        {cardsHTML}
-      </div>
-    );
+    return <div className="pokemon-container-large">{cardsHTML}</div>;
   }
 };
 

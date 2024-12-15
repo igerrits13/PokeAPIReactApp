@@ -64,7 +64,7 @@
   /* grid-template-rows: auto 1fr auto; */
   gap: 20px 0px;
   padding: 5% 10% 0 10%;
-  background-color: #2e2a2c; 
+  background-color: #2e2a2c;
 }
 
 .homeview-small {
@@ -324,9 +324,9 @@
 .sortoptions-dropdown {
   place-self: center;
   width: auto;
-border-radius: 5px;
-padding: 0.25rem 0;
-text-align: center;
+  border-radius: 5px;
+  padding: 0.25rem 0;
+  text-align: center;
   /* background-color: #5fbd58; */
 }
 

@@ -23,7 +23,7 @@ const OptionType = ({ filterByType, setFilterByType, typesResults }) => {
     <div className="sortoptions-item sortoption-text">
       <label htmlFor="types">Filter by Type</label>
       <select
-      className="sortoptions-dropdown"
+        className="sortoptions-dropdown"
         name="types"
         id="types"
         value={filterByType}

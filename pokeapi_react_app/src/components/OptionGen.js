@@ -38,7 +38,7 @@ const OptionGen = ({ filterByGen, setFilterByGen }) => {
     <div className="sortoptions-item sortoption-text">
       <label htmlFor="generation">Filter by Generation</label>
       <select
-      className="sortoptions-dropdown"
+        className="sortoptions-dropdown"
         name="generation"
         id="generation"
         value={filterByGen}
