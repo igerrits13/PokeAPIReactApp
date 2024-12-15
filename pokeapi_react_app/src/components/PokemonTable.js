@@ -46,16 +46,18 @@ const PokemonTable = ({ screenSize, filterByGen, filterByType, sortBy }) => {
 
   if(filterByType !== "all") {
   // Create a set of Pokémon of the current type and use set to prevent duplicates
-  for (const element of pokeTypes) {
-    for (const element2 of pokeResults) {
-      const pokeName = element2.name;
-      if (element.pokemon.name.includes(pokeName)) {
-        commonElementsSet.add(element.pokemon);
-      }
+    for (const element of pokeTypes) {
+        for (const element2 of pokeResults) {
+        const pokeName = element2.name;
+        if (element.pokemon.name.includes(pokeName)) {
+            commonElementsSet.add(element.pokemon);
+        }
+        }
     }
-  }
-}
+    }
+
 let commonElements;
+
 if(filterByType !== "all") {
   // Then convert back to an array
   commonElements = Array.from(commonElementsSet);}
@@ -71,15 +73,6 @@ if(filterByType !== "all") {
     const pokeNum = parseInt(urlNumber, 10);
     return <PokemonCard key={i} obj={obj} i={pokeNum} />;
   });
-
-  // Create a card for each Pokémon based on type
-//   const pokeTypesHTML = commonElements.map((obj, i) => {
-//     const urlArr = obj.url.split("/");
-//     const urlNoSlash = urlArr.filter((part) => part !== "");
-//     const urlNumber = urlNoSlash[urlNoSlash.length - 1];
-//     const pokeNum = parseInt(urlNumber, 10);
-//     return <PokemonCard key={i} obj={obj} i={pokeNum} />;
-//   });
 
   // Compare used for sorting the pokemon by number
   let compareNum = (a, b) => {
@@ -107,70 +100,31 @@ if(filterByType !== "all") {
       return 1;
     }
     return 0;
-  };
-
-    // Compare used for sorting the pokemon by name
-    // let compareNameTypes = (a, b) => {
-    // if (
-    //     pokeTypesHTML[Number(a.key)].props.obj.name <
-    //     pokeTypesHTML[Number(b.key)].props.obj.name
-    // ) {
-    //     return -1;
-    // }
-    // if (
-    //     pokeTypesHTML[Number(a.key)].props.obj.name >
-    //     pokeTypesHTML[Number(b.key)].props.obj.name
-    // ) {
-    //     return 1;
-    // }
-    // return 0;
-    // };
-
-  // Compare used for sorting the pokemon by number
-//   let compareNumTypes = (a, b) => {
-//     if (
-//       pokeTypesHTML[Number(a.key)].props.i <
-//       pokeTypesHTML[Number(b.key)].props.i
-//     ) {
-//       return -1;
-//     }
-//     if (
-//       pokeTypesHTML[Number(a.key)].props.i >
-//       pokeTypesHTML[Number(b.key)].props.i
-//     ) {
-//       return 1;
-//     }
-//     return 0;
-//   };
+  };;
 
   // Sort the cards based on name or number
   if (sortBy === "number") {
     cardsHTML.sort(compareNum);
-    // pokeTypesHTML.sort(compareNumTypes);
   } else if (sortBy === "name") {
     cardsHTML.sort(compareName);
-    // pokeTypesHTML.sort(compareNameTypes);
   }
 
   // Set the Pokémon container to appropriate size based on viewport width
   if (screenSize === "small") {
     return (
       <div className="pokemon-container-small">
-        {/* {filterByType === "all" ? cardsHTML : pokeTypesHTML} */}
         {cardsHTML}
       </div>
     );
   } else if (screenSize === "medium") {
     return (
       <div className="pokemon-container-med">
-        {/* {filterByType === "all" ? cardsHTML : pokeTypesHTML} */}
         {cardsHTML}
       </div>
     );
   } else {
     return (
       <div className="pokemon-container-large">
-        {/* {filterByType === "all" ? cardsHTML : pokeTypesHTML} */}
         {cardsHTML}
       </div>
     );
