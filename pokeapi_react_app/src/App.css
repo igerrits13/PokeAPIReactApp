@@ -15,7 +15,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* background-color: #2e2a2c; */
 }
 
 /* Fonts */
@@ -61,7 +60,6 @@
   place-items: center;
   place-content: center;
   grid-template-rows: auto auto auto auto 1fr auto;
-  /* grid-template-rows: auto 1fr auto; */
   gap: 20px 0px;
   padding: 5% 10% 0 10%;
   background-color: #2e2a2c;
@@ -297,8 +295,6 @@
   width: 100%;
   gap: 10px 0;
   grid-template-rows: 1fr 1fr 1fr;
-  /* background-color: #2b2e2a; */
-  /* background-color: brown; */
 }
 
 .sortoptions-container-med-large {
@@ -307,7 +303,6 @@
   width: 100%;
   gap: 0 10px;
   grid-template-columns: 1fr 1fr 1fr;
-  /* background-color: brown; */
 }
 
 .sortoptions-item {
@@ -316,9 +311,6 @@
   place-self: center;
   padding: 0 10px;
   width: 100%;
-  /* background-color: #2b2e2a;
-  outline: 1px solid #1e201d; */
-  /* background-color: #5695a3; */
 }
 
 .sortoptions-dropdown {
@@ -327,7 +319,6 @@
   border-radius: 5px;
   padding: 0.25rem 0;
   text-align: center;
-  /* background-color: #5fbd58; */
 }
 
 .sortoption-text {
@@ -360,7 +351,6 @@
   display: grid;
   gap: 20px 20px;
   padding: 2rem;
-  /* background-color: #75d0c1; */
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
@@ -418,7 +408,6 @@
   grid-template-areas:
     "github developed api"
     "trademark trademark trademark";
-  /* background-color: #92bc2c; */
   font-size: 1rem;
   font-family: josefinSans-bold, sans-serif;
   text-shadow: -1px -1px 0 #201d1f, 1px -1px 0 #201d1f, -1px 1px 0 #201d1f,
@@ -427,30 +416,23 @@
 }
 
 .footer-item-1 {
-  /* background-color: chocolate; */
   width: 100%;
-  /* justify-self: start; */
   grid-area: github;
 }
 
 .github-logo {
   font-size: 1.5rem;
   color: #fff9fc;
-  /* background-color: #c2b010; */
 }
 
 .footer-item-2 {
-  /* background-color: fuchsia; */
   width: 100%;
-  /* justify-self: center; */
   grid-area: developed;
   text-align: center;
 }
 
 .footer-item-3 {
-  /* background-color: lightgreen; */
   width: 100%;
-  /* justify-self: end; */
   text-align: end;
   grid-area: api;
 }
@@ -459,14 +441,11 @@
   height: 1.5rem;
   bottom: 20px;
   margin: 5px;
-  /* background-color: #5695a3; */
 }
 
 .footer-item-4 {
   flex-wrap: nowrap;
-  /* background-color: cyan; */
   width: 100%;
-  /* justify-self: center; */
   text-align: center;
   grid-area: trademark;
 }
