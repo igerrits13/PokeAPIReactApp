@@ -5,6 +5,7 @@ import PokemonCard from "./PokemonCard";
 const PokemonTable = ({ screenSize, filterByGen, filterByType, sortBy }) => {
   const [pokeResults, setPokeResults] = useState([]);
   const [pokeTypes, setPokeTypes] = useState([]);
+  const [pokeCountTotal, setPokeCountTotal] = useState(0);
 
   // Fetch the Pokémon information for all Pokémon cards if no gen is selected
   useEffect(() => {
@@ -14,6 +15,7 @@ const PokemonTable = ({ screenSize, filterByGen, filterByType, sortBy }) => {
         .then((response) => response.json())
         .then((data) => {
           setPokeResults(data.results);
+          setPokeCountTotal(data.count);
         });
     }
   }, [filterByGen]);
@@ -49,7 +51,13 @@ const PokemonTable = ({ screenSize, filterByGen, filterByType, sortBy }) => {
     for (const element of pokeTypes) {
       for (const element2 of pokeResults) {
         const pokeName = element2.name;
-        if (element.pokemon.name.includes(pokeName)) {
+        const urlArr = element.pokemon.url.split("/");
+        const urlNoSlash = urlArr.filter((part) => part !== "");
+        const urlNumber = urlNoSlash[urlNoSlash.length - 1];
+        if (
+          element.pokemon.name.includes(pokeName) &&
+          urlNumber < pokeCountTotal
+        ) {
           commonElementsSet.add(element.pokemon);
         }
       }
@@ -72,7 +80,14 @@ const PokemonTable = ({ screenSize, filterByGen, filterByType, sortBy }) => {
     const urlNoSlash = urlArr.filter((part) => part !== "");
     const urlNumber = urlNoSlash[urlNoSlash.length - 1];
     const pokeNum = parseInt(urlNumber, 10);
-    return <PokemonCard key={i} obj={obj} i={pokeNum} />;
+    return (
+      <PokemonCard
+        key={i}
+        obj={obj}
+        i={pokeNum}
+        pokeCountTotal={pokeCountTotal}
+      />
+    );
   });
 
   // Compare used for sorting the pokemon by number
@@ -112,11 +127,26 @@ const PokemonTable = ({ screenSize, filterByGen, filterByType, sortBy }) => {
 
   // Set the Pokémon container to appropriate size based on viewport width
   if (screenSize === "small") {
-    return <div className="pokemon-container-small">{cardsHTML}</div>;
+    return (
+      <div>
+        <div className="sub-header">Pokémon ({cardsHTML.length})</div>
+        <div className="pokemon-container-small">{cardsHTML}</div>
+      </div>
+    );
   } else if (screenSize === "medium") {
-    return <div className="pokemon-container-med">{cardsHTML}</div>;
+    return (
+      <div>
+        <div className="sub-header">Pokémon ({cardsHTML.length})</div>
+        <div className="pokemon-container-med">{cardsHTML}</div>
+      </div>
+    );
   } else {
-    return <div className="pokemon-container-large">{cardsHTML}</div>;
+    return (
+      <div>
+        <div className="sub-header">Pokémon ({cardsHTML.length})</div>
+        <div className="pokemon-container-large">{cardsHTML}</div>
+      </div>
+    );
   }
 };
 
