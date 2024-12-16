@@ -86,10 +86,11 @@ const TypeseTable = ({ screenSize, typesResults }) => {
 
   // Create buttons for each type
   const typesHTML = typesResults.map((obj, i) => {
-    // If in small screen mode, create dropdown menu buttons
-    if (screenSize === "small") {
-      const typeIcon = getTypeIcon(obj.name);
-      if (obj.name !== "unknown" && obj.name !== "stellar") {
+    if (obj.name !== "unknown" && obj.name !== "stellar") {
+      // If in small screen mode, create dropdown menu buttons
+      if (screenSize === "small") {
+        const typeIcon = getTypeIcon(obj.name);
+        // if (obj.name !== "unknown" && obj.name !== "stellar") {
         return (
           <Link
             key={i}
@@ -104,14 +105,14 @@ const TypeseTable = ({ screenSize, typesResults }) => {
             {obj.name.toUpperCase()}
           </Link>
         );
-      } else {
-        return <div key={i}></div>;
+        // } else {
+        //   return <div key={i}></div>;
+        // }
       }
-    }
-    // Otherwise, create buttons in a flex-box
-    else {
-      const typeIcon = getTypeIcon(obj.name);
-      if (obj.name !== "unknown" && obj.name !== "stellar") {
+      // Otherwise, create buttons in a flex-box
+      else {
+        const typeIcon = getTypeIcon(obj.name);
+        // if (obj.name !== "unknown" && obj.name !== "stellar") {
         return (
           <button key={i} className={`type-item hover-dim ${typeStyle}`}>
             <img
@@ -122,9 +123,12 @@ const TypeseTable = ({ screenSize, typesResults }) => {
             <div className="type-text">{obj.name.toUpperCase()}</div>
           </button>
         );
-      } else {
-        return <div key={i}></div>;
+        // } else {
+        //   return <div key={i}></div>;
+        // }
       }
+    } else {
+      return <div key={i}></div>;
     }
   });
 

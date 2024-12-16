@@ -56,7 +56,7 @@ const PokemonTable = ({ screenSize, filterByGen, filterByType, sortBy }) => {
         const urlNumber = urlNoSlash[urlNoSlash.length - 1];
         if (
           element.pokemon.name.includes(pokeName) &&
-          urlNumber < pokeCountTotal
+          urlNumber <= pokeCountTotal
         ) {
           commonElementsSet.add(element.pokemon);
         }
