@@ -1,17 +1,15 @@
 // Handles the logic for filtering Pokémon by type
 const OptionType = ({ filterByType, setFilterByType, typesResults }) => {
   // Create the HTML for the dropdown view for filtering by type
-  const typesHTML = typesResults.map((obj, i) => {
-    if (obj.name !== "unknown" && obj.name !== "stellar") {
+  const typesHTML = typesResults
+    .slice(0, typesResults.length - 2)
+    .map((obj, i) => {
       return (
         <option key={i} value={i + 1}>
           {obj.name[0].toUpperCase() + obj.name.slice(1)}
         </option>
       );
-    } else {
-      return <option key={i} value="none"></option>;
-    }
-  });
+    });
 
   // Update the current type based on what value has been selected
   const updateType = (e) => {

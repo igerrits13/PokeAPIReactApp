@@ -85,8 +85,9 @@ const TypeseTable = ({ screenSize, typesResults }) => {
   }
 
   // Create buttons for each type
-  const typesHTML = typesResults.map((obj, i) => {
-    if (obj.name !== "unknown" && obj.name !== "stellar") {
+  const typesHTML = typesResults
+    .slice(0, typesResults.length - 2)
+    .map((obj, i) => {
       // If in small screen mode, create dropdown menu buttons
       if (screenSize === "small") {
         const typeIcon = getTypeIcon(obj.name);
@@ -105,9 +106,6 @@ const TypeseTable = ({ screenSize, typesResults }) => {
             {obj.name.toUpperCase()}
           </Link>
         );
-        // } else {
-        //   return <div key={i}></div>;
-        // }
       }
       // Otherwise, create buttons in a flex-box
       else {
@@ -123,14 +121,8 @@ const TypeseTable = ({ screenSize, typesResults }) => {
             <div className="type-text">{obj.name.toUpperCase()}</div>
           </button>
         );
-        // } else {
-        //   return <div key={i}></div>;
-        // }
       }
-    } else {
-      return <div key={i}></div>;
-    }
-  });
+    });
 
   // If screen size is small, collapse types into dropdown
   if (screenSize === "small") {
