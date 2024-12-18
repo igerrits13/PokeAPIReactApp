@@ -1,7 +1,8 @@
 import { useState } from "react";
+import SearchResults from "./SearchResults";
 
 // Search bar for searching Pokémon
-const SearchBar = () => {
+const SearchBar = ({ fullPokeResults }) => {
   const [searchText, setSearchText] = useState("");
   const [searchBarActive, setSearchBarActive] = useState(false);
   const [searchBarFocus, setSearchBarFocus] = useState(false);
@@ -59,6 +60,21 @@ const SearchBar = () => {
         />
         <i className="fa-solid fa-magnifying-glass searchbar-icon"></i>
       </form>
+      {searchBarActive || searchText ? (
+        <ul
+          className=""
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          <li>Item here</li>
+          {/* <SearchResults
+            searchText={searchText}
+            fullPokeResults={fullPokeResults}
+          /> */}
+        </ul>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

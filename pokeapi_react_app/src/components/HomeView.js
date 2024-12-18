@@ -9,6 +9,7 @@ import Footer from "./Footer";
 // Homeview page of the Pokémon app
 const HomeView = ({ screenSize }) => {
   const [typesResults, setTypesResult] = useState([]);
+  const [fullPokeResults, setFullPokeResults] = useState([]);
   const [filterByGen, setFilterByGen] = useState("all");
   const [filterByType, setFilterByType] = useState("all");
   const [sortBy, setSortBy] = useState("number");
@@ -33,7 +34,7 @@ const HomeView = ({ screenSize }) => {
   return (
     <div className={`homeview-container ${containerSize}`}>
       <Title screenSize={screenSize} />
-      <SearchBar />
+      <SearchBar fullPokeResults={fullPokeResults} />
       <TypeseTable screenSize={screenSize} typesResults={typesResults} />
       <SortOptions
         screenSize={screenSize}
@@ -47,6 +48,7 @@ const HomeView = ({ screenSize }) => {
       />
       <PokemonTable
         screenSize={screenSize}
+        setFullPokeResults={setFullPokeResults}
         filterByGen={filterByGen}
         filterByType={filterByType}
         sortBy={sortBy}

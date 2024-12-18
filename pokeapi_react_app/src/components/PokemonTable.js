@@ -1,8 +1,15 @@
 import { useState, useEffect } from "react";
 import PokemonCard from "./PokemonCard";
 
+// Pokecounttotal, pokeresults, setpokeresults
 // Table showing Pokémon cards
-const PokemonTable = ({ screenSize, filterByGen, filterByType, sortBy }) => {
+const PokemonTable = ({
+  screenSize,
+  setFullPokeResults,
+  filterByGen,
+  filterByType,
+  sortBy,
+}) => {
   const [pokeResults, setPokeResults] = useState([]);
   const [pokeTypes, setPokeTypes] = useState([]);
   const [pokeCountTotal, setPokeCountTotal] = useState(0);
@@ -15,10 +22,11 @@ const PokemonTable = ({ screenSize, filterByGen, filterByType, sortBy }) => {
         .then((response) => response.json())
         .then((data) => {
           setPokeResults(data.results);
+          setFullPokeResults(data.results);
           setPokeCountTotal(data.count);
         });
     }
-  }, [filterByGen]);
+  }, [filterByGen, setFullPokeResults]);
 
   // Fetch the Pokémon information from the requested gen
   useEffect(() => {
