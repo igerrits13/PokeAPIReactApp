@@ -19,6 +19,9 @@ const SearchBar = ({ fullPokeResults }) => {
 
   const handleMouseLeave = () => {
     setSearchBarActive(false);
+    if (!searchBarFocus) {
+      clearSearchText();
+    }
   };
 
   // Update state for when the search bar is being focused
@@ -28,8 +31,9 @@ const SearchBar = ({ fullPokeResults }) => {
 
   const handleOnBlur = () => {
     setSearchBarFocus(false);
-    setSearchBarActive(false);
-    clearSearchText();
+    if (!searchBarActive) {
+      clearSearchText();
+    }
   };
 
   // Clear search text when not hovered or focused
@@ -38,15 +42,15 @@ const SearchBar = ({ fullPokeResults }) => {
   };
 
   return (
-    <div>
+    <div
+      className="searchbar-container"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <form
-        className={`searchbar-container ${
-          searchBarActive || searchText !== "" || searchBarFocus
-            ? "searchbar-active"
-            : ""
+        className={`searchbar-button ${
+          searchBarActive || searchBarFocus ? "searchbar-active" : ""
         }`}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
         onFocus={handleOnFocus}
         onBlur={handleOnBlur}
       >
@@ -60,18 +64,13 @@ const SearchBar = ({ fullPokeResults }) => {
         />
         <i className="fa-solid fa-magnifying-glass searchbar-icon"></i>
       </form>
-      {searchBarActive || searchText ? (
-        <ul
-          className=""
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-        >
-          <li>Item here</li>
-          {/* <SearchResults
+      {searchBarActive || searchBarFocus ? (
+        <div>
+          <SearchResults
             searchText={searchText}
             fullPokeResults={fullPokeResults}
-          /> */}
-        </ul>
+          />
+        </div>
       ) : (
         <></>
       )}

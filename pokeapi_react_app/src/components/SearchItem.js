@@ -12,18 +12,18 @@ const SearchItem = ({ resultItem, i }) => {
   const number = parseInt(lastPart, 10);
 
   return (
-    <Link className="" to="./">
+    <Link className="search-results-item" to="./">
+      {/* <div className=""> */}
       <div className="">
-        <div className="">
-          <img
-            className=""
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${number}.png`}
-            alt={`${resultItem.name}`}
-          />
-          {capitalizeFirstLetter(resultItem.name)}
-        </div>
-        <div className="">#{number}</div>
+        <img
+          className="search-result-image"
+          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${number}.png`}
+          alt={`${resultItem.name}`}
+        />
+        {capitalizeFirstLetter(resultItem.name)}
       </div>
+      <div className="">#{number}</div>
+      {/* </div> */}
     </Link>
   );
 };
