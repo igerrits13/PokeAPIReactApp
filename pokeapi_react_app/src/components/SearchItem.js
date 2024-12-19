@@ -13,8 +13,7 @@ const SearchItem = ({ resultItem, i }) => {
 
   return (
     <Link className="search-results-item" to="./">
-      {/* <div className=""> */}
-      <div className="">
+      <div>
         <img
           className="search-result-image"
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${number}.png`}
@@ -22,7 +21,7 @@ const SearchItem = ({ resultItem, i }) => {
         />
         {capitalizeFirstLetter(resultItem.name)}
       </div>
-      <div className="">#{number}</div>
+      <div>#{number}</div>
       {/* </div> */}
     </Link>
   );

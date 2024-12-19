@@ -99,7 +99,7 @@ const TypeseTable = ({ screenSize, typesResults }) => {
             className={`types-dropdown-item hover-dim ${typeStyle}`}
           >
             <img
-              className="type-img"
+              className="types-dropdown-img"
               src={`${typeIcon}`}
               alt={`${obj.name} type icon`}
             />
