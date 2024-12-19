@@ -10,10 +10,14 @@ const SearchResults = ({ searchText, fullPokeResults }) => {
       return <SearchItem resultItem={resultItem} key={i} />;
     });
   }
-  // Otherwise, create the first 12 Pokémon with names containing the search text
+  // Otherwise, create the first 12 Pokémon with names or numbers containing the search text
   else {
     searchHTML = fullPokeResults
-      .filter((res) => res.name.includes(`${searchText.toLowerCase()}`))
+      .filter(
+        (res, i) =>
+          res.name.includes(`${searchText.toLowerCase()}`) ||
+          (i + Number(1)).toString().includes(`${searchText}`)
+      )
       .slice(0, 12)
       .map((resultItem, i) => {
         return <SearchItem resultItem={resultItem} key={i} />;
