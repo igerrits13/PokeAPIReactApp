@@ -2,12 +2,13 @@ import { Link } from "react-router-dom";
 import { motion } from "motion/react";
 
 // Create individual Pokémon cards
-const PokemonCard = ({ obj, i, pokeCountTotal }) => {
-  const cardNum = "00" + i;
+const PokemonCard = ({ obj, i }) => {
+  const cardNum = "000" + i;
   return (
     <motion.div
       whileHover={{ scale: 1.05, rotate: "-1.5deg" }}
-      whileTap={{ scale: 0.95, rotate: "10deg" }}
+      whileTap={{ scale: 0.95, rotate: "5deg" }}
+      transition={{ duration: 0.1 }}
     >
       <Link className="pokemon-card">
         <div className="pokemon-card-title">

@@ -89,14 +89,7 @@ const PokemonTable = ({
     const urlNoSlash = urlArr.filter((part) => part !== "");
     const urlNumber = urlNoSlash[urlNoSlash.length - 1];
     const pokeNum = parseInt(urlNumber, 10);
-    return (
-      <PokemonCard
-        key={i}
-        obj={obj}
-        i={pokeNum}
-        pokeCountTotal={pokeCountTotal}
-      />
-    );
+    return <PokemonCard key={i} obj={obj} i={pokeNum} />;
   });
 
   // Compare used for sorting the pokemon by number
