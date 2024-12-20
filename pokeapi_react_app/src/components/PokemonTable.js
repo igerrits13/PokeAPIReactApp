@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import PokemonCard from "./PokemonCard";
+import PokemonCardLoading from "./PokemonCardLoading";
 
 // Pokecounttotal, pokeresults, setpokeresults
 // Table showing Pokémon cards
@@ -152,7 +153,11 @@ const PokemonTable = ({
     return (
       <div>
         <div className="sub-header">Pokémon ({cardsHTML.length})</div>
-        <div className="pokemon-container-large">{cardsHTML}</div>
+        <div className="pokemon-container-large">
+          {" "}
+          <PokemonCardLoading />
+          {cardsHTML}
+        </div>
       </div>
     );
   }
