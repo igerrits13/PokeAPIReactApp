@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import PokemonCard from "./PokemonCard";
+import React, { Suspense, useState, useEffect } from "react";
 import PokemonCardLoading from "./PokemonCardLoading";
 
 // Pokecounttotal, pokeresults, setpokeresults
@@ -14,6 +13,8 @@ const PokemonTable = ({
   const [pokeResults, setPokeResults] = useState([]);
   const [pokeTypes, setPokeTypes] = useState([]);
   const [pokeCountTotal, setPokeCountTotal] = useState(0);
+
+  const LazyPokemonCard = React.lazy(() => import("./PokemonCard"));
 
   // Fetch the Pokémon information for all Pokémon cards if no gen is selected
   useEffect(() => {
@@ -89,7 +90,13 @@ const PokemonTable = ({
     const urlNoSlash = urlArr.filter((part) => part !== "");
     const urlNumber = urlNoSlash[urlNoSlash.length - 1];
     const pokeNum = parseInt(urlNumber, 10);
-    return <PokemonCard key={i} obj={obj} i={pokeNum} />;
+    return (
+      <div key={i}>
+        <Suspense fallback={<PokemonCardLoading />}>
+          <LazyPokemonCard obj={obj} i={pokeNum} />
+        </Suspense>
+      </div>
+    );
   });
 
   // Compare used for sorting the pokemon by number
@@ -146,11 +153,7 @@ const PokemonTable = ({
     return (
       <div>
         <div className="sub-header">Pokémon ({cardsHTML.length})</div>
-        <div className="pokemon-container-large">
-          {" "}
-          <PokemonCardLoading />
-          {cardsHTML}
-        </div>
+        <div className="pokemon-container-large">{cardsHTML}</div>
       </div>
     );
   }

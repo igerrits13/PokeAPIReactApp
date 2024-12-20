@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { motion } from "motion/react";
 import BugType from "./icons/bug.svg";
 import DarkType from "./icons/dark.svg";
 import DragonType from "./icons/dragon.svg";
@@ -91,7 +92,6 @@ const TypeseTable = ({ screenSize, typesResults }) => {
       // If in small screen mode, create dropdown menu buttons
       if (screenSize === "small") {
         const typeIcon = getTypeIcon(obj.name);
-        // if (obj.name !== "unknown" && obj.name !== "stellar") {
         return (
           <Link
             key={i}
@@ -110,16 +110,21 @@ const TypeseTable = ({ screenSize, typesResults }) => {
       // Otherwise, create buttons in a flex-box
       else {
         const typeIcon = getTypeIcon(obj.name);
-        // if (obj.name !== "unknown" && obj.name !== "stellar") {
         return (
-          <button key={i} className={`type-item hover-dim ${typeStyle}`}>
+          <motion.button
+            key={i}
+            className={`type-item hover-dim ${typeStyle}`}
+            whileHover={{ scale: 1.1, rotate: "-1.5deg" }}
+            whileTap={{ scale: 0.9, rotate: "5deg" }}
+            transition={{ duration: 0.1 }}
+          >
             <img
               className="type-img"
               src={typeIcon}
               alt={`${obj.name} type icon`}
             ></img>
             <div className="type-text">{obj.name.toUpperCase()}</div>
-          </button>
+          </motion.button>
         );
       }
     });

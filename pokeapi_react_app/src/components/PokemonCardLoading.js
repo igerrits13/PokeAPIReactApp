@@ -7,7 +7,8 @@ const PokemonCardLoading = () => {
     <motion.div
       className="pokemon-card"
       whileHover={{ scale: 1.05, rotate: "-1.5deg" }}
-      whileTap={{ scale: 0.95, rotate: "10deg" }}
+      whileTap={{ scale: 0.95, rotate: "5deg" }}
+      transition={{ duration: 0.1 }}
     >
       <div className="pokemon-card-title">Loading...</div>
       <motion.img

@@ -12,11 +12,9 @@
 
 #root > div {
   height: 100vh;
-  width: 100vw;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: #2e2a2c;
 }
 
 /* Fonts */
@@ -222,7 +220,6 @@
   padding: 12px 16px;
   text-decoration: none;
   display: flex;
-  /* flex-direction: row; */
   justify-content: space-between;
   align-items: center;
   background: #fff9fc;
@@ -588,12 +585,12 @@
 
 .api-logo {
   height: 1.5rem;
-  bottom: 20px;
-  margin: 5px;
+  padding: 0 8px;
+  box-sizing: border-box;
+  margin-bottom: 5px;
 }
 
 .footer-item-4 {
-  /* flex-wrap: nowrap; */
   width: 100%;
   text-align: center;
   grid-area: trademark;

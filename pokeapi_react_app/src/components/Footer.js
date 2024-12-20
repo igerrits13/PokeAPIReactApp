@@ -1,3 +1,4 @@
+import { motion } from "motion/react";
 import APILogo from "./icons/PokeAPILogo.svg";
 
 // Website footer
@@ -28,7 +29,14 @@ const Footer = () => {
           rel="noreferrer"
           aria-label="PokeAPI"
         >
-          <img className="api-logo" src={`${APILogo}`} alt={`API Logo`} />
+          <motion.img
+            className="api-logo"
+            src={`${APILogo}`}
+            alt={`API Logo`}
+            whileHover={{ scale: 1.1, rotate: "-1.5deg" }}
+            whileTap={{ scale: 0.9, rotate: "5deg" }}
+            transition={{ duration: 0.1 }}
+          />
         </a>
       </div>
       <div className="footer-item-4">
