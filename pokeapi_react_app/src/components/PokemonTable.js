@@ -1,5 +1,6 @@
 import React, { Suspense, useState, useEffect } from "react";
 import PokemonCardLoading from "./PokemonCardLoading";
+import PokemonCard from "./PokemonCard";
 
 // Pokecounttotal, pokeresults, setpokeresults
 // Table showing Pokémon cards
@@ -20,6 +21,7 @@ const PokemonTable = ({
   useEffect(() => {
     // If no gen is specified, collect data for all gens
     if (filterByGen === "all") {
+      console.log("Loading all gens")
       fetch(`https://pokeapi.co/api/v2/pokemon-species/?limit=5000`)
         .then((response) => response.json())
         .then((data) => {
@@ -34,6 +36,7 @@ const PokemonTable = ({
   useEffect(() => {
     // Otherwise, only collect data for specified gen
     if (filterByGen !== "all") {
+      console.log("Loading some gens")
       fetch(`https://pokeapi.co/api/v2/generation/${filterByGen}/`)
         .then((response) => response.json())
         .then((data) => {
@@ -46,6 +49,7 @@ const PokemonTable = ({
   useEffect(() => {
     // Only collect data for a specific type if one is selected
     if (filterByType !== "all") {
+      console.log("Loading some types")
       fetch(`https://pokeapi.co/api/v2/type/${filterByType}/`)
         .then((response) => response.json())
         .then((data) => {
@@ -91,20 +95,20 @@ const PokemonTable = ({
     const urlNumber = urlNoSlash[urlNoSlash.length - 1];
     const pokeNum = parseInt(urlNumber, 10);
     return (
-      <div key={i}>
-        <Suspense fallback={<PokemonCardLoading />}>
-          <LazyPokemonCard obj={obj} i={pokeNum} />
-        </Suspense>
-      </div>
+      // <div key={i}>
+         <Suspense key={i} fallback={<PokemonCardLoading />}> 
+           <LazyPokemonCard obj={obj} i={pokeNum} /> 
+         </Suspense> 
+      // </div>
     );
   });
 
   // Compare used for sorting the pokemon by number
   let compareNum = (a, b) => {
-    if (cardsHTML[Number(a.key)].props.i < cardsHTML[Number(b.key)].props.i) {
+    if (cardsHTML[Number(a.key)].props.children.props.i < cardsHTML[Number(b.key)].props.children.props.i) {
       return -1;
     }
-    if (cardsHTML[Number(a.key)].props.i > cardsHTML[Number(b.key)].props.i) {
+    if (cardsHTML[Number(a.key)].props.children.props.i > cardsHTML[Number(b.key)].props.children.props.i) {
       return 1;
     }
     return 0;
@@ -113,14 +117,14 @@ const PokemonTable = ({
   // Compare used for sorting the pokemon by name
   let compareName = (a, b) => {
     if (
-      cardsHTML[Number(a.key)].props.obj.name <
-      cardsHTML[Number(b.key)].props.obj.name
+      cardsHTML[Number(a.key)].props.children.props.obj.name <
+      cardsHTML[Number(b.key)].props.children.props.obj.name
     ) {
       return -1;
     }
     if (
-      cardsHTML[Number(a.key)].props.obj.name >
-      cardsHTML[Number(b.key)].props.obj.name
+      cardsHTML[Number(a.key)].props.children.props.obj.name >
+      cardsHTML[Number(b.key)].props.children.props.obj.name
     ) {
       return 1;
     }
