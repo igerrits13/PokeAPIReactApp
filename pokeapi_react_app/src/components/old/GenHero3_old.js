@@ -1,6 +1,5 @@
 // Display banner for any generation that has four important pokemon
 const GenHero3Old = ({ currGen }) => {
-  console.log(currGen.id);
   // Seperate out the integer from the url
   const parts =
     currGen.id === 9
@@ -12,8 +11,6 @@ const GenHero3Old = ({ currGen }) => {
   if (currGen.id === 5) {
     number++;
   }
-
-  console.log(number);
 
   return (
     <div className="d-flex w-75 mt-5 mb-3 mx-auto align-items-center rounded genHeroContainer">

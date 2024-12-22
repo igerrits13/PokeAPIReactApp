@@ -21,7 +21,6 @@ const PokemonTable = ({
   useEffect(() => {
     // If no gen is specified, collect data for all gens
     if (filterByGen === "all") {
-      console.log("Loading all gens")
       fetch(`https://pokeapi.co/api/v2/pokemon-species/?limit=5000`)
         .then((response) => response.json())
         .then((data) => {
@@ -36,7 +35,6 @@ const PokemonTable = ({
   useEffect(() => {
     // Otherwise, only collect data for specified gen
     if (filterByGen !== "all") {
-      console.log("Loading some gens")
       fetch(`https://pokeapi.co/api/v2/generation/${filterByGen}/`)
         .then((response) => response.json())
         .then((data) => {
@@ -49,7 +47,6 @@ const PokemonTable = ({
   useEffect(() => {
     // Only collect data for a specific type if one is selected
     if (filterByType !== "all") {
-      console.log("Loading some types")
       fetch(`https://pokeapi.co/api/v2/type/${filterByType}/`)
         .then((response) => response.json())
         .then((data) => {

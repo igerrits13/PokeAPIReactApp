@@ -51,8 +51,7 @@ const SearchBar = ({ fullPokeResults }) => {
   const autoFillSearchText = (e) => {
     if(e.key === "Tab") {
       e.preventDefault();
-      console.log("Tab pressed")
-      if(searchResultsHTML.length > 0) {
+      if(searchResultsHTML.props.length > 0) {
       setSearchText(searchResultsHTML[0].props.name)}
     }
   }
