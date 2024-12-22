@@ -1,6 +1,6 @@
 import React, { Suspense, useState, useEffect } from "react";
 import PokemonCardLoading from "./PokemonCardLoading";
-import PokemonCard from "./PokemonCard";
+// import PokemonCard from "./PokemonCard";
 
 // Pokecounttotal, pokeresults, setpokeresults
 // Table showing Pokémon cards
@@ -93,19 +93,25 @@ const PokemonTable = ({
     const pokeNum = parseInt(urlNumber, 10);
     return (
       // <div key={i}>
-         <Suspense key={i} fallback={<PokemonCardLoading />}> 
-           <LazyPokemonCard obj={obj} i={pokeNum} /> 
-         </Suspense> 
+      <Suspense key={i} fallback={<PokemonCardLoading />}>
+        <LazyPokemonCard obj={obj} i={pokeNum} />
+      </Suspense>
       // </div>
     );
   });
 
   // Compare used for sorting the pokemon by number
   let compareNum = (a, b) => {
-    if (cardsHTML[Number(a.key)].props.children.props.i < cardsHTML[Number(b.key)].props.children.props.i) {
+    if (
+      cardsHTML[Number(a.key)].props.children.props.i <
+      cardsHTML[Number(b.key)].props.children.props.i
+    ) {
       return -1;
     }
-    if (cardsHTML[Number(a.key)].props.children.props.i > cardsHTML[Number(b.key)].props.children.props.i) {
+    if (
+      cardsHTML[Number(a.key)].props.children.props.i >
+      cardsHTML[Number(b.key)].props.children.props.i
+    ) {
       return 1;
     }
     return 0;

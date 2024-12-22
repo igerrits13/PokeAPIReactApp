@@ -132,10 +132,11 @@
 
 .searchbar-input {
   width: 100%;
-  padding: 12px;
+  padding: 12px 20px;
   border: 2px solid #1e201d;
   border-right: none;
-  border-radius: 5px 0 0 5px;
+  /* border-radius: 5px 0 0 5px; */
+  border-radius: 40px 0 0 40px;
   outline: none;
   font-size: 1rem;
   font-family: josefinSans-bold, sans-serif;
@@ -151,9 +152,11 @@
 
 .searchbar-search-icon {
   width: 60px;
-  border-radius: 0 5px 5px 0;
+  /* border-radius: 0 5px 5px 0; */
+  border-radius: 0 40px 40px 0;
   border: none;
   text-align: center;
+  padding: 0 5px 0 0;
   font-size: 1rem;
   font-family: josefinSans-bold, sans-serif;
   text-shadow: -1px -1px 0 #201d1f, 1px -1px 0 #201d1f, -1px 1px 0 #201d1f,
@@ -170,7 +173,12 @@
   overflow-y: auto;
   height: auto;
   max-height: 250px;
-  width: 350px;
+  /* width: 350px; */
+  width: 273px;
+  text-align: center;
+  left: 50%;
+  margin-left: -150px;
+  /* background-color: #0c69c8; */
   border-radius: 5px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   padding: 6px 0;
@@ -189,7 +197,7 @@
   align-items: center;
   background: #2b2e2a;
   text-shadow: -1px -1px 0 #201d1f, 1px -1px 0 #201d1f, -1px 1px 0 #201d1f,
-  1px 1px 0 #201d1f;
+    1px 1px 0 #201d1f;
   font-family: josefinSans-bold, sans-serif;
   color: #fff9fc;
 }
@@ -208,7 +216,6 @@
 /* .search-result-image {
   height: 24px;
 } */
-
 
 /* .searchButton {
   width: 40px;

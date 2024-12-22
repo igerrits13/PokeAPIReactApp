@@ -42,28 +42,44 @@ const SearchBar = ({ fullPokeResults }) => {
   //   setSearchText("");
   // };
 
-  const searchResultsHTML =    ( <SearchResults
+  const searchResultsHTML = (
+    <SearchResults
       searchText={searchText}
       searchBarFocus={searchBarFocus}
       fullPokeResults={fullPokeResults}
-    />);
+    />
+  );
+
+  console.log(searchResultsHTML);
 
   const autoFillSearchText = (e) => {
-    if(e.key === "Tab") {
+    if (e.key === "Tab") {
       e.preventDefault();
-      if(searchResultsHTML.props.length > 0) {
-      setSearchText(searchResultsHTML[0].props.name)}
+      if (searchResultsHTML.props.fullPokeResults.length > 0) {
+        console.log("Setting search text");
+        setSearchText(searchResultsHTML.props.fullPokeResults[0].name);
+      }
     }
-  }
+  };
 
   return (
     // <div className="searchbar-container">
     <div>
       <form className="searchbar-container">
-        <input type="text" className="searchbar-input" placeholder="Search Pokémon . . ." aria-label="Search Pokémon" value={searchText} onChange={updateSearchText} onFocus={handleOnFocus} onBlur={handleOnBlur} 
-        onKeyDown={autoFillSearchText}
+        <input
+          type="text"
+          className="searchbar-input"
+          placeholder="Search Pokémon . . ."
+          aria-label="Search Pokémon"
+          value={searchText}
+          onChange={updateSearchText}
+          onFocus={handleOnFocus}
+          onBlur={handleOnBlur}
+          onKeyDown={autoFillSearchText}
         />
-        <button className="searchbar-search-icon"><i className="fa-solid fa-magnifying-glass searchbar-icon"></i> </button>
+        <button className="searchbar-search-icon">
+          <i className="fa-solid fa-magnifying-glass searchbar-icon"></i>{" "}
+        </button>
       </form>
       {searchResultsHTML}
       {/* <SearchResults
@@ -71,9 +87,9 @@ const SearchBar = ({ fullPokeResults }) => {
         searchBarFocus={searchBarFocus}
         fullPokeResults={fullPokeResults}
       />  */}
-   </div>
-  
-  // <div
+    </div>
+
+    // <div
     //   className="searchbar-container"
     //   // onMouseEnter={handleMouseEnter}
     //   // onMouseLeave={handleMouseLeave}

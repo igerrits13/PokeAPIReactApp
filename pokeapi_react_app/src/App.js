@@ -1,9 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import HomeView from "./components/HomeView";
-import HomeViewOld from "./components/old/HomeView_old";
 import "./App.css";
-import "./App_old.css";
 
 function App() {
   const [screenSize, setscreenSize] = useState("large");
@@ -38,7 +36,6 @@ function App() {
     <div>
       <Routes>
         <Route path="/" exact element={<HomeView screenSize={screenSize} />} />
-        <Route path="/old" element={<HomeViewOld />} />
       </Routes>
     </div>
   );

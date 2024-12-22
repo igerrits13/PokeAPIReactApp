@@ -2,7 +2,6 @@ import SearchItem from "./SearchItem";
 
 // Display the dropdown search results from the search bar
 const SearchResults = ({ searchText, searchBarFocus, fullPokeResults }) => {
-
   let searchHTML;
 
   // Create the first 12 Pokémon result items if no search text has been entered
@@ -25,18 +24,46 @@ const SearchResults = ({ searchText, searchBarFocus, fullPokeResults }) => {
       });
   }
 
-  // console.log(searchHTML);
+  if (searchHTML.length === 0) {
+    searchHTML = <div className="search-results-item">No Pokémon Found</div>;
+  }
 
   return (
-    <div>
-      {Object.keys(searchHTML).length === 0 ? (
-        <div className={`search-results ${searchBarFocus ? "search-results-active" : ""}`}>
-          <div className="search-results-item">No Pokémon Found</div>
-        </div>
-      ) : (
-        <div className={`search-results ${searchBarFocus ? "search-results-active" : ""}`}>{searchHTML}</div>
-      )}
+    <div
+      className={`search-results ${
+        searchBarFocus ? "search-results-active" : ""
+      }`}
+    >
+      {searchHTML}
     </div>
+
+    // <div
+    //   className={`search-results ${
+    //     searchBarFocus ? "search-results-active" : ""
+    //   }`}
+    // >
+    //   {searchHTML}
+    // </div>
+
+    // <div>
+    //   {Object.keys(searchHTML).length === 0 ? (
+    //     <div
+    //       className={`search-results ${
+    //         searchBarFocus ? "search-results-active" : ""
+    //       }`}
+    //     >
+    //       <div className="search-results-item">No Pokémon Found</div>
+    //     </div>
+    //   ) : (
+    //     <div
+    //       className={`search-results ${
+    //         searchBarFocus ? "search-results-active" : ""
+    //       }`}
+    //     >
+    //       {searchHTML}
+    //     </div>
+    //   )}
+    // </div>
   );
 };
 
