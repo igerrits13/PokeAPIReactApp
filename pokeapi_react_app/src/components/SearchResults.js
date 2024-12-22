@@ -36,34 +36,6 @@ const SearchResults = ({ searchText, searchBarFocus, fullPokeResults }) => {
     >
       {searchHTML}
     </div>
-
-    // <div
-    //   className={`search-results ${
-    //     searchBarFocus ? "search-results-active" : ""
-    //   }`}
-    // >
-    //   {searchHTML}
-    // </div>
-
-    // <div>
-    //   {Object.keys(searchHTML).length === 0 ? (
-    //     <div
-    //       className={`search-results ${
-    //         searchBarFocus ? "search-results-active" : ""
-    //       }`}
-    //     >
-    //       <div className="search-results-item">No Pokémon Found</div>
-    //     </div>
-    //   ) : (
-    //     <div
-    //       className={`search-results ${
-    //         searchBarFocus ? "search-results-active" : ""
-    //       }`}
-    //     >
-    //       {searchHTML}
-    //     </div>
-    //   )}
-    // </div>
   );
 };
 
