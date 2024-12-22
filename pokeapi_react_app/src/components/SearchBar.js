@@ -4,6 +4,7 @@ import SearchResults from "./SearchResults";
 // Search bar for searching Pokémon
 const SearchBar = ({ fullPokeResults }) => {
   const [searchText, setSearchText] = useState("");
+  const [resultsHTML, setResultsHTML] = useState([]);
   const [searchBarFocus, setSearchBarFocus] = useState(false);
 
   // Update the text in the search bar
@@ -20,25 +21,17 @@ const SearchBar = ({ fullPokeResults }) => {
     setSearchBarFocus(false);
   };
 
-  const searchResultsHTML = (
-    <SearchResults
-      searchText={searchText}
-      searchBarFocus={searchBarFocus}
-      fullPokeResults={fullPokeResults}
-    />
-  );
-
-  console.log(searchResultsHTML);
-
   const autoFillSearchText = (e) => {
     if (e.key === "Tab") {
       e.preventDefault();
-      if (searchResultsHTML.props.fullPokeResults.length > 0) {
+      if (resultsHTML.length > 0) {
         console.log("Setting search text");
-        setSearchText(searchResultsHTML.props.fullPokeResults[0].name);
+        setSearchText(resultsHTML[0].props.resultItem.name);
       }
     }
   };
+
+  console.log(resultsHTML);
 
   return (
     <div>
@@ -58,12 +51,12 @@ const SearchBar = ({ fullPokeResults }) => {
           <i className="fa-solid fa-magnifying-glass searchbar-icon"></i>{" "}
         </button>
       </form>
-      {searchResultsHTML}
-      {/* <SearchResults
+      <SearchResults
         searchText={searchText}
+        setResultsHTML={setResultsHTML}
         searchBarFocus={searchBarFocus}
         fullPokeResults={fullPokeResults}
-      />  */}
+      />
     </div>
   );
 };

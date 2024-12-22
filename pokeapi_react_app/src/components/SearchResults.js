@@ -1,7 +1,13 @@
+// import { useEffect } from "react";
 import SearchItem from "./SearchItem";
 
 // Display the dropdown search results from the search bar
-const SearchResults = ({ searchText, searchBarFocus, fullPokeResults }) => {
+const SearchResults = ({
+  searchText,
+  // setResultsHTML,
+  searchBarFocus,
+  fullPokeResults,
+}) => {
   let searchHTML;
 
   // Create the first 12 Pokémon result items if no search text has been entered
@@ -24,6 +30,12 @@ const SearchResults = ({ searchText, searchBarFocus, fullPokeResults }) => {
       });
   }
 
+  // useEffect(() => {
+  //   console.log("Running effect");
+  //   setResultsHTML(searchHTML);
+  // }, [searchText]);
+
+  // Display if there are no Pokémon given the current search filter
   if (searchHTML.length === 0) {
     searchHTML = <div className="search-results-item">No Pokémon Found</div>;
   }
