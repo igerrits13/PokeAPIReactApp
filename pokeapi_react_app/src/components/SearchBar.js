@@ -4,8 +4,8 @@ import SearchResults from "./SearchResults";
 // Search bar for searching Pokémon
 const SearchBar = ({ fullPokeResults }) => {
   const [searchText, setSearchText] = useState("");
-  const [resultsHTML, setResultsHTML] = useState([]);
   const [searchBarFocus, setSearchBarFocus] = useState(false);
+  const [resultsHTML, setResultsHTML] = useState([]);
 
   // Update the text in the search bar
   const updateSearchText = (e) => {
@@ -21,17 +21,16 @@ const SearchBar = ({ fullPokeResults }) => {
     setSearchBarFocus(false);
   };
 
-  const autoFillSearchText = (e) => {
-    if (e.key === "Tab") {
-      e.preventDefault();
-      if (resultsHTML.length > 0) {
-        console.log("Setting search text");
-        setSearchText(resultsHTML[0].props.resultItem.name);
-      }
+const autoFillSearchText = (e) => {
+  if (e.key === "Tab") {
+    console.log("Tab pushed");
+    e.preventDefault();
+    if (resultsHTML.length > 0) {
+      console.log("Setting search text");
+      setSearchText(resultsHTML[0].props.resultItem.name);
     }
-  };
-
-  console.log(resultsHTML);
+  }
+};
 
   return (
     <div>
@@ -53,9 +52,10 @@ const SearchBar = ({ fullPokeResults }) => {
       </form>
       <SearchResults
         searchText={searchText}
-        setResultsHTML={setResultsHTML}
         searchBarFocus={searchBarFocus}
         fullPokeResults={fullPokeResults}
+        resultsHTML={resultsHTML}
+        setResultsHTML={setResultsHTML}
       />
     </div>
   );
