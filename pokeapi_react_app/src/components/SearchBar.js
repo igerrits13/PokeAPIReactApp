@@ -21,16 +21,16 @@ const SearchBar = ({ fullPokeResults }) => {
     setSearchBarFocus(false);
   };
 
-const autoFillSearchText = (e) => {
-  if (e.key === "Tab") {
-    console.log("Tab pushed");
-    e.preventDefault();
-    if (resultsHTML.length > 0) {
-      console.log("Setting search text");
-      setSearchText(resultsHTML[0].props.resultItem.name);
+  const autoFillSearchText = (e) => {
+    if (e.key === "Tab") {
+      console.log("Tab pushed");
+      e.preventDefault();
+      if (resultsHTML.length > 0) {
+        console.log("Setting search text");
+        setSearchText(resultsHTML[0].props.resultItem.name);
+      }
     }
-  }
-};
+  };
 
   return (
     <div>

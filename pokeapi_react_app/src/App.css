@@ -369,8 +369,9 @@
 
 .type-img {
   height: 20px;
-  filter: drop-shadow(0 0 2px #201d1f);
+  /* filter: drop-shadow(0 0 2px #201d1f); */
   margin: 0 5px 0 0;
+  /* background-color: #5fbd58; */
 }
 
 .type-text {
@@ -476,92 +477,92 @@
 
 .bug-type {
   /* background: #92bc2c; */
-  filter: drop-shadow(0 0 8px #92bc2c);
+  filter: drop-shadow(0 0 6px #92bc2c);
 }
 
 .dark-type {
   /* background: #595761; */
-  filter: drop-shadow(0 0 8px #595761);
+  filter: drop-shadow(0 0 6px #595761);
 }
 
 .dragon-type {
   /* background: #0c69c8; */
-  filter: drop-shadow(0 0 8px #0c69c8);
+  filter: drop-shadow(0 0 6px #0c69c8);
 }
 
 .electric-type {
   /* background: #f2d94e; */
-  filter: drop-shadow(0 0 8px #f2d94e);
+  filter: drop-shadow(0 0 6px #f2d94e);
 }
 
 .fire-type {
   /* background: #fba54c; */
-  filter: drop-shadow(0 0 8px #fba54c);
+  filter: drop-shadow(0 0 6px #fba54c);
 }
 
 .fairy-type {
   /* background: #ee90e6; */
-  filter: drop-shadow(0 0 8px #ee90e6);
+  filter: drop-shadow(0 0 6px #ee90e6);
 }
 
 .fighting-type {
   /* background: #d3425f; */
-  filter: drop-shadow(0 0 8px #d3425f);
+  filter: drop-shadow(0 0 6px #d3425f);
 }
 
 .flying-type {
   /* background: #a1bbec; */
-  filter: drop-shadow(0 0 8px #a1bbec);
+  filter: drop-shadow(0 0 6px #a1bbec);
 }
 
 .ghost-type {
   /* background: #5f6dbc; */
-  filter: drop-shadow(0 0 8px #5f6dbc);
+  filter: drop-shadow(0 0 6px #5f6dbc);
 }
 
 .grass-type {
   /* background: #5fbd58; */
-  filter: drop-shadow(0 0 8px #5fbd58);
+  filter: drop-shadow(0 0 6px #5fbd58);
 }
 
 .ground-type {
   /* background: #da7c4d; */
-  filter: drop-shadow(0 0 8px #da7c4d);
+  filter: drop-shadow(0 0 6px #da7c4d);
 }
 
 .ice-type {
   /* background: #75d0c1; */
-  filter: drop-shadow(0 0 8px #75d0c1);
+  filter: drop-shadow(0 0 6px #75d0c1);
 }
 
 .normal-type {
   /* background: #a0a29f; */
-  filter: drop-shadow(0 0 8px #a0a29f);
+  filter: drop-shadow(0 0 6px #a0a29f);
 }
 
 .poison-type {
   /* background: #b763cf; */
-  filter: drop-shadow(0 0 8px #b763cf);
+  filter: drop-shadow(0 0 6px #b763cf);
 }
 
 .psychic-type {
   /* background: #fa8581; */
-  filter: drop-shadow(0 0 8px #fa8581);
+  filter: drop-shadow(0 0 6px #fa8581);
 }
 
 .rock-type {
   /* background: #c9bb8a; */
-  filter: drop-shadow(0 0 8px #c9bb8a);
+  filter: drop-shadow(0 0 6px #c9bb8a);
 }
 
 .steel-type {
   /* background: #5695a3; */
-  filter: drop-shadow(0 0 8px #5695a3);
+  filter: drop-shadow(0 0 6px #5695a3);
 }
 
 .water-type {
   /* background: #539ddf; */
-  filter: drop-shadow(0 0 8px #539ddf);
+  filter: drop-shadow(0 0 6px #539ddf);
 }
 
 /* Sort options */
