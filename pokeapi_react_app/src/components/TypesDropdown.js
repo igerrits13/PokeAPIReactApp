@@ -57,14 +57,16 @@ const TypesDropdown = ({ typesResults, getTypeIcon }) => {
 
   return (
     //  <div>{typesResultsHTML}</div>;
-    <div className="types-dropdown">
-      <button
-        className="types-dropdown-button"
-        ref={buttonRef}
-        onClick={handleOnClick}
-      >
-        Types
-      </button>
+    <div>
+      <div className="types-dropdown-container">
+        <button
+          className="types-dropdown-button"
+          ref={buttonRef}
+          onClick={handleOnClick}
+        >
+          Types
+        </button>
+      </div>
       {/* <div className="types-dropdown-content types-dropdown-content-active"> */}
       <div
         className={`types-dropdown-content ${
