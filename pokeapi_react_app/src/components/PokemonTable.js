@@ -1,9 +1,6 @@
 import React, { Suspense, useState, useEffect } from "react";
 import PokemonCardLoading from "./PokemonCardLoading";
-// import PokemonCard from "./PokemonCard";
 
-// Pokecounttotal, pokeresults, setpokeresults
-// Table showing Pokémon cards
 const PokemonTable = ({
   screenSize,
   setFullPokeResults,
@@ -92,11 +89,9 @@ const PokemonTable = ({
     const urlNumber = urlNoSlash[urlNoSlash.length - 1];
     const pokeNum = parseInt(urlNumber, 10);
     return (
-      // <div key={i}>
       <Suspense key={i} fallback={<PokemonCardLoading />}>
         <LazyPokemonCard obj={obj} i={pokeNum} />
       </Suspense>
-      // </div>
     );
   });
 

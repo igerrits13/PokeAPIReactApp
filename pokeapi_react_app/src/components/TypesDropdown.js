@@ -1,4 +1,3 @@
-// import { Link } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import TypesDropdownItem from "./TypesDropdownItem";
 
@@ -6,10 +5,6 @@ const TypesDropdown = ({ typesResults, getTypeIcon }) => {
   const [typesButtonFocus, setTypesButtonFocus] = useState(false);
   const dropdownRef = useRef(null);
   const buttonRef = useRef(null);
-
-  //
-
-  //
 
   const handleOnClick = () => {
     setTypesButtonFocus(!typesButtonFocus);
@@ -37,10 +32,6 @@ const TypesDropdown = ({ typesResults, getTypeIcon }) => {
     };
   }, []);
 
-  // const handleOnBlur = () => {
-  //   setTypesButtonFocus(!typesButtonFocus);
-  // };
-
   const typesResultsHTML = typesResults
     .slice(0, typesResults.length - 2)
     .map((obj, i) => {
@@ -56,7 +47,6 @@ const TypesDropdown = ({ typesResults, getTypeIcon }) => {
     });
 
   return (
-    //  <div>{typesResultsHTML}</div>;
     <div>
       <div className="types-dropdown-container">
         <button
@@ -67,7 +57,6 @@ const TypesDropdown = ({ typesResults, getTypeIcon }) => {
           Types
         </button>
       </div>
-      {/* <div className="types-dropdown-content types-dropdown-content-active"> */}
       <div
         className={`types-dropdown-content ${
           typesButtonFocus ? "types-dropdown-content-active" : ""

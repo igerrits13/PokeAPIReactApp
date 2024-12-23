@@ -22,7 +22,6 @@ const SearchItem = ({ resultItem, i }) => {
         {capitalizeFirstLetter(resultItem.name)}
       </div>
       <div>#{number}</div>
-      {/* </div> */}
     </Link>
   );
 };

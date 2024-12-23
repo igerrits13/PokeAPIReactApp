@@ -1,4 +1,3 @@
-// import { motion } from "motion/react";
 import TypesResultsItem from "./TypesResultsItem";
 
 const TypesResults = ({ typesResults, getTypeIcon }) => {

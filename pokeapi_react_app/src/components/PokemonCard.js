@@ -1,11 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
 
-// Set timeout for testing if loading is working
-// const rand = Math.floor(Math.random() * (5000 - 1000 + 1)) + 1000;
-// console.log("random: ", rand);
-// const data = await new Promise((resolve) => setTimeout(resolve, rand));
-
 // Create individual Pokémon cards
 const PokemonCard = ({ obj, i }) => {
   const cardNum = "000" + i;
