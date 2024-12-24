@@ -5,6 +5,7 @@ import "./App.css";
 
 function App() {
   const [screenSize, setscreenSize] = useState("large");
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   // Check screen size to see if types table should collapse
   useEffect(() => {
@@ -32,10 +33,32 @@ function App() {
     return () => window.removeEventListener("resize", handleScreenResize);
   }, []);
 
+  // Check if the user is in dark mode or not
+  useEffect(() => {
+    // Check the user's preference on initial render
+    const prefersDarkMode =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    setIsDarkMode(prefersDarkMode);
+
+    // Watch for changes in the user's preference
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    mediaQuery.addEventListener("change", (e) => {
+      setIsDarkMode(e.matches);
+    });
+
+    // Cleanup the event listener on component unmount
+    return () => mediaQuery.removeEventListener("change", () => {});
+  }, []);
+
   return (
     <div>
       <Routes>
-        <Route path="/" exact element={<HomeView screenSize={screenSize} />} />
+        <Route
+          path="/"
+          exact
+          element={<HomeView screenSize={screenSize} isDarkMode={isDarkMode} />}
+        />
       </Routes>
     </div>
   );

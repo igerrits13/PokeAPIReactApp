@@ -7,12 +7,15 @@ const PokemonTable = ({
   filterByGen,
   filterByType,
   sortBy,
+  isDarkMode,
 }) => {
   const [pokeResults, setPokeResults] = useState([]);
   const [pokeTypes, setPokeTypes] = useState([]);
   const [pokeCountTotal, setPokeCountTotal] = useState(0);
 
   const LazyPokemonCard = React.lazy(() => import("./PokemonCard"));
+
+  const fontStyle = isDarkMode ? "title-font-dark" : "title-font-light";
 
   // Fetch the Pokémon information for all Pokémon cards if no gen is selected
   useEffect(() => {
@@ -140,21 +143,27 @@ const PokemonTable = ({
   if (screenSize === "small") {
     return (
       <div>
-        <div className="sub-header">Pokémon ({cardsHTML.length})</div>
+        <div className={`sub-header ${fontStyle}`}>
+          Pokémon ({cardsHTML.length})
+        </div>
         <div className="pokemon-container-small">{cardsHTML}</div>
       </div>
     );
   } else if (screenSize === "medium") {
     return (
       <div>
-        <div className="sub-header">Pokémon ({cardsHTML.length})</div>
+        <div className={`sub-header ${fontStyle}`}>
+          Pokémon ({cardsHTML.length})
+        </div>
         <div className="pokemon-container-med">{cardsHTML}</div>
       </div>
     );
   } else {
     return (
       <div>
-        <div className="sub-header">Pokémon ({cardsHTML.length})</div>
+        <div className={`sub-header ${fontStyle}`}>
+          Pokémon ({cardsHTML.length})
+        </div>
         <div className="pokemon-container-large">{cardsHTML}</div>
       </div>
     );

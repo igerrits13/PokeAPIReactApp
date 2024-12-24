@@ -22,7 +22,7 @@ const OptionGen = ({ filterByGen, setFilterByGen }) => {
       " " +
       genName[1].toUpperCase();
     return (
-      <option key={i} value={`${i + 1}`}>
+      <option key={i} className="sortoptions-option" value={`${i + 1}`}>
         {formattedGenName}
       </option>
     );
@@ -44,7 +44,9 @@ const OptionGen = ({ filterByGen, setFilterByGen }) => {
         value={filterByGen}
         onChange={updateGen}
       >
-        <option value="all">All</option>
+        <option className="sortoptions-option" value="all">
+          All
+        </option>
         {genHTML}
       </select>
     </div>

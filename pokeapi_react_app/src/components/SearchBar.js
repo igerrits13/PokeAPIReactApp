@@ -2,10 +2,19 @@ import { useState } from "react";
 import SearchResults from "./SearchResults";
 
 // Search bar for searching Pokémon
-const SearchBar = ({ fullPokeResults }) => {
+const SearchBar = ({ fullPokeResults, isDarkMode }) => {
   const [searchText, setSearchText] = useState("");
   const [searchBarFocus, setSearchBarFocus] = useState(false);
   const [resultsHTML, setResultsHTML] = useState([]);
+
+  // Setup the search bar style based on if the user is using light or dark mode
+  const searchFontStyle = isDarkMode
+    ? "searchbar-font-dark component-background-dark component-outline-dark"
+    : "searchbar-font-light component-background-light component-outline-light";
+
+  const searchIconStyle = isDarkMode
+    ? "icon-dark component-outline-background-dark"
+    : "icon-light component-outline-background-light";
 
   // Update the text in the search bar
   const updateSearchText = (e) => {
@@ -21,7 +30,9 @@ const SearchBar = ({ fullPokeResults }) => {
     setSearchBarFocus(false);
   };
 
+  // Automatically fill the search text based on key pressed
   const autoFillSearchText = (e) => {
+    // When 'Tab' is pressed, autofill search text with the next filtered Pokémon
     if (e.key === "Tab") {
       console.log("Tab pushed");
       e.preventDefault();
@@ -37,7 +48,7 @@ const SearchBar = ({ fullPokeResults }) => {
       <form className="searchbar-container">
         <input
           type="text"
-          className="searchbar-input"
+          className={`searchbar-input ${searchFontStyle}`}
           placeholder="Search Pokémon . . ."
           aria-label="Search Pokémon"
           value={searchText}
@@ -46,7 +57,7 @@ const SearchBar = ({ fullPokeResults }) => {
           onBlur={handleOnBlur}
           onKeyDown={autoFillSearchText}
         />
-        <button className="searchbar-search-icon">
+        <button className={`searchbar-search-icon ${searchIconStyle}`}>
           <i className="fa-solid fa-magnifying-glass searchbar-icon"></i>{" "}
         </button>
       </form>

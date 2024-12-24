@@ -7,7 +7,7 @@ import PokemonTable from "./PokemonTable";
 import Footer from "./Footer";
 
 // Homeview page of the Pokémon app
-const HomeView = ({ screenSize }) => {
+const HomeView = ({ screenSize, isDarkMode }) => {
   const [typesResults, setTypesResult] = useState([]);
   const [fullPokeResults, setFullPokeResults] = useState([]);
   const [filterByGen, setFilterByGen] = useState("all");
@@ -32,10 +32,18 @@ const HomeView = ({ screenSize }) => {
       : "homeview-large";
 
   return (
-    <div className={`homeview-container ${containerSize}`}>
-      <Title screenSize={screenSize} />
-      <SearchBar fullPokeResults={fullPokeResults} />
-      <TypeseTable screenSize={screenSize} typesResults={typesResults} />
+    <div
+      className={`homeview-container ${containerSize} ${
+        isDarkMode ? "background-dark" : "background-light"
+      }`}
+    >
+      <Title screenSize={screenSize} isDarkMode={isDarkMode} />
+      <SearchBar fullPokeResults={fullPokeResults} isDarkMode={isDarkMode} />
+      <TypeseTable
+        screenSize={screenSize}
+        typesResults={typesResults}
+        isDarkMode={isDarkMode}
+      />
       <SortOptions
         screenSize={screenSize}
         filterByGen={filterByGen}
@@ -45,6 +53,7 @@ const HomeView = ({ screenSize }) => {
         typesResults={typesResults}
         sortBy={sortBy}
         setSortBy={setSortBy}
+        isDarkMode={isDarkMode}
       />
       <PokemonTable
         screenSize={screenSize}
@@ -52,8 +61,9 @@ const HomeView = ({ screenSize }) => {
         filterByGen={filterByGen}
         filterByType={filterByType}
         sortBy={sortBy}
+        isDarkMode={isDarkMode}
       />
-      <Footer />
+      <Footer isDarkMode={isDarkMode} />
     </div>
   );
 };

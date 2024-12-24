@@ -8,7 +8,13 @@ const SearchResults = ({
   fullPokeResults,
   resultsHTML,
   setResultsHTML,
+  isDarkMode,
 }) => {
+  // Setup the search bar style based on if the user is using light or dark mode
+  const searchResultsStyle = isDarkMode
+    ? "component-background-dark component-outline-dark"
+    : "component-background-light component-outline-light";
+
   useEffect(() => {
     console.log("Setting results");
     if (searchText === "") {
@@ -44,7 +50,7 @@ const SearchResults = ({
     <div
       className={`search-results ${
         searchBarFocus ? "search-results-active" : ""
-      }`}
+      } ${searchResultsStyle}`}
     >
       {resultsHTML}
     </div>
