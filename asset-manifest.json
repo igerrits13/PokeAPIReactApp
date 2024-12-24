@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/PokeAPIReactApp/static/css/main.d38f3f1f.css",
-    "main.js": "/PokeAPIReactApp/static/js/main.f6c648d7.js",
+    "main.css": "/PokeAPIReactApp/static/css/main.fce4a807.css",
+    "main.js": "/PokeAPIReactApp/static/js/main.5c281a39.js",
     "static/js/406.a676a669.chunk.js": "/PokeAPIReactApp/static/js/406.a676a669.chunk.js",
     "static/js/453.80de1486.chunk.js": "/PokeAPIReactApp/static/js/453.80de1486.chunk.js",
     "static/media/JosefinSans-Regular.ttf": "/PokeAPIReactApp/static/media/JosefinSans-Regular.c978665c44b59cf9c71f.ttf",
@@ -29,13 +29,13 @@
     "static/media/electric.svg": "/PokeAPIReactApp/static/media/electric.bc35c5a3faf04b605c00967b94e93693.svg",
     "static/media/grass.svg": "/PokeAPIReactApp/static/media/grass.e09623e3345d5bf5286f5323dd923c60.svg",
     "static/media/normal.svg": "/PokeAPIReactApp/static/media/normal.2ba66dd583ebf70eb414a0cfd20a48be.svg",
-    "main.d38f3f1f.css.map": "/PokeAPIReactApp/static/css/main.d38f3f1f.css.map",
-    "main.f6c648d7.js.map": "/PokeAPIReactApp/static/js/main.f6c648d7.js.map",
+    "main.fce4a807.css.map": "/PokeAPIReactApp/static/css/main.fce4a807.css.map",
+    "main.5c281a39.js.map": "/PokeAPIReactApp/static/js/main.5c281a39.js.map",
     "406.a676a669.chunk.js.map": "/PokeAPIReactApp/static/js/406.a676a669.chunk.js.map",
     "453.80de1486.chunk.js.map": "/PokeAPIReactApp/static/js/453.80de1486.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d38f3f1f.css",
-    "static/js/main.f6c648d7.js"
+    "static/css/main.fce4a807.css",
+    "static/js/main.5c281a39.js"
   ]
 }
