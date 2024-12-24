@@ -373,7 +373,7 @@
   padding: 12px 0;
   text-decoration: none;
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   background: #2b2e2a;
   text-shadow: -1px -1px 0 #201d1f, 1px -1px 0 #201d1f, -1px 1px 0 #201d1f,
@@ -434,10 +434,6 @@ const colours = {
 } */
 
 .bug-type {
-  /* background: #92bc2c; */
-  /* filter: drop-shadow(0 0 6px #92bc2c); */
-  /* filter: invert(59%) sepia(91%) saturate(329%) hue-rotate(36deg)
-    brightness(95%) contrast(96%) drop-shadow(0 0 8px #92bc2c); */
   filter: drop-shadow(0 0 6px #a6b91a);
 }
 
@@ -446,10 +442,7 @@ const colours = {
 }
 
 .dark-type {
-  /* background: #595761; */
   filter: drop-shadow(0 0 6px #595761);
-  /* filter: invert(35%) sepia(11%) saturate(367%) hue-rotate(211deg)
-    brightness(91%) contrast(89%) drop-shadow(0 0 8px #595761); */
 }
 
 .dark-type path {
@@ -457,10 +450,7 @@ const colours = {
 }
 
 .dragon-type {
-  /* background: #0c69c8; */
   filter: drop-shadow(0 0 6px #6f35fc);
-  /* filter: invert(22%) sepia(98%) saturate(3369%) hue-rotate(200deg)
-    brightness(92%) contrast(91%) drop-shadow(0 0 8px #0c69c8); */
 }
 
 .dragon-type path {
@@ -468,10 +458,7 @@ const colours = {
 }
 
 .electric-type {
-  /* background: #f2d94e; */
   filter: drop-shadow(0 0 6px #f7d02c);
-  /* filter: invert(89%) sepia(23%) saturate(1142%) hue-rotate(356deg)
-    brightness(98%) contrast(93%) drop-shadow(0 0 8px #f2d94e); */
 }
 
 .electric-type path {
@@ -479,10 +466,7 @@ const colours = {
 }
 
 .fire-type {
-  /* background: #fba54c; */
   filter: drop-shadow(0 0 6px #ee8130);
-  /* filter: invert(85%) sepia(13%) saturate(5710%) hue-rotate(323deg)
-    brightness(101%) contrast(97%) drop-shadow(0 0 8px #fba54c); */
 }
 
 .fire-type path {
@@ -490,10 +474,7 @@ const colours = {
 }
 
 .fairy-type {
-  /* background: #ee90e6; */
   filter: drop-shadow(0 0 6px #d685ad);
-  /* filter: invert(79%) sepia(34%) saturate(1068%) hue-rotate(275deg)
-    brightness(104%) contrast(87%) drop-shadow(0 0 8px #ee90e6); */
 }
 
 .fairy-type path {
@@ -501,10 +482,7 @@ const colours = {
 }
 
 .fighting-type {
-  /* background: #d3425f; */
   filter: drop-shadow(0 0 6px #c22e28);
-  /* filter: invert(35%) sepia(41%) saturate(1966%) hue-rotate(313deg)
-    brightness(91%) contrast(88%) drop-shadow(0 0 8px #d3425f); */
 }
 
 .fighting-type path {
@@ -512,10 +490,7 @@ const colours = {
 }
 
 .flying-type {
-  /* background: #a1bbec; */
   filter: drop-shadow(0 0 6px #a98ff3);
-  /* filter: invert(80%) sepia(54%) saturate(1633%) hue-rotate(184deg)
-    brightness(101%) contrast(85%) drop-shadow(0 0 8px #a1bbec); */
 }
 
 .flying-type path {
@@ -523,10 +498,7 @@ const colours = {
 }
 
 .ghost-type {
-  /* background: #5f6dbc; */
   filter: drop-shadow(0 0 6px #735797);
-  /* filter: invert(49%) sepia(10%) saturate(2530%) hue-rotate(194deg)
-    brightness(86%) contrast(92%) drop-shadow(0 0 8px #5f6dbc); */
 }
 
 .ghost-type path {
@@ -534,10 +506,7 @@ const colours = {
 }
 
 .grass-type {
-  /* background: #5fbd58; */
   filter: drop-shadow(0 0 6px #7ac74c);
-  /* filter: invert(59%) sepia(60%) saturate(424%) hue-rotate(68deg)
-    brightness(99%) contrast(85%) drop-shadow(0 0 8px #5fbd58); */
 }
 
 .grass-type path {
@@ -545,10 +514,7 @@ const colours = {
 }
 
 .ground-type {
-  /* background: #da7c4d; */
   filter: drop-shadow(0 0 6px #e2bf65);
-  /* filter: invert(54%) sepia(76%) saturate(396%) hue-rotate(334deg)
-    brightness(89%) contrast(90%) drop-shadow(0 0 8px #da7c4d); */
 }
 
 .ground-type path {
@@ -556,10 +522,7 @@ const colours = {
 }
 
 .ice-type {
-  /* background: #75d0c1; */
   filter: drop-shadow(0 0 6px #96d9d6);
-  /* filter: invert(79%) sepia(38%) saturate(394%) hue-rotate(118deg)
-    brightness(90%) contrast(86%) drop-shadow(0 0 8px #75d0c1); */
 }
 
 .ice-type path {
@@ -567,10 +530,7 @@ const colours = {
 }
 
 .normal-type {
-  /* background: #a0a29f; */
   filter: drop-shadow(0 0 6px #a8a77a);
-  /* filter: invert(66%) sepia(7%) saturate(92%) hue-rotate(56deg) brightness(95%)
-    contrast(96%) drop-shadow(0 0 8px #a0a29f); */
 }
 
 .normal-type path {
@@ -578,10 +538,7 @@ const colours = {
 }
 
 .poison-type {
-  /* background: #b763cf; */
   filter: drop-shadow(0 0 6px #a33ea1);
-  /* filter: invert(56%) sepia(46%) saturate(2525%) hue-rotate(238deg)
-    brightness(85%) contrast(89%) drop-shadow(0 0 8px #b763cf); */
 }
 
 .poison-type path {
@@ -589,10 +546,7 @@ const colours = {
 }
 
 .psychic-type {
-  /* background: #fa8581; */
   filter: drop-shadow(0 0 6px #f95587);
-  /* filter: invert(69%) sepia(54%) saturate(940%) hue-rotate(309deg)
-    brightness(106%) contrast(96%) drop-shadow(0 0 8px #fa8581); */
 }
 
 .psychic-type path {
@@ -600,10 +554,7 @@ const colours = {
 }
 
 .rock-type {
-  /* background: #c9bb8a; */
   filter: drop-shadow(0 0 6px #b6a136);
-  /* filter: invert(93%) sepia(15%) saturate(833%) hue-rotate(348deg)
-    brightness(84%) contrast(85%) drop-shadow(0 0 8px #c9bb8a); */
 }
 
 .rock-type path {
@@ -611,10 +562,7 @@ const colours = {
 }
 
 .steel-type {
-  /* background: #5695a3; */
   filter: drop-shadow(0 0 6px #b7b7ce);
-  /* filter: invert(59%) sepia(13%) saturate(1212%) hue-rotate(144deg)
-    brightness(89%) contrast(87%) drop-shadow(0 0 8px #5695a3); */
 }
 
 .steel-type path {
@@ -622,11 +570,7 @@ const colours = {
 }
 
 .water-type {
-  /* background: #539ddf; */
   filter: drop-shadow(0 0 6px #6390f0);
-  /* filter: invert(58%) sepia(80%) saturate(1468%) hue-rotate(183deg)
-    brightness(95%) contrast(84%) drop-shadow(0 0 8px #539ddf); */
-  /* color: #539ddf; */
 }
 
 .water-type path {
