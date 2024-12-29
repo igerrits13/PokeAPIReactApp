@@ -1,14 +1,16 @@
 import { motion } from "motion/react";
 import DynamicSvgIcon from "./DynamicSvgIcon";
 
+// Display for each type base on screen size
 const TypesResultsItem = ({ obj, typeIcon, typeStyle, isDarkMode }) => {
-    // Setup the type results and text style based on if the user is using light or dark mode
-    const typeResultsStyle = isDarkMode
+  // Setup the type results and text style based on if the user is using light or dark mode
+  const typeResultsStyle = isDarkMode
     ? "component-background-dark component-outline-dark"
     : "component-background-light component-outline-light";
 
-    const typeResultsFontStyle = isDarkMode 
-    ? "font-dark-no-outline" : "font-light";
+  const typeResultsFontStyle = isDarkMode
+    ? "font-dark-no-outline"
+    : "font-light";
 
   return (
     <motion.button
@@ -21,7 +23,9 @@ const TypesResultsItem = ({ obj, typeIcon, typeStyle, isDarkMode }) => {
         classes={`type-img ${typeStyle}`}
         IconComponent={typeIcon}
       />
-      <div className={`type-text ${typeResultsFontStyle}`}>{obj.name.toUpperCase()}</div>
+      <div className={`type-text ${typeResultsFontStyle}`}>
+        {obj.name.toUpperCase()}
+      </div>
     </motion.button>
   );
 };

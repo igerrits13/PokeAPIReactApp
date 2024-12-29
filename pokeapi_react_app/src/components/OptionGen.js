@@ -4,14 +4,12 @@ import { useState, useEffect } from "react";
 const OptionGen = ({ filterByGen, setFilterByGen, isDarkMode }) => {
   const [genResults, setGenResults] = useState([]);
 
-    // Setup the search bar style based on if the user is using light or dark mode
-    const optionStyle = isDarkMode
+  // Setup the search bar style based on if the user is using light or dark mode
+  const optionStyle = isDarkMode
     ? "font-dark component-background-dark "
     : "font-light component-background-light ";
 
-    const optionTextStyle = isDarkMode
-    ? "font-dark"
-    : "font-light";
+  const optionTextStyle = isDarkMode ? "font-dark" : "font-light";
 
   // Fetch the generations
   useEffect(() => {

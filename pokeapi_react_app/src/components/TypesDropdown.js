@@ -1,21 +1,23 @@
 import { useState, useEffect, useRef } from "react";
 import TypesDropdownItem from "./TypesDropdownItem";
 
+// Dropdown display for types on small screens
 const TypesDropdown = ({ typesResults, getTypeIcon, isDarkMode }) => {
   const [typesButtonFocus, setTypesButtonFocus] = useState(false);
   const dropdownRef = useRef(null);
   const buttonRef = useRef(null);
 
-    // Setup the search bar style based on if the user is using light or dark mode
-    const typesDropdownButtonStyle = isDarkMode
+  // Setup the search bar style based on if the user is using light or dark mode
+  const typesDropdownButtonStyle = isDarkMode
     ? "font-dark component-background-dark component-outline-dark"
     : "font-light component-background-light component-outline-light";
 
-        // Setup the search bar style based on if the user is using light or dark mode
-        const typesDropdownContentStyle = isDarkMode
-        ? "component-background-dark component-outline-dark"
-        : "component-background-light component-outline-light";
+  // Setup the search bar style based on if the user is using light or dark mode
+  const typesDropdownContentStyle = isDarkMode
+    ? "component-background-dark component-outline-dark"
+    : "component-background-light component-outline-light";
 
+  // Open dropdown on click of dropdown button
   const handleOnClick = () => {
     setTypesButtonFocus(!typesButtonFocus);
   };
@@ -42,6 +44,7 @@ const TypesDropdown = ({ typesResults, getTypeIcon, isDarkMode }) => {
     };
   }, []);
 
+  // Display the rseult itmes of the different result types in small screen
   const typesResultsHTML = typesResults
     .slice(0, typesResults.length - 2)
     .map((obj, i) => {

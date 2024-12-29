@@ -3,17 +3,13 @@ import APILogo from "./icons/PokeAPILogo.svg";
 
 // Website footer
 const Footer = ({ isDarkMode }) => {
-    // Setup the search bar style based on if the user is using light or dark mode
-    const footerStyle = isDarkMode
-    ? "font-dark"
-    : "font-light";
+  // Setup the search bar style based on if the user is using light or dark mode
+  const footerStyle = isDarkMode ? "font-dark" : "font-light";
 
-    const iconStyle = isDarkMode
-    ? "footer-icon-dark"
-    : "footer-icon-light";
-
+  const iconStyle = isDarkMode ? "footer-icon-dark" : "footer-icon-light";
 
   const currentYear = new Date().getFullYear();
+
   return (
     <div className={`footer-container ${footerStyle}`}>
       <div className="footer-item-1">
@@ -24,12 +20,12 @@ const Footer = ({ isDarkMode }) => {
           rel="noreferrer"
           aria-label="GitHub Profile"
         >
-          <motion.i 
+          <motion.i
             whileHover={{ scale: 1.1, rotate: "-3deg" }}
             whileTap={{ scale: 0.9, rotate: "5deg" }}
             transition={{ duration: 0.1 }}
-            className={`fa-brands fa-github github-logo ${iconStyle}`}>
-          </motion.i>
+            className={`fa-brands fa-github github-logo ${iconStyle}`}
+          ></motion.i>
         </a>
       </div>
       <div className="footer-item-2">

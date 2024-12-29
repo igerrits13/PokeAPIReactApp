@@ -1,6 +1,7 @@
 import React, { Suspense, useState, useEffect } from "react";
 import PokemonCardLoading from "./PokemonCardLoading";
 
+// Table displaying all Pokémon
 const PokemonTable = ({
   screenSize,
   setFullPokeResults,
@@ -13,6 +14,7 @@ const PokemonTable = ({
   const [pokeTypes, setPokeTypes] = useState([]);
   const [pokeCountTotal, setPokeCountTotal] = useState(0);
 
+  // Placeholder card while loading
   const LazyPokemonCard = React.lazy(() => import("./PokemonCard"));
 
   const fontStyle = isDarkMode ? "title-font-dark" : "title-font-light";
@@ -57,8 +59,8 @@ const PokemonTable = ({
 
   let commonElementsSet = new Set();
 
+  // Create a set of Pokémon of the current type and use set to prevent duplicates
   if (filterByType !== "all") {
-    // Create a set of Pokémon of the current type and use set to prevent duplicates
     for (const element of pokeTypes) {
       for (const element2 of pokeResults) {
         const pokeName = element2.name;
@@ -75,6 +77,7 @@ const PokemonTable = ({
     }
   }
 
+  // Create an array of all the Pokémon that are to be displayed
   let commonElements;
 
   if (filterByType !== "all") {
@@ -92,8 +95,11 @@ const PokemonTable = ({
     const urlNumber = urlNoSlash[urlNoSlash.length - 1];
     const pokeNum = parseInt(urlNumber, 10);
     return (
-      <Suspense key={i} fallback={<PokemonCardLoading isDarkMode={isDarkMode} />}>
-        <LazyPokemonCard obj={obj} i={pokeNum} isDarkMode={isDarkMode}/>
+      <Suspense
+        key={i}
+        fallback={<PokemonCardLoading isDarkMode={isDarkMode} />}
+      >
+        <LazyPokemonCard obj={obj} i={pokeNum} isDarkMode={isDarkMode} />
       </Suspense>
     );
   });

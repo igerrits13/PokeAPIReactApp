@@ -1,14 +1,16 @@
 // Handles the logic for filtering Pokémon by type
-const OptionType = ({ filterByType, setFilterByType, typesResults, isDarkMode }) => {
+const OptionType = ({
+  filterByType,
+  setFilterByType,
+  typesResults,
+  isDarkMode,
+}) => {
+  // Setup the search bar style based on if the user is using light or dark mode
+  const optionStyle = isDarkMode
+    ? "font-dark component-background-dark "
+    : "font-light component-background-light ";
 
-      // Setup the search bar style based on if the user is using light or dark mode
-      const optionStyle = isDarkMode
-      ? "font-dark component-background-dark "
-      : "font-light component-background-light ";
-
-      const optionTextStyle = isDarkMode
-      ? "font-dark"
-      : "font-light";
+  const optionTextStyle = isDarkMode ? "font-dark" : "font-light";
 
   // Create the HTML for the dropdown view for filtering by type
   const typesHTML = typesResults
@@ -37,7 +39,9 @@ const OptionType = ({ filterByType, setFilterByType, typesResults, isDarkMode })
         value={filterByType}
         onChange={updateType}
       >
-        <option className={`${optionStyle}`} value="all">All</option>
+        <option className={`${optionStyle}`} value="all">
+          All
+        </option>
         {typesHTML}
       </select>
     </div>

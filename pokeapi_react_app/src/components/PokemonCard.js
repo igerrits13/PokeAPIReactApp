@@ -3,15 +3,14 @@ import { motion } from "motion/react";
 
 // Create individual Pokémon cards
 const PokemonCard = ({ obj, i, isDarkMode }) => {
-    // Setup the search bar style based on if the user is using light or dark mode
-    const cardStyle = isDarkMode
+  // Setup the search bar style based on if the user is using light or dark mode
+  const cardStyle = isDarkMode
     ? "component-background-dark"
     : "component-background-light";
 
-    const cardTitleStyle = isDarkMode
-    ? "font-dark"
-    : "font-light";
+  const cardTitleStyle = isDarkMode ? "font-dark" : "font-light";
 
+  // Get the Pokémon number and normalize it to four digits
   const cardNum = "000" + i;
   return (
     <motion.div

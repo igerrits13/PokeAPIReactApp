@@ -165,7 +165,7 @@
   color: #2b2e2a;
 }
 
-.footer-icon-light { 
+.footer-icon-light {
   color: #2b2e2a;
 }
 
@@ -284,15 +284,9 @@
 
 .search-results-item {
   padding: 12px 16px;
-  /* text-decoration: none; */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* background: #2b2e2a;
-  text-shadow: -1px -1px 0 #201d1f, 1px -1px 0 #201d1f, -1px 1px 0 #201d1f,
-    1px 1px 0 #201d1f;
-  font-family: josefinSans-bold, sans-serif;
-  color: #fff9fc; */
 }
 
 .search-result-image {
@@ -322,9 +316,7 @@
   font-size: 0.75rem;
   text-decoration: none;
   padding: 0.5rem;
-  /* border: 2px solid #1e201d; */
   border-radius: 8px;
-  /* background: #2b2e2a; */
 }
 
 .type-img {
@@ -334,8 +326,6 @@
 }
 
 .type-text {
-  /* color: #fff9fc;
-  font-family: josefinSans, sans-serif; */
   padding: 3px 0 0 0;
 }
 
@@ -354,24 +344,16 @@
   border-radius: 40px;
   text-align: center;
   font-size: 1rem;
-  /* font-family: josefinSans-bold, sans-serif;
-  text-shadow: -1px -1px 0 #201d1f, 1px -1px 0 #201d1f, -1px 1px 0 #201d1f,
-    1px 1px 0 #201d1f;
-  color: #fff9fc;
-  background: #2b2e2a;
-  border: 2px solid #1e201d; */
 }
 
 .types-dropdown-content {
   display: none;
   position: absolute;
-  /* background: #2b2e2a; */
   overflow: hidden;
   overflow-y: auto;
   height: auto;
   max-height: 200px;
   border-radius: 5px;
-  /* border: 2px solid #1e201d; */
   border-top: none;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   width: 160px;
@@ -392,11 +374,6 @@
   display: flex;
   justify-content: start;
   align-items: center;
-  /* background: #2b2e2a;
-  text-shadow: -1px -1px 0 #201d1f, 1px -1px 0 #201d1f, -1px 1px 0 #201d1f,
-    1px 1px 0 #201d1f;
-  font-family: josefinSans-bold, sans-serif;
-  color: #fff9fc; */
 }
 
 .types-dropdown-img {
@@ -456,7 +433,7 @@ const colours = {
 
 .bug-type-light path {
   fill: #92bc2c;
-  filter: brightness(1.25)
+  filter: brightness(1.25);
 }
 
 .bug-type-dark {
@@ -465,7 +442,7 @@ const colours = {
 
 .bug-type-dark path {
   fill: #92bc2c;
-  filter: brightness(1.25)
+  filter: brightness(1.25);
 }
 
 .dark-type-light {
@@ -474,7 +451,7 @@ const colours = {
 
 .dark-type-light path {
   fill: #595761;
-  filter: brightness(1.25)
+  filter: brightness(1.25);
 }
 
 .dark-type-dark {
@@ -483,7 +460,7 @@ const colours = {
 
 .dark-type-dark path {
   fill: #595761;
-  filter: brightness(1.25)
+  filter: brightness(1.25);
 }
 
 .dragon-type-light {
@@ -492,7 +469,7 @@ const colours = {
 
 .dragon-type-light path {
   fill: #6f35fc;
-  filter: brightness(1.25)
+  filter: brightness(1.25);
 }
 
 .dragon-type-dark {
@@ -501,7 +478,7 @@ const colours = {
 
 .dragon-type-dark path {
   fill: #6f35fc;
-  filter: brightness(1.25)
+  filter: brightness(1.25);
 }
 
 .electric-type-light {
@@ -510,7 +487,7 @@ const colours = {
 
 .electric-type-light path {
   fill: #f7d02c;
-  filter: brightness(1.25)
+  filter: brightness(1.25);
 }
 
 .electric-type-dark {
@@ -519,7 +496,7 @@ const colours = {
 
 .electric-type-dark path {
   fill: #f7d02c;
-  filter: brightness(1.25)
+  filter: brightness(1.25);
 }
 
 .fire-type-light {
@@ -528,7 +505,7 @@ const colours = {
 
 .fire-type-light path {
   fill: #ee8130;
-  filter: brightness(1.25)
+  filter: brightness(1.25);
 }
 
 .fire-type-dark {
@@ -537,7 +514,7 @@ const colours = {
 
 .fire-type-dark path {
   fill: #ee8130;
-  filter: brightness(1.25)
+  filter: brightness(1.25);
 }
 
 .fairy-type-light {
@@ -546,7 +523,7 @@ const colours = {
 
 .fairy-type-light path {
   fill: #ee90e6;
-  filter: brightness(1.25)
+  filter: brightness(1.25);
 }
 
 .fairy-type-dark {
@@ -555,7 +532,7 @@ const colours = {
 
 .fairy-type-dark path {
   fill: #ee90e6;
-  filter: brightness(1.25)
+  filter: brightness(1.25);
 }
 
 .fighting-type-light {
@@ -564,7 +541,7 @@ const colours = {
 
 .fighting-type-light path {
   fill: #d3425f;
-  filter: brightness(1.25)
+  filter: brightness(1.25);
 }
 
 .fighting-type-dark {
@@ -573,7 +550,7 @@ const colours = {
 
 .fighting-type-dark path {
   fill: #d3425f;
-  filter: brightness(1.25)
+  filter: brightness(1.25);
 }
 
 .flying-type-light {
@@ -582,7 +559,7 @@ const colours = {
 
 .flying-type-light path {
   fill: #a98ff3;
-  filter: brightness(1.25)
+  filter: brightness(1.25);
 }
 
 .flying-type-dark {
@@ -591,7 +568,7 @@ const colours = {
 
 .flying-type-dark path {
   fill: #a98ff3;
-  filter: brightness(1.25)
+  filter: brightness(1.25);
 }
 
 .ghost-type-light {
@@ -600,7 +577,6 @@ const colours = {
 
 .ghost-type-light path {
   fill: #735797;
-  /* filter: brightness(1.25) */
 }
 
 .ghost-type-dark {
@@ -609,7 +585,7 @@ const colours = {
 
 .ghost-type-dark path {
   fill: #735797;
-  filter: brightness(1.25)
+  filter: brightness(1.25);
 }
 
 .grass-type-light {
@@ -618,7 +594,7 @@ const colours = {
 
 .grass-type-light path {
   fill: #7ac74c;
-  filter: brightness(1.25)
+  filter: brightness(1.25);
 }
 
 .grass-type-dark {
@@ -627,7 +603,7 @@ const colours = {
 
 .grass-type-dark path {
   fill: #7ac74c;
-  filter: brightness(1.25)
+  filter: brightness(1.25);
 }
 
 .ground-type-light {
@@ -636,7 +612,7 @@ const colours = {
 
 .ground-type-light path {
   fill: #e2bf65;
-  filter: brightness(1.25)
+  filter: brightness(1.25);
 }
 
 .ground-type-dark {
@@ -645,7 +621,7 @@ const colours = {
 
 .ground-type-dark path {
   fill: #e2bf65;
-  filter: brightness(1.25)
+  filter: brightness(1.25);
 }
 
 .ice-type-light {
@@ -654,7 +630,7 @@ const colours = {
 
 .ice-type-light path {
   fill: #96d9d6;
-  filter: brightness(1.25)
+  filter: brightness(1.25);
 }
 
 .ice-type-dark {
@@ -663,7 +639,7 @@ const colours = {
 
 .ice-type-dark path {
   fill: #96d9d6;
-  filter: brightness(1.25)
+  filter: brightness(1.25);
 }
 
 .normal-type-light {
@@ -672,7 +648,7 @@ const colours = {
 
 .normal-type-light path {
   fill: #a0a29f;
-  filter: brightness(1.25)
+  filter: brightness(1.25);
 }
 
 .normal-type-dark {
@@ -681,7 +657,7 @@ const colours = {
 
 .normal-type-dark path {
   fill: #a0a29f;
-  filter: brightness(1.25)
+  filter: brightness(1.25);
 }
 
 .poison-type-light {
@@ -690,7 +666,7 @@ const colours = {
 
 .poison-type-light path {
   fill: #b763cf;
-  filter: brightness(1.25)
+  filter: brightness(1.25);
 }
 
 .poison-type-dark {
@@ -699,7 +675,7 @@ const colours = {
 
 .poison-type-dark path {
   fill: #b763cf;
-  filter: brightness(1.25)
+  filter: brightness(1.25);
 }
 
 .psychic-type-light {
@@ -708,7 +684,7 @@ const colours = {
 
 .psychic-type-light path {
   fill: #fa8581;
-  filter: brightness(1.25)
+  filter: brightness(1.25);
 }
 
 .psychic-type-dark {
@@ -717,7 +693,7 @@ const colours = {
 
 .psychic-type-dark path {
   fill: #fa8581;
-  filter: brightness(1.25)
+  filter: brightness(1.25);
 }
 
 .rock-type-light {
@@ -726,7 +702,7 @@ const colours = {
 
 .rock-type-light path {
   fill: #b6a136;
-  filter: brightness(1.25)
+  filter: brightness(1.25);
 }
 
 .rock-type-dark {
@@ -735,7 +711,7 @@ const colours = {
 
 .rock-type-dark path {
   fill: #b6a136;
-  filter: brightness(1.25)
+  filter: brightness(1.25);
 }
 
 .steel-type-light {
@@ -744,7 +720,7 @@ const colours = {
 
 .steel-type-light path {
   fill: #b7b7ce;
-  filter: brightness(1.25)
+  filter: brightness(1.25);
 }
 
 .steel-type-dark {
@@ -753,7 +729,7 @@ const colours = {
 
 .steel-type-dark path {
   fill: #b7b7ce;
-  filter: brightness(1.25)
+  filter: brightness(1.25);
 }
 
 .water-type-light {
@@ -762,7 +738,7 @@ const colours = {
 
 .water-type-light path {
   fill: #6390f0;
-  filter: brightness(1.25)
+  filter: brightness(1.25);
 }
 
 .water-type-dark {
@@ -771,7 +747,7 @@ const colours = {
 
 .water-type-dark path {
   fill: #6390f0;
-  filter: brightness(1.25)
+  filter: brightness(1.25);
 }
 
 /* Sort options */
@@ -795,40 +771,25 @@ const colours = {
 .sortoptions-item {
   display: flex;
   flex-direction: column;
-  /* height: 25pxpx; */
   overflow-y: visible;
   width: auto;
 }
 
 .sortoptions-dropdown {
-  /* -webkit-appearance: none; */
   place-self: center;
   width: 150px;
   height: 25px;
   border-radius: 5px;
   text-align: center;
-  /* font-family: josefinSans-bold, sans-serif;
-  text-shadow: -1px -1px 0 #201d1f, 1px -1px 0 #201d1f, -1px 1px 0 #201d1f,
-    1px 1px 0 #201d1f;
-  color: #fff9fc; */
   border: none;
-  /* background-color: #2b2e2a; */
   outline: 1px solid #1e201d;
   cursor: pointer;
 }
-
-/* .sortoptions-option {
-  background-color: #539ddf;
-} */
 
 .sortoption-text {
   padding: 0.5rem;
   text-align: center;
   font-size: 1rem;
-  /* font-family: josefinSans-bold, sans-serif;
-  text-shadow: -1px -1px 0 #201d1f, 1px -1px 0 #201d1f, -1px 1px 0 #201d1f,
-    1px 1px 0 #201d1f;
-  color: #fff9fc; */
 }
 
 /* Pokemon display table */
@@ -861,7 +822,6 @@ const colours = {
   padding: 1rem;
   border-radius: 5px;
   text-decoration: none;
-  /* background-color: #2b2e2a; */
   outline: 1px solid #1e201d;
 }
 
@@ -872,18 +832,7 @@ const colours = {
 .pokemon-card-title {
   padding: 0 0 1rem 0;
   font-size: 1rem;
-  /* font-family: josefinSans-bold, sans-serif;
-  text-shadow: -1px -1px 0 #201d1f, 1px -1px 0 #201d1f, -1px 1px 0 #201d1f,
-    1px 1px 0 #201d1f;
-  color: #fff9fc; */
 }
-
-/* .my-container div {
-  background: white;
-  border-radius: 30px;
-  width: 150px;
-  height: 150px;
-} */
 
 .pokemon-image {
   padding: 0.5rem;
@@ -903,10 +852,6 @@ const colours = {
   align-self: flex-end;
   padding: 1rem 0 0 0;
   font-size: 0.75rem;
-  /* font-family: josefinSans-bold, sans-serif;
-  text-shadow: -1px -1px 0 #201d1f, 1px -1px 0 #201d1f, -1px 1px 0 #201d1f,
-    1px 1px 0 #201d1f;
-  color: #fff9fc; */
 }
 
 /* Footer */
@@ -923,10 +868,6 @@ const colours = {
     "github developed api"
     "trademark trademark trademark";
   font-size: 1rem;
-  /* font-family: josefinSans-bold, sans-serif;
-  text-shadow: -1px -1px 0 #201d1f, 1px -1px 0 #201d1f, -1px 1px 0 #201d1f,
-    1px 1px 0 #201d1f;
-  color: #fff9fc; */
 }
 
 .footer-item-1 {
@@ -936,7 +877,6 @@ const colours = {
 
 .github-logo {
   font-size: 1.5rem;
-  /* color: #fff9fc; */
 }
 
 .footer-item-2 {

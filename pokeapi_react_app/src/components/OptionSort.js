@@ -1,14 +1,11 @@
 // Handles the logic for sorting Pokémon by name or number
 const OptionSort = ({ sortBy, setSortBy, isDarkMode }) => {
+  // Setup the search bar style based on if the user is using light or dark mode
+  const optionStyle = isDarkMode
+    ? "font-dark component-background-dark "
+    : "font-light component-background-light ";
 
-      // Setup the search bar style based on if the user is using light or dark mode
-      const optionStyle = isDarkMode
-      ? "font-dark component-background-dark "
-      : "font-light component-background-light ";
-
-      const optionTextStyle = isDarkMode
-      ? "font-dark"
-      : "font-light";
+  const optionTextStyle = isDarkMode ? "font-dark" : "font-light";
 
   // Update the current sort method based on what value has been selected
   const updateSort = (e) => {
@@ -25,8 +22,12 @@ const OptionSort = ({ sortBy, setSortBy, isDarkMode }) => {
         value={sortBy}
         onChange={updateSort}
       >
-        <option className={`${optionStyle}`} value="number">Number</option>
-        <option className={`${optionStyle}`} value="name">Name</option>
+        <option className={`${optionStyle}`} value="number">
+          Number
+        </option>
+        <option className={`${optionStyle}`} value="name">
+          Name
+        </option>
       </select>
     </div>
   );

@@ -3,14 +3,12 @@ import pokeBall from "./icons/poke-ball.png";
 
 // Create loading animation for individual Pokémon cards
 const PokemonCardLoading = ({ isDarkMode }) => {
-      // Setup the search bar style based on if the user is using light or dark mode
-      const cardStyle = isDarkMode
-      ? "component-background-dark"
-      : "component-background-light";
+  // Setup the search bar style based on if the user is using light or dark mode
+  const cardStyle = isDarkMode
+    ? "component-background-dark"
+    : "component-background-light";
 
-      const cardTitleStyle = isDarkMode
-      ? "font-dark"
-      : "font-light";
+  const cardTitleStyle = isDarkMode ? "font-dark" : "font-light";
 
   return (
     <motion.div
