@@ -67,6 +67,7 @@ const SearchBar = ({ fullPokeResults, isDarkMode }) => {
         fullPokeResults={fullPokeResults}
         resultsHTML={resultsHTML}
         setResultsHTML={setResultsHTML}
+        isDarkMode={isDarkMode}
       />
     </div>
   );

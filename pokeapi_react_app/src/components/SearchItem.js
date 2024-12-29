@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
 
-const SearchItem = ({ resultItem, i }) => {
+const SearchItem = ({ resultItem, isDarkMode, i }) => {
+    // Setup the search results style based on if the user is using light or dark mode
+    const searchResultsItemsStyle = isDarkMode
+    ? "component-background-dark font-dark"
+    : "component-background-light font-light";
+
   // Function to capitalize the first letter of each name
   function capitalizeFirstLetter(name) {
     return String(name).charAt(0).toUpperCase() + String(name).slice(1);
@@ -12,7 +17,7 @@ const SearchItem = ({ resultItem, i }) => {
   const number = parseInt(lastPart, 10);
 
   return (
-    <Link className="search-results-item" to="./">
+    <Link className={`search-results-item clean-text ${searchResultsItemsStyle}`} to="./">
       <div>
         <img
           className="search-result-image"

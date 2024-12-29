@@ -20,46 +20,46 @@ import TypesDropdown from "./TypesDropdown";
 import TypesResults from "./TypesResults";
 
 // Table showing all Pokémon types
-const TypeseTable = ({ screenSize, typesResults }) => {
+const TypeseTable = ({ screenSize, typesResults, isDarkMode }) => {
   // Set the type attributes for the current button
   function getTypeIcon(typeName) {
     switch (typeName) {
       case "bug":
-        return [BugType, "bug-type"];
+        return (isDarkMode ? [BugType, "bug-type-dark"] : [BugType, "bug-type-light"]);
       case "dark":
-        return [DarkType, "dark-type"];
+        return (isDarkMode ? [DarkType, "dark-type-dark"] : [DarkType, "dark-type-light"]);
       case "dragon":
-        return [DragonType, "dragon-type"];
+        return (isDarkMode ? [DragonType, "dragon-type-dark"] : [DragonType, "dragon-type-light"]);
       case "electric":
-        return [ElectricType, "electric-type"];
+        return (isDarkMode ? [ElectricType, "electric-type-dark"] : [ElectricType, "electric-type-light"]);
       case "fairy":
-        return [FairyType, "fairy-type"];
+        return (isDarkMode ? [FairyType, "fairy-type-dark"] : [FairyType, "fairy-type-light"]);
       case "fighting":
-        return [FightingType, "fighting-type"];
+        return (isDarkMode ? [FightingType, "fighting-type-dark"] : [FightingType, "fighting-type-light"]);
       case "fire":
-        return [FireType, "fire-type"];
+        return (isDarkMode ? [FireType, "fire-type-dark"] : [FireType, "fire-type-light"]);
       case "flying":
-        return [FlyingType, "flying-type"];
+        return (isDarkMode ? [FlyingType, "flying-type-dark"] : [FairyType, "flying-type-light"]);
       case "ghost":
-        return [GhostType, "ghost-type"];
+        return (isDarkMode ? [GhostType, "ghost-type-dark"] : [GhostType, "ghost-type-light"]);
       case "grass":
-        return [GrassType, "grass-type"];
+        return (isDarkMode ? [GrassType, "grass-type-dark"] : [GrassType, "grass-type-light"]);
       case "ground":
-        return [GroundType, "ground-type"];
+        return (isDarkMode ? [GroundType, "ground-type-dark"] : [GroundType, "ground-type-light"]);
       case "ice":
-        return [IceType, "ice-type"];
+        return (isDarkMode ? [IceType, "ice-type-dark"] : [IceType, "ice-type-light"]);
       case "normal":
-        return [NormalType, "normal-type"];
+        return (isDarkMode ? [NormalType, "normal-type-dark"] : [NormalType, "normal-type-light"]);
       case "poison":
-        return [PoisonType, "poison-type"];
+        return (isDarkMode ? [PoisonType, "poison-type-dark"] : [PoisonType, "poison-type-light"]);
       case "psychic":
-        return [PsychicType, "psychic-type"];
+        return (isDarkMode ? [PsychicType, "psychic-type-dark"] : [PsychicType, "psychic-type-light"]);
       case "rock":
-        return [RockType, "rock-type"];
+        return (isDarkMode ? [RockType, "rock-type-dark"] : [RockType, "rock-type-light"]);
       case "steel":
-        return [SteelType, "steel-type"];
+        return (isDarkMode ? [SteelType, "steel-type-dark"] : [SteelType, "steel-type-light"]);
       case "water":
-        return [WaterType, "water-type"];
+        return (isDarkMode ? [WaterType, "water-type-dark"] : [WaterType, "water-type-light"]);
       default:
         return null;
     }
@@ -67,12 +67,12 @@ const TypeseTable = ({ screenSize, typesResults }) => {
 
   if (screenSize === "small") {
     return (
-      <TypesDropdown typesResults={typesResults} getTypeIcon={getTypeIcon} />
+      <TypesDropdown typesResults={typesResults} getTypeIcon={getTypeIcon} isDarkMode={isDarkMode} />
     );
   } else {
     return (
       // <BugType className="type-img bug-type" />
-      <TypesResults typesResults={typesResults} getTypeIcon={getTypeIcon} />
+      <TypesResults typesResults={typesResults} getTypeIcon={getTypeIcon} isDarkMode={isDarkMode} />
       // <svg
       //   fill="none"
       //   height="20"

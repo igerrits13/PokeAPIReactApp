@@ -1,7 +1,7 @@
 import TypesResultsItem from "./TypesResultsItem";
 
 const TypesResults = ({ typesResults, getTypeIcon, isDarkMode }) => {
-  const fontStyle = isDarkMode ? "tile-font-dark" : "title-font-light";
+  const fontStyle = isDarkMode ? "title-font-dark" : "title-font-light";
 
   const typesHTML = typesResults
     .slice(0, typesResults.length - 2)
@@ -13,6 +13,7 @@ const TypesResults = ({ typesResults, getTypeIcon, isDarkMode }) => {
           obj={obj}
           typeIcon={typeIcon}
           typeStyle={typeStyle}
+          isDarkMode={isDarkMode}
         />
       );
     });

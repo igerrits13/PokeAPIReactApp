@@ -15,12 +15,13 @@ const SearchResults = ({
     ? "component-background-dark component-outline-dark"
     : "component-background-light component-outline-light";
 
+    // Create search results for the first 12 Pokémon based off number, starting at 1, if no search text has been entered
   useEffect(() => {
     console.log("Setting results");
     if (searchText === "") {
       setResultsHTML(
         fullPokeResults.slice(0, 12).map((resultItem, i) => {
-          return <SearchItem resultItem={resultItem} key={i} />;
+          return <SearchItem resultItem={resultItem} isDarkMode={isDarkMode} key={i} />;
         })
       );
     }
@@ -35,11 +36,11 @@ const SearchResults = ({
           )
           .slice(0, 12)
           .map((resultItem, i) => {
-            return <SearchItem resultItem={resultItem} key={i} />;
+            return <SearchItem resultItem={resultItem} isDarkMode={isDarkMode} key={i} />;
           })
       );
     }
-  }, [fullPokeResults, searchText, setResultsHTML]);
+  }, [fullPokeResults, searchText, setResultsHTML, isDarkMode]);
 
   // Display if there are no Pokémon given the current search filter
   if (resultsHTML.length === 0) {
@@ -48,9 +49,9 @@ const SearchResults = ({
 
   return (
     <div
-      className={`search-results ${
+      className={`search-results ${searchResultsStyle} ${
         searchBarFocus ? "search-results-active" : ""
-      } ${searchResultsStyle}`}
+      }`}
     >
       {resultsHTML}
     </div>

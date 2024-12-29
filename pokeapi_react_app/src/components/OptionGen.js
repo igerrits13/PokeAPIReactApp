@@ -1,8 +1,17 @@
 import { useState, useEffect } from "react";
 
 // Handles the logic for filtering Pokémon by gen
-const OptionGen = ({ filterByGen, setFilterByGen }) => {
+const OptionGen = ({ filterByGen, setFilterByGen, isDarkMode }) => {
   const [genResults, setGenResults] = useState([]);
+
+    // Setup the search bar style based on if the user is using light or dark mode
+    const optionStyle = isDarkMode
+    ? "font-dark component-background-dark "
+    : "font-light component-background-light ";
+
+    const optionTextStyle = isDarkMode
+    ? "font-dark"
+    : "font-light";
 
   // Fetch the generations
   useEffect(() => {
@@ -22,7 +31,7 @@ const OptionGen = ({ filterByGen, setFilterByGen }) => {
       " " +
       genName[1].toUpperCase();
     return (
-      <option key={i} className="sortoptions-option" value={`${i + 1}`}>
+      <option key={i} className={`${optionStyle}`} value={`${i + 1}`}>
         {formattedGenName}
       </option>
     );
@@ -35,16 +44,16 @@ const OptionGen = ({ filterByGen, setFilterByGen }) => {
 
   // Create the view of the filter dropdown
   return (
-    <div className="sortoptions-item sortoption-text">
+    <div className={`sortoptions-item sortoption-text ${optionTextStyle}`}>
       <label htmlFor="generation">Filter by Generation</label>
       <select
-        className="sortoptions-dropdown"
+        className={`sortoptions-dropdown ${optionStyle}`}
         name="generation"
         id="generation"
         value={filterByGen}
         onChange={updateGen}
       >
-        <option className="sortoptions-option" value="all">
+        <option className={`${optionStyle}`} value="all">
           All
         </option>
         {genHTML}

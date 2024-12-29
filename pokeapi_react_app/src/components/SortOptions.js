@@ -12,16 +12,20 @@ const SortOptions = ({
   typesResults,
   sortBy,
   setSortBy,
+  isDarkMode
 }) => {
   const sortHTML = (
     <>
-      <OptionGen filterByGen={filterByGen} setFilterByGen={setFilterByGen} />
+      <OptionGen filterByGen={filterByGen} setFilterByGen={setFilterByGen}
+      isDarkMode={isDarkMode} />
       <OptionType
         filterByType={filterByType}
         setFilterByType={setFilterByType}
         typesResults={typesResults}
+        isDarkMode={isDarkMode}
       />
-      <OptionSort sortBy={sortBy} setSortBy={setSortBy} />
+      <OptionSort sortBy={sortBy} setSortBy={setSortBy}
+      isDarkMode={isDarkMode} />
     </>
   );
 

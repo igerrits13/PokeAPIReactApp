@@ -92,8 +92,8 @@ const PokemonTable = ({
     const urlNumber = urlNoSlash[urlNoSlash.length - 1];
     const pokeNum = parseInt(urlNumber, 10);
     return (
-      <Suspense key={i} fallback={<PokemonCardLoading />}>
-        <LazyPokemonCard obj={obj} i={pokeNum} />
+      <Suspense key={i} fallback={<PokemonCardLoading isDarkMode={isDarkMode} />}>
+        <LazyPokemonCard obj={obj} i={pokeNum} isDarkMode={isDarkMode}/>
       </Suspense>
     );
   });

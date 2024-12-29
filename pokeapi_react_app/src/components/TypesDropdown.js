@@ -1,10 +1,20 @@
 import { useState, useEffect, useRef } from "react";
 import TypesDropdownItem from "./TypesDropdownItem";
 
-const TypesDropdown = ({ typesResults, getTypeIcon }) => {
+const TypesDropdown = ({ typesResults, getTypeIcon, isDarkMode }) => {
   const [typesButtonFocus, setTypesButtonFocus] = useState(false);
   const dropdownRef = useRef(null);
   const buttonRef = useRef(null);
+
+    // Setup the search bar style based on if the user is using light or dark mode
+    const typesDropdownButtonStyle = isDarkMode
+    ? "font-dark component-background-dark component-outline-dark"
+    : "font-light component-background-light component-outline-light";
+
+        // Setup the search bar style based on if the user is using light or dark mode
+        const typesDropdownContentStyle = isDarkMode
+        ? "component-background-dark component-outline-dark"
+        : "component-background-light component-outline-light";
 
   const handleOnClick = () => {
     setTypesButtonFocus(!typesButtonFocus);
@@ -42,6 +52,7 @@ const TypesDropdown = ({ typesResults, getTypeIcon }) => {
           obj={obj}
           typeIcon={typeIcon}
           typeStyle={typeStyle}
+          isDarkMode={isDarkMode}
         />
       );
     });
@@ -50,7 +61,7 @@ const TypesDropdown = ({ typesResults, getTypeIcon }) => {
     <div>
       <div className="types-dropdown-container">
         <button
-          className="types-dropdown-button"
+          className={`types-dropdown-button ${typesDropdownButtonStyle}`}
           ref={buttonRef}
           onClick={handleOnClick}
         >
@@ -58,7 +69,7 @@ const TypesDropdown = ({ typesResults, getTypeIcon }) => {
         </button>
       </div>
       <div
-        className={`types-dropdown-content ${
+        className={`types-dropdown-content ${typesDropdownContentStyle} ${
           typesButtonFocus ? "types-dropdown-content-active" : ""
         }`}
         ref={dropdownRef}
