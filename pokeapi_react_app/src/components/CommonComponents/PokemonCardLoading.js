@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import pokeBall from "./icons/poke-ball.png";
+import pokeBall from "../icons/poke-ball.png";
 
 // Create loading animation for individual Pokémon cards
 const PokemonCardLoading = ({ isDarkMode }) => {

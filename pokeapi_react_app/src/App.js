@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
-import HomeView from "./components/HomeView";
+import HomeView from "./components/HomeView/HomeView";
 import "./App.css";
 
 function App() {

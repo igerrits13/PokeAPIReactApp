@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import DynamicSvgIcon from "./DynamicSvgIcon";
+import DynamicSvgIcon from "../CommonComponents/DynamicSvgIcon";
 
 // Display for each type base on screen size
 const TypesResultsItem = ({ obj, typeIcon, typeStyle, isDarkMode }) => {

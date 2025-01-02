@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import DynamicSvgIcon from "./DynamicSvgIcon";
+import DynamicSvgIcon from "../CommonComponents/DynamicSvgIcon";
 
 // Dropdown displaying types for smaller screens
 const TypesDropdownItem = ({ obj, typeIcon, typeStyle, isDarkMode }) => {

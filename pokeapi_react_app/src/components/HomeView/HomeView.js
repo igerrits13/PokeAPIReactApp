@@ -3,8 +3,8 @@ import Title from "./Title";
 import SearchBar from "./SearchBar";
 import TypeseTable from "./TypesTable";
 import SortOptions from "./SortOptions";
-import PokemonTable from "./PokemonTable";
-import Footer from "./Footer";
+import PokemonTable from "../CommonComponents/PokemonTable";
+import Footer from "../CommonComponents/Footer";
 
 // Homeview page of the Pokémon app
 const HomeView = ({ screenSize, isDarkMode }) => {

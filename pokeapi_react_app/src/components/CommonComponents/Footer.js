@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import APILogo from "./icons/PokeAPILogo.svg";
+import APILogo from "../icons/PokeAPILogo.svg";
 
 // Website footer
 const Footer = ({ isDarkMode }) => {
