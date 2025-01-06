@@ -5,9 +5,9 @@ import APILogo from "../icons/PokeAPILogo.svg";
 const Footer = ({ isDarkMode }) => {
   // Setup the search bar style based on if the user is using light or dark mode
   const footerStyle = isDarkMode ? "font-dark" : "font-light";
-
   const iconStyle = isDarkMode ? "footer-icon-dark" : "footer-icon-light";
 
+  // Get the current year for displaying within the footer
   const currentYear = new Date().getFullYear();
 
   return (

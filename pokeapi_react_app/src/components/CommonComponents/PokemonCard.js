@@ -9,22 +9,19 @@ const PokemonCard = ({ obj, i, isDarkMode }) => {
   const cardStyle = isDarkMode
     ? "component-background-dark"
     : "component-background-light";
-
   const cardTitleStyle = isDarkMode ? "font-dark" : "font-light";
+
+  // Set and update loading state to show the loaded card when the image has finished loading in
   const [isImageLoaded, setIsImageLoaded] = useState(false);
 
-  // When the image has loaded, we update the state
   const handleImageLoad = () => {
-    // const randomDelay = Math.floor(Math.random() * (10000 - 3000 + 1)) + 3000; // Random delay between 3000ms and 10000ms
-
-    // setTimeout(() => {
-    setIsImageLoaded(true); // Update the state after the random delay
-    // }, randomDelay);
+    setIsImageLoaded(true);
   };
 
   // Get the Pokémon number and normalize it to four digits
   const cardNum = "000" + i;
 
+  // If the image is still loading, display the loading card. Otherwise, show the full Pokémon card with image
   return (
     <motion.div
       whileHover={{ scale: 1.05, rotate: "-1.5deg" }}

@@ -12,12 +12,14 @@ const PokemonTable = ({
   sortBy,
   isDarkMode,
 }) => {
+  // Setup the search bar style based on if the user is using light or dark mode
+  const fontStyle = isDarkMode ? "title-font-dark" : "title-font-light";
+
+  // Create states to keep track of what Pokémon cards are to be displayed given the current filters
   const [pokeResults, setPokeResults] = useState([]);
   const [pokeTypes, setPokeTypes] = useState([]);
   const [pokeCountTotal, setPokeCountTotal] = useState(0);
   const [cardsToDisplay, setCardsToDisplay] = useState(24);
-
-  const fontStyle = isDarkMode ? "title-font-dark" : "title-font-light";
 
   // Fetch the Pokémon information for all Pokémon cards if no gen is selected
   useEffect(() => {
@@ -57,9 +59,9 @@ const PokemonTable = ({
     }
   }, [filterByType]);
 
+  // Create a set of Pokémon of the current type and use set to prevent duplicates
   let commonElementsSet = new Set();
 
-  // Create a set of Pokémon of the current type and use set to prevent duplicates
   if (filterByType !== "all") {
     for (const element of pokeTypes) {
       for (const element2 of pokeResults) {
@@ -77,20 +79,14 @@ const PokemonTable = ({
     }
   }
 
-  // Create an array of all the Pokémon that are to be displayed
+  // Convert the set back to an array of all the Pokémon that are to be displayed
   let commonElements;
 
   if (filterByType !== "all") {
-    // Then convert back to an array
     commonElements = Array.from(commonElementsSet);
   } else {
     commonElements = Array.from(pokeResults);
   }
-
-  // Update how many cards are to be displayed
-  const fetchMoreData = () => {
-    setCardsToDisplay(cardsToDisplay + 24);
-  };
 
   // Create a card for each Pokémon
   const cardsHTML = commonElements.map((obj, i) => {
@@ -101,14 +97,13 @@ const PokemonTable = ({
     const pokeNum = parseInt(urlNumber, 10);
     return (
       <PokemonCard key={i} obj={obj} i={pokeNum} isDarkMode={isDarkMode} />
-      // <Suspense
-      //   key={i}
-      //   fallback={<PokemonCardLoading isDarkMode={isDarkMode} />}
-      // >
-      //   <LazyPokemonCard obj={obj} i={pokeNum} isDarkMode={isDarkMode} />
-      // </Suspense>
     );
   });
+
+  // Update how many cards are to be displayed
+  const fetchMoreData = () => {
+    setCardsToDisplay(cardsToDisplay + 24);
+  };
 
   // Compare used for sorting the pokemon by number
   let compareNum = (a, b) => {
@@ -145,48 +140,38 @@ const PokemonTable = ({
     cardsHTML.sort(compareName);
   }
 
-  // Set the Pokémon container to appropriate size based on viewport width
-  if (screenSize === "small") {
-    return (
-      <div>
-        <div className={`sub-header ${fontStyle}`}>
-          Pokémon ({cardsHTML.length})
-        </div>
-        <div className="pokemon-container-small">{cardsHTML}</div>
+  // Create a display for showing the full Pokémon table that will load in using infinite scrolling
+  return (
+    <div>
+      <div className={`sub-header ${fontStyle}`}>
+        Pokémon ({cardsHTML.length})
       </div>
-    );
-  } else if (screenSize === "medium") {
-    return (
-      <div>
-        <div className={`sub-header ${fontStyle}`}>
-          Pokémon ({cardsHTML.length})
-        </div>
-        <div className="pokemon-container-med">{cardsHTML}</div>
-      </div>
-    );
-  } else {
-    return (
-      <div>
-        <div className={`sub-header ${fontStyle}`}>
-          Pokémon ({cardsHTML.length})
-        </div>
-        <InfiniteScroll
-          dataLength={cardsToDisplay}
-          next={fetchMoreData}
-          hasMore={cardsToDisplay < commonElements.length}
-          loader={
-            <div className="loading-ball-container">
-              <LoadingBall />
-            </div>
+      <InfiniteScroll
+        dataLength={cardsToDisplay}
+        next={fetchMoreData}
+        hasMore={cardsToDisplay < commonElements.length}
+        loader={
+          <div className="loading-ball-container">
+            <LoadingBall />
+          </div>
+        }
+        style={{ overflow: "hidden" }}
+      >
+        {/* Set the Pokémon container to appropriate size based on viewport width */}
+        <div
+          className={
+            screenSize === "small"
+              ? "pokemon-container-small"
+              : screenSize === "medium"
+              ? "pokemon-container-med"
+              : "pokemon-container-large"
           }
         >
-          <div className="pokemon-container-large">
-            {cardsHTML.slice(0, cardsToDisplay)}
-          </div>
-        </InfiniteScroll>
-      </div>
-    );
-  }
+          {cardsHTML.slice(0, cardsToDisplay)}
+        </div>
+      </InfiniteScroll>
+    </div>
+  );
 };
 
 export default PokemonTable;
