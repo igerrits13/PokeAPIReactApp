@@ -1,5 +1,7 @@
-import React, { Suspense, useState, useEffect } from "react";
-import PokemonCardLoading from "./PokemonCardLoading";
+import React, { useState, useEffect } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
+import LoadingBall from "./LoadingBall";
+import PokemonCard from "./PokemonCard";
 
 // Table displaying all Pokémon
 const PokemonTable = ({
@@ -13,9 +15,7 @@ const PokemonTable = ({
   const [pokeResults, setPokeResults] = useState([]);
   const [pokeTypes, setPokeTypes] = useState([]);
   const [pokeCountTotal, setPokeCountTotal] = useState(0);
-
-  // Placeholder card while loading
-  const LazyPokemonCard = React.lazy(() => import("./PokemonCard"));
+  const [cardsToDisplay, setCardsToDisplay] = useState(24);
 
   const fontStyle = isDarkMode ? "title-font-dark" : "title-font-light";
 
@@ -87,6 +87,11 @@ const PokemonTable = ({
     commonElements = Array.from(pokeResults);
   }
 
+  // Update how many cards are to be displayed
+  const fetchMoreData = () => {
+    setCardsToDisplay(cardsToDisplay + 24);
+  };
+
   // Create a card for each Pokémon
   const cardsHTML = commonElements.map((obj, i) => {
     // Seperate out the integer from the url
@@ -95,27 +100,22 @@ const PokemonTable = ({
     const urlNumber = urlNoSlash[urlNoSlash.length - 1];
     const pokeNum = parseInt(urlNumber, 10);
     return (
-      <Suspense
-        key={i}
-        fallback={<PokemonCardLoading isDarkMode={isDarkMode} />}
-      >
-        <LazyPokemonCard obj={obj} i={pokeNum} isDarkMode={isDarkMode} />
-      </Suspense>
+      <PokemonCard key={i} obj={obj} i={pokeNum} isDarkMode={isDarkMode} />
+      // <Suspense
+      //   key={i}
+      //   fallback={<PokemonCardLoading isDarkMode={isDarkMode} />}
+      // >
+      //   <LazyPokemonCard obj={obj} i={pokeNum} isDarkMode={isDarkMode} />
+      // </Suspense>
     );
   });
 
   // Compare used for sorting the pokemon by number
   let compareNum = (a, b) => {
-    if (
-      cardsHTML[Number(a.key)].props.children.props.i <
-      cardsHTML[Number(b.key)].props.children.props.i
-    ) {
+    if (cardsHTML[Number(a.key)].props.i < cardsHTML[Number(b.key)].props.i) {
       return -1;
     }
-    if (
-      cardsHTML[Number(a.key)].props.children.props.i >
-      cardsHTML[Number(b.key)].props.children.props.i
-    ) {
+    if (cardsHTML[Number(a.key)].props.i > cardsHTML[Number(b.key)].props.i) {
       return 1;
     }
     return 0;
@@ -124,14 +124,14 @@ const PokemonTable = ({
   // Compare used for sorting the pokemon by name
   let compareName = (a, b) => {
     if (
-      cardsHTML[Number(a.key)].props.children.props.obj.name <
-      cardsHTML[Number(b.key)].props.children.props.obj.name
+      cardsHTML[Number(a.key)].props.obj.name <
+      cardsHTML[Number(b.key)].props.obj.name
     ) {
       return -1;
     }
     if (
-      cardsHTML[Number(a.key)].props.children.props.obj.name >
-      cardsHTML[Number(b.key)].props.children.props.obj.name
+      cardsHTML[Number(a.key)].props.obj.name >
+      cardsHTML[Number(b.key)].props.obj.name
     ) {
       return 1;
     }
@@ -170,7 +170,20 @@ const PokemonTable = ({
         <div className={`sub-header ${fontStyle}`}>
           Pokémon ({cardsHTML.length})
         </div>
-        <div className="pokemon-container-large">{cardsHTML}</div>
+        <InfiniteScroll
+          dataLength={cardsToDisplay}
+          next={fetchMoreData}
+          hasMore={cardsToDisplay < commonElements.length}
+          loader={
+            <div className="loading-ball-container">
+              <LoadingBall />
+            </div>
+          }
+        >
+          <div className="pokemon-container-large">
+            {cardsHTML.slice(0, cardsToDisplay)}
+          </div>
+        </InfiniteScroll>
       </div>
     );
   }

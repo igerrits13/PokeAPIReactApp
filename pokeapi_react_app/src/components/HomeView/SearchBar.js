@@ -34,10 +34,8 @@ const SearchBar = ({ fullPokeResults, isDarkMode }) => {
   const autoFillSearchText = (e) => {
     // When 'Tab' is pressed, autofill search text with the next filtered Pokémon
     if (e.key === "Tab") {
-      console.log("Tab pushed");
       e.preventDefault();
       if (resultsHTML.length > 0) {
-        console.log("Setting search text");
         setSearchText(resultsHTML[0].props.resultItem.name);
       }
     }

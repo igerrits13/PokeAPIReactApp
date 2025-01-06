@@ -17,7 +17,6 @@ const SearchResults = ({
 
   // Create search results for the first 12 Pokémon based off number, starting at 1, if no search text has been entered
   useEffect(() => {
-    console.log("Setting results");
     if (searchText === "") {
       setResultsHTML(
         fullPokeResults.slice(0, 12).map((resultItem, i) => {

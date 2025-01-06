@@ -175,6 +175,15 @@
   text-decoration: none;
 }
 
+/* Loading components */
+
+.loading-ball-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
 /* Home page layout */
 
 .homeview-container {
@@ -816,7 +825,7 @@ const colours = {
 }
 
 .pokemon-card {
-  display: flex;
+  /* display: flex; */
   flex-wrap: nowrap;
   flex-direction: column;
   padding: 1rem;
