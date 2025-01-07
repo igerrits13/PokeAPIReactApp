@@ -1,6 +1,7 @@
-import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 import HomeView from "./components/HomeView/HomeView";
+import TypeView from "./components/TypeView/TypeView";
 import "./App.css";
 
 function App() {
@@ -58,6 +59,11 @@ function App() {
           path="/"
           exact
           element={<HomeView screenSize={screenSize} isDarkMode={isDarkMode} />}
+        />
+        <Route
+          path="/grasstype"
+          exact
+          element={<TypeView screenSize={screenSize} isDarkMode={isDarkMode} />}
         />
       </Routes>
     </div>

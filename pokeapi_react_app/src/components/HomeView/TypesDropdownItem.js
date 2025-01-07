@@ -10,7 +10,7 @@ const TypesDropdownItem = ({ obj, typeIcon, typeStyle, isDarkMode }) => {
 
   return (
     <Link
-      to="./"
+      to="/grasstype"
       className={`types-dropdown-item hover-dim ${typesDropdownItemStyle}`}
     >
       <DynamicSvgIcon
