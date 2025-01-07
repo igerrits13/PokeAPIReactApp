@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import SearchItem from "./SearchItem";
 
 // Display the dropdown search results from the search bar
@@ -14,6 +14,16 @@ const SearchResults = ({
   const searchResultsStyle = isDarkMode
     ? "component-background-dark component-outline-dark"
     : "component-background-light component-outline-light";
+  const searchResultsItemsStyle = isDarkMode
+    ? "component-background-dark font-dark"
+    : "component-background-light font-light";
+
+  // Scroll back to the top of the search results when closing the search results dropdown
+  const searchDropdownRef = React.createRef();
+
+  useEffect(() => {
+    searchDropdownRef.current.scrollTop = 0;
+  }, [searchBarFocus, searchDropdownRef]);
 
   // Create search results for the first 12 Pokémon based off number, starting at 1, if no search text has been entered
   useEffect(() => {
@@ -55,7 +65,11 @@ const SearchResults = ({
 
   // Display if there are no Pokémon given the current search filter
   if (resultsHTML.length === 0) {
-    resultsHTML = <div className="search-results-item">No Pokémon Found</div>;
+    resultsHTML = (
+      <div className={`search-results-item ${searchResultsItemsStyle}`}>
+        No Pokémon Found
+      </div>
+    );
   }
 
   return (
@@ -63,6 +77,7 @@ const SearchResults = ({
       className={`search-results ${searchResultsStyle} ${
         searchBarFocus ? "search-results-active" : ""
       }`}
+      ref={searchDropdownRef}
     >
       {resultsHTML}
     </div>

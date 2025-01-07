@@ -4,7 +4,7 @@ import TypesDropdownItem from "./TypesDropdownItem";
 // Dropdown display for types on small screens
 const TypesDropdown = ({ typesResults, getTypeIcon, isDarkMode }) => {
   const [typesButtonFocus, setTypesButtonFocus] = useState(false);
-  const dropdownRef = useRef(null);
+  const typesDropdownRef = useRef(null);
   const buttonRef = useRef(null);
 
   // Setup the search bar style based on if the user is using light or dark mode
@@ -26,11 +26,12 @@ const TypesDropdown = ({ typesResults, getTypeIcon, isDarkMode }) => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target) &&
+        typesDropdownRef.current &&
+        !typesDropdownRef.current.contains(event.target) &&
         buttonRef.current &&
         !buttonRef.current.contains(event.target)
       ) {
+        typesDropdownRef.current.scrollTop = 0;
         setTypesButtonFocus(false); // Close dropdown if click is outside
       }
     };
@@ -75,7 +76,7 @@ const TypesDropdown = ({ typesResults, getTypeIcon, isDarkMode }) => {
         className={`types-dropdown-content ${typesDropdownContentStyle} ${
           typesButtonFocus ? "types-dropdown-content-active" : ""
         }`}
-        ref={dropdownRef}
+        ref={typesDropdownRef}
       >
         {typesResultsHTML}
       </div>
