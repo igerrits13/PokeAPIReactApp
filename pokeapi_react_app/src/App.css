@@ -192,7 +192,7 @@
   display: grid;
   place-items: center;
   place-content: center;
-  grid-template-rows: auto auto auto auto 1fr auto;
+  grid-template-rows: auto auto auto auto 1fr auto; /* Title, Search, Types, Sort, Poké Table, footer */
   gap: 20px 0px;
   padding: 5% 10% 0 10%;
 }
@@ -911,4 +911,29 @@ const colours = {
   width: 100%;
   text-align: center;
   grid-area: trademark;
+}
+
+/* Type page layout */
+
+.typeview-container {
+  min-height: 100%;
+  min-width: 100%;
+  display: grid;
+  place-items: center;
+  place-content: center;
+  grid-template-rows: auto auto auto 1fr auto;
+  gap: 20px 0px;
+  padding: 5% 10% 0 10%;
+}
+
+.typeview-small {
+  padding: 5% 2% 0 2%;
+}
+
+.typeview-med {
+  padding: 5% 5% 0 5%;
+}
+
+.typeview-large {
+  padding: 5% 10% 0 10%;
 }

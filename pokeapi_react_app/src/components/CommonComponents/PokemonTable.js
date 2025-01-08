@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import InfiniteScroll from "react-infinite-scroll-component";
-import LoadingBall from "./LoadingBall";
-import PokemonCard from "./PokemonCard";
+// import InfiniteScroll from "react-infinite-scroll-component";
+// import LoadingBall from "./LoadingBall";
+// import PokemonCard from "./PokemonCard";
+import PokemonCardCollection from "./PokemonCardCollection";
 
 // Table displaying all Pokémon
 const PokemonTable = ({
@@ -12,14 +13,14 @@ const PokemonTable = ({
   sortBy,
   isDarkMode,
 }) => {
-  // Setup the search bar style based on if the user is using light or dark mode
-  const fontStyle = isDarkMode ? "title-font-dark" : "title-font-light";
+  // // Setup the search bar style based on if the user is using light or dark mode
+  // const fontStyle = isDarkMode ? "title-font-dark" : "title-font-light";
 
   // Create states to keep track of what Pokémon cards are to be displayed given the current filters
   const [pokeResults, setPokeResults] = useState([]);
   const [pokeTypes, setPokeTypes] = useState([]);
   const [pokeCountTotal, setPokeCountTotal] = useState(0);
-  const [cardsToDisplay, setCardsToDisplay] = useState(24);
+  // const [cardsToDisplay, setCardsToDisplay] = useState(24);
 
   // Fetch the Pokémon information for all Pokémon cards if no gen is selected
   useEffect(() => {
@@ -88,63 +89,106 @@ const PokemonTable = ({
     commonElements = Array.from(pokeResults);
   }
 
-  // Create a card for each Pokémon
-  const cardsHTML = commonElements.map((obj, i) => {
-    // Seperate out the integer from the url
-    const urlArr = obj.url.split("/");
-    const urlNoSlash = urlArr.filter((part) => part !== "");
-    const urlNumber = urlNoSlash[urlNoSlash.length - 1];
-    const pokeNum = parseInt(urlNumber, 10);
-    return (
-      <PokemonCard key={i} obj={obj} i={pokeNum} isDarkMode={isDarkMode} />
-    );
-  });
+  const cardsHTML = (
+    <PokemonCardCollection
+      commonElements={commonElements}
+      sortBy={sortBy}
+      screenSize={screenSize}
+      isDarkMode={isDarkMode}
+    />
+  );
 
-  // Update how many cards are to be displayed
-  const fetchMoreData = () => {
-    setCardsToDisplay(cardsToDisplay + 24);
-  };
+  // const cardsHTML2 = (
+  //   <PokemonCardCollection
+  //     commonElements={commonElements}
+  //     isDarkMode={isDarkMode}
+  //   />
+  // );
 
-  // Compare used for sorting the pokemon by number
-  let compareNum = (a, b) => {
-    if (cardsHTML[Number(a.key)].props.i < cardsHTML[Number(b.key)].props.i) {
-      return -1;
-    }
-    if (cardsHTML[Number(a.key)].props.i > cardsHTML[Number(b.key)].props.i) {
-      return 1;
-    }
-    return 0;
-  };
+  // console.log("Cards2:");
+  // console.log(cardsHTML2);
 
-  // Compare used for sorting the pokemon by name
-  let compareName = (a, b) => {
-    if (
-      cardsHTML[Number(a.key)].props.obj.name <
-      cardsHTML[Number(b.key)].props.obj.name
-    ) {
-      return -1;
-    }
-    if (
-      cardsHTML[Number(a.key)].props.obj.name >
-      cardsHTML[Number(b.key)].props.obj.name
-    ) {
-      return 1;
-    }
-    return 0;
-  };
+  // // Create a card for each Pokémon
+  // const cardsHTML = (
+  //   <div
+  //     // className={
+  //     //   screenSize === "small"
+  //     //     ? "pokemon-container-small"
+  //     //     : screenSize === "medium"
+  //     //     ? "pokemon-container-med"
+  //     //     : "pokemon-container-large"
+  //     // }
+  //     count={commonElements.length}
+  //   >
+  //     {commonElements.map((obj, i) => {
+  //       // Seperate out the integer from the url
+  //       const urlArr = obj.url.split("/");
+  //       const urlNoSlash = urlArr.filter((part) => part !== "");
+  //       const urlNumber = urlNoSlash[urlNoSlash.length - 1];
+  //       const pokeNum = parseInt(urlNumber, 10);
+  //       return (
+  //         <PokemonCard key={i} obj={obj} i={pokeNum} isDarkMode={isDarkMode} />
+  //       );
+  //     })}
+  //   </div>
+  // );
 
-  // Sort the cards based on name or number
-  if (sortBy === "number") {
-    cardsHTML.sort(compareNum);
-  } else if (sortBy === "name") {
-    cardsHTML.sort(compareName);
-  }
+  // console.log("Cards:");
+  // console.log(cardsHTML);
+
+  // // Update how many cards are to be displayed
+  // const fetchMoreData = () => {
+  //   setCardsToDisplay(cardsToDisplay + 24);
+  // };
+
+  // // Compare used for sorting the pokemon by number
+  // let compareNum = (a, b) => {
+  //   if (
+  //     cardsHTML.props.children[Number(a.key)].props.i <
+  //     cardsHTML.props.children[Number(b.key)].props.i
+  //   ) {
+  //     return -1;
+  //   }
+  //   if (
+  //     cardsHTML.props.children[Number(a.key)].props.i >
+  //     cardsHTML.props.children[Number(b.key)].props.i
+  //   ) {
+  //     return 1;
+  //   }
+  //   return 0;
+  // };
+
+  // // Compare used for sorting the pokemon by name
+  // let compareName = (a, b) => {
+  //   if (
+  //     cardsHTML.props.children[Number(a.key)].props.obj.name <
+  //     cardsHTML.props.children[Number(b.key)].props.obj.name
+  //   ) {
+  //     return -1;
+  //   }
+  //   if (
+  //     cardsHTML.props.children[Number(a.key)].props.obj.name >
+  //     cardsHTML.props.children[Number(b.key)].props.obj.name
+  //   ) {
+  //     return 1;
+  //   }
+  //   return 0;
+  // };
+
+  // // Sort the cards based on name or number
+  // if (sortBy === "number") {
+  //   cardsHTML.props.children.sort(compareNum);
+  // } else if (sortBy === "name") {
+  //   cardsHTML.props.children.sort(compareName);
+  // }
+
+  // console.log(cardsHTML);
 
   // Create a display for showing the full Pokémon table that will load in using infinite scrolling
   return (
     <div>
-      <div className={`sub-header ${fontStyle}`}>
-        Pokémon ({cardsHTML.length})
+      {/* <div className={`sub-header ${fontStyle}`}>
+        Pokémon ({cardsHTML.props.count})
       </div>
       <InfiniteScroll
         dataLength={cardsToDisplay}
@@ -156,9 +200,9 @@ const PokemonTable = ({
           </div>
         }
         style={{ overflow: "hidden" }}
-      >
-        {/* Set the Pokémon container to appropriate size based on viewport width */}
-        <div
+      > */}
+      {/* Set the Pokémon container to appropriate size based on viewport width */}
+      {/* <div
           className={
             screenSize === "small"
               ? "pokemon-container-small"
@@ -166,10 +210,12 @@ const PokemonTable = ({
               ? "pokemon-container-med"
               : "pokemon-container-large"
           }
-        >
-          {cardsHTML.slice(0, cardsToDisplay)}
-        </div>
-      </InfiniteScroll>
+        > */}
+      {/* {cardsHTML.slice(0, cardsToDisplay)}  */}
+      {/* {cardsHTML.props.children.slice(0, cardsToDisplay)} */}
+      {cardsHTML}
+      {/* </div> */}
+      {/* </InfiniteScroll> */}
     </div>
   );
 };

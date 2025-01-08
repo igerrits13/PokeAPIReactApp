@@ -32,7 +32,7 @@ const PokemonCard = ({ obj, i, isDarkMode }) => {
       <Link
         className={`pokemon-card ${cardStyle}`}
         style={{ display: isImageLoaded ? "flex" : "none" }}
-        to="./pokemon"
+        to="/pokemon"
       >
         <div className={`pokemon-card-title ${cardTitleStyle}`}>
           {obj.name[0].toUpperCase() + obj.name.slice(1)}

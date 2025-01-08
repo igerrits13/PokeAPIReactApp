@@ -6,6 +6,7 @@ import PokeView from "./components/PokeView/PokeView";
 import "./App.css";
 
 function App() {
+  const [sortBy, setSortBy] = useState("number");
   const [screenSize, setscreenSize] = useState("large");
   const [isDarkMode, setIsDarkMode] = useState(false);
 
@@ -54,16 +55,29 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div className={`${isDarkMode ? "background-dark" : "background-light"}`}>
       <Routes>
         <Route
           path="/"
           exact
-          element={<HomeView screenSize={screenSize} isDarkMode={isDarkMode} />}
+          element={
+            <HomeView
+              sortBy={sortBy}
+              setSortBy={setSortBy}
+              screenSize={screenSize}
+              isDarkMode={isDarkMode}
+            />
+          }
         />
         <Route
           path="/types/:id"
-          element={<TypeView screenSize={screenSize} isDarkMode={isDarkMode} />}
+          element={
+            <TypeView
+              sortBy={sortBy}
+              screenSize={screenSize}
+              isDarkMode={isDarkMode}
+            />
+          }
         />
         <Route
           path="/pokemon"

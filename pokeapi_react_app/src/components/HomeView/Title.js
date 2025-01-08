@@ -1,5 +1,6 @@
 // Display the website title
 const Title = ({ screenSize, isDarkMode }) => {
+  // Setup the title font style based on if the user is using light or dark mode
   const fontStyle = isDarkMode ? "title-font-dark" : "title-font-light";
 
   return (

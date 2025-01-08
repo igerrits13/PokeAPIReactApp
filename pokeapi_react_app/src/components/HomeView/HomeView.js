@@ -7,12 +7,12 @@ import PokemonTable from "../CommonComponents/PokemonTable";
 import Footer from "../CommonComponents/Footer";
 
 // Homeview page of the Pokémon app
-const HomeView = ({ screenSize, isDarkMode }) => {
+const HomeView = ({ sortBy, setSortBy, screenSize, isDarkMode }) => {
   const [typesResults, setTypesResult] = useState([]);
   const [fullPokeResults, setFullPokeResults] = useState([]);
   const [filterByGen, setFilterByGen] = useState("all");
   const [filterByType, setFilterByType] = useState("all");
-  const [sortBy, setSortBy] = useState("number");
+  // const [sortBy, setSortBy] = useState("number");
 
   // Fetch the Pokémon types
   useEffect(() => {
