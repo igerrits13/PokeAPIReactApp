@@ -20,7 +20,7 @@ const SearchItem = ({ resultItem, isDarkMode, i }) => {
   return (
     <Link
       className={`search-results-item clean-text ${searchResultsItemsStyle}`}
-      to="./"
+      to="/pokemon"
     >
       <div>
         <img

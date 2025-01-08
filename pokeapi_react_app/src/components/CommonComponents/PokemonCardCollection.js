@@ -110,7 +110,9 @@ const PokemonCardCollection = ({
               ? "pokemon-container-small"
               : screenSize === "medium"
               ? "pokemon-container-med"
-              : "pokemon-container-large"
+              : screenSize === "large"
+              ? "pokemon-container-large"
+              : "pokemon-container-xlarge"
           }
           count={commonElements.length}
         >
