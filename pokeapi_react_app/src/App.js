@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import HomeView from "./components/HomeView/HomeView";
 import TypeView from "./components/TypeView/TypeView";
+import PokeView from "./components/PokeView/PokeView";
 import "./App.css";
 
 function App() {
@@ -61,9 +62,12 @@ function App() {
           element={<HomeView screenSize={screenSize} isDarkMode={isDarkMode} />}
         />
         <Route
-          path="/grasstype"
-          exact
+          path="/types/:id"
           element={<TypeView screenSize={screenSize} isDarkMode={isDarkMode} />}
+        />
+        <Route
+          path="/pokemon"
+          element={<PokeView screenSize={screenSize} isDarkMode={isDarkMode} />}
         />
       </Routes>
     </div>

@@ -13,8 +13,15 @@ const TypesResultsItem = ({ obj, typeIcon, typeStyle, isDarkMode }) => {
     ? "font-dark-no-outline"
     : "font-light";
 
+  // Get the id for the current type to add to the Link
+  const urlArr = obj.url.split("/");
+  const urlNoSlash = urlArr.filter((part) => part !== "");
+  const urlNumber = urlNoSlash[urlNoSlash.length - 1];
+  const typeNum = parseInt(urlNumber, 10);
+  const typeIdUrl = `/types/${typeNum}`;
+
   return (
-    <Link className="clean-text" to={"/grasstype"}>
+    <Link className="clean-text" to={typeIdUrl}>
       <motion.button
         className={`type-item hover-dim ${typeResultsStyle}`}
         whileHover={{ scale: 1.1, rotate: "-1.5deg" }}

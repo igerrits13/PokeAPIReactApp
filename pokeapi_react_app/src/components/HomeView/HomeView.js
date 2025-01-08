@@ -19,6 +19,7 @@ const HomeView = ({ screenSize, isDarkMode }) => {
     fetch(`https://pokeapi.co/api/v2/type/?limit=-1`)
       .then((response) => response.json())
       .then((data) => {
+        console.log("Fetching types");
         setTypesResult(data.results);
       });
   }, []);
