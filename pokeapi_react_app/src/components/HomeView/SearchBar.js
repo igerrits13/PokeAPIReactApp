@@ -3,6 +3,7 @@ import SearchResults from "./SearchResults";
 
 // Search bar for searching Pokémon
 const SearchBar = ({ fullPokeResults, isDarkMode }) => {
+  // Variables for checking the text being searched, if the search bar should be active and the search results
   const [searchText, setSearchText] = useState("");
   const [searchBarFocus, setSearchBarFocus] = useState(false);
   const [resultsHTML, setResultsHTML] = useState([]);
@@ -11,7 +12,6 @@ const SearchBar = ({ fullPokeResults, isDarkMode }) => {
   const searchFontStyle = isDarkMode
     ? "searchbar-font-dark component-background-dark component-outline-dark"
     : "searchbar-font-light component-background-light component-outline-light";
-
   const searchIconStyle = isDarkMode
     ? "icon-dark component-outline-background-dark"
     : "icon-light component-outline-background-light";
@@ -41,6 +41,7 @@ const SearchBar = ({ fullPokeResults, isDarkMode }) => {
     }
   };
 
+  // Display the search bar with pop-up search results
   return (
     <div>
       <form className="searchbar-container">

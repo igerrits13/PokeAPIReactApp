@@ -2,14 +2,14 @@ import { useState, useEffect } from "react";
 
 // Handles the logic for filtering Pokémon by gen
 const OptionGen = ({ filterByGen, setFilterByGen, isDarkMode }) => {
-  const [genResults, setGenResults] = useState([]);
-
   // Setup the search bar style based on if the user is using light or dark mode
   const optionStyle = isDarkMode
     ? "font-dark component-background-dark "
     : "font-light component-background-light ";
-
   const optionTextStyle = isDarkMode ? "font-dark" : "font-light";
+
+  // Variable to store all possible gens that can be selected
+  const [genResults, setGenResults] = useState([]);
 
   // Fetch the generations
   useEffect(() => {

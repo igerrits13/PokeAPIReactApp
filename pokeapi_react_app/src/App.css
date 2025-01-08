@@ -807,7 +807,6 @@ const colours = {
   display: grid;
   gap: 20px 20px;
   padding: 1rem;
-  /* grid-template-columns: 1fr 1fr; */
   grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-auto-rows: minmax(0, 1fr);
 }
@@ -816,7 +815,6 @@ const colours = {
   display: grid;
   gap: 20px 20px;
   padding: 1.5rem;
-  /* grid-template-columns: 1fr 1fr 1fr; */
   grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-auto-rows: minmax(0, 1fr);
 }
@@ -825,9 +823,7 @@ const colours = {
   display: grid;
   gap: 20px 20px;
   padding: 2rem;
-  /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; */
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  /* grid-template-rows: repeat(auto-fill, minmax(0, 1fr)); */
   grid-auto-rows: minmax(0, 1fr);
 }
 
@@ -835,13 +831,11 @@ const colours = {
   display: grid;
   gap: 20px 20px;
   padding: 2rem;
-  /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; */
   grid-template-columns: repeat(6, minmax(0, 1fr));
   grid-auto-rows: minmax(0, 1fr);
 }
 
 .pokemon-card {
-  /* display: flex; */
   flex-wrap: nowrap;
   flex-direction: column;
   padding: 1rem;
@@ -849,7 +843,6 @@ const colours = {
   text-decoration: none;
   outline: 1px solid #1e201d;
   height: 100%;
-  /* width: 100%; */
 }
 
 .pokemon-card:hover {
@@ -859,7 +852,6 @@ const colours = {
 .pokemon-card-title {
   padding: 0 0 1rem 0;
   font-size: 1rem;
-  /* word-wrap: break-word; */
 }
 
 .pokemon-image {

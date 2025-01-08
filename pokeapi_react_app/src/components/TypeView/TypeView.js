@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import PokemonCardCollection from "../CommonComponents/PokemonCardCollection";
 import Footer from "../CommonComponents/Footer";
-// import LoadingBall from "../CommonComponents/LoadingBall";
 
 const TypeView = ({ sortBy, screenSize, isDarkMode }) => {
   // Setup data structures to store type data and ID of the current type
@@ -31,15 +30,6 @@ const TypeView = ({ sortBy, screenSize, isDarkMode }) => {
       ? "typeview-med"
       : "typeview-large";
 
-  // let commonElements;
-
-  // if (!isLoading) {
-  //   commonElements = typeData.pokemon.map((obj, i) => {
-  //     console.log(obj.pokemon.name);
-  //     return obj.pokemon;
-  //   });
-  //   console.log(commonElements);
-
   // Create a set of Pokémon of the current type and use set to prevent duplicates
   let commonElementsSet = new Set();
 
@@ -53,16 +43,11 @@ const TypeView = ({ sortBy, screenSize, isDarkMode }) => {
       }
     }
   }
+
   // Convert the set back to an array of all the Pokémon that are to be displayed
   let commonElements;
 
   commonElements = Array.from(commonElementsSet);
-
-  // const commonElements = Array.from(typeData.pokemon);
-
-  // const commonElements = typeData.pokemon.map((obj, i) => {
-  //   return obj.pokemon;
-  // });
 
   const typeViewHtml = (
     <div
@@ -84,8 +69,6 @@ const TypeView = ({ sortBy, screenSize, isDarkMode }) => {
   );
 
   return <>{typeViewHtml}</>;
-
-  // return <LoadingBall />;
 };
 
 export default TypeView;

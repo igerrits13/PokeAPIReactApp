@@ -12,7 +12,6 @@ const HomeView = ({ sortBy, setSortBy, screenSize, isDarkMode }) => {
   const [fullPokeResults, setFullPokeResults] = useState([]);
   const [filterByGen, setFilterByGen] = useState("all");
   const [filterByType, setFilterByType] = useState("all");
-  // const [sortBy, setSortBy] = useState("number");
 
   // Fetch the Pokémon types
   useEffect(() => {

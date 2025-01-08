@@ -14,6 +14,7 @@ const SortOptions = ({
   setSortBy,
   isDarkMode,
 }) => {
+  //Display the different options for sorting and filtering within a container
   const sortHTML = (
     <>
       <OptionGen

@@ -12,37 +12,20 @@ const PokemonCardCollection = ({
   // Setup the search bar style based on if the user is using light or dark mode
   const fontStyle = isDarkMode ? "title-font-dark" : "title-font-light";
 
+  // Variable to hold how many cards will be displayed based on user scrolling
   const [cardsToDisplay, setCardsToDisplay] = useState(24);
 
-  // console.log("Been called");
-  console.log(commonElements);
-
   // Create a card for each Pokémon
-  const cardsHTML =
-    // <div
-    //   // className={
-    //   //   screenSize === "small"
-    //   //     ? "pokemon-container-small"
-    //   //     : screenSize === "medium"
-    //   //     ? "pokemon-container-med"
-    //   //     : "pokemon-container-large"
-    //   // }
-    //   count={commonElements.length}
-    // >
-    commonElements.map((obj, i) => {
-      // Seperate out the integer from the url
-      const urlArr = obj.url.split("/");
-      const urlNoSlash = urlArr.filter((part) => part !== "");
-      const urlNumber = urlNoSlash[urlNoSlash.length - 1];
-      const pokeNum = parseInt(urlNumber, 10);
-      return (
-        <PokemonCard key={i} obj={obj} i={pokeNum} isDarkMode={isDarkMode} />
-      );
-    });
-  // </div>
-
-  // console.log("Cards:");
-  // console.log(cardsHTML);
+  const cardsHTML = commonElements.map((obj, i) => {
+    // Seperate out the integer from the url
+    const urlArr = obj.url.split("/");
+    const urlNoSlash = urlArr.filter((part) => part !== "");
+    const urlNumber = urlNoSlash[urlNoSlash.length - 1];
+    const pokeNum = parseInt(urlNumber, 10);
+    return (
+      <PokemonCard key={i} obj={obj} i={pokeNum} isDarkMode={isDarkMode} />
+    );
+  });
 
   // Compare used for sorting the pokemon by number
   let compareNum = (a, b) => {
@@ -79,14 +62,10 @@ const PokemonCardCollection = ({
     cardsHTML.sort(compareName);
   }
 
-  // console.log(cardsHTML);
-
   // Update how many cards are to be displayed
   const fetchMoreData = () => {
     setCardsToDisplay(cardsToDisplay + 24);
   };
-
-  // console.log(cardsHTML);
 
   return (
     <div>

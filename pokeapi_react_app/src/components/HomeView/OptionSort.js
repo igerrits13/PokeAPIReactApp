@@ -4,7 +4,6 @@ const OptionSort = ({ sortBy, setSortBy, isDarkMode }) => {
   const optionStyle = isDarkMode
     ? "font-dark component-background-dark "
     : "font-light component-background-light ";
-
   const optionTextStyle = isDarkMode ? "font-dark" : "font-light";
 
   // Update the current sort method based on what value has been selected

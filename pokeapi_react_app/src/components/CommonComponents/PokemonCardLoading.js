@@ -9,6 +9,7 @@ const PokemonCardLoading = ({ isDarkMode }) => {
     : "component-background-light";
   const cardTitleStyle = isDarkMode ? "font-dark" : "font-light";
 
+  // Display a temporary loading card with spinning Pokéball
   return (
     <motion.div
       className={`pokemon-card ${cardStyle}`}

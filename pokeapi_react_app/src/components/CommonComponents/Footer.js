@@ -10,6 +10,7 @@ const Footer = ({ isDarkMode }) => {
   // Get the current year for displaying within the footer
   const currentYear = new Date().getFullYear();
 
+  // Display a footer showing Github, copywrite information and API information
   return (
     <div className={`footer-container ${footerStyle}`}>
       <div className="footer-item-1">

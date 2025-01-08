@@ -6,25 +6,19 @@ import PokeView from "./components/PokeView/PokeView";
 import "./App.css";
 
 function App() {
+  // Variables to be passed around to different views
   const [sortBy, setSortBy] = useState("number");
   const [screenSize, setscreenSize] = useState("large");
   const [isDarkMode, setIsDarkMode] = useState(false);
 
-  // Check screen size to see if types table should collapse
+  // Check screen size to see if types table should collapse (small, medium, large, x-large)
   useEffect(() => {
     const handleScreenResize = () => {
-      // Handle small screen
       if (window.innerWidth < 576) {
         setscreenSize("small");
-      }
-
-      // Handle medium screen
-      else if (window.innerWidth >= 576 && window.innerWidth < 992) {
+      } else if (window.innerWidth >= 576 && window.innerWidth < 992) {
         setscreenSize("medium");
-      }
-
-      // Handle large screen
-      else if (window.innerWidth >= 992 && window.innerWidth < 1200) {
+      } else if (window.innerWidth >= 992 && window.innerWidth < 1200) {
         setscreenSize("large");
       } else {
         setscreenSize("x-large");

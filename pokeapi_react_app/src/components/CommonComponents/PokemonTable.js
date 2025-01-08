@@ -1,7 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import InfiniteScroll from "react-infinite-scroll-component";
-// import LoadingBall from "./LoadingBall";
-// import PokemonCard from "./PokemonCard";
 import PokemonCardCollection from "./PokemonCardCollection";
 
 // Table displaying all Pokémon
@@ -13,18 +10,13 @@ const PokemonTable = ({
   sortBy,
   isDarkMode,
 }) => {
-  // // Setup the search bar style based on if the user is using light or dark mode
-  // const fontStyle = isDarkMode ? "title-font-dark" : "title-font-light";
-
   // Create states to keep track of what Pokémon cards are to be displayed given the current filters
   const [pokeResults, setPokeResults] = useState([]);
   const [pokeTypes, setPokeTypes] = useState([]);
   const [pokeCountTotal, setPokeCountTotal] = useState(0);
-  // const [cardsToDisplay, setCardsToDisplay] = useState(24);
 
   // Fetch the Pokémon information for all Pokémon cards if no gen is selected
   useEffect(() => {
-    // If no gen is specified, collect data for all gens
     if (filterByGen === "all") {
       fetch(`https://pokeapi.co/api/v2/pokemon-species/?limit=5000`)
         .then((response) => response.json())
@@ -36,9 +28,8 @@ const PokemonTable = ({
     }
   }, [filterByGen, setFullPokeResults]);
 
-  // Fetch the Pokémon information from the requested gen
+  // Otherwise, fetch the Pokémon information from the requested gen
   useEffect(() => {
-    // Otherwise, only collect data for specified gen
     if (filterByGen !== "all") {
       fetch(`https://pokeapi.co/api/v2/generation/${filterByGen}/`)
         .then((response) => response.json())
@@ -48,9 +39,8 @@ const PokemonTable = ({
     }
   }, [filterByGen]);
 
-  // Fetch the Pokémon information of the requested type
+  // If a type is selected, fetch the Pokémon information of the requested type
   useEffect(() => {
-    // Only collect data for a specific type if one is selected
     if (filterByType !== "all") {
       fetch(`https://pokeapi.co/api/v2/type/${filterByType}/`)
         .then((response) => response.json())
@@ -89,6 +79,8 @@ const PokemonTable = ({
     commonElements = Array.from(pokeResults);
   }
 
+  // Create a display for showing the Pokémon that fit the filters and have been sorted.
+  // These Pokémon will load in using infinite scrolling
   const cardsHTML = (
     <PokemonCardCollection
       commonElements={commonElements}
@@ -98,126 +90,7 @@ const PokemonTable = ({
     />
   );
 
-  // const cardsHTML2 = (
-  //   <PokemonCardCollection
-  //     commonElements={commonElements}
-  //     isDarkMode={isDarkMode}
-  //   />
-  // );
-
-  // console.log("Cards2:");
-  // console.log(cardsHTML2);
-
-  // // Create a card for each Pokémon
-  // const cardsHTML = (
-  //   <div
-  //     // className={
-  //     //   screenSize === "small"
-  //     //     ? "pokemon-container-small"
-  //     //     : screenSize === "medium"
-  //     //     ? "pokemon-container-med"
-  //     //     : "pokemon-container-large"
-  //     // }
-  //     count={commonElements.length}
-  //   >
-  //     {commonElements.map((obj, i) => {
-  //       // Seperate out the integer from the url
-  //       const urlArr = obj.url.split("/");
-  //       const urlNoSlash = urlArr.filter((part) => part !== "");
-  //       const urlNumber = urlNoSlash[urlNoSlash.length - 1];
-  //       const pokeNum = parseInt(urlNumber, 10);
-  //       return (
-  //         <PokemonCard key={i} obj={obj} i={pokeNum} isDarkMode={isDarkMode} />
-  //       );
-  //     })}
-  //   </div>
-  // );
-
-  // console.log("Cards:");
-  // console.log(cardsHTML);
-
-  // // Update how many cards are to be displayed
-  // const fetchMoreData = () => {
-  //   setCardsToDisplay(cardsToDisplay + 24);
-  // };
-
-  // // Compare used for sorting the pokemon by number
-  // let compareNum = (a, b) => {
-  //   if (
-  //     cardsHTML.props.children[Number(a.key)].props.i <
-  //     cardsHTML.props.children[Number(b.key)].props.i
-  //   ) {
-  //     return -1;
-  //   }
-  //   if (
-  //     cardsHTML.props.children[Number(a.key)].props.i >
-  //     cardsHTML.props.children[Number(b.key)].props.i
-  //   ) {
-  //     return 1;
-  //   }
-  //   return 0;
-  // };
-
-  // // Compare used for sorting the pokemon by name
-  // let compareName = (a, b) => {
-  //   if (
-  //     cardsHTML.props.children[Number(a.key)].props.obj.name <
-  //     cardsHTML.props.children[Number(b.key)].props.obj.name
-  //   ) {
-  //     return -1;
-  //   }
-  //   if (
-  //     cardsHTML.props.children[Number(a.key)].props.obj.name >
-  //     cardsHTML.props.children[Number(b.key)].props.obj.name
-  //   ) {
-  //     return 1;
-  //   }
-  //   return 0;
-  // };
-
-  // // Sort the cards based on name or number
-  // if (sortBy === "number") {
-  //   cardsHTML.props.children.sort(compareNum);
-  // } else if (sortBy === "name") {
-  //   cardsHTML.props.children.sort(compareName);
-  // }
-
-  // console.log(cardsHTML);
-
-  // Create a display for showing the full Pokémon table that will load in using infinite scrolling
-  return (
-    <div>
-      {/* <div className={`sub-header ${fontStyle}`}>
-        Pokémon ({cardsHTML.props.count})
-      </div>
-      <InfiniteScroll
-        dataLength={cardsToDisplay}
-        next={fetchMoreData}
-        hasMore={cardsToDisplay < commonElements.length}
-        loader={
-          <div className="loading-ball-container">
-            <LoadingBall />
-          </div>
-        }
-        style={{ overflow: "hidden" }}
-      > */}
-      {/* Set the Pokémon container to appropriate size based on viewport width */}
-      {/* <div
-          className={
-            screenSize === "small"
-              ? "pokemon-container-small"
-              : screenSize === "medium"
-              ? "pokemon-container-med"
-              : "pokemon-container-large"
-          }
-        > */}
-      {/* {cardsHTML.slice(0, cardsToDisplay)}  */}
-      {/* {cardsHTML.props.children.slice(0, cardsToDisplay)} */}
-      {cardsHTML}
-      {/* </div> */}
-      {/* </InfiniteScroll> */}
-    </div>
-  );
+  return <div>{cardsHTML}</div>;
 };
 
 export default PokemonTable;

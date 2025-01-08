@@ -1,4 +1,4 @@
-// Handles the logic for filtering Pokémon by type
+// Displays the options for filtering by type
 const OptionType = ({
   filterByType,
   setFilterByType,
@@ -9,7 +9,6 @@ const OptionType = ({
   const optionStyle = isDarkMode
     ? "font-dark component-background-dark "
     : "font-light component-background-light ";
-
   const optionTextStyle = isDarkMode ? "font-dark" : "font-light";
 
   // Create the HTML for the dropdown view for filtering by type
