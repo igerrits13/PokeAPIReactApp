@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import PokemonCardCollection from "../CommonComponents/PokemonCardCollection";
 import Footer from "../CommonComponents/Footer";
 
-const TypeView = ({ sortBy, screenSize, isDarkMode }) => {
+const TypeView = ({ pokeCountTotal, sortBy, screenSize, isDarkMode }) => {
   // Setup data structures to store type data and ID of the current type
   const { id } = useParams();
   const [typeData, setTypeData] = useState([]);

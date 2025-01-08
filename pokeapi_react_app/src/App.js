@@ -7,6 +7,7 @@ import "./App.css";
 
 function App() {
   // Variables to be passed around to different views
+  const [pokeCountTotal, setPokeCountTotal] = useState(0);
   const [sortBy, setSortBy] = useState("number");
   const [screenSize, setscreenSize] = useState("large");
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -56,6 +57,8 @@ function App() {
           exact
           element={
             <HomeView
+              pokeCountTotal={pokeCountTotal}
+              setPokeCountTotal={setPokeCountTotal}
               sortBy={sortBy}
               setSortBy={setSortBy}
               screenSize={screenSize}
@@ -67,6 +70,7 @@ function App() {
           path="/types/:id"
           element={
             <TypeView
+              pokeCountTotal={pokeCountTotal}
               sortBy={sortBy}
               screenSize={screenSize}
               isDarkMode={isDarkMode}
