@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import SearchResults from "./SearchResults";
 
@@ -8,6 +8,9 @@ const SearchBar = ({ fullPokeResults, isDarkMode }) => {
   const [searchText, setSearchText] = useState("");
   const [searchBarFocus, setSearchBarFocus] = useState(false);
   const [resultsHTML, setResultsHTML] = useState([]);
+
+  // Ref to keep track of where the cursor is within the input search box
+  const inputRef = useRef(null);
 
   // Setup the search bar style based on if the user is using light or dark mode
   const searchFontStyle = isDarkMode
@@ -41,8 +44,32 @@ const SearchBar = ({ fullPokeResults, isDarkMode }) => {
       e.preventDefault();
       if (resultsHTML.length > 0) {
         setSearchText(resultsHTML[0].props.resultItem.name);
+        if (inputRef.current) {
+          const input = inputRef.current;
+          input.setSelectionRange(searchText.length, searchText.length);
+        }
       }
     }
+    // if (e.key === "ArrowDown") {
+    //   if (resultsHTML.length > 0) {
+    //     setSearchText(resultsHTML[0].props.resultItem.name);
+    //     if (inputRef.current) {
+    //       const input = inputRef.current;
+    //       input.setSelectionRange(searchText.length, searchText.length);
+    //     }
+    //   }
+    // }
+    // if (e.key === "ArrowUp") {
+    //   if (resultsHTML.length > 0) {
+    //     setSearchText(
+    //       resultsHTML[resultsHTML.length - 1].props.resultItem.name
+    //     );
+    //     if (inputRef.current) {
+    //       const input = inputRef.current;
+    //       input.setSelectionRange(searchText.length, searchText.length);
+    //     }
+    //   }
+    // }
   };
 
   // Display the search bar with pop-up search results
@@ -59,6 +86,7 @@ const SearchBar = ({ fullPokeResults, isDarkMode }) => {
           onFocus={handleOnFocus}
           onBlur={handleOnBlur}
           onKeyDown={autoFillSearchText}
+          ref={inputRef}
         />
         <Link to="/pokemon">
           <button className={`searchbar-search-icon ${searchIconStyle}`}>
