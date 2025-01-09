@@ -25,46 +25,22 @@ const PokemonTypesCardCollection = ({
       });
   }, [id, setTypeData]);
 
-  // Create a set of Pokémon of the current type and use set to prevent duplicates
-  // let commonElementsSet = new Set();
-
-  // // If
-  // if (!isLoading) {
-  //   for (const element of typeData.pokemon) {
-  //     const urlArr = element.pokemon.url.split("/");
-  //     const urlNoSlash = urlArr.filter((part) => part !== "");
-  //     const urlNumber = urlNoSlash[urlNoSlash.length - 1];
-  //     if (urlNumber <= pokeCountTotal) {
-  //       commonElementsSet.add(element.pokemon);
-  //     }
-  //   }
-  // }
-
-  // // Convert the set back to an array of all the Pokémon that are to be displayed
-  // let commonElements;
-
-  // commonElements = Array.from(commonElementsSet);
-
-  // const commonElements = typeData.pokemon.map((obj, i) => {
-  //   commonElements.push(obj.pokemon);
-  // });
-
+  // Construct an array of cards to be displayed once API call has finished loading
   const commonElements = new Array(0);
 
   if (!isLoading) {
-    typeData.pokemon.map((obj, i) => {
+    typeData.pokemon.forEach((obj) => {
       const urlArr = obj.pokemon.url.split("/");
       const urlNoSlash = urlArr.filter((part) => part !== "");
       const urlNumber = urlNoSlash[urlNoSlash.length - 1];
-      console.log(urlNumber + "  " + pokeCountTotal);
       if (urlNumber <= pokeCountTotal) {
         commonElements.push(obj.pokemon);
       }
     });
   }
 
+  // Display all type cards
   return (
-    // <></>
     <PokemonCardCollection
       commonElements={commonElements}
       sortBy={sortBy}
