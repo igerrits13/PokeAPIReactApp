@@ -8,6 +8,8 @@ const SearchResults = ({
   fullPokeResults,
   resultsHTML,
   setResultsHTML,
+  handleOnFocus,
+  handleOnBlur,
   isDarkMode,
 }) => {
   // Setup the search bar style based on if the user is using light or dark mode

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import SearchResults from "./SearchResults";
 
 // Search bar for searching Pokémon
@@ -27,7 +28,10 @@ const SearchBar = ({ fullPokeResults, isDarkMode }) => {
   };
 
   const handleOnBlur = () => {
-    setSearchBarFocus(false);
+    // Create a small delay to allow for a search result item link to work if one is clicked
+    setTimeout(() => {
+      setSearchBarFocus(false);
+    }, 100);
   };
 
   // Automatically fill the search text based on key pressed
@@ -56,9 +60,11 @@ const SearchBar = ({ fullPokeResults, isDarkMode }) => {
           onBlur={handleOnBlur}
           onKeyDown={autoFillSearchText}
         />
-        <button className={`searchbar-search-icon ${searchIconStyle}`}>
-          <i className="fa-solid fa-magnifying-glass searchbar-icon"></i>{" "}
-        </button>
+        <Link to="/pokemon">
+          <button className={`searchbar-search-icon ${searchIconStyle}`}>
+            <i className="fa-solid fa-magnifying-glass searchbar-icon"></i>{" "}
+          </button>
+        </Link>
       </form>
       <SearchResults
         searchText={searchText}
@@ -66,6 +72,8 @@ const SearchBar = ({ fullPokeResults, isDarkMode }) => {
         fullPokeResults={fullPokeResults}
         resultsHTML={resultsHTML}
         setResultsHTML={setResultsHTML}
+        handleOnFocus={handleOnFocus}
+        handleOnBlur={handleOnBlur}
         isDarkMode={isDarkMode}
       />
     </div>

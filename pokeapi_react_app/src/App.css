@@ -262,6 +262,7 @@
 
 .searchbar-search-icon {
   width: 60px;
+  height: 100%;
   border-radius: 0 40px 40px 0;
   border: none;
   text-align: center;
