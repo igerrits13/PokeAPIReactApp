@@ -7,7 +7,7 @@ import "./App.css";
 
 function App() {
   // Variables to be passed around to different views
-  const [pokeCountTotal, setPokeCountTotal] = useState(0);
+  const [pokeCountTotal, setPokeCountTotal] = useState(1025);
   const [sortBy, setSortBy] = useState("number");
   const [screenSize, setscreenSize] = useState("large");
   const [isDarkMode, setIsDarkMode] = useState(false);
