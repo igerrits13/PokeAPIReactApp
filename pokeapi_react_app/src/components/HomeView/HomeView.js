@@ -3,10 +3,9 @@ import Title from "./Title";
 import SearchBar from "./SearchBar";
 import TypeseTable from "./TypesTable";
 import DynamicSortOptions from "../CommonComponents/DynamicSortOptions";
-import OptionGen from "./OptionGen";
-import OptionType from "./OptionType";
-import OptionSort from "./OptionSort";
-// import SortOptions from "./SortOptions";
+import OptionGen from "../CommonComponents/OptionGen";
+import OptionType from "../CommonComponents/OptionType";
+import OptionSort from "../CommonComponents/OptionSort";
 import PokemonTable from "../CommonComponents/PokemonTable";
 import Footer from "../CommonComponents/Footer";
 
@@ -14,13 +13,15 @@ import Footer from "../CommonComponents/Footer";
 const HomeView = ({
   fullPokeResults,
   pokeCountTotal,
+  filterByGen,
+  setFilterByGen,
   sortBy,
   setSortBy,
   screenSize,
   isDarkMode,
 }) => {
   const [typesResults, setTypesResult] = useState([]);
-  const [filterByGen, setFilterByGen] = useState("all");
+  // const [filterByGen, setFilterByGen] = useState("all");
   const [filterByType, setFilterByType] = useState("all");
 
   // Fetch the Pokémon types
@@ -40,6 +41,7 @@ const HomeView = ({
       ? "homeview-med"
       : "homeview-large";
 
+  // Options to be displayed in the home page Pokémon view
   const sortOptions = [
     <OptionGen
       key={1}
@@ -62,6 +64,7 @@ const HomeView = ({
     />,
   ];
 
+  // Display the overall veiw of the homepage using components
   return (
     <div
       className={`homeview-container ${containerSize} ${
@@ -75,17 +78,6 @@ const HomeView = ({
         typesResults={typesResults}
         isDarkMode={isDarkMode}
       />
-      {/* <SortOptions
-        screenSize={screenSize}
-        filterByGen={filterByGen}
-        setFilterByGen={setFilterByGen}
-        filterByType={filterByType}
-        setFilterByType={setFilterByType}
-        typesResults={typesResults}
-        sortBy={sortBy}
-        setSortBy={setSortBy}
-        isDarkMode={isDarkMode}
-      /> */}
       <DynamicSortOptions sortOptions={sortOptions} screenSize={screenSize} />
       <PokemonTable
         screenSize={screenSize}

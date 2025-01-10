@@ -766,9 +766,7 @@ const colours = {
   padding: 10px;
   width: 100%;
   gap: 10px 0;
-  /* grid-template-rows: 1fr 1fr 1fr; */
   grid-template-rows: repeat(auto-fit, minmax(0, 1fr));
-  /* grid-template-columns: auto; */
 }
 
 .sortoptions-container-med-large {
@@ -776,9 +774,7 @@ const colours = {
   margin: 10px;
   width: 100%;
   gap: 0 10px;
-  /* grid-template-columns: 1fr 1fr 1fr; */
   grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
-  /* grid-auto-rows: minmax(0, 1fr); */
 }
 
 .sortoptions-item {

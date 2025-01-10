@@ -9,6 +9,7 @@ function App() {
   // Variables to be passed around to different views
   const [fullPokeResults, setFullPokeResults] = useState([]);
   const [pokeCountTotal, setPokeCountTotal] = useState(1025);
+  const [filterByGen, setFilterByGen] = useState("all");
   const [sortBy, setSortBy] = useState("number");
   const [screenSize, setscreenSize] = useState("large");
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -70,6 +71,8 @@ function App() {
             <HomeView
               fullPokeResults={fullPokeResults}
               pokeCountTotal={pokeCountTotal}
+              filterByGen={filterByGen}
+              setFilterByGen={setFilterByGen}
               sortBy={sortBy}
               setSortBy={setSortBy}
               screenSize={screenSize}
@@ -83,7 +86,10 @@ function App() {
             <TypeView
               fullPokeResults={fullPokeResults}
               pokeCountTotal={pokeCountTotal}
+              filterByGen={filterByGen}
+              setFilterByGen={setFilterByGen}
               sortBy={sortBy}
+              setSortBy={setSortBy}
               screenSize={screenSize}
               isDarkMode={isDarkMode}
             />
