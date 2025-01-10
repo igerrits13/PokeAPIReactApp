@@ -766,7 +766,9 @@ const colours = {
   padding: 10px;
   width: 100%;
   gap: 10px 0;
-  grid-template-rows: 1fr 1fr 1fr;
+  /* grid-template-rows: 1fr 1fr 1fr; */
+  grid-template-rows: repeat(auto-fit, minmax(0, 1fr));
+  /* grid-template-columns: auto; */
 }
 
 .sortoptions-container-med-large {
@@ -774,7 +776,9 @@ const colours = {
   margin: 10px;
   width: 100%;
   gap: 0 10px;
-  grid-template-columns: 1fr 1fr 1fr;
+  /* grid-template-columns: 1fr 1fr 1fr; */
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  /* grid-auto-rows: minmax(0, 1fr); */
 }
 
 .sortoptions-item {
@@ -782,6 +786,12 @@ const colours = {
   flex-direction: column;
   overflow-y: visible;
   width: auto;
+}
+
+.sortoption-text {
+  padding: 0.5rem;
+  text-align: center;
+  font-size: 1rem;
 }
 
 .sortoptions-dropdown {
@@ -793,12 +803,6 @@ const colours = {
   border: none;
   outline: 1px solid #1e201d;
   cursor: pointer;
-}
-
-.sortoption-text {
-  padding: 0.5rem;
-  text-align: center;
-  font-size: 1rem;
 }
 
 /* Pokemon display table */

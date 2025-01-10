@@ -2,7 +2,11 @@ import { useState, useEffect } from "react";
 import Title from "./Title";
 import SearchBar from "./SearchBar";
 import TypeseTable from "./TypesTable";
-import SortOptions from "./SortOptions";
+import DynamicSortOptions from "../CommonComponents/DynamicSortOptions";
+import OptionGen from "./OptionGen";
+import OptionType from "./OptionType";
+import OptionSort from "./OptionSort";
+// import SortOptions from "./SortOptions";
 import PokemonTable from "../CommonComponents/PokemonTable";
 import Footer from "../CommonComponents/Footer";
 
@@ -36,6 +40,28 @@ const HomeView = ({
       ? "homeview-med"
       : "homeview-large";
 
+  const sortOptions = [
+    <OptionGen
+      key={1}
+      filterByGen={filterByGen}
+      setFilterByGen={setFilterByGen}
+      isDarkMode={isDarkMode}
+    />,
+    <OptionType
+      key={2}
+      filterByType={filterByType}
+      setFilterByType={setFilterByType}
+      typesResults={typesResults}
+      isDarkMode={isDarkMode}
+    />,
+    <OptionSort
+      key={3}
+      sortBy={sortBy}
+      setSortBy={setSortBy}
+      isDarkMode={isDarkMode}
+    />,
+  ];
+
   return (
     <div
       className={`homeview-container ${containerSize} ${
@@ -49,7 +75,7 @@ const HomeView = ({
         typesResults={typesResults}
         isDarkMode={isDarkMode}
       />
-      <SortOptions
+      {/* <SortOptions
         screenSize={screenSize}
         filterByGen={filterByGen}
         setFilterByGen={setFilterByGen}
@@ -59,7 +85,8 @@ const HomeView = ({
         sortBy={sortBy}
         setSortBy={setSortBy}
         isDarkMode={isDarkMode}
-      />
+      /> */}
+      <DynamicSortOptions sortOptions={sortOptions} screenSize={screenSize} />
       <PokemonTable
         screenSize={screenSize}
         pokeCountTotal={pokeCountTotal}
