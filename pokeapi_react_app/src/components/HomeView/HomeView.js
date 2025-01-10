@@ -8,6 +8,8 @@ import Footer from "../CommonComponents/Footer";
 
 // Homeview page of the Pokémon app
 const HomeView = ({
+  fullPokeResults,
+  setFullPokeResults,
   pokeCountTotal,
   setPokeCountTotal,
   sortBy,
@@ -16,7 +18,7 @@ const HomeView = ({
   isDarkMode,
 }) => {
   const [typesResults, setTypesResult] = useState([]);
-  const [fullPokeResults, setFullPokeResults] = useState([]);
+  // const [fullPokeResults, setFullPokeResults] = useState([]);
   const [filterByGen, setFilterByGen] = useState("all");
   const [filterByType, setFilterByType] = useState("all");
 

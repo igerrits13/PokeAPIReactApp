@@ -74,26 +74,26 @@ const SearchBar = ({ fullPokeResults, isDarkMode }) => {
 
   // Display the search bar with pop-up search results
   return (
-    <div>
-      <form className="searchbar-container">
-        <input
-          type="text"
-          className={`searchbar-input ${searchFontStyle}`}
-          placeholder="Search Pokémon . . ."
-          aria-label="Search Pokémon"
-          value={searchText}
-          onChange={updateSearchText}
-          onFocus={handleOnFocus}
-          onBlur={handleOnBlur}
-          onKeyDown={autoFillSearchText}
-          ref={inputRef}
-        />
-        <Link to="/pokemon">
-          <button className={`searchbar-search-icon ${searchIconStyle}`}>
-            <i className="fa-solid fa-magnifying-glass searchbar-icon"></i>{" "}
-          </button>
-        </Link>
-      </form>
+    <div className="searchbar-container">
+      {/* <form className="searchbar-container"> */}
+      <input
+        type="text"
+        className={`searchbar-input ${searchFontStyle}`}
+        placeholder="Search Pokémon . . ."
+        aria-label="Search Pokémon"
+        value={searchText}
+        onChange={updateSearchText}
+        onFocus={handleOnFocus}
+        onBlur={handleOnBlur}
+        onKeyDown={autoFillSearchText}
+        ref={inputRef}
+      />
+      <Link to="/pokemon">
+        <button className={`searchbar-search-icon ${searchIconStyle}`}>
+          <i className="fa-solid fa-magnifying-glass searchbar-icon"></i>{" "}
+        </button>
+      </Link>
+      {/* </form> */}
       <SearchResults
         searchText={searchText}
         searchBarFocus={searchBarFocus}
