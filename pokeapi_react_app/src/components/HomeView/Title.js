@@ -13,17 +13,6 @@ const Title = ({ screenSize, isDarkMode }) => {
 
   return (
     <div className={`header header-small ${fontStyle} ${headerStyle}`}>
-      {/* {screenSize === "small" ? (
-        <div className={`header header-small ${fontStyle}`}>Pokémon Lookup</div>
-      ) : screenSize === "medium" ? (
-        <div className={`header header-med ${fontStyle}`}>Pokémon Lookup</div>
-      ) : screenSize === "large" ? (
-        <div className={`header header-large ${fontStyle}`}>Pokémon Lookup</div>
-      ) : (
-        <div className={`header header-x-large ${fontStyle}`}>
-          Pokémon Lookup
-        </div>
-      )} */}
       Pokémon Lookup
     </div>
   );

@@ -9,16 +9,13 @@ import Footer from "../CommonComponents/Footer";
 // Homeview page of the Pokémon app
 const HomeView = ({
   fullPokeResults,
-  setFullPokeResults,
   pokeCountTotal,
-  setPokeCountTotal,
   sortBy,
   setSortBy,
   screenSize,
   isDarkMode,
 }) => {
   const [typesResults, setTypesResult] = useState([]);
-  // const [fullPokeResults, setFullPokeResults] = useState([]);
   const [filterByGen, setFilterByGen] = useState("all");
   const [filterByType, setFilterByType] = useState("all");
 
@@ -65,9 +62,7 @@ const HomeView = ({
       />
       <PokemonTable
         screenSize={screenSize}
-        setFullPokeResults={setFullPokeResults}
         pokeCountTotal={pokeCountTotal}
-        setPokeCountTotal={setPokeCountTotal}
         filterByGen={filterByGen}
         filterByType={filterByType}
         sortBy={sortBy}

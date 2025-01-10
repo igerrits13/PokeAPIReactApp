@@ -75,7 +75,6 @@ const SearchBar = ({ fullPokeResults, isDarkMode }) => {
   // Display the search bar with pop-up search results
   return (
     <div className="searchbar-container">
-      {/* <form className="searchbar-container"> */}
       <input
         type="text"
         className={`searchbar-input ${searchFontStyle}`}
@@ -93,7 +92,6 @@ const SearchBar = ({ fullPokeResults, isDarkMode }) => {
           <i className="fa-solid fa-magnifying-glass searchbar-icon"></i>{" "}
         </button>
       </Link>
-      {/* </form> */}
       <SearchResults
         searchText={searchText}
         searchBarFocus={searchBarFocus}

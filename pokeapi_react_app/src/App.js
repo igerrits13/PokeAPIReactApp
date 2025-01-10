@@ -50,6 +50,16 @@ function App() {
     return () => mediaQuery.removeEventListener("change", () => {});
   }, []);
 
+  // Fetch the Pokémon information for all Pokémon as soon as the page is loaded
+  useEffect(() => {
+    fetch(`https://pokeapi.co/api/v2/pokemon-species/?limit=5000`)
+      .then((response) => response.json())
+      .then((data) => {
+        setFullPokeResults(data.results);
+        setPokeCountTotal(data.count);
+      });
+  }, []);
+
   return (
     <div className={`${isDarkMode ? "background-dark" : "background-light"}`}>
       <Routes>
@@ -59,9 +69,7 @@ function App() {
           element={
             <HomeView
               fullPokeResults={fullPokeResults}
-              setFullPokeResults={setFullPokeResults}
               pokeCountTotal={pokeCountTotal}
-              setPokeCountTotal={setPokeCountTotal}
               sortBy={sortBy}
               setSortBy={setSortBy}
               screenSize={screenSize}

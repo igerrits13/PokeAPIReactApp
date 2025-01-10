@@ -4,8 +4,6 @@ import PokemonCardCollection from "./PokemonCardCollection";
 // Table displaying all Pokémon
 const PokemonTable = ({
   screenSize,
-  setFullPokeResults,
-  setPokeCountTotal,
   pokeCountTotal,
   filterByGen,
   filterByType,
@@ -15,7 +13,6 @@ const PokemonTable = ({
   // Create states to keep track of what Pokémon cards are to be displayed given the current filters
   const [pokeResults, setPokeResults] = useState([]);
   const [pokeTypes, setPokeTypes] = useState([]);
-  // const [pokeCountTotal, setPokeCountTotal] = useState(0);
 
   // Fetch the Pokémon information for all Pokémon cards if no gen is selected
   useEffect(() => {
@@ -24,11 +21,9 @@ const PokemonTable = ({
         .then((response) => response.json())
         .then((data) => {
           setPokeResults(data.results);
-          setFullPokeResults(data.results);
-          setPokeCountTotal(data.count);
         });
     }
-  }, [filterByGen, setFullPokeResults, setPokeCountTotal]);
+  }, [filterByGen]);
 
   // Otherwise, fetch the Pokémon information from the requested gen
   useEffect(() => {

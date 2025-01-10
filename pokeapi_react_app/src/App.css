@@ -191,10 +191,8 @@
   min-width: 100vw;
   display: grid;
   place-items: center;
-  /* place-content: center; */
   grid-template-rows: auto auto auto auto 1fr auto; /* Title, Search, Types, Sort, Poké Table, footer */
   gap: 20px 0px;
-  /* padding: 5% 10% 0 10%; */
 }
 
 .homeview-small {
@@ -249,7 +247,6 @@
   display: flex;
   position: relative;
   width: 350px;
-  /* background-color: #96d9d6; */
 }
 
 .searchbar-input {
@@ -934,11 +931,8 @@ const colours = {
   min-width: 100vw;
   display: grid;
   place-items: center;
-  /* place-content: center; */
   grid-template-rows: auto auto auto 1fr auto;
   gap: 20px 0px;
-  /* padding: 5% 10% 0 10%; */
-  /* background-color: #6d9616; */
 }
 
 .typeview-small {
@@ -961,7 +955,6 @@ const colours = {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  /* background-color: #6390f0; */
   padding: 0 0 2rem 0;
 }
 
@@ -972,12 +965,10 @@ const colours = {
   align-items: center;
   width: 100%;
   padding: 0 0 1.5rem 0;
-  /* background-color: #6390f0; */
 }
 
 .secondary-header {
   text-align: center;
-  /* background-color: #6f35fc; */
 }
 
 .secondary-header-small {
