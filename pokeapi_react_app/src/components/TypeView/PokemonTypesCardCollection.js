@@ -4,9 +4,12 @@ import PokemonCardCollection from "../CommonComponents/PokemonCardCollection";
 
 // Display Pokémon of the specified type for the types view page
 const PokemonTypesCardCollection = ({
+  pokeResults,
+  setPokeResults,
   typeData,
   setTypeData,
   pokeCountTotal,
+  filterByGen,
   sortBy,
   screenSize,
   isDarkMode,
@@ -25,8 +28,20 @@ const PokemonTypesCardCollection = ({
       });
   }, [id, setTypeData]);
 
-  // Construct an array of cards to be displayed once API call has finished loading
-  const commonElements = new Array(0);
+  // If not all gens are selected, fetch the Pokémon information from the requested gen
+  useEffect(() => {
+    if (filterByGen !== "all") {
+      fetch(`https://pokeapi.co/api/v2/generation/${filterByGen}/`)
+        .then((response) => response.json())
+        .then((data) => {
+          setPokeResults(data.pokemon_species);
+          setIsLoading(false);
+        });
+    }
+  }, [filterByGen, setPokeResults]);
+
+  // Create Pokémon cards for Pokémon of the current type
+  let commonElements = new Array(0);
 
   if (!isLoading) {
     typeData.pokemon.forEach((obj) => {
@@ -37,6 +52,11 @@ const PokemonTypesCardCollection = ({
         commonElements.push(obj.pokemon);
       }
     });
+    // If a gen is selected, get the common elements between the current type and current gen
+    if (filterByGen !== "all") {
+      const genSet = new Set(commonElements.map((item) => item.name));
+      commonElements = pokeResults.filter((value) => genSet.has(value.name));
+    }
   }
 
   // Display all type cards

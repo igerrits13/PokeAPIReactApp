@@ -3,6 +3,8 @@ import PokemonCardCollection from "./PokemonCardCollection";
 
 // Table displaying all Pokémon
 const PokemonTable = ({
+  pokeResults,
+  setPokeResults,
   screenSize,
   pokeCountTotal,
   filterByGen,
@@ -11,7 +13,7 @@ const PokemonTable = ({
   isDarkMode,
 }) => {
   // Create states to keep track of what Pokémon cards are to be displayed given the current filters
-  const [pokeResults, setPokeResults] = useState([]);
+  // const [pokeResults, setPokeResults] = useState([]);
   const [pokeTypes, setPokeTypes] = useState([]);
 
   // Fetch the Pokémon information for all Pokémon cards if no gen is selected
@@ -23,7 +25,7 @@ const PokemonTable = ({
           setPokeResults(data.results);
         });
     }
-  }, [filterByGen]);
+  }, [filterByGen, setPokeResults]);
 
   // Otherwise, fetch the Pokémon information from the requested gen
   useEffect(() => {
@@ -34,7 +36,7 @@ const PokemonTable = ({
           setPokeResults(data.pokemon_species);
         });
     }
-  }, [filterByGen]);
+  }, [filterByGen, setPokeResults]);
 
   // If a type is selected, fetch the Pokémon information of the requested type
   useEffect(() => {

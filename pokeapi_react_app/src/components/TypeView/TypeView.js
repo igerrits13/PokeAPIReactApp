@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SecondaryViewHeader from "../CommonComponents/SecondaryViewHeader";
 import DynamicSortOptions from "../CommonComponents/DynamicSortOptions";
 import OptionGen from "../CommonComponents/OptionGen";
@@ -7,6 +7,8 @@ import PokemonTypesCardCollection from "./PokemonTypesCardCollection";
 import Footer from "../CommonComponents/Footer";
 
 const TypeView = ({
+  pokeResults,
+  setPokeResults,
   fullPokeResults,
   pokeCountTotal,
   filterByGen,
@@ -29,6 +31,12 @@ const TypeView = ({
       : screenSize === "medium"
       ? "typeview-med"
       : "typeview-large";
+
+  // Reset sort options
+  useEffect(() => {
+    setFilterByGen("all");
+    setSortBy("number");
+  }, [setFilterByGen, setSortBy]);
 
   // Options to be displayed in the home page Pokémon view
   const sortOptions = [
@@ -60,9 +68,12 @@ const TypeView = ({
       />
       <DynamicSortOptions sortOptions={sortOptions} screenSize={screenSize} />
       <PokemonTypesCardCollection
+        pokeResults={pokeResults}
+        setPokeResults={setPokeResults}
         typeData={typeData}
         setTypeData={setTypeData}
         pokeCountTotal={pokeCountTotal}
+        filterByGen={filterByGen}
         sortBy={sortBy}
         screenSize={screenSize}
         isDarkMode={isDarkMode}

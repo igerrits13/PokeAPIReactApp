@@ -8,6 +8,7 @@ import "./App.css";
 function App() {
   // Variables to be passed around to different views
   const [fullPokeResults, setFullPokeResults] = useState([]);
+  const [pokeResults, setPokeResults] = useState([]);
   const [pokeCountTotal, setPokeCountTotal] = useState(1025);
   const [filterByGen, setFilterByGen] = useState("all");
   const [sortBy, setSortBy] = useState("number");
@@ -69,6 +70,8 @@ function App() {
           exact
           element={
             <HomeView
+              pokeResults={pokeResults}
+              setPokeResults={setPokeResults}
               fullPokeResults={fullPokeResults}
               pokeCountTotal={pokeCountTotal}
               filterByGen={filterByGen}
@@ -84,6 +87,8 @@ function App() {
           path="/types/:id"
           element={
             <TypeView
+              pokeResults={pokeResults}
+              setPokeResults={setPokeResults}
               fullPokeResults={fullPokeResults}
               pokeCountTotal={pokeCountTotal}
               filterByGen={filterByGen}

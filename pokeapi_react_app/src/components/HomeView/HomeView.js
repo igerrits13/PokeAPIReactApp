@@ -11,6 +11,8 @@ import Footer from "../CommonComponents/Footer";
 
 // Homeview page of the Pokémon app
 const HomeView = ({
+  pokeResults,
+  setPokeResults,
   fullPokeResults,
   pokeCountTotal,
   filterByGen,
@@ -26,12 +28,17 @@ const HomeView = ({
 
   // Fetch the Pokémon types
   useEffect(() => {
+    // Reset sort options
+    setFilterByGen("all");
+    setFilterByType("all");
+    setSortBy("number");
+
     fetch(`https://pokeapi.co/api/v2/type/?limit=-1`)
       .then((response) => response.json())
       .then((data) => {
         setTypesResult(data.results);
       });
-  }, []);
+  }, [setFilterByGen, setFilterByType, setSortBy]);
 
   // Set what the container size for the page should be based on viewport width
   const containerSize =
@@ -80,6 +87,8 @@ const HomeView = ({
       />
       <DynamicSortOptions sortOptions={sortOptions} screenSize={screenSize} />
       <PokemonTable
+        pokeResults={pokeResults}
+        setPokeResults={setPokeResults}
         screenSize={screenSize}
         pokeCountTotal={pokeCountTotal}
         filterByGen={filterByGen}
