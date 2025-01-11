@@ -762,19 +762,20 @@ const colours = {
 /* Sort options */
 
 .sortoptions-container-small {
-  display: grid;
+  display: flex;
   padding: 10px;
   width: 100%;
   gap: 10px 0;
-  grid-template-rows: repeat(auto-fit, minmax(0, 1fr));
+  flex-direction: column;
+  justify-content: center;
 }
 
 .sortoptions-container-med-large {
-  display: grid;
+  display: flex;
   margin: 10px;
   width: 100%;
   gap: 0 10px;
-  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  justify-content: center;
 }
 
 .sortoptions-item {
