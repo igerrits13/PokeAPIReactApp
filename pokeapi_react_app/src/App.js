@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import HomeView from "./components/HomeView/HomeView";
 import TypeView from "./components/TypeView/TypeView";
 import PokeView from "./components/PokeView/PokeView";
+import NotFoundView from "./components/NotFoundView/NotFoundView";
 import "./App.css";
 
 function App() {
@@ -103,6 +104,26 @@ function App() {
         <Route
           path="/pokemon"
           element={<PokeView screenSize={screenSize} isDarkMode={isDarkMode} />}
+        />
+        <Route
+          path="/notfound"
+          element={
+            <NotFoundView
+              fullPokeResults={fullPokeResults}
+              screenSize={screenSize}
+              isDarkMode={isDarkMode}
+            />
+          }
+        />
+        <Route
+          path="*"
+          element={
+            <NotFoundView
+              fullPokeResults={fullPokeResults}
+              screenSize={screenSize}
+              isDarkMode={isDarkMode}
+            />
+          }
         />
       </Routes>
     </div>

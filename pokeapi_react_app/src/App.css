@@ -995,3 +995,33 @@ const colours = {
 .secondary-searchbar-container {
   justify-self: start;
 }
+
+/* Not found page layout */
+
+.notfound-container {
+  min-height: 100vh;
+  min-width: 100vw;
+  display: grid;
+  place-items: center;
+  grid-template-rows: auto auto 1fr auto;
+  gap: 20px 0px;
+}
+
+.notfound-small {
+  padding: 0 2%;
+}
+
+.notfound-med {
+  padding: 0 5%;
+}
+
+.notfound-large {
+  padding: 0 10%;
+}
+
+.notfound-image {
+  padding: 0.5rem;
+  width: 250px;
+  height: 250px;
+  object-fit: contain;
+}

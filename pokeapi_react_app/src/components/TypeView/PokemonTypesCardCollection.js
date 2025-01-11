@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import PokemonCardCollection from "../CommonComponents/PokemonCardCollection";
 
 // Display Pokémon of the specified type for the types view page
@@ -17,16 +17,22 @@ const PokemonTypesCardCollection = ({
   // Get the id of the type and setup the loading state for the API call
   const { id } = useParams();
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   // Fetch data for the current type
   useEffect(() => {
+    // If the type searched for is not a valid ID, redirect to page not found
+    if (id >= 19) {
+      navigate("*");
+      return;
+    }
     fetch(`https://pokeapi.co/api/v2/type/${id}/`)
       .then((response) => response.json())
       .then((data) => {
         setTypeData(data);
         setIsLoading(false);
       });
-  }, [id, setTypeData]);
+  }, [id, setTypeData, navigate]);
 
   // If not all gens are selected, fetch the Pokémon information from the requested gen
   useEffect(() => {
