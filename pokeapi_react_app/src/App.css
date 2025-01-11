@@ -1019,6 +1019,10 @@ const colours = {
   padding: 0 10%;
 }
 
+.notfound-text {
+  top: 0;
+}
+
 .notfound-image {
   padding: 0.5rem;
   width: 250px;
