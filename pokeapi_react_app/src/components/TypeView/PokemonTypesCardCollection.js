@@ -22,8 +22,8 @@ const PokemonTypesCardCollection = ({
   // Fetch data for the current type
   useEffect(() => {
     // If the type searched for is not a valid ID, redirect to page not found
-    if (id >= 19) {
-      navigate("*");
+    if (id >= 19 || isNaN(id)) {
+      navigate("/notfound");
       return;
     }
     fetch(`https://pokeapi.co/api/v2/type/${id}/`)
