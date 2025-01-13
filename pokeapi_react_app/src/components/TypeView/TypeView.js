@@ -21,9 +21,6 @@ const TypeView = ({
   // Setup data structures to store type data of the current type
   const [typeData, setTypeData] = useState([]);
 
-  // Setup the title font style based on if the user is using light or dark mode and screen size
-  const fontStyle = isDarkMode ? "title-font-dark" : "title-font-light";
-
   // Set what the container size for the page should be based on viewport width
   const containerSize =
     screenSize === "small"
@@ -57,7 +54,7 @@ const TypeView = ({
   // Display the type view page from its components
   return (
     <div
-      className={`typeview-container ${containerSize} ${fontStyle} ${
+      className={`typeview-container ${containerSize} ${
         isDarkMode ? "background-dark" : "background-light"
       }`}
     >

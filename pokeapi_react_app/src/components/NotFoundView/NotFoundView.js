@@ -3,7 +3,7 @@ import Footer from "../CommonComponents/Footer";
 
 const NotFoundView = ({ fullPokeResults, screenSize, isDarkMode }) => {
   // Setup the title font style based on if the user is using light or dark mode and screen size
-  const fontStyle = isDarkMode ? "title-font-dark" : "title-font-light";
+  const fontStyle = isDarkMode ? "font-dark" : "font-light";
 
   // Set what the container size for the page should be based on viewport width
   const containerSize =
@@ -29,7 +29,7 @@ const NotFoundView = ({ fullPokeResults, screenSize, isDarkMode }) => {
   // Display the page not found view components
   return (
     <div
-      className={`notfound-container ${containerSize} ${fontStyle} ${
+      className={`notfound-container ${containerSize} ${
         isDarkMode ? "background-dark" : "background-light"
       }`}
     >
@@ -44,8 +44,8 @@ const NotFoundView = ({ fullPokeResults, screenSize, isDarkMode }) => {
         alt={`Pokémon`}
         style={{ display: fullPokeResults.length !== 0 ? "block" : "none" }}
       />
-      <div className="notfound-text">
-        Oh no! It looks like this page does not exist!
+      <div className={`${fontStyle}`}>
+        Oh no! It looks like this page does not exist!{" "}
       </div>
       <Footer isDarkMode={isDarkMode} />
     </div>
