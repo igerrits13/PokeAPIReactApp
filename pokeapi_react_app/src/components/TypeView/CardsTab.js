@@ -36,6 +36,7 @@ const CardsTab = ({
     />,
   ];
 
+  // Display Pokémon tab when active
   return (
     <div
       style={{
