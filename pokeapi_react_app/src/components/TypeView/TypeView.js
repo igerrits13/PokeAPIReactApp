@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import SecondaryViewHeader from "../CommonComponents/SecondaryViewHeader";
-import DynamicSortOptions from "../CommonComponents/DynamicSortOptions";
-import OptionGen from "../CommonComponents/OptionGen";
-import OptionSort from "../CommonComponents/OptionSort";
-import PokemonTypesCardCollection from "./PokemonTypesCardCollection";
+import CardsTab from "./CardsTab";
+// import DynamicSortOptions from "../CommonComponents/DynamicSortOptions";
+// import OptionGen from "../CommonComponents/OptionGen";
+// import OptionSort from "../CommonComponents/OptionSort";
+// import PokemonTypesCardCollection from "./PokemonTypesCardCollection";
 import Footer from "../CommonComponents/Footer";
 
 const TypeView = ({
@@ -18,8 +19,8 @@ const TypeView = ({
   screenSize,
   isDarkMode,
 }) => {
-  // Setup data structures to store type data of the current type
-  const [typeData, setTypeData] = useState([]);
+  // // Setup data structures to store type data of the current type
+  // const [typeData, setTypeData] = useState([]);
 
   // Set what the container size for the page should be based on viewport width
   const containerSize =
@@ -58,11 +59,13 @@ const TypeView = ({
 
   // State to keep track of the tab that is currently active, then get the name of that tab
   const [activeButton, setActiveButton] = useState(0);
+  // const [activeTab, setActiveTab] = useState(tabLabels[0]);
   const activeTab = tabLabels[activeButton];
 
   // Update the active tab on click
   const handleTabOptions = (i) => {
     setActiveButton(i);
+    // setActiveTab(tabLabels[activeButton]);
   };
 
   // Tabs to view the type page's Pokémon, move sets and sprites
@@ -84,42 +87,42 @@ const TypeView = ({
     </div>
   );
 
-  // Options to be displayed in the home page Pokémon view
-  const sortOptions = [
-    <OptionGen
-      key={0}
-      filterByGen={filterByGen}
-      setFilterByGen={setFilterByGen}
-      isDarkMode={isDarkMode}
-    />,
-    <OptionSort
-      key={1}
-      sortBy={sortBy}
-      setSortBy={setSortBy}
-      isDarkMode={isDarkMode}
-    />,
-  ];
+  // // Options to be displayed in the home page Pokémon view
+  // const sortOptions = [
+  //   <OptionGen
+  //     key={0}
+  //     filterByGen={filterByGen}
+  //     setFilterByGen={setFilterByGen}
+  //     isDarkMode={isDarkMode}
+  //   />,
+  //   <OptionSort
+  //     key={1}
+  //     sortBy={sortBy}
+  //     setSortBy={setSortBy}
+  //     isDarkMode={isDarkMode}
+  //   />,
+  // ];
 
-  const pokeTab = (
-    <div
-      style={{
-        display: activeTab === "Pokémon" ? "block" : "none",
-      }}
-    >
-      <DynamicSortOptions sortOptions={sortOptions} screenSize={screenSize} />
-      <PokemonTypesCardCollection
-        pokeResults={pokeResults}
-        setPokeResults={setPokeResults}
-        typeData={typeData}
-        setTypeData={setTypeData}
-        pokeCountTotal={pokeCountTotal}
-        filterByGen={filterByGen}
-        sortBy={sortBy}
-        screenSize={screenSize}
-        isDarkMode={isDarkMode}
-      />
-    </div>
-  );
+  // const pokeTab = (
+  //   <div
+  //     style={{
+  //       display: activeTab === "Pokémon" ? "block" : "none",
+  //     }}
+  //   >
+  //     <DynamicSortOptions sortOptions={sortOptions} screenSize={screenSize} />
+  //     <PokemonTypesCardCollection
+  //       pokeResults={pokeResults}
+  //       setPokeResults={setPokeResults}
+  //       typeData={typeData}
+  //       setTypeData={setTypeData}
+  //       pokeCountTotal={pokeCountTotal}
+  //       filterByGen={filterByGen}
+  //       sortBy={sortBy}
+  //       screenSize={screenSize}
+  //       isDarkMode={isDarkMode}
+  //     />
+  //   </div>
+  // );
 
   // End of tab options code
 
@@ -136,7 +139,19 @@ const TypeView = ({
         isDarkMode={isDarkMode}
       />
       {tabOptions}
-      {pokeTab}
+      <CardsTab
+        pokeResults={pokeResults}
+        setPokeResults={setPokeResults}
+        pokeCountTotal={pokeCountTotal}
+        filterByGen={filterByGen}
+        setFilterByGen={setFilterByGen}
+        activeTab={activeTab}
+        sortBy={sortBy}
+        setSortBy={setSortBy}
+        isDarkMode={isDarkMode}
+        screenSize={screenSize}
+      />
+      {/* {pokeTab} */}
       {activeTab === "Moves" ? "This is the moves tab!" : ""}
       {activeTab === "Sprites" ? "This is the sprites tab!" : ""}
       {/* <DynamicSortOptions sortOptions={sortOptions} screenSize={screenSize} />
