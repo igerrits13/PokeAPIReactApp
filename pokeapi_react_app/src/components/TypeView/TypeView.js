@@ -6,6 +6,7 @@ import MovesTab from "./MovesTab";
 import SpritesTab from "./SpritesTab";
 import Footer from "../CommonComponents/Footer";
 
+// Typeview page of the Pokémon app
 const TypeView = ({
   pokeResults,
   setPokeResults,
@@ -35,54 +36,9 @@ const TypeView = ({
   // Tabs to be displayed
   const tabLabels = ["Pokémon", "Moves", "Sprites"];
 
-  // Tab option code
-
-  // // Setup the search bar style based on if the user is using light or dark mode
-  // const tabOptionFontStyle = isDarkMode
-  //   ? "taboption-font-dark"
-  //   : "taboption-font-light";
-  // const activeTabOptionFontStyle = isDarkMode
-  //   ? "taboption-font-dark-active"
-  //   : "taboption-font-light-active";
-
-  // // Adjust the gap between tab options based on screen size
-  // const tabPaddingSize =
-  //   screenSize === "small"
-  //     ? "tab-button-small"
-  //     : screenSize === "medium"
-  //     ? "tab-button-med"
-  //     : "tab-button-large";
-
   // State to keep track of the tab that is currently active, then get the name of that tab
   const [activeButton, setActiveButton] = useState(0);
-  // const [activeTab, setActiveTab] = useState(tabLabels[0]);
   const activeTab = tabLabels[activeButton];
-
-  // // Update the active tab on click
-  // const handleTabOptions = (i) => {
-  //   setActiveButton(i);
-  // };
-
-  // // Tabs to view the type page's Pokémon, move sets and sprites
-  // const tabOptions = (
-  //   <div>
-  //     {tabLabels.map((label, i) => {
-  //       return (
-  //         <button
-  //           key={i}
-  //           className={`tab-button ${tabPaddingSize} ${tabOptionFontStyle} ${
-  //             activeButton === i ? activeTabOptionFontStyle : ""
-  //           }`}
-  //           onClick={() => handleTabOptions(i)}
-  //         >
-  //           {label}
-  //         </button>
-  //       );
-  //     })}
-  //   </div>
-  // );
-
-  // End of tab options code
 
   // Display the type view page from its components
   return (

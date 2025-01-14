@@ -1,3 +1,4 @@
+// Tab displaying a list of sprites
 const SpritesTab = ({ activeTab }) => {
   // Display sprites tab when active
   return (

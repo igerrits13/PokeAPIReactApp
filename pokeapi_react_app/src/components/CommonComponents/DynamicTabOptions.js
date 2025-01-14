@@ -1,3 +1,4 @@
+// Component to render a given list of tabs and HTML
 const DynamicTabOptions = ({
   tabLabels,
   setActiveButton,
@@ -26,25 +27,7 @@ const DynamicTabOptions = ({
     setActiveButton(i);
   };
 
-  // Tabs to view the type page's Pokémon, move sets and sprites
-  // const tabOptions = (
-  //   <div>
-  //     {tabLabels.map((label, i) => {
-  //       return (
-  //         <button
-  //           key={i}
-  //           className={`tab-button ${tabPaddingSize} ${tabOptionFontStyle} ${
-  //             activeButton === i ? activeTabOptionFontStyle : ""
-  //           }`}
-  //           onClick={() => handleTabOptions(i)}
-  //         >
-  //           {label}
-  //         </button>
-  //       );
-  //     })}
-  //   </div>
-  // );
-
+  //Iterate over tabs to be displayed and render them
   return (
     <div>
       {tabLabels.map((label, i) => {

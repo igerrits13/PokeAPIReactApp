@@ -1,3 +1,4 @@
+// Tab displaying a list of moves
 const MovesTab = ({ activeTab }) => {
   // Display moves tab when active
   return (
