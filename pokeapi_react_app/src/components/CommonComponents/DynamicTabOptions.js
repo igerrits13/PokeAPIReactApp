@@ -30,7 +30,7 @@ const DynamicTabOptions = ({
   //Iterate over tabs to be displayed and render them
   return (
     <div>
-      {tabLabels.map((label, i) => {
+      {tabLabels.map((obj, i) => {
         return (
           <button
             key={i}
@@ -39,7 +39,7 @@ const DynamicTabOptions = ({
             }`}
             onClick={() => handleTabOptions(i)}
           >
-            {label}
+            {obj.label}
           </button>
         );
       })}

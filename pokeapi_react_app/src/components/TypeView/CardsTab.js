@@ -1,4 +1,3 @@
-import { useState } from "react";
 import DynamicSortOptions from "../CommonComponents/DynamicSortOptions";
 import OptionGen from "../CommonComponents/OptionGen";
 import OptionSort from "../CommonComponents/OptionSort";
@@ -11,15 +10,13 @@ const CardsTab = ({
   pokeCountTotal,
   filterByGen,
   setFilterByGen,
-  activeTab,
+  typeData,
+  setTypeData,
   sortBy,
   setSortBy,
   isDarkMode,
   screenSize,
 }) => {
-  // Setup data structures to store type data of the current type
-  const [typeData, setTypeData] = useState([]);
-
   // Options to be displayed in the home page Pokémon view
   const sortOptions = [
     <OptionGen
@@ -38,11 +35,7 @@ const CardsTab = ({
 
   // Display Pokémon tab when active
   return (
-    <div
-      style={{
-        display: activeTab === "Pokémon" ? "block" : "none",
-      }}
-    >
+    <div>
       <DynamicSortOptions sortOptions={sortOptions} screenSize={screenSize} />
       <PokemonTypesCardCollection
         pokeResults={pokeResults}

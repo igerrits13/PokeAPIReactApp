@@ -51,20 +51,20 @@ const HomeView = ({
   // Options to be displayed in the home page Pokémon view
   const sortOptions = [
     <OptionGen
-      key={1}
+      key={0}
       filterByGen={filterByGen}
       setFilterByGen={setFilterByGen}
       isDarkMode={isDarkMode}
     />,
     <OptionType
-      key={2}
+      key={1}
       filterByType={filterByType}
       setFilterByType={setFilterByType}
       typesResults={typesResults}
       isDarkMode={isDarkMode}
     />,
     <OptionSort
-      key={3}
+      key={2}
       sortBy={sortBy}
       setSortBy={setSortBy}
       isDarkMode={isDarkMode}

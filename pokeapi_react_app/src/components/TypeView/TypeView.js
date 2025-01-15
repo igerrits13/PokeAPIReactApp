@@ -19,6 +19,9 @@ const TypeView = ({
   screenSize,
   isDarkMode,
 }) => {
+  // Setup data structures to store type data of the current type
+  const [typeData, setTypeData] = useState([]);
+
   // Set what the container size for the page should be based on viewport width
   const containerSize =
     screenSize === "small"
@@ -34,11 +37,15 @@ const TypeView = ({
   }, [setFilterByGen, setSortBy]);
 
   // Tabs to be displayed
-  const tabLabels = ["Pokémon", "Moves", "Sprites"];
+  const tabLabels = [
+    { label: "Pokémon" },
+    { label: "Moves" },
+    { label: "Sprites" },
+  ];
 
   // State to keep track of the tab that is currently active, then get the name of that tab
   const [activeButton, setActiveButton] = useState(0);
-  const activeTab = tabLabels[activeButton];
+  const activeTab = tabLabels[activeButton].label;
 
   // Display the type view page from its components
   return (
@@ -60,20 +67,25 @@ const TypeView = ({
         isDarkMode={isDarkMode}
         screenSize={screenSize}
       />
-      <CardsTab
-        pokeResults={pokeResults}
-        setPokeResults={setPokeResults}
-        pokeCountTotal={pokeCountTotal}
-        filterByGen={filterByGen}
-        setFilterByGen={setFilterByGen}
-        activeTab={activeTab}
-        sortBy={sortBy}
-        setSortBy={setSortBy}
-        isDarkMode={isDarkMode}
-        screenSize={screenSize}
-      />
-      <MovesTab activeTab={activeTab} />
-      <SpritesTab activeTab={activeTab} />
+      {activeTab === "Pokémon" && (
+        <CardsTab
+          pokeResults={pokeResults}
+          setPokeResults={setPokeResults}
+          pokeCountTotal={pokeCountTotal}
+          filterByGen={filterByGen}
+          setFilterByGen={setFilterByGen}
+          typeData={typeData}
+          setTypeData={setTypeData}
+          sortBy={sortBy}
+          setSortBy={setSortBy}
+          isDarkMode={isDarkMode}
+          screenSize={screenSize}
+        />
+      )}
+      {activeTab === "Moves" && <MovesTab />}
+      {activeTab === "Sprites" && (
+        <SpritesTab typeData={typeData} isDarkMode={isDarkMode} />
+      )}
       <Footer isDarkMode={isDarkMode} />
     </div>
   );
