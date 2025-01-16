@@ -1076,12 +1076,11 @@ const colours = {
 
 .spritestab-item {
   display: flex;
+  flex: 1;
   flex-direction: column;
-  padding: 0.5rem;
+  padding: 1rem 0.5rem;
   gap: 1rem;
-  /* width: 18rem; */
   place-items: center;
-  /* background-color: #7ac74c; */
 }
 
 .spritestab-img {

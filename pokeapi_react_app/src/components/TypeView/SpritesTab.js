@@ -41,11 +41,46 @@ const SpritesTab = ({ typeData, isDarkMode }) => {
     );
   };
 
+  // Roman numeral to integer conversion function
+  function romanToInt(roman) {
+    const romanNumerals = {
+      I: 1,
+      V: 5,
+      X: 10,
+    };
+
+    let result = 0;
+    let prevValue = 0;
+
+    for (let i = roman.length - 1; i >= 0; i--) {
+      const currentValue = romanNumerals[roman[i]];
+
+      if (currentValue < prevValue) {
+        result -= currentValue;
+      } else {
+        result += currentValue;
+      }
+
+      prevValue = currentValue;
+    }
+
+    return result;
+  }
+
   // Display for the sprites tab information
   const spritesHTML =
     typeData.sprites && typeof typeData.sprites === "object"
-      ? Object.entries(typeData.sprites).map(
-          ([generation, generationData], i) => {
+      ? Object.entries(typeData.sprites)
+          // Sort the generations based on Roman numeral value
+          .sort(([generationA], [generationB]) => {
+            const genTitleA = getGenerationTitle(generationA).split(" ")[1];
+            const genTitleB = getGenerationTitle(generationB).split(" ")[1];
+            const romanA = romanToInt(genTitleA);
+            const romanB = romanToInt(genTitleB);
+
+            return romanA - romanB;
+          })
+          .map(([generation, generationData], i) => {
             if (typeof generationData !== "object") return null;
 
             const genTitle = getGenerationTitle(generation);
@@ -57,8 +92,14 @@ const SpritesTab = ({ typeData, isDarkMode }) => {
               >
                 <div>{genTitle}</div>
                 <div className="spritestab-icon-container">
-                  {Object.entries(generationData).map(
-                    ([game, { name_icon }], i) => {
+                  {Object.entries(generationData)
+                    // Sort the sprites alphabetically by game title
+                    .sort(([gameA], [gameB]) => {
+                      const gameTitleA = getGameTitle(gameA);
+                      const gameTitleB = getGameTitle(gameB);
+                      return gameTitleA.localeCompare(gameTitleB);
+                    })
+                    .map(([game, { name_icon }], i) => {
                       if (!name_icon) return null;
 
                       const gameTitle = getGameTitle(game);
@@ -72,13 +113,11 @@ const SpritesTab = ({ typeData, isDarkMode }) => {
                           {gameTitle}
                         </div>
                       );
-                    }
-                  )}
+                    })}
                 </div>
               </div>
             );
-          }
-        )
+          })
       : null;
 
   // Display the full sprites tab
