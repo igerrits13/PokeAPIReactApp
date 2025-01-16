@@ -6,57 +6,82 @@ const SpritesTab = ({ typeData, isDarkMode }) => {
     ? "component-background-dark component-outline-thin-dark"
     : "component-background-light component-outline-thin-light";
 
-  // Display sprites tab when active
-  const spritesHTML =
-    typeData.sprites && typeof typeData.sprites === "object" ? (
-      Object.keys(typeData.sprites).map((generation, i) => {
-        const generationData = typeData.sprites[generation];
-        // Seperate the generation title by '-' and capitalize appropriate letters
-        let genTitle = generation.split("-");
-        genTitle[0] = genTitle[0][0].toUpperCase() + genTitle[0].slice(1);
-        genTitle[1] = genTitle[1].toUpperCase();
-        return generationData && typeof generationData === "object" ? (
-          <div
-            key={i}
-            className={`spritestab-generation ${spriteSectionStyle}  ${fontStyle}`}
-          >
-            <div>{genTitle.join(" ")}</div>
-            <div className="spritestab-icon-container">
-              {Object.keys(generationData).map((game, i) => {
-                const spriteUrl = generationData[game]?.name_icon;
-                // Seperate the game title by '-', replacing with a '/', and capitalize appropriate letters
-                let gameTitle = game.split("-");
-                gameTitle[0] =
-                  gameTitle[0][0].toUpperCase() + gameTitle[0].slice(1);
-                if (gameTitle[1]) {
-                  gameTitle[1] =
-                    gameTitle[1][0].toUpperCase() + gameTitle[1].slice(1);
-                }
-                if (spriteUrl) {
-                  return (
-                    <div key={i} className="spritestab-item">
-                      <img
-                        src={spriteUrl}
-                        alt={generation}
-                        className="spritestab-img"
-                      />
-                      {gameTitle.join("/")}
-                    </div>
-                  );
-                } else {
-                  return <></>;
-                }
-              })}
-            </div>
-          </div>
-        ) : (
-          <></>
-        );
-      })
-    ) : (
-      <></>
-    );
+  // Seperate the generation title by '-' and capitalize appropriate letters
+  const getGenerationTitle = (generation) => {
+    let genTitle = generation.split("-");
+    genTitle[0] = genTitle[0][0].toUpperCase() + genTitle[0].slice(1);
+    genTitle[1] = genTitle[1].toUpperCase();
+    return genTitle.join(" ");
+  };
 
+  // Dictionary holding unique game titles that are strangely formatted
+  const gameTitleDictionary = {
+    "firered-leafgreen": "Fire Red / Leaf Green",
+    xd: "XD",
+    "heartgold-soulsilver": "Heart Gold / Soul Silver",
+    "black-2-white-2": "Black 2 / White 2",
+    "omega-ruby-alpha-sapphire": "Omega Ruby / Alpha Sapphire",
+    "lets-go-pikachu-lets-go-eevee": "Lets go Pikachu / Lets go Eevee",
+    "ultra-sun-ultra-moon": "Ultra Sun / Ultra Moon",
+    "brilliant-diamond-and-shining-pearl": "Brilliant Diamond / Shining Pearl",
+    "legends-arceus": "Legends Arceus",
+  };
+
+  // Return the name of the current game in formatted form
+  const getGameTitle = (game) => {
+    return (
+      gameTitleDictionary[game] ||
+      game
+        .split("-")
+        .map(
+          (currWord) =>
+            currWord.charAt(0).toUpperCase() + currWord.slice(1).toLowerCase()
+        )
+        .join(" / ")
+    );
+  };
+
+  // Display for the sprites tab information
+  const spritesHTML =
+    typeData.sprites && typeof typeData.sprites === "object"
+      ? Object.entries(typeData.sprites).map(
+          ([generation, generationData], i) => {
+            if (typeof generationData !== "object") return null;
+
+            const genTitle = getGenerationTitle(generation);
+
+            return (
+              <div
+                key={i}
+                className={`spritestab-generation ${spriteSectionStyle} ${fontStyle}`}
+              >
+                <div>{genTitle}</div>
+                <div className="spritestab-icon-container">
+                  {Object.entries(generationData).map(
+                    ([game, { name_icon }], i) => {
+                      if (!name_icon) return null;
+
+                      const gameTitle = getGameTitle(game);
+                      return (
+                        <div key={i} className="spritestab-item">
+                          <img
+                            src={name_icon}
+                            alt={generation}
+                            className="spritestab-img"
+                          />
+                          {gameTitle}
+                        </div>
+                      );
+                    }
+                  )}
+                </div>
+              </div>
+            );
+          }
+        )
+      : null;
+
+  // Display the full sprites tab
   return <div className="spritestab-container">{spritesHTML}</div>;
 };
 
