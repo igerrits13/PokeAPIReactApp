@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import SecondaryViewHeader from "../CommonComponents/SecondaryViewHeader";
+// import DynamicSvgIcon from "../CommonComponents/DynamicSvgIcon";
 import DynamicTabOptions from "../CommonComponents/DynamicTabOptions";
 import CardsTab from "./CardsTab";
 import MovesTab from "./MovesTab";
@@ -21,6 +23,31 @@ const TypeView = ({
 }) => {
   // Setup data structures to store type data of the current type
   const [typeData, setTypeData] = useState([]);
+  // Get the id of the type and setup the loading state for the API call
+  const { id } = useParams();
+  const [isTypesLoading, setIsTypesLoading] = useState(true);
+  const navigate = useNavigate();
+
+  // Fetch data for the current type
+  useEffect(() => {
+    // If the type searched for is not a valid ID, redirect to page not found
+    if (id >= 19 || isNaN(id)) {
+      navigate("/notfound");
+      return;
+    }
+    fetch(`https://pokeapi.co/api/v2/type/${id}/`)
+      .then((response) => response.json())
+      .then((data) => {
+        setTypeData(data);
+        setIsTypesLoading(false);
+      });
+  }, [id, setIsTypesLoading, navigate]);
+
+  // let typeIcon, typeStyle;
+
+  // if (!isTypesLoading) {
+  //   [typeIcon, typeStyle] = getTypeIcon(typeData.name);
+  // }
 
   // Set what the container size for the page should be based on viewport width
   const containerSize =
@@ -59,7 +86,10 @@ const TypeView = ({
         screenSize={screenSize}
         isDarkMode={isDarkMode}
       />
-      {/* {tabOptions} */}
+      {/* <DynamicSvgIcon
+        classes={`type-img ${typeStyle}`}
+        IconComponent={typeIcon}
+      /> */}
       <DynamicTabOptions
         tabLabels={tabLabels}
         setActiveButton={setActiveButton}
@@ -76,6 +106,8 @@ const TypeView = ({
           setFilterByGen={setFilterByGen}
           typeData={typeData}
           setTypeData={setTypeData}
+          isTypesLoading={isTypesLoading}
+          setIsTypesLoading={setIsTypesLoading}
           sortBy={sortBy}
           setSortBy={setSortBy}
           isDarkMode={isDarkMode}

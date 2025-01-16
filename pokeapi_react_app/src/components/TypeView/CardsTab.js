@@ -12,6 +12,8 @@ const CardsTab = ({
   setFilterByGen,
   typeData,
   setTypeData,
+  isTypesLoading,
+  setIsTypesLoading,
   sortBy,
   setSortBy,
   isDarkMode,
@@ -42,6 +44,8 @@ const CardsTab = ({
         setPokeResults={setPokeResults}
         typeData={typeData}
         setTypeData={setTypeData}
+        isTypesLoading={isTypesLoading}
+        setIsTypesLoading={setIsTypesLoading}
         pokeCountTotal={pokeCountTotal}
         filterByGen={filterByGen}
         sortBy={sortBy}

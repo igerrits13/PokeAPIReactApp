@@ -21,7 +21,7 @@ const SpritesTab = ({ typeData, isDarkMode }) => {
     "heartgold-soulsilver": "Heart Gold / Soul Silver",
     "black-2-white-2": "Black 2 / White 2",
     "omega-ruby-alpha-sapphire": "Omega Ruby / Alpha Sapphire",
-    "lets-go-pikachu-lets-go-eevee": "Lets go Pikachu / Lets go Eevee",
+    "lets-go-pikachu-lets-go-eevee": "Let's Go Pikachu / Let's Go Eevee",
     "ultra-sun-ultra-moon": "Ultra Sun / Ultra Moon",
     "brilliant-diamond-and-shining-pearl": "Brilliant Diamond / Shining Pearl",
     "legends-arceus": "Legends Arceus",
@@ -84,6 +84,14 @@ const SpritesTab = ({ typeData, isDarkMode }) => {
             if (typeof generationData !== "object") return null;
 
             const genTitle = getGenerationTitle(generation);
+
+            // Check if current generation has sprites
+            const hasSprites = Object.entries(generationData).some(
+              ([game, { name_icon }]) => name_icon
+            );
+
+            // If the current generation does not have sprites, do not create a section for the current gen
+            if (!hasSprites) return null;
 
             return (
               <div
