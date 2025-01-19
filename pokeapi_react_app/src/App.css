@@ -76,8 +76,17 @@
   border: 2px solid #1e201d;
 }
 
+.component-outline-bottom-dark {
+  border-bottom: 2px solid #1e201d;
+}
+
 .component-outline-thin-dark {
   border: 1px solid #1e201d;
+}
+
+.component-rounded-outline-thin-dark {
+  border: 1px solid #1e201d;
+  border-radius: 8px;
 }
 
 .component-outline-background-dark {
@@ -151,8 +160,17 @@
   border: 2px solid #1e201d;
 }
 
+.component-outline-bottom-light {
+  border-bottom: 2px solid #1e201d;
+}
+
 .component-outline-thin-light {
   border: 1px solid #1e201d;
+}
+
+.component-rounded-outline-thin-light {
+  border: 1px solid #1e201d;
+  border-radius: 8px;
 }
 
 .component-outline-background-light {
@@ -1024,6 +1042,126 @@ const colours = {
 
 .secondary-searchbar-container {
   justify-self: start;
+}
+
+/* Type view information table */
+
+.typeview-table-small {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  height: auto;
+  padding: 3rem;
+  /* background-color: #92bc2c; */
+}
+
+.typeview-table-med-large {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  width: 100%;
+  padding: 3rem;
+  /* background-color: #92bc2c; */
+}
+
+.typeview-table-info {
+  display: flex;
+  flex: 1 1 25%;
+  flex-direction: column;
+  padding: 0.5rem;
+  /* gap: 5px; */
+  /* background-color: #96d9d6; */
+}
+
+.typeview-table-info-name {
+  width: 50%;
+}
+
+.typeview-table-info-result {
+  width: 50%;
+}
+
+.typeview-table-info-section {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  padding: 0.5rem;
+  /* border: 1px solid #7ac74c; */
+  /* height: 3rem; */
+  /* background-color: #735797; */
+}
+
+.typeview-info-name {
+  width: 50%;
+}
+
+.typeview-info-icon-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 50%;
+  /* background-color: #6390f0; */
+}
+
+.typeview-info-button {
+  background-color: none;
+  padding: 0.5rem;
+}
+
+.typeview-info-icon-small {
+  height: 1rem;
+  width: 1rem;
+  object-fit: contain;
+  /* padding: 0.25rem; */
+}
+
+.typeview-info-icon-med {
+  height: 1.25rem;
+  width: 1.25rem;
+  object-fit: contain;
+  /* padding: 0.25rem; */
+}
+
+.typeview-info-icon-large {
+  height: 1.5rem;
+  width: 1.5rem;
+  object-fit: contain;
+  /* padding: 0.25rem; */
+}
+
+.typeview-table-damage-relations {
+  display: flex;
+  flex: 2 1 62.5%;
+  flex-direction: column;
+  /* background-color: #08f123; */
+}
+
+.typeview-table-icon-container {
+  display: flex;
+  flex: 1 1 12.5%;
+  align-items: center;
+  justify-content: center;
+  /* background-color: #cf1a3b; */
+}
+
+.typeview-table-icon-outline {
+  height: 10rem;
+  width: 10rem;
+  padding: 1rem;
+  /* background-color: #735797; */
+}
+
+.typeview-table-icon {
+  align-self: flex-end;
+  flex: 1;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  /* background-color: #d57d0a; */
 }
 
 /* Tab options */

@@ -101,7 +101,7 @@ const TypeseTable = ({ screenSize, typesResults, isDarkMode }) => {
     }
   }
 
-  // IF screen is small, show types as dropdown.
+  // If screen is small, show types as dropdown.
   if (screenSize === "small") {
     return (
       <TypesDropdown
