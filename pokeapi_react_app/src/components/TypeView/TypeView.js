@@ -280,29 +280,6 @@ const TypeView = ({
       })
     : null;
 
-  // <div className="typeview-table-damage-relations">
-  //   <div>
-  //   {getSectionTitle(Object.keys(typeData.damage_relations)[0])}
-  // </div>
-  // <div>
-  //   {getSectionTitle(Object.keys(typeData.damage_relations)[1])}
-  // </div>
-  // <div>
-  //   {getSectionTitle(Object.keys(typeData.damage_relations)[2])}
-  // </div>{" "}
-  // <div>
-  //   {getSectionTitle(Object.keys(typeData.damage_relations)[3])}
-  // </div>
-  // <div>
-  //   {getSectionTitle(Object.keys(typeData.damage_relations)[4])}
-  // </div>{" "}
-  // <div>
-  //   {getSectionTitle(Object.keys(typeData.damage_relations)[5])}
-  // </div>
-  // </div>
-
-  // console.log(typeData.name[0]);
-
   // Display the type view page from its components
   return (
     <div
@@ -323,7 +300,6 @@ const TypeView = ({
         <></>
       )}
       {!isTypesLoading ? (
-        // <div>
         <div
           className={`${
             screenSize === "small" || screenSize === "medium"
@@ -332,12 +308,6 @@ const TypeView = ({
           } ${fontStyle}`}
         >
           <div className="typeview-table-info">
-            {/* <div className={`typeview-table-info-section ${lineStyle}`}>
-                <div className="typeview-table-info-name">Type Name</div>
-                <div className="typeview-table-info-result">
-                  {typeData.name[0].toUpperCase() + typeData.name.slice(1)}
-                </div>
-              </div> */}
             <div className={`typeview-table-info-section ${lineStyle}`}>
               <div className="typeview-table-info-name">Type ID</div>
               <div className="typeview-table-info-result">#{typeData.id}</div>
@@ -366,26 +336,6 @@ const TypeView = ({
           <div className="typeview-table-damage-relations">
             {damageRelationsHTML}
           </div>
-          {/* <div className="typeview-table-damage-relations">
-            <div>
-              {getSectionTitle(Object.keys(typeData.damage_relations)[0])}
-            </div>
-            <div>
-              {getSectionTitle(Object.keys(typeData.damage_relations)[1])}
-            </div>
-            <div>
-              {getSectionTitle(Object.keys(typeData.damage_relations)[2])}
-            </div>{" "}
-            <div>
-              {getSectionTitle(Object.keys(typeData.damage_relations)[3])}
-            </div>
-            <div>
-              {getSectionTitle(Object.keys(typeData.damage_relations)[4])}
-            </div>{" "}
-            <div>
-              {getSectionTitle(Object.keys(typeData.damage_relations)[5])}
-            </div>
-          </div> */}
           {screenSize === "large" || screenSize === "x-large" ? (
             <div className={`typeview-table-icon-container`}>
               <div className={`typeview-table-icon-outline ${iconStyle}`}>
@@ -398,7 +348,6 @@ const TypeView = ({
           ) : null}{" "}
         </div>
       ) : (
-        // </div>
         <></>
       )}
       <DynamicTabOptions

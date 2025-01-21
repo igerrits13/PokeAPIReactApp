@@ -1080,7 +1080,6 @@ const colours = {
   height: auto;
   width: 100%;
   padding: 1rem 0 3rem 0;
-  /* background-color: #92bc2c; */
 }
 
 .typeview-table-large {
@@ -1090,7 +1089,6 @@ const colours = {
   justify-content: space-between;
   width: 100%;
   padding: 1rem 0 3rem 0;
-  /* background-color: #92bc2c; */
 }
 
 .typeview-table-info {
@@ -1098,8 +1096,6 @@ const colours = {
   flex: 1 1 30%;
   flex-direction: column;
   padding: 0.5rem 1rem;
-  /* gap: 5px; */
-  /* background-color: #96d9d6; */
 }
 
 .typeview-table-info-name {
@@ -1118,9 +1114,7 @@ const colours = {
   flex-wrap: nowrap;
   align-items: center;
   padding: 0.5rem;
-  /* border: 1px solid #7ac74c; */
   min-height: 4rem;
-  /* background-color: #735797; */
 }
 
 .typeview-info-name {
@@ -1135,12 +1129,10 @@ const colours = {
   gap: 10px;
   width: 50%;
   padding: 0 0.5rem;
-  /* background-color: #6390f0; */
 }
 
 .typeview-info-button-small {
   background-color: none;
-  /* padding: 0.5rem; */
 }
 
 .typeview-info-button-med-large {
@@ -1152,21 +1144,18 @@ const colours = {
   height: 1rem;
   width: 1rem;
   object-fit: contain;
-  /* padding: 0.25rem; */
 }
 
 .typeview-info-icon-med {
   height: 1.25rem;
   width: 1.25rem;
   object-fit: contain;
-  /* padding: 0.25rem; */
 }
 
 .typeview-info-icon-large {
   height: 1.5rem;
   width: 1.5rem;
   object-fit: contain;
-  /* padding: 0.25rem; */
 }
 
 .typeview-table-damage-relations {
@@ -1174,7 +1163,6 @@ const colours = {
   flex: 2 1 50%;
   flex-direction: column;
   padding: 0.5rem 1rem;
-  /* background-color: #08f123; */
 }
 
 .typeview-table-icon-container {
@@ -1183,14 +1171,12 @@ const colours = {
   align-items: center;
   justify-content: center;
   padding: 0.5rem 1rem;
-  /* background-color: #cf1a3b; */
 }
 
 .typeview-table-icon-outline {
   height: 10rem;
   width: 10rem;
   padding: 1rem;
-  /* background-color: #735797; */
 }
 
 .typeview-table-icon {
@@ -1199,7 +1185,6 @@ const colours = {
   height: 100%;
   width: 100%;
   object-fit: contain;
-  /* background-color: #d57d0a; */
 }
 
 /* Tab options */
@@ -1207,7 +1192,6 @@ const colours = {
 .tab-button {
   background: none;
   border: none;
-  /* background-color: #7ac74c; */
 }
 
 .tab-button-small {
