@@ -16,11 +16,12 @@ const SearchItem = ({ resultItem, isDarkMode, i }) => {
   const cleanedParts = parts.filter((part) => part !== "");
   const lastPart = cleanedParts[cleanedParts.length - 1];
   const number = parseInt(lastPart, 10);
+  const pokeIdURL = `/pokemon/${number}`;
 
   return (
     <Link
       className={`search-results-item clean-text ${searchResultsItemsStyle}`}
-      to="/pokemon"
+      to={pokeIdURL}
     >
       <div>
         <img

@@ -20,6 +20,7 @@ const PokemonCard = ({ obj, i, isDarkMode }) => {
 
   // Get the Pokémon number and normalize it to four digits
   const cardNum = "000" + i;
+  const pokeIdURL = `/pokemon/${i}`;
 
   // If the image is still loading, display the loading card. Otherwise, show the full Pokémon card with image
   return (
@@ -32,7 +33,7 @@ const PokemonCard = ({ obj, i, isDarkMode }) => {
       <Link
         className={`pokemon-card ${cardStyle}`}
         style={{ display: isImageLoaded ? "flex" : "none" }}
-        to="/pokemon"
+        to={pokeIdURL}
       >
         <div className={`pokemon-card-title ${cardTitleStyle}`}>
           {obj.name[0].toUpperCase() + obj.name.slice(1)}
