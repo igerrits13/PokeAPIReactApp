@@ -72,7 +72,7 @@ const TypeView = ({
   // Fetch data for the current type
   useEffect(() => {
     // If the type searched for is not a valid ID, redirect to page not found
-    if (id >= 19 || isNaN(id)) {
+    if (id < 0 || id >= 19 || isNaN(id)) {
       navigate("/notfound");
       return;
     }

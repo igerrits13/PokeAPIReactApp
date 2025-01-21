@@ -1133,6 +1133,7 @@ const colours = {
 
 .typeview-info-button-small {
   background-color: none;
+  padding: 0.5rem;
 }
 
 .typeview-info-button-med-large {
@@ -1141,8 +1142,8 @@ const colours = {
 }
 
 .typeview-info-icon-small {
-  height: 1rem;
-  width: 1rem;
+  height: 1.25rem;
+  width: 1.25rem;
   object-fit: contain;
 }
 

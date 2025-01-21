@@ -1,9 +1,12 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import SecondaryViewHeader from "../CommonComponents/SecondaryViewHeader";
 import Footer from "../CommonComponents/Footer";
 
+// Temporary page while Pokémon page is not done
 const PokeViewTemp = ({ fullPokeResults, screenSize, isDarkMode }) => {
+  // Setup data structures to store the id of the Pokémon search, and for navigation to other pages
   const { id } = useParams();
+  const navigate = useNavigate();
   // Setup the title font style based on if the user is using light or dark mode and screen size
   const fontStyle = isDarkMode ? "font-dark" : "font-light";
 
@@ -15,10 +18,19 @@ const PokeViewTemp = ({ fullPokeResults, screenSize, isDarkMode }) => {
       ? "notfound-med"
       : "notfound-large";
 
-  // Decide if it will be shiny or not
+  // If the Pokémon searched for is not a valid ID, redirect to page not found
+  if (
+    (fullPokeResults.length > 0 && (id < 0 || id > fullPokeResults.length)) ||
+    isNaN(id)
+  ) {
+    navigate("/notfound");
+    return;
+  }
+
+  // Decide if image will be shiny or not
   const randShiny = Math.floor(Math.random() * 2) + 1;
 
-  // Get the random Pokémon image
+  // Get image of the currently selected Pokémon, shiny or regular version
   let randPokemon;
   if (randShiny === 1) {
     randPokemon = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
@@ -26,7 +38,7 @@ const PokeViewTemp = ({ fullPokeResults, screenSize, isDarkMode }) => {
     randPokemon = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/${id}.png`;
   }
 
-  // Display the page not found view components
+  // Display the temporary Pokémon page
   return (
     <div
       className={`notfound-container ${containerSize} ${

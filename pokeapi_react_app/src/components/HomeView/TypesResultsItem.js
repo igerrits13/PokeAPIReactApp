@@ -8,7 +8,6 @@ const TypesResultsItem = ({ obj, typeIcon, typeStyle, isDarkMode }) => {
   const typeResultsStyle = isDarkMode
     ? "component-background-dark component-outline-dark"
     : "component-background-light component-outline-light";
-
   const typeResultsFontStyle = isDarkMode
     ? "font-dark-no-outline"
     : "font-light";
