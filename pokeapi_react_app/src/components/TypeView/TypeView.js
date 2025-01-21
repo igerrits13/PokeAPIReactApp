@@ -60,6 +60,14 @@ const TypeView = ({
       : screenSize === "med"
       ? "typeview-info-icon-med"
       : "typeview-info-icon-large";
+  const secondaryHeaderStyle =
+    screenSize === "small"
+      ? "typeview-header-small"
+      : screenSize === "medium"
+      ? "typeview-header-med"
+      : screenSize === "large"
+      ? "typeview-header-large"
+      : "typeview-header-x-large";
 
   // Fetch data for the current type
   useEffect(() => {
@@ -211,7 +219,14 @@ const TypeView = ({
     ? Object.entries(typeData.damage_relations).map(([obj, icons], i) => {
         if (icons.length > 0) {
           return (
-            <div key={i} className={`typeview-table-info-section ${lineStyle}`}>
+            <div
+              key={i}
+              className={`typeview-table-info-section ${
+                i < Object.entries(typeData.damage_relations).length - 1
+                  ? lineStyle
+                  : ""
+              }`}
+            >
               <div className="typeview-info-name">{getSectionTitle(obj)}</div>
               <div className="typeview-info-icon-container">
                 {Object.entries(icons).map((icon, i) => {
@@ -227,8 +242,12 @@ const TypeView = ({
                   return (
                     <Link key={i} className="clean-text" to={typeIdUrl}>
                       <motion.button
-                        className={`typeview-info-button ${iconStyle}`}
-                        whileHover={{ scale: 1.1, rotate: "-1.5deg" }}
+                        className={`hover-dim ${
+                          screenSize === "small"
+                            ? "typeview-info-button-small"
+                            : "typeview-info-button-med-large"
+                        } ${iconStyle}`}
+                        whileHover={{ scale: 1.1, rotate: "-5deg" }}
                         whileTap={{ scale: 0.9, rotate: "5deg" }}
                         transition={{ duration: 0.1 }}
                       >
@@ -245,7 +264,14 @@ const TypeView = ({
           );
         } else {
           return (
-            <div key={i} className="typeview-table-info-section">
+            <div
+              key={i}
+              className={`typeview-table-info-section ${
+                i < Object.entries(typeData.damage_relations).length - 1
+                  ? lineStyle
+                  : ""
+              }`}
+            >
               <div className="typeview-info-name">{getSectionTitle(obj)}</div>
               <div className="typeview-info-icon-container">None</div>
             </div>
@@ -275,6 +301,8 @@ const TypeView = ({
   // </div>
   // </div>
 
+  // console.log(typeData.name[0]);
+
   // Display the type view page from its components
   return (
     <div
@@ -288,40 +316,53 @@ const TypeView = ({
         isDarkMode={isDarkMode}
       />
       {!isTypesLoading ? (
+        <div className={`${fontStyle} ${secondaryHeaderStyle}`}>
+          {typeData.name[0].toUpperCase() + typeData.name.slice(1)} Type
+        </div>
+      ) : (
+        <></>
+      )}
+      {!isTypesLoading ? (
+        // <div>
         <div
           className={`${
-            screenSize === "small"
-              ? "typeview-table-small"
-              : "typeview-table-med-large"
+            screenSize === "small" || screenSize === "medium"
+              ? "typeview-table-small-med"
+              : "typeview-table-large"
           } ${fontStyle}`}
         >
           <div className="typeview-table-info">
+            {/* <div className={`typeview-table-info-section ${lineStyle}`}>
+                <div className="typeview-table-info-name">Type Name</div>
+                <div className="typeview-table-info-result">
+                  {typeData.name[0].toUpperCase() + typeData.name.slice(1)}
+                </div>
+              </div> */}
             <div className={`typeview-table-info-section ${lineStyle}`}>
-              <div className="typeview-table-info-name">Type Name: </div>
-              <div className="typeview-table-info-result">
-                {typeData.name[0].toUpperCase() + typeData.name.slice(1)}
-              </div>
+              <div className="typeview-table-info-name">Type ID</div>
+              <div className="typeview-table-info-result">#{typeData.id}</div>
             </div>
             <div className={`typeview-table-info-section ${lineStyle}`}>
-              <div className="typeview-table-info-name">Type ID: #</div>
-              <div className="typeview-table-info-result">{typeData.id}</div>
-            </div>
-            <div className={`typeview-table-info-section ${lineStyle}`}>
-              <div className="typeview-table-info-name">Generation: </div>
+              <div className="typeview-table-info-name">Generation</div>
               <div className="typeview-table-info-result">
                 {getGenerationTitle(typeData.generation.name)}
               </div>
             </div>
             <div className="typeview-table-info-section">
-              <div className="typeview-table-info-name">
-                Move Damage Class:{" "}
-              </div>
+              <div className="typeview-table-info-name">Move Damage Class</div>
               <div className="typeview-table-info-result">
-                {typeData.move_damage_class.name[0].toUpperCase() +
-                  typeData.move_damage_class.name.slice(1)}
+                {typeData.move_damage_class
+                  ? typeData.move_damage_class.name[0].toUpperCase() +
+                    typeData.move_damage_class.name.slice(1)
+                  : "None"}
               </div>
             </div>
           </div>
+          {screenSize === "small" || screenSize === "medium" ? (
+            <div className={`${fontStyle} ${secondaryHeaderStyle}`}>
+              Damage Relations
+            </div>
+          ) : null}
           <div className="typeview-table-damage-relations">
             {damageRelationsHTML}
           </div>
@@ -345,16 +386,19 @@ const TypeView = ({
               {getSectionTitle(Object.keys(typeData.damage_relations)[5])}
             </div>
           </div> */}
-          <div className={`typeview-table-icon-container`}>
-            <div className={`typeview-table-icon-outline ${iconStyle}`}>
-              <DynamicSvgIcon
-                classes={`typeview-table-icon ${typeStyle}`}
-                IconComponent={typeIcon}
-              />
+          {screenSize === "large" || screenSize === "x-large" ? (
+            <div className={`typeview-table-icon-container`}>
+              <div className={`typeview-table-icon-outline ${iconStyle}`}>
+                <DynamicSvgIcon
+                  classes={`typeview-table-icon ${typeStyle}`}
+                  IconComponent={typeIcon}
+                />
+              </div>
             </div>
-          </div>
+          ) : null}{" "}
         </div>
       ) : (
+        // </div>
         <></>
       )}
       <DynamicTabOptions

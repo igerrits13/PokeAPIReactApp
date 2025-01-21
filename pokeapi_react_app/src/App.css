@@ -1044,43 +1044,72 @@ const colours = {
   justify-self: start;
 }
 
+/* Type view information Title */
+
+.typeview-header-small {
+  padding: 3rem 1rem 0 1rem;
+  font-size: 1.5rem;
+  place-self: start;
+}
+
+.typeview-header-med {
+  padding: 3rem 1rem 0 1rem;
+  font-size: 2rem;
+  place-self: start;
+}
+
+.typeview-header-large {
+  padding: 0 1rem;
+  font-size: 2.5rem;
+  place-self: start;
+}
+
+.typeview-header-x-large {
+  padding: 0 1rem;
+  font-size: 3rem;
+  place-self: start;
+}
+
 /* Type view information table */
 
-.typeview-table-small {
+.typeview-table-small-med {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: space-between;
   height: auto;
-  padding: 3rem;
+  width: 100%;
+  padding: 1rem 0 3rem 0;
   /* background-color: #92bc2c; */
 }
 
-.typeview-table-med-large {
+.typeview-table-large {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
   width: 100%;
-  padding: 3rem;
+  padding: 1rem 0 3rem 0;
   /* background-color: #92bc2c; */
 }
 
 .typeview-table-info {
   display: flex;
-  flex: 1 1 25%;
+  flex: 1 1 30%;
   flex-direction: column;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   /* gap: 5px; */
   /* background-color: #96d9d6; */
 }
 
 .typeview-table-info-name {
   width: 50%;
+  padding: 0 0.5rem;
 }
 
 .typeview-table-info-result {
   width: 50%;
+  padding: 0 0.5rem;
 }
 
 .typeview-table-info-section {
@@ -1090,12 +1119,13 @@ const colours = {
   align-items: center;
   padding: 0.5rem;
   /* border: 1px solid #7ac74c; */
-  /* height: 3rem; */
+  min-height: 4rem;
   /* background-color: #735797; */
 }
 
 .typeview-info-name {
   width: 50%;
+  padding: 0 0.5rem;
 }
 
 .typeview-info-icon-container {
@@ -1104,10 +1134,16 @@ const colours = {
   flex-wrap: wrap;
   gap: 10px;
   width: 50%;
+  padding: 0 0.5rem;
   /* background-color: #6390f0; */
 }
 
-.typeview-info-button {
+.typeview-info-button-small {
+  background-color: none;
+  /* padding: 0.5rem; */
+}
+
+.typeview-info-button-med-large {
   background-color: none;
   padding: 0.5rem;
 }
@@ -1135,16 +1171,18 @@ const colours = {
 
 .typeview-table-damage-relations {
   display: flex;
-  flex: 2 1 62.5%;
+  flex: 2 1 50%;
   flex-direction: column;
+  padding: 0.5rem 1rem;
   /* background-color: #08f123; */
 }
 
 .typeview-table-icon-container {
   display: flex;
-  flex: 1 1 12.5%;
+  flex: 1 1 20%;
   align-items: center;
   justify-content: center;
+  padding: 0.5rem 1rem;
   /* background-color: #cf1a3b; */
 }
 
@@ -1169,18 +1207,19 @@ const colours = {
 .tab-button {
   background: none;
   border: none;
+  /* background-color: #7ac74c; */
 }
 
 .tab-button-small {
-  padding: 0 15px;
+  margin: 0 15px;
 }
 
 .tab-button-med {
-  padding: 0 50px;
+  margin: 0 50px;
 }
 
 .tab-button-large {
-  padding: 0 75px;
+  margin: 0 75px;
 }
 
 /* Sprites Tab */
