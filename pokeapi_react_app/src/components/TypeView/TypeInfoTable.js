@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import { motion } from "motion/react";
+// import { Link } from "react-router-dom";
+// import { motion } from "motion/react";
 import { ReactComponent as BugType } from "../icons/bug.svg";
 import { ReactComponent as DarkType } from "../icons/dark.svg";
 import { ReactComponent as DragonType } from "../icons/dragon.svg";
@@ -19,6 +19,8 @@ import { ReactComponent as RockType } from "../icons/rock.svg";
 import { ReactComponent as SteelType } from "../icons/steel.svg";
 import { ReactComponent as WaterType } from "../icons/water.svg";
 import DynamicSvgIcon from "../CommonComponents/DynamicSvgIcon";
+import TypeInfo from "./TypeInfo";
+import DamageRelations from "./DamageRelations";
 
 const TypeInfoTable = ({
   isTypesLoading,
@@ -39,15 +41,15 @@ const TypeInfoTable = ({
   const iconStyle = isDarkMode
     ? "component-background-dark component-rounded-outline-thin-dark"
     : "component-background-light component-rounded-outline-thin-light";
-  const lineStyle = isDarkMode
-    ? "component-outline-bottom-dark"
-    : "component-outline-bottom-light";
-  const buttonSize =
-    screenSize === "small"
-      ? "typeview-info-icon-small"
-      : screenSize === "med"
-      ? "typeview-info-icon-med"
-      : "typeview-info-icon-large";
+  // const lineStyle = isDarkMode
+  //   ? "component-outline-bottom-dark"
+  //   : "component-outline-bottom-light";
+  // const buttonSize =
+  //   screenSize === "small"
+  //     ? "typeview-info-icon-small"
+  //     : screenSize === "med"
+  //     ? "typeview-info-icon-med"
+  //     : "typeview-info-icon-large";
 
   // Set the type attributes for the current button base on if the user is using dark mode or not
   function getTypeIcon(typeName) {
@@ -129,24 +131,24 @@ const TypeInfoTable = ({
     }
   }
 
-  // Seperate the generation title by '-' and capitalize appropriate letters
-  const getGenerationTitle = (generation) => {
-    let genTitle = generation.split("-");
-    genTitle[0] = genTitle[0][0].toUpperCase() + genTitle[0].slice(1);
-    genTitle[1] = genTitle[1].toUpperCase();
-    return genTitle.join(" ");
-  };
+  // // Seperate the generation title by '-' and capitalize appropriate letters
+  // const getGenerationTitle = (generation) => {
+  //   let genTitle = generation.split("-");
+  //   genTitle[0] = genTitle[0][0].toUpperCase() + genTitle[0].slice(1);
+  //   genTitle[1] = genTitle[1].toUpperCase();
+  //   return genTitle.join(" ");
+  // };
 
-  // Return the name of the current game in formatted form
-  const getSectionTitle = (section) => {
-    return section
-      .split("_")
-      .map(
-        (currWord) =>
-          currWord.charAt(0).toUpperCase() + currWord.slice(1).toLowerCase()
-      )
-      .join(" ");
-  };
+  // // Return the name of the current game in formatted form
+  // const getSectionTitle = (section) => {
+  //   return section
+  //     .split("_")
+  //     .map(
+  //       (currWord) =>
+  //         currWord.charAt(0).toUpperCase() + currWord.slice(1).toLowerCase()
+  //     )
+  //     .join(" ");
+  // };
 
   // Setup the styling for the current type
   let typeIcon, typeStyle;
@@ -154,82 +156,71 @@ const TypeInfoTable = ({
     [typeIcon, typeStyle] = getTypeIcon(typeData.name);
   }
 
-  // Display damage relations section of the type information table
-  const damageRelationsHTML = !isTypesLoading
-    ? Object.entries(typeData.damage_relations).map(([obj, icons], i) => {
-        if (icons.length > 0) {
-          return (
-            <div
-              key={i}
-              className={`typeview-table-info-section ${
-                i < Object.entries(typeData.damage_relations).length - 1
-                  ? lineStyle
-                  : ""
-              }`}
-            >
-              <div className="typeview-info-name">{getSectionTitle(obj)}</div>
-              <div className="typeview-info-icon-container">
-                {Object.entries(icons).map((icon, i) => {
-                  const [currTypeIcon, currTypeStyle] = getTypeIcon(
-                    icon[1].name
-                  );
-                  // Get the id for the current type to add to the Link
-                  const urlArr = icon[1].url.split("/");
-                  const urlNoSlash = urlArr.filter((part) => part !== "");
-                  const urlNumber = urlNoSlash[urlNoSlash.length - 1];
-                  const typeNum = parseInt(urlNumber, 10);
-                  const typeIdUrl = `/types/${typeNum}`;
-                  return (
-                    <Link key={i} className="clean-text" to={typeIdUrl}>
-                      <motion.button
-                        className={`hover-dim ${
-                          screenSize === "small"
-                            ? "typeview-info-button-small"
-                            : "typeview-info-button-med-large"
-                        } ${iconStyle}`}
-                        whileHover={{ scale: 1.1, rotate: "-5deg" }}
-                        whileTap={{ scale: 0.9, rotate: "5deg" }}
-                        transition={{ duration: 0.1 }}
-                      >
-                        <DynamicSvgIcon
-                          classes={`${buttonSize} ${currTypeStyle}`}
-                          IconComponent={currTypeIcon}
-                        />
-                      </motion.button>
-                    </Link>
-                  );
-                })}
-              </div>
-            </div>
-          );
-        } else {
-          return (
-            <div
-              key={i}
-              className={`typeview-table-info-section ${
-                i < Object.entries(typeData.damage_relations).length - 1
-                  ? lineStyle
-                  : ""
-              }`}
-            >
-              <div className="typeview-info-name">{getSectionTitle(obj)}</div>
-              <div className="typeview-info-icon-container">None</div>
-            </div>
-          );
-        }
-      })
-    : null;
-  // <div>
-  {
-    /* {!isTypesLoading ? (
-        <div className={`${fontStyle} ${secondaryHeaderStyle}`}>
-          {typeData.name[0].toUpperCase() + typeData.name.slice(1)} Type
-        </div>
-      ) : (
-        <></>
-      )} */
-  }
-  // {!isTypesLoading ? (
+  // // Display damage relations section of the type information table
+  // const damageRelationsHTML = !isTypesLoading
+  //   ? Object.entries(typeData.damage_relations).map(([obj, icons], i) => {
+  //       if (icons.length > 0) {
+  //         return (
+  //           <div
+  //             key={i}
+  //             className={`typeview-table-info-section ${
+  //               i < Object.entries(typeData.damage_relations).length - 1
+  //                 ? lineStyle
+  //                 : ""
+  //             }`}
+  //           >
+  //             <div className="typeview-info-name">{getSectionTitle(obj)}</div>
+  //             <div className="typeview-info-icon-container">
+  //               {Object.entries(icons).map((icon, i) => {
+  //                 const [currTypeIcon, currTypeStyle] = getTypeIcon(
+  //                   icon[1].name
+  //                 );
+  //                 // Get the id for the current type to add to the Link
+  //                 const urlArr = icon[1].url.split("/");
+  //                 const urlNoSlash = urlArr.filter((part) => part !== "");
+  //                 const urlNumber = urlNoSlash[urlNoSlash.length - 1];
+  //                 const typeNum = parseInt(urlNumber, 10);
+  //                 const typeIdUrl = `/types/${typeNum}`;
+  //                 return (
+  //                   <Link key={i} className="clean-text" to={typeIdUrl}>
+  //                     <motion.button
+  //                       className={`hover-dim ${
+  //                         screenSize === "small"
+  //                           ? "typeview-info-button-small"
+  //                           : "typeview-info-button-med-large"
+  //                       } ${iconStyle}`}
+  //                       whileHover={{ scale: 1.1, rotate: "-5deg" }}
+  //                       whileTap={{ scale: 0.9, rotate: "5deg" }}
+  //                       transition={{ duration: 0.1 }}
+  //                     >
+  //                       <DynamicSvgIcon
+  //                         classes={`${buttonSize} ${currTypeStyle}`}
+  //                         IconComponent={currTypeIcon}
+  //                       />
+  //                     </motion.button>
+  //                   </Link>
+  //                 );
+  //               })}
+  //             </div>
+  //           </div>
+  //         );
+  //       } else {
+  //         return (
+  //           <div
+  //             key={i}
+  //             className={`typeview-table-info-section ${
+  //               i < Object.entries(typeData.damage_relations).length - 1
+  //                 ? lineStyle
+  //                 : ""
+  //             }`}
+  //           >
+  //             <div className="typeview-info-name">{getSectionTitle(obj)}</div>
+  //             <div className="typeview-info-icon-container">None</div>
+  //           </div>
+  //         );
+  //       }
+  //     })
+  //   : null;
 
   if (!isTypesLoading) {
     return (
@@ -240,7 +231,8 @@ const TypeInfoTable = ({
             : "typeview-table-large"
         } ${fontStyle}`}
       >
-        <div className="typeview-table-info">
+        <TypeInfo typeData={typeData} isDarkMode={isDarkMode} />
+        {/* <div className="typeview-table-info">
           <div className={`typeview-table-info-section ${lineStyle}`}>
             <div className="typeview-table-info-name">Type ID</div>
             <div className="typeview-table-info-result">#{typeData.id}</div>
@@ -260,15 +252,22 @@ const TypeInfoTable = ({
                 : "None"}
             </div>
           </div>
-        </div>
+        </div> */}
         {screenSize === "small" || screenSize === "medium" ? (
           <div className={`${fontStyle} ${secondaryHeaderStyle}`}>
             Damage Relations
           </div>
         ) : null}
-        <div className="typeview-table-damage-relations">
+        <DamageRelations
+          isTypesLoading={isTypesLoading}
+          typeData={typeData}
+          getTypeIcon={getTypeIcon}
+          screenSize={screenSize}
+          isDarkMode={isDarkMode}
+        />
+        {/* <div className="typeview-table-damage-relations">
           {damageRelationsHTML}
-        </div>
+        </div> */}
         {screenSize === "large" || screenSize === "x-large" ? (
           <div className={`typeview-table-icon-container`}>
             <div className={`typeview-table-icon-outline ${iconStyle}`}>
@@ -282,13 +281,6 @@ const TypeInfoTable = ({
       </div>
     );
   }
-  // ) : (
-  // <></>
-  // )}
-  // ;
-  // </div>
-  // );
-  // }}}
 };
 
 export default TypeInfoTable;
