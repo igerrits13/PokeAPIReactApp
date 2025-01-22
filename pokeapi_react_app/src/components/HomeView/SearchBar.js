@@ -87,7 +87,8 @@ const SearchBar = ({ fullPokeResults, isDarkMode }) => {
         onKeyDown={autoFillSearchText}
         ref={inputRef}
       />
-      <Link to="/pokemon">
+      <Link to="/pokemon/">
+        {/* <Link to={`/pokemon/${searchText}`}> */}
         <button className={`searchbar-search-icon ${searchIconStyle}`}>
           <i className="fa-solid fa-magnifying-glass searchbar-icon"></i>{" "}
         </button>

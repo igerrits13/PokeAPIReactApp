@@ -25,6 +25,7 @@ const TypeView = ({
   const { id } = useParams();
   const [typeData, setTypeData] = useState([]);
   const [isTypesLoading, setIsTypesLoading] = useState(true);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   // Setup the search bar style based on if the user is using light or dark mode
@@ -38,20 +39,59 @@ const TypeView = ({
       ? "typeview-header-large"
       : "typeview-header-x-large";
 
+  // // Fetch data for the current type
+  // useEffect(() => {
+  //   // If the type searched for is not a valid ID, redirect to page not found
+  //   if (
+  //     id < 0 ||
+  //     id >= 19
+  //     // || isNaN(id)
+  //   ) {
+  //     navigate("/notfound");
+  //     return;
+  //   }
+  //   fetch(`https://pokeapi.co/api/v2/type/${id}/`)
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setTypeData(data);
+  //       setIsTypesLoading(false);
+  //     });
+  // }, [id, setIsTypesLoading, navigate]);
+
   // Fetch data for the current type
   useEffect(() => {
-    // If the type searched for is not a valid ID, redirect to page not found
-    if (id < 0 || id >= 19 || isNaN(id)) {
-      navigate("/notfound");
-      return;
-    }
-    fetch(`https://pokeapi.co/api/v2/type/${id}/`)
-      .then((response) => response.json())
-      .then((data) => {
-        setTypeData(data);
+    const fetchData = async () => {
+      // Check if the id is within the desired range
+      if ((id > 0 && id < 19) || isNaN(id)) {
+        setIsTypesLoading(true);
+        try {
+          const response = await fetch(`https://pokeapi.co/api/v2/type/${id}/`);
+          if (!response.ok) {
+            navigate("/notfound");
+            return;
+          }
+          const jsonData = await response.json();
+          setTypeData(jsonData);
+        } catch (error) {
+          setError(error);
+        } finally {
+          setIsTypesLoading(false);
+        }
+      } else {
         setIsTypesLoading(false);
-      });
-  }, [id, setIsTypesLoading, navigate]);
+        navigate("/notfound");
+        return;
+      }
+    };
+
+    fetchData();
+  }, [id, navigate]);
+
+  // Reset sort options
+  useEffect(() => {
+    setFilterByGen("all");
+    setSortBy("number");
+  }, [setFilterByGen, setSortBy]);
 
   // Set what the container size for the page should be based on viewport width
   const containerSize =
@@ -60,12 +100,6 @@ const TypeView = ({
       : screenSize === "medium"
       ? "typeview-med"
       : "typeview-large";
-
-  // Reset sort options
-  useEffect(() => {
-    setFilterByGen("all");
-    setSortBy("number");
-  }, [setFilterByGen, setSortBy]);
 
   // Tabs to be displayed
   const tabLabels = [
@@ -77,6 +111,11 @@ const TypeView = ({
   // State to keep track of the tab that is currently active, then get the name of that tab
   const [activeButton, setActiveButton] = useState(0);
   const activeTab = tabLabels[activeButton].label;
+
+  if (error) {
+    navigate("/notfound");
+    return;
+  }
 
   // Display the type view page from its components
   return (
