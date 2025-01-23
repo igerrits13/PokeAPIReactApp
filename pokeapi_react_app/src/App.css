@@ -1207,6 +1207,46 @@ const colours = {
   margin: 0 75px;
 }
 
+/* Moves Tab */
+
+.movestab-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 10px;
+  width: 60%;
+}
+
+.movestab-section-head {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding: 1rem 2rem;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.movestab-section {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding: 2rem;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.movestab-item {
+  width: 100%;
+  text-align: center;
+}
+
+.movestab-icon {
+  height: 2rem;
+  width: 2rem;
+  object-fit: contain;
+}
+
 /* Sprites Tab */
 
 .spritestab-container {

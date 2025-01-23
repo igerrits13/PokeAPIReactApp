@@ -1,5 +1,23 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { ReactComponent as BugType } from "../icons/bug.svg";
+import { ReactComponent as DarkType } from "../icons/dark.svg";
+import { ReactComponent as DragonType } from "../icons/dragon.svg";
+import { ReactComponent as ElectricType } from "../icons/electric.svg";
+import { ReactComponent as FairyType } from "../icons/fairy.svg";
+import { ReactComponent as FightingType } from "../icons/fighting.svg";
+import { ReactComponent as FireType } from "../icons/fire.svg";
+import { ReactComponent as FlyingType } from "../icons/flying.svg";
+import { ReactComponent as GhostType } from "../icons/ghost.svg";
+import { ReactComponent as GrassType } from "../icons/grass.svg";
+import { ReactComponent as GroundType } from "../icons/ground.svg";
+import { ReactComponent as IceType } from "../icons/ice.svg";
+import { ReactComponent as NormalType } from "../icons/normal.svg";
+import { ReactComponent as PoisonType } from "../icons/poison.svg";
+import { ReactComponent as PsychicType } from "../icons/psychic.svg";
+import { ReactComponent as RockType } from "../icons/rock.svg";
+import { ReactComponent as SteelType } from "../icons/steel.svg";
+import { ReactComponent as WaterType } from "../icons/water.svg";
 import SecondaryViewHeader from "../CommonComponents/SecondaryViewHeader";
 import TypeInfoTable from "./TypeInfoTable";
 import DynamicTabOptions from "../CommonComponents/DynamicTabOptions";
@@ -84,6 +102,38 @@ const TypeView = ({
     setSortBy("number");
   }, [setFilterByGen, setSortBy]);
 
+  // Map to match for each possible type case
+  const typeMapping = {
+    bug: [BugType, "bug-type"],
+    dark: [DarkType, "dark-type"],
+    dragon: [DragonType, "dragon-type"],
+    electric: [ElectricType, "electric-type"],
+    fairy: [FairyType, "fairy-type"],
+    fighting: [FightingType, "fighting-type"],
+    fire: [FireType, "fire-type"],
+    flying: [FlyingType, "flying-type"],
+    ghost: [GhostType, "ghost-type"],
+    grass: [GrassType, "grass-type"],
+    ground: [GroundType, "ground-type"],
+    ice: [IceType, "ice-type"],
+    normal: [NormalType, "normal-type"],
+    poison: [PoisonType, "poison-type"],
+    psychic: [PsychicType, "psychic-type"],
+    rock: [RockType, "rock-type"],
+    steel: [SteelType, "steel-type"],
+    water: [WaterType, "water-type"],
+  };
+
+  // Set the type attributes for the current type based on type name and if the user is in dark mode or not
+  function getTypeIcon(typeName) {
+    if (typeMapping[typeName]) {
+      const [typeIcon, baseClass] = typeMapping[typeName];
+      const modeSuffix = isDarkMode ? "-dark" : "-light";
+      return [typeIcon, `${baseClass}${modeSuffix}`];
+    }
+    return null;
+  }
+
   // Tabs to be displayed within types view and currently active tab
   const tabLabels = [
     { label: "Pokémon" },
@@ -119,6 +169,7 @@ const TypeView = ({
       <TypeInfoTable
         isTypesLoading={isTypesLoading}
         typeData={typeData}
+        getTypeIcon={getTypeIcon}
         screenSize={screenSize}
         isDarkMode={isDarkMode}
       />
@@ -147,7 +198,12 @@ const TypeView = ({
         />
       )}
       {activeTab === "Moves" && (
-        <MovesTab typeData={typeData} isDarkMode={isDarkMode} />
+        <MovesTab
+          typeData={typeData}
+          isTypesLoading={isTypesLoading}
+          getTypeIcon={getTypeIcon}
+          isDarkMode={isDarkMode}
+        />
       )}
       {activeTab === "Sprites" && (
         <SpritesTab typeData={typeData} isDarkMode={isDarkMode} />
