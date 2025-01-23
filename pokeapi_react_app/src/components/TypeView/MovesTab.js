@@ -27,30 +27,41 @@ const MovesTab = ({ typeData, isTypesLoading, getTypeIcon, isDarkMode }) => {
 
   // Display moves tab when active
   return (
-    <div className="movestab-container">
-      <div className={`movestab-section-head ${fontStyle} ${moveSectionStyle}`}>
-        <div className="movestab-item">Name</div>
-        <div className="movestab-item">Type</div>
+    !isTypesLoading && (
+      <div className="movestab-container">
+        <div
+          className={`movestab-section-head ${fontStyle} ${moveSectionStyle}`}
+        >
+          <div className="movestab-item">Name</div>
+          <div className="movestab-item">Type</div>
+        </div>
+        {Object.entries(typeData.moves)
+          // Sort the moves alphabetically
+          .sort(([keyA, moveA], [keyB, moveB]) => {
+            const moveTitleA = getMoveTitle(moveA.name);
+            const moveTitleB = getMoveTitle(moveB.name);
+            return moveTitleA.localeCompare(moveTitleB);
+          })
+          .map((obj, i) => {
+            return (
+              <div
+                className={`movestab-section ${fontStyle} ${moveSectionStyle}`}
+                key={i}
+              >
+                <div className="movestab-item">{getMoveTitle(obj[1].name)}</div>
+                <div className="movestab-item">
+                  {!isTypesLoading && (
+                    <DynamicSvgIcon
+                      classes={`movestab-icon ${typeStyle}`}
+                      IconComponent={typeIcon}
+                    />
+                  )}
+                </div>
+              </div>
+            );
+          })}
       </div>
-      {Object.entries(typeData.moves).map((obj, i) => {
-        return (
-          <div
-            className={`movestab-section ${fontStyle} ${moveSectionStyle}`}
-            key={i}
-          >
-            <div className="movestab-item">{getMoveTitle(obj[1].name)}</div>
-            <div className="movestab-item">
-              {!isTypesLoading && (
-                <DynamicSvgIcon
-                  classes={`movestab-icon ${typeStyle}`}
-                  IconComponent={typeIcon}
-                />
-              )}
-            </div>
-          </div>
-        );
-      })}
-    </div>
+    )
   );
 };
 

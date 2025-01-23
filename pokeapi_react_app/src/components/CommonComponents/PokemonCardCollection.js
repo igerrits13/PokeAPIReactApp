@@ -13,7 +13,7 @@ const PokemonCardCollection = ({
   const fontStyle = isDarkMode ? "title-font-dark" : "title-font-light";
 
   // Variable to hold how many cards will be displayed based on user scrolling
-  const [cardsToDisplay, setCardsToDisplay] = useState(24);
+  const [cardsToDisplay, setCardsToDisplay] = useState(12);
 
   // Create a card for each Pokémon
   const cardsHTML = commonElements.map((obj, i) => {
@@ -64,7 +64,8 @@ const PokemonCardCollection = ({
 
   // Update how many cards are to be displayed
   const fetchMoreData = () => {
-    setCardsToDisplay(cardsToDisplay + 24);
+    // setCardsToDisplay(cardsToDisplay + 24);
+    setCardsToDisplay(cardsToDisplay + 12);
   };
 
   return (

@@ -103,6 +103,7 @@ const SpritesTab = ({ typeData, isDarkMode }) => {
                   {Object.entries(generationData)
                     // Sort the sprites alphabetically by game title
                     .sort(([gameA], [gameB]) => {
+                      // console.log(gameA);
                       const gameTitleA = getGameTitle(gameA);
                       const gameTitleB = getGameTitle(gameB);
                       return gameTitleA.localeCompare(gameTitleB);
