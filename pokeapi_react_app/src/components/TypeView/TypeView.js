@@ -21,14 +21,16 @@ const TypeView = ({
   screenSize,
   isDarkMode,
 }) => {
-  // Setup data structures to store type data of the current type, get the id of the type, and setup the loading state for the API call
+  // Setup data structures to get the id of the type, store type data of the current type,
+  // setup the loading, error state for the API call and page navigation, and what tab is currently active
   const { id } = useParams();
   const [typeData, setTypeData] = useState([]);
   const [isTypesLoading, setIsTypesLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const [activeButton, setActiveButton] = useState(0);
 
-  // Setup the search bar style based on if the user is using light or dark mode
+  // Setup the font and header style based on if the user is using light or dark mode
   const fontStyle = isDarkMode ? "font-dark" : "font-light";
   const secondaryHeaderStyle =
     screenSize === "small"
@@ -39,29 +41,18 @@ const TypeView = ({
       ? "typeview-header-large"
       : "typeview-header-x-large";
 
-  // // Fetch data for the current type
-  // useEffect(() => {
-  //   // If the type searched for is not a valid ID, redirect to page not found
-  //   if (
-  //     id < 0 ||
-  //     id >= 19
-  //     // || isNaN(id)
-  //   ) {
-  //     navigate("/notfound");
-  //     return;
-  //   }
-  //   fetch(`https://pokeapi.co/api/v2/type/${id}/`)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setTypeData(data);
-  //       setIsTypesLoading(false);
-  //     });
-  // }, [id, setIsTypesLoading, navigate]);
+  // Set what the container size for the page should be based on viewport width
+  const containerSize =
+    screenSize === "small"
+      ? "typeview-small"
+      : screenSize === "medium"
+      ? "typeview-med"
+      : "typeview-large";
 
   // Fetch data for the current type
   useEffect(() => {
     const fetchData = async () => {
-      // Check if the id is within the desired range
+      // Check if the id is within the valid types
       if ((id > 0 && id < 19) || isNaN(id)) {
         setIsTypesLoading(true);
         try {
@@ -87,37 +78,28 @@ const TypeView = ({
     fetchData();
   }, [id, navigate]);
 
-  // Reset sort options
+  // Reset sort options on initial page load
   useEffect(() => {
     setFilterByGen("all");
     setSortBy("number");
   }, [setFilterByGen, setSortBy]);
 
-  // Set what the container size for the page should be based on viewport width
-  const containerSize =
-    screenSize === "small"
-      ? "typeview-small"
-      : screenSize === "medium"
-      ? "typeview-med"
-      : "typeview-large";
-
-  // Tabs to be displayed
+  // Tabs to be displayed within types view and currently active tab
   const tabLabels = [
     { label: "Pokémon" },
     { label: "Moves" },
     { label: "Sprites" },
   ];
-
-  // State to keep track of the tab that is currently active, then get the name of that tab
-  const [activeButton, setActiveButton] = useState(0);
   const activeTab = tabLabels[activeButton].label;
 
+  // If the API call returns an error, navigate to the page not found
+  // (Redundant to inside fetch call to avoid compilation error)
   if (error) {
     navigate("/notfound");
     return;
   }
 
-  // Display the type view page from its components
+  // Display the type view page from its components, displaying the currently active tab
   return (
     <div
       className={`typeview-container ${containerSize} ${
@@ -129,12 +111,10 @@ const TypeView = ({
         screenSize={screenSize}
         isDarkMode={isDarkMode}
       />
-      {!isTypesLoading ? (
+      {!isTypesLoading && (
         <div className={`${fontStyle} ${secondaryHeaderStyle}`}>
           {typeData.name[0].toUpperCase() + typeData.name.slice(1)} Type
         </div>
-      ) : (
-        <></>
       )}
       <TypeInfoTable
         isTypesLoading={isTypesLoading}
@@ -166,7 +146,9 @@ const TypeView = ({
           screenSize={screenSize}
         />
       )}
-      {activeTab === "Moves" && <MovesTab />}
+      {activeTab === "Moves" && (
+        <MovesTab typeData={typeData} isDarkMode={isDarkMode} />
+      )}
       {activeTab === "Sprites" && (
         <SpritesTab typeData={typeData} isDarkMode={isDarkMode} />
       )}

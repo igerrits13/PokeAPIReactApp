@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { motion } from "motion/react";
 import DynamicSvgIcon from "../CommonComponents/DynamicSvgIcon";
 
+// Damage relations table for the currently selected type
 const DamageRelations = ({
   isTypesLoading,
   typeData,
@@ -9,7 +10,7 @@ const DamageRelations = ({
   screenSize,
   isDarkMode,
 }) => {
-  // Setup the search bar style based on if the user is using light or dark mode
+  // Setup the icon, line and button styling for information sections based on if the user is using light or dark mode
   const iconStyle = isDarkMode
     ? "component-background-dark component-rounded-outline-thin-dark"
     : "component-background-light component-rounded-outline-thin-light";
@@ -34,76 +35,72 @@ const DamageRelations = ({
       .join(" ");
   };
 
+  // Display a table of the damage relations for the current type
   return (
     <div className="typeview-table-damage-relations">
-      {!isTypesLoading
-        ? Object.entries(typeData.damage_relations).map(([obj, icons], i) => {
-            if (icons.length > 0) {
-              return (
-                <div
-                  key={i}
-                  className={`typeview-table-info-section ${
-                    i < Object.entries(typeData.damage_relations).length - 1
-                      ? lineStyle
-                      : ""
-                  }`}
-                >
-                  <div className="typeview-info-name">
-                    {getSectionTitle(obj)}
-                  </div>
-                  <div className="typeview-info-icon-container">
-                    {Object.entries(icons).map((icon, i) => {
-                      const [currTypeIcon, currTypeStyle] = getTypeIcon(
-                        icon[1].name
-                      );
-                      // Get the id for the current type to add to the Link
-                      const urlArr = icon[1].url.split("/");
-                      const urlNoSlash = urlArr.filter((part) => part !== "");
-                      const urlNumber = urlNoSlash[urlNoSlash.length - 1];
-                      const typeNum = parseInt(urlNumber, 10);
-                      const typeIdUrl = `/types/${typeNum}`;
-                      return (
-                        <Link key={i} className="clean-text" to={typeIdUrl}>
-                          <motion.button
-                            className={`hover-dim ${
-                              screenSize === "small"
-                                ? "typeview-info-button-small"
-                                : "typeview-info-button-med-large"
-                            } ${iconStyle}`}
-                            whileHover={{ scale: 1.1, rotate: "-5deg" }}
-                            whileTap={{ scale: 0.9, rotate: "5deg" }}
-                            transition={{ duration: 0.1 }}
-                          >
-                            <DynamicSvgIcon
-                              classes={`${buttonSize} ${currTypeStyle}`}
-                              IconComponent={currTypeIcon}
-                            />
-                          </motion.button>
-                        </Link>
-                      );
-                    })}
-                  </div>
+      {!isTypesLoading &&
+        Object.entries(typeData.damage_relations).map(([obj, icons], i) => {
+          if (icons.length > 0) {
+            return (
+              <div
+                key={i}
+                className={`typeview-table-info-section ${
+                  i < Object.entries(typeData.damage_relations).length - 1
+                    ? lineStyle
+                    : ""
+                }`}
+              >
+                <div className="typeview-info-name">{getSectionTitle(obj)}</div>
+                <div className="typeview-info-icon-container">
+                  {Object.entries(icons).map((icon, i) => {
+                    const [currTypeIcon, currTypeStyle] = getTypeIcon(
+                      icon[1].name
+                    );
+                    // Get the id for the current type to add to the Link
+                    const urlArr = icon[1].url.split("/");
+                    const urlNoSlash = urlArr.filter((part) => part !== "");
+                    const urlNumber = urlNoSlash[urlNoSlash.length - 1];
+                    const typeNum = parseInt(urlNumber, 10);
+                    const typeIdUrl = `/types/${typeNum}`;
+                    return (
+                      <Link key={i} className="clean-text" to={typeIdUrl}>
+                        <motion.button
+                          className={`hover-dim ${
+                            screenSize === "small"
+                              ? "typeview-info-button-small"
+                              : "typeview-info-button-med-large"
+                          } ${iconStyle}`}
+                          whileHover={{ scale: 1.1, rotate: "-5deg" }}
+                          whileTap={{ scale: 0.9, rotate: "5deg" }}
+                          transition={{ duration: 0.1 }}
+                        >
+                          <DynamicSvgIcon
+                            classes={`${buttonSize} ${currTypeStyle}`}
+                            IconComponent={currTypeIcon}
+                          />
+                        </motion.button>
+                      </Link>
+                    );
+                  })}
                 </div>
-              );
-            } else {
-              return (
-                <div
-                  key={i}
-                  className={`typeview-table-info-section ${
-                    i < Object.entries(typeData.damage_relations).length - 1
-                      ? lineStyle
-                      : ""
-                  }`}
-                >
-                  <div className="typeview-info-name">
-                    {getSectionTitle(obj)}
-                  </div>
-                  <div className="typeview-info-icon-container">None</div>
-                </div>
-              );
-            }
-          })
-        : null}
+              </div>
+            );
+          } else {
+            return (
+              <div
+                key={i}
+                className={`typeview-table-info-section ${
+                  i < Object.entries(typeData.damage_relations).length - 1
+                    ? lineStyle
+                    : ""
+                }`}
+              >
+                <div className="typeview-info-name">{getSectionTitle(obj)}</div>
+                <div className="typeview-info-icon-container">None</div>
+              </div>
+            );
+          }
+        })}
     </div>
   );
 };

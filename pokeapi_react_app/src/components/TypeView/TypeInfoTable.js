@@ -20,13 +20,14 @@ import DynamicSvgIcon from "../CommonComponents/DynamicSvgIcon";
 import TypeInfo from "./TypeInfo";
 import DamageRelations from "./DamageRelations";
 
+// Table of information for the currently selected type
 const TypeInfoTable = ({
   isTypesLoading,
   typeData,
   screenSize,
   isDarkMode,
 }) => {
-  // Setup the search bar style based on if the user is using light or dark mode
+  // Setup the font, header and icon styles based on if the user is using light or dark mode
   const fontStyle = isDarkMode ? "font-dark" : "font-light";
   const secondaryHeaderStyle =
     screenSize === "small"
@@ -40,7 +41,7 @@ const TypeInfoTable = ({
     ? "component-background-dark component-rounded-outline-thin-dark"
     : "component-background-light component-rounded-outline-thin-light";
 
-  // Set the type attributes for the current button base on if the user is using dark mode or not
+  // Set the type attributes for the current type based on type name and if the user is in dark mode or not
   function getTypeIcon(typeName) {
     switch (typeName) {
       case "bug":
@@ -120,14 +121,16 @@ const TypeInfoTable = ({
     }
   }
 
-  // Setup the styling for the current type
+  // Get the styling for the current type
   let typeIcon, typeStyle;
   if (!isTypesLoading) {
     [typeIcon, typeStyle] = getTypeIcon(typeData.name);
   }
 
-  if (!isTypesLoading) {
-    return (
+  // When the types have loaded, display the type information table showing basic information, damage relations and
+  // the current type's icon
+  return (
+    !isTypesLoading && (
       <div
         className={`${
           screenSize === "small" || screenSize === "medium"
@@ -136,11 +139,12 @@ const TypeInfoTable = ({
         } ${fontStyle}`}
       >
         <TypeInfo typeData={typeData} isDarkMode={isDarkMode} />
-        {screenSize === "small" || screenSize === "medium" ? (
+        {/* Only show the "Damage Relations" title when screen is small or medium */}
+        {(screenSize === "small" || screenSize === "medium") && (
           <div className={`${fontStyle} ${secondaryHeaderStyle}`}>
             Damage Relations
           </div>
-        ) : null}
+        )}
         <DamageRelations
           isTypesLoading={isTypesLoading}
           typeData={typeData}
@@ -148,7 +152,8 @@ const TypeInfoTable = ({
           screenSize={screenSize}
           isDarkMode={isDarkMode}
         />
-        {screenSize === "large" || screenSize === "x-large" ? (
+        {/* ONly show the current types large icon when screen is large or x-large */}
+        {(screenSize === "large" || screenSize === "x-large") && (
           <div className={`typeview-table-icon-container`}>
             <div className={`typeview-table-icon-outline ${iconStyle}`}>
               <DynamicSvgIcon
@@ -157,10 +162,10 @@ const TypeInfoTable = ({
               />
             </div>
           </div>
-        ) : null}
+        )}
       </div>
-    );
-  }
+    )
+  );
 };
 
 export default TypeInfoTable;
