@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import HomeView from "./components/HomeView/HomeView";
 import TypeView from "./components/TypeView/TypeView";
-import PokeViewTemp from "./components/PokeView/PokeViewTemp";
-// import PokeView from "./components/PokeView/PokeView";
+// import PokeViewTemp from "./components/PokeView/PokeViewTemp";
+import PokeView from "./components/PokeView/PokeView";
 import NotFoundView from "./components/NotFoundView/NotFoundView";
 import "./App.css";
 
@@ -104,14 +104,20 @@ function App() {
         />
         <Route
           path="/pokemon/:id"
-          // element={<PokeView screenSize={screenSize} isDarkMode={isDarkMode} />}
           element={
-            <PokeViewTemp
+            <PokeView
               fullPokeResults={fullPokeResults}
               screenSize={screenSize}
               isDarkMode={isDarkMode}
             />
           }
+          // element={
+          //   <PokeViewTemp
+          //     fullPokeResults={fullPokeResults}
+          //     screenSize={screenSize}
+          //     isDarkMode={isDarkMode}
+          //   />
+          // }
         />
         <Route
           path="/notfound"

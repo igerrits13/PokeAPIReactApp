@@ -69,65 +69,67 @@ const SpritesTab = ({ typeData, isDarkMode }) => {
 
   // Display for the sprites tab information
   const spritesHTML =
-    typeData.sprites && typeof typeData.sprites === "object"
-      ? Object.entries(typeData.sprites)
-          // Sort the generations based on Roman numeral value
-          .sort(([generationA], [generationB]) => {
-            const genTitleA = getGenerationTitle(generationA).split(" ")[1];
-            const genTitleB = getGenerationTitle(generationB).split(" ")[1];
-            const romanA = romanToInt(genTitleA);
-            const romanB = romanToInt(genTitleB);
+    typeData.sprites &&
+    // typeof typeData.sprites === "object"
+    // ?
+    Object.entries(typeData.sprites)
+      // Sort the generations based on Roman numeral value
+      .sort(([generationA], [generationB]) => {
+        const genTitleA = getGenerationTitle(generationA).split(" ")[1];
+        const genTitleB = getGenerationTitle(generationB).split(" ")[1];
+        const romanA = romanToInt(genTitleA);
+        const romanB = romanToInt(genTitleB);
 
-            return romanA - romanB;
-          })
-          .map(([generation, generationData], i) => {
-            if (typeof generationData !== "object") return null;
+        return romanA - romanB;
+      })
+      .map(([generation, generationData], i) => {
+        if (typeof generationData !== "object") return null;
 
-            const genTitle = getGenerationTitle(generation);
+        const genTitle = getGenerationTitle(generation);
 
-            // Check if current generation has sprites
-            const hasSprites = Object.entries(generationData).some(
-              ([game, { name_icon }]) => name_icon
-            );
+        // Check if current generation has sprites
+        const hasSprites = Object.entries(generationData).some(
+          ([game, { name_icon }]) => name_icon
+        );
 
-            // If the current generation does not have sprites, do not create a section for the current gen
-            if (!hasSprites) return null;
+        // If the current generation does not have sprites, do not create a section for the current gen
+        if (!hasSprites) return null;
 
-            return (
-              <div
-                key={i}
-                className={`spritestab-generation ${spriteSectionStyle} ${fontStyle}`}
-              >
-                <div>{genTitle}</div>
-                <div className="spritestab-icon-container">
-                  {Object.entries(generationData)
-                    // Sort the sprites alphabetically by game title
-                    .sort(([gameA], [gameB]) => {
-                      // console.log(gameA);
-                      const gameTitleA = getGameTitle(gameA);
-                      const gameTitleB = getGameTitle(gameB);
-                      return gameTitleA.localeCompare(gameTitleB);
-                    })
-                    .map(([game, { name_icon }], i) => {
-                      if (!name_icon) return null;
+        return (
+          <div
+            key={i}
+            className={`spritestab-generation ${spriteSectionStyle} ${fontStyle}`}
+          >
+            <div>{genTitle}</div>
+            <div className="spritestab-icon-container">
+              {Object.entries(generationData)
+                // Sort the sprites alphabetically by game title
+                .sort(([gameA], [gameB]) => {
+                  // console.log(gameA);
+                  const gameTitleA = getGameTitle(gameA);
+                  const gameTitleB = getGameTitle(gameB);
+                  return gameTitleA.localeCompare(gameTitleB);
+                })
+                .map(([game, { name_icon }], i) => {
+                  if (!name_icon) return null;
 
-                      const gameTitle = getGameTitle(game);
-                      return (
-                        <div key={i} className="spritestab-item">
-                          <img
-                            src={name_icon}
-                            alt={generation}
-                            className="spritestab-img"
-                          />
-                          {gameTitle}
-                        </div>
-                      );
-                    })}
-                </div>
-              </div>
-            );
-          })
-      : null;
+                  const gameTitle = getGameTitle(game);
+                  return (
+                    <div key={i} className="spritestab-item">
+                      <img
+                        src={name_icon}
+                        alt={generation}
+                        className="spritestab-img"
+                      />
+                      {gameTitle}
+                    </div>
+                  );
+                })}
+            </div>
+          </div>
+        );
+      });
+  // : null;
 
   // Display the full sprites tab
   return <div className="spritestab-container">{spritesHTML}</div>;
