@@ -1098,23 +1098,23 @@ const colours = {
   padding: 0.5rem 1rem;
 }
 
-.typeview-table-info-name {
-  width: 50%;
-  padding: 0 0.5rem;
-}
-
-.typeview-table-info-result {
-  width: 50%;
-  padding: 0 0.5rem;
-}
-
-.typeview-table-info-section {
+.table-info-section {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
   padding: 0.5rem;
   min-height: 4rem;
+}
+
+.table-info-name {
+  width: 50%;
+  padding: 0 0.5rem;
+}
+
+.table-info-result {
+  width: 50%;
+  padding: 0 0.5rem;
 }
 
 .typeview-info-name {
@@ -1386,7 +1386,7 @@ const colours = {
   padding: 0 0.5rem;
 }
 
-.typeview-table-info-result {
+.table-info-result {
   width: 50%;
   padding: 0 0.5rem;
 }

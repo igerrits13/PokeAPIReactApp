@@ -1,10 +1,7 @@
+import DynamicTableSection from "../CommonComponents/DynamicTableSection";
+
 // Display for the general information of the currently selected type
 const TypeInfo = ({ typeData, isDarkMode }) => {
-  // Setup the line styling between information sections based on if the user is using light or dark mode
-  const lineStyle = isDarkMode
-    ? "component-outline-bottom-dark"
-    : "component-outline-bottom-light";
-
   // Seperate the generation title by '-' and capitalize appropriate letters
   const getGenerationTitle = (generation) => {
     let genTitle = generation.split("-");
@@ -13,33 +10,32 @@ const TypeInfo = ({ typeData, isDarkMode }) => {
     return genTitle.join(" ");
   };
 
-  // Display for the current types basic information, do not add a line to the bottom of the last section
+  // Lines to be displayed for the basic type information table. Only add move damage class if it is not null
+  const typeInfo = [
+    { text: "Type ID", info: `#${typeData.id}`, id: 0 },
+    {
+      text: "Generation",
+      info: `${getGenerationTitle(typeData.generation.name)}`,
+      id: 1,
+    },
+    ...(typeData.move_damage_class
+      ? [
+          {
+            text: "Move Damage Class",
+            info: `${
+              typeData.move_damage_class.name[0].toUpperCase() +
+              typeData.move_damage_class.name.slice(1)
+            }`,
+            id: 2,
+          },
+        ]
+      : []),
+  ];
+
+  // Display for the current types basic information
   return (
     <div className="typeview-table-info">
-      <div className={`typeview-table-info-section ${lineStyle}`}>
-        <div className="typeview-table-info-name">Type ID</div>
-        <div className="typeview-table-info-result">#{typeData.id}</div>
-      </div>
-      <div
-        className={`typeview-table-info-section ${
-          typeData.move_damage_class && lineStyle
-        }`}
-      >
-        <div className="typeview-table-info-name">Generation</div>
-        <div className="typeview-table-info-result">
-          {getGenerationTitle(typeData.generation.name)}
-        </div>
-      </div>
-      {/* Only display move damage class information if it exists */}
-      {typeData.move_damage_class && (
-        <div className="typeview-table-info-section">
-          <div className="typeview-table-info-name">Move Damage Class</div>
-          <div className="typeview-table-info-result">
-            {typeData.move_damage_class.name[0].toUpperCase() +
-              typeData.move_damage_class.name.slice(1)}
-          </div>
-        </div>
-      )}
+      <DynamicTableSection sectionInfo={typeInfo} isDarkMode={isDarkMode} />
     </div>
   );
 };

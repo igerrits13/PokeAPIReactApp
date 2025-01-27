@@ -2,10 +2,11 @@ import { Link } from "react-router-dom";
 import { motion } from "motion/react";
 import DynamicSvgIcon from "../CommonComponents/DynamicSvgIcon";
 
-// Damage relations table for the currently selected type
-const DamageRelations = ({
-  isTypesLoading,
+// Create a table section based on the input array of information
+const DynamicTableSectionIcons = ({
+  sectionInfo,
   typeData,
+  isTypesLoading,
   getTypeIcon,
   screenSize,
   isDarkMode,
@@ -35,9 +36,9 @@ const DamageRelations = ({
       .join(" ");
   };
 
-  // Display a table of the damage relations for the current type
+  // Display the section based on the input array. Add lines between items, but not after the last item
   return (
-    <div className="typeview-table-damage-relations">
+    <>
       {!isTypesLoading &&
         Object.entries(typeData.damage_relations).map(([obj, icons], i) => {
           if (icons.length > 0) {
@@ -101,10 +102,8 @@ const DamageRelations = ({
             );
           }
         })}
-    </div>
+    </>
   );
 };
 
-export default DamageRelations;
-
-// 108
+export default DynamicTableSectionIcons;
