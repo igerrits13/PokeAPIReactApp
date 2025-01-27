@@ -55,7 +55,7 @@ const TypeInfoTable = ({
           screenSize={screenSize}
           isDarkMode={isDarkMode}
         />
-        {/* ONly show the current types large icon when screen is large or x-large */}
+        {/* Only show the current types large icon when screen is large or x-large */}
         {(screenSize === "large" || screenSize === "x-large") && (
           <div className={`typeview-table-icon-container`}>
             <div className={`typeview-table-icon-outline ${iconStyle}`}>

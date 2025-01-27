@@ -1117,12 +1117,12 @@ const colours = {
   padding: 0 0.5rem;
 }
 
-.typeview-info-name {
+/* .typeview-info-name {
   width: 50%;
   padding: 0 0.5rem;
-}
+} */
 
-.typeview-info-icon-container {
+.table-info-icon-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

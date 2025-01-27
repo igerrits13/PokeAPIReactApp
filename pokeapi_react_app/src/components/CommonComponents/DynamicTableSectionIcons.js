@@ -5,8 +5,6 @@ import DynamicSvgIcon from "../CommonComponents/DynamicSvgIcon";
 // Create a table section based on the input array of information
 const DynamicTableSectionIcons = ({
   sectionInfo,
-  typeData,
-  isTypesLoading,
   getTypeIcon,
   screenSize,
   isDarkMode,
@@ -39,69 +37,54 @@ const DynamicTableSectionIcons = ({
   // Display the section based on the input array. Add lines between items, but not after the last item
   return (
     <>
-      {!isTypesLoading &&
-        Object.entries(typeData.damage_relations).map(([obj, icons], i) => {
-          if (icons.length > 0) {
-            return (
-              <div
-                key={i}
-                className={`table-info-section ${
-                  i < Object.entries(typeData.damage_relations).length - 1
-                    ? lineStyle
-                    : ""
-                }`}
-              >
-                <div className="typeview-info-name">{getSectionTitle(obj)}</div>
-                <div className="typeview-info-icon-container">
-                  {Object.entries(icons).map((icon, i) => {
-                    const [currTypeIcon, currTypeStyle] = getTypeIcon(
-                      icon[1].name
-                    );
-                    // Get the id for the current type to add to the Link
-                    const urlArr = icon[1].url.split("/");
-                    const urlNoSlash = urlArr.filter((part) => part !== "");
-                    const urlNumber = urlNoSlash[urlNoSlash.length - 1];
-                    const typeNum = parseInt(urlNumber, 10);
-                    const typeIdUrl = `/types/${typeNum}`;
-                    return (
-                      <Link key={i} className="clean-text" to={typeIdUrl}>
-                        <motion.button
-                          className={`hover-dim ${
-                            screenSize === "small"
-                              ? "typeview-info-button-small"
-                              : "typeview-info-button-med-large"
-                          } ${iconStyle}`}
-                          whileHover={{ scale: 1.1, rotate: "-5deg" }}
-                          whileTap={{ scale: 0.9, rotate: "5deg" }}
-                          transition={{ duration: 0.1 }}
-                        >
-                          <DynamicSvgIcon
-                            classes={`${buttonSize} ${currTypeStyle}`}
-                            IconComponent={currTypeIcon}
-                          />
-                        </motion.button>
-                      </Link>
-                    );
-                  })}
-                </div>
-              </div>
-            );
-          } else {
-            return (
-              <div
-                key={i}
-                className={`table-info-section ${
-                  i < Object.entries(typeData.damage_relations).length - 1
-                    ? lineStyle
-                    : ""
-                }`}
-              >
-                <div className="typeview-info-name">{getSectionTitle(obj)}</div>
-                <div className="typeview-info-icon-container">None</div>
-              </div>
-            );
-          }
-        })}
+      {sectionInfo.map((obj) => {
+        return (
+          <div
+            key={obj.id}
+            className={`table-info-section ${
+              obj.id < sectionInfo.length - 1 ? lineStyle : ""
+            }`}
+          >
+            <div key={obj.id} className="table-info-name">
+              {getSectionTitle(obj.text)}
+            </div>
+            <div className="table-info-icon-container">
+              {obj.icons.length > 0 ? (
+                obj.icons.map((icon, i) => {
+                  const [currTypeIcon, currTypeStyle] = getTypeIcon(icon.name);
+                  // Get the id for the current type to add to the Link
+                  const urlArr = icon.url.split("/");
+                  const urlNoSlash = urlArr.filter((part) => part !== "");
+                  const urlNumber = urlNoSlash[urlNoSlash.length - 1];
+                  const typeNum = parseInt(urlNumber, 10);
+                  const typeIdUrl = `/types/${typeNum}`;
+                  return (
+                    <Link key={i} className="clean-text" to={typeIdUrl}>
+                      <motion.button
+                        className={`hover-dim ${
+                          screenSize === "small"
+                            ? "typeview-info-button-small"
+                            : "typeview-info-button-med-large"
+                        } ${iconStyle}`}
+                        whileHover={{ scale: 1.1, rotate: "-5deg" }}
+                        whileTap={{ scale: 0.9, rotate: "5deg" }}
+                        transition={{ duration: 0.1 }}
+                      >
+                        <DynamicSvgIcon
+                          classes={`${buttonSize} ${currTypeStyle}`}
+                          IconComponent={currTypeIcon}
+                        />
+                      </motion.button>
+                    </Link>
+                  );
+                })
+              ) : (
+                <div>None</div>
+              )}
+            </div>
+          </div>
+        );
+      })}
     </>
   );
 };
