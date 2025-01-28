@@ -17,7 +17,7 @@ const DamageRelations = ({
 
   // Display a table of the damage relations for the current type
   return (
-    <div className="typeview-table-damage-relations">
+    <div className="secondary-table-conainer-50">
       {!isTypesLoading && (
         <DynamicTableSectionIcons
           sectionInfo={damageRelations}

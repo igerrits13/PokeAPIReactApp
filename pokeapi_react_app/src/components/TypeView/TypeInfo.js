@@ -34,7 +34,7 @@ const TypeInfo = ({ typeData, isDarkMode }) => {
 
   // Display for the current types basic information
   return (
-    <div className="typeview-table-info">
+    <div className="secondary-table-conainer-30">
       <DynamicTableSection sectionInfo={typeInfo} isDarkMode={isDarkMode} />
     </div>
   );

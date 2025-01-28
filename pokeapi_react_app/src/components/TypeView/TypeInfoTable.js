@@ -37,8 +37,8 @@ const TypeInfoTable = ({
       <div
         className={`${
           screenSize === "small" || screenSize === "medium"
-            ? "typeview-table-small-med"
-            : "typeview-table-large"
+            ? "secondary-grid-row-small-med"
+            : "secondary-grid-row-large"
         } ${fontStyle}`}
       >
         <TypeInfo typeData={typeData} isDarkMode={isDarkMode} />
@@ -57,7 +57,7 @@ const TypeInfoTable = ({
         />
         {/* Only show the current types large icon when screen is large or x-large */}
         {(screenSize === "large" || screenSize === "x-large") && (
-          <div className={`typeview-table-icon-container`}>
+          <div className={`secondary-table-conainer-20`}>
             <div className={`typeview-table-icon-outline ${iconStyle}`}>
               <DynamicSvgIcon
                 classes={`typeview-table-icon ${typeStyle}`}
