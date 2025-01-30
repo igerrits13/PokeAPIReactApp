@@ -130,14 +130,14 @@
   color: #fff9fc;
 }
 
-.taboption-font-dark {
+.option-font-dark {
   font-family: josefinSans-bold, sans-serif;
   text-shadow: -1px -1px 0 #201d1f, 1px -1px 0 #201d1f, -1px 1px 0 #201d1f,
     1px 1px 0 #201d1f;
   color: #757575;
 }
 
-.taboption-font-dark-active {
+.option-font-dark-active {
   color: #fff9fc;
   text-decoration: underline;
 }
@@ -203,12 +203,12 @@
   color: #2b2e2a;
 }
 
-.taboption-font-light {
+.option-font-light {
   font-family: josefinSans-bold, sans-serif;
   color: #757575;
 }
 
-.taboption-font-light-active {
+.option-font-light-active {
   color: #2b2e2a;
   text-decoration: underline;
 }
@@ -221,6 +221,10 @@
 
 .clean-text {
   text-decoration: none;
+}
+
+.clean-border {
+  border: none;
 }
 
 /* Loading components */
@@ -1370,15 +1374,49 @@ const colours = {
 
 .description-box-large {
   place-self: start;
-  width: 50%;
+  width: 100%;
   padding: 0.5rem 1rem;
 }
 
 .pokeview-image-container {
   width: 100%;
+  height: 100%;
+  /* background-color: #7ac74c; */
+}
+
+.pokeview-image {
   height: auto;
+  width: 100%;
   object-fit: contain;
-  background-color: #7ac74c;
+  /* background-color: #b61744; */
+}
+
+.pokeview-image-toggle {
+  display: flex;
+  justify-content: center;
+  height: auto;
+  width: 100%;
+  /* background-color: #163ec3; */
+}
+
+.pokeview-image-toggle-normal {
+  display: flex;
+  align-items: center;
+  border-radius: 8px 0 0 8px;
+  /* height: 2rem; */
+  width: 5rem;
+  padding: 0.75rem;
+  justify-content: center;
+}
+
+.pokeview-image-toggle-shiny {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 8px 8px 0;
+  /* height: 2rem; */
+  /* width: 7rem; */
+  padding: 0.75rem;
 }
 
 /* Pokémon information section */

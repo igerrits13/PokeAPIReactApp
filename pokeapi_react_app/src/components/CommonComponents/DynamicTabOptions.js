@@ -8,11 +8,11 @@ const DynamicTabOptions = ({
 }) => {
   // Setup the search bar style based on if the user is using light or dark mode
   const tabOptionFontStyle = isDarkMode
-    ? "taboption-font-dark"
-    : "taboption-font-light";
+    ? "option-font-dark"
+    : "option-font-light";
   const activeTabOptionFontStyle = isDarkMode
-    ? "taboption-font-dark-active"
-    : "taboption-font-light-active";
+    ? "option-font-dark-active"
+    : "option-font-light-active";
 
   // Adjust the gap between tab options based on screen size
   const tabPaddingSize =

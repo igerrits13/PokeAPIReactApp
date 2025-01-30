@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import BugType from "../icons/bug.svg"
+import BugType from "../icons/bug.svg";
 import DarkType from "../icons/dark.svg";
 import DragonType from "../icons/dragon.svg";
 import ElectricType from "../icons/electric.svg";
@@ -107,7 +107,7 @@ const TypesTableOld = ({ fullScreen }) => {
               className="me-2 typeBtnImg"
               src={typeIcon}
               alt={`${obj.name} type icon`}
-            ></img>
+            />
             {obj.name.toUpperCase()}
           </button>
         </Link>
