@@ -58,6 +58,7 @@ const PokeInfoTable = ({
     return genTitle.join(" ");
   };
 
+  // Convert height from decimeters to meters/feet and inches
   const getHeight = (height) => {
     const metric = height / 10;
     const imperial = height * 3.93701;
@@ -66,6 +67,7 @@ const PokeInfoTable = ({
     return `${metric.toFixed(1)}m (${feet}' ${inches}")`;
   };
 
+  // Convert weight from hectograms to kilograms and pounds
   const getWeight = (weight) => {
     const metric = weight * 0.1;
     const imperial = weight * 0.220462;
@@ -133,8 +135,6 @@ const PokeInfoTable = ({
     },
   ];
 
-  // console.log(pokeSpeciesData.habitat.name);
-
   // Set the type attributes for the current type based on type name and if the user is in dark mode or not
   function getTypeIcon(typeName) {
     if (typeMapping[typeName]) {
@@ -166,6 +166,7 @@ const PokeInfoTable = ({
     );
   }
 
+  // Functions to handle toggling between normal and shiny mode
   const handleNormalMode = () => {
     setIsNormalToggle(true);
   };
@@ -174,6 +175,7 @@ const PokeInfoTable = ({
     setIsNormalToggle(false);
   };
 
+  // Display for the Pokémon basic information and image
   return (
     <div
       className={`${
