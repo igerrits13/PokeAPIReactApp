@@ -54,6 +54,10 @@
   src: url(../public/fonts/Josefin_Sans/static/JosefinSans-Bold.ttf);
 }
 
+.disabled {
+  background-image: linear-gradient(rgb(0 0 0/40%) 0 0);
+}
+
 .hover-dim:hover {
   background-image: linear-gradient(rgb(0 0 0/40%) 0 0);
 }
@@ -1074,6 +1078,32 @@ const colours = {
   place-self: start;
 }
 
+/* Description font */
+
+.pokemon-desc-small {
+  padding: 3rem 1rem 0 1rem;
+  font-size: 1rem;
+  place-self: start;
+}
+
+.pokemon-desc-med {
+  padding: 3rem 1rem 0 1rem;
+  font-size: 1rem;
+  place-self: start;
+}
+
+.pokemon-desc-large {
+  padding: 0 1rem;
+  font-size: 1.25rem;
+  place-self: start;
+}
+
+.pokemon-desc-x-large {
+  padding: 0 1rem;
+  font-size: 1.5rem;
+  place-self: start;
+}
+
 /* Type view information table */
 
 .secondary-grid-row-small-med {
@@ -1089,7 +1119,7 @@ const colours = {
 .secondary-grid-row-large {
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
+  /* flex-wrap: nowrap; */
   justify-content: space-between;
   width: 100%;
   padding: 1rem 0 3rem 0;
@@ -1381,6 +1411,9 @@ const colours = {
 .pokeview-image-container {
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   /* background-color: #7ac74c; */
 }
 
@@ -1417,6 +1450,59 @@ const colours = {
   /* height: 2rem; */
   /* width: 7rem; */
   padding: 0.75rem;
+}
+
+/* Dynamic Section Buttons */
+
+.dyn-section-button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dyn-section-link {
+  width: min-content;
+}
+
+.dyn-section-button {
+  /* padding: 0.5rem; */
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  max-width: 200px;
+  /* font-size: 0.75rem; */
+  text-decoration: none;
+  /* padding: 0.5rem; */
+  border-radius: 8px;
+}
+
+.dyn-section-button-img-container {
+  width: 2rem;
+  height: 2rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.dyn-section-button-img {
+  width: 250%;
+  height: 250%;
+  object-fit: cover;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.dyn-section-button-full-img {
+  width: 200%;
+  height: 200%;
+  object-fit: cover;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 /* Pokémon information section */

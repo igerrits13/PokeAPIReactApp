@@ -37,6 +37,14 @@ const PokeInfoTable = ({
       : screenSize === "large"
       ? "secondary-page-header-large"
       : "secondary-page-header-x-large";
+  const pokemonDescStyle =
+    screenSize === "small"
+      ? "pokemon-desc-small"
+      : screenSize === "medium"
+      ? "pokemon-desc-med"
+      : screenSize === "large"
+      ? "pokemon-desc-large"
+      : "pokemon-desc-x-large";
   // Setup the type results and text style based on if the user is using light or dark mode
   const imageToggleStyle = isDarkMode
     ? "component-background-dark"
@@ -96,32 +104,31 @@ const PokeInfoTable = ({
     water: [WaterType, "water-type"],
   };
 
+  // Get the first English flavor text for the current Pokémon
+  const genusInfo = pokeSpeciesData.genera.find(
+    (obj) => obj.language.name === "en"
+  )?.genus;
+
   // Lines to be displayed for the basic type information table. Only add move damage class if it is not null
   const pokeInfo = [
     { text: "Pokémon ID", info: `#${pokeData.id}`, id: 0 },
     {
-      text: "Generation",
+      text: "Introduced",
       info: `${getGenerationTitle(pokeSpeciesData.generation.name)}`,
       id: 1,
     },
-    { text: "Height", info: `${getHeight(pokeData.height)}`, id: 2 },
-    { text: "Weight", info: `${getWeight(pokeData.weight)}`, id: 3 },
+    {
+      text: "Classification",
+      info: `${genusInfo}`,
+      id: 2,
+    },
+    { text: "Height", info: `${getHeight(pokeData.height)}`, id: 3 },
+    { text: "Weight", info: `${getWeight(pokeData.weight)}`, id: 4 },
     {
       text: "Shape",
       info: `${
         pokeSpeciesData.shape.name[0].toUpperCase() +
         pokeSpeciesData.shape.name.slice(1)
-      }`,
-      id: 4,
-    },
-    {
-      text: "Habitat",
-      info: `${
-        pokeSpeciesData?.habitat?.name !== undefined &&
-        pokeSpeciesData?.habitat?.name !== null
-          ? pokeSpeciesData.habitat.name[0].toUpperCase() +
-            pokeSpeciesData.habitat.name.slice(1)
-          : "None"
       }`,
       id: 5,
     },
@@ -175,6 +182,11 @@ const PokeInfoTable = ({
     setIsNormalToggle(false);
   };
 
+  // Get the first English flavor text for the current Pokémon
+  const flavorText = pokeSpeciesData.flavor_text_entries.find(
+    (obj) => obj.language.name === "en"
+  )?.flavor_text;
+
   // Display for the Pokémon basic information and image
   return (
     <div
@@ -196,7 +208,7 @@ const PokeInfoTable = ({
                     ? pokeData.sprites.other["official-artwork"].front_default
                     : pokeData.sprites.other["official-artwork"].front_shiny
                 }
-                alt={`${pokeData.name}`}
+                alt={`${pokeData.species.name}`}
               />
               <div className="pokeview-image-toggle">
                 <button
@@ -225,7 +237,8 @@ const PokeInfoTable = ({
           <div className="secondary-table-conainer-50">
             {!isPokeLoading && (
               <div className={`${fontStyle} ${secondaryHeaderStyle}`}>
-                {pokeData.name[0].toUpperCase() + pokeData.name.slice(1)}
+                {pokeData.species.name[0].toUpperCase() +
+                  pokeData.species.name.slice(1)}
               </div>
             )}
             {typeIconsHTML}
@@ -235,9 +248,10 @@ const PokeInfoTable = ({
                   screenSize === "small" || screenSize === "medium"
                     ? "description-box-small-med"
                     : "description-box-large"
-                } ${fontStyle}`}
+                } ${pokemonDescStyle} ${fontStyle}`}
               >
-                {pokeSpeciesData.flavor_text_entries[0].flavor_text}
+                {/* {pokeSpeciesData.flavor_text_entries[0].flavor_text} */}
+                {flavorText}
               </div>
             )}
             <DynamicTableSection
@@ -251,7 +265,8 @@ const PokeInfoTable = ({
           <div className="secondary-table-conainer-50">
             {!isPokeLoading && (
               <div className={`${fontStyle} ${secondaryHeaderStyle}`}>
-                {pokeData.name[0].toUpperCase() + pokeData.name.slice(1)}
+                {pokeData.species.name[0].toUpperCase() +
+                  pokeData.species.name.slice(1)}
               </div>
             )}
             {typeIconsHTML}
@@ -261,9 +276,10 @@ const PokeInfoTable = ({
                   screenSize === "small" || screenSize === "medium"
                     ? "description-box-small-med"
                     : "description-box-large"
-                } ${fontStyle}`}
+                } ${pokemonDescStyle} ${fontStyle}`}
               >
-                {pokeSpeciesData.flavor_text_entries[0].flavor_text}
+                {/* {pokeSpeciesData.flavor_text_entries[0].flavor_text} */}
+                {flavorText}
               </div>
             )}
             <DynamicTableSection
@@ -280,7 +296,7 @@ const PokeInfoTable = ({
                     ? pokeData.sprites.other["official-artwork"].front_default
                     : pokeData.sprites.other["official-artwork"].front_shiny
                 }
-                alt={`${pokeData.name}`}
+                alt={`${pokeData.species.name}`}
               />
               <div className="pokeview-image-toggle">
                 <button

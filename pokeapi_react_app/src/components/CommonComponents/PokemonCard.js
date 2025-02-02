@@ -22,6 +22,15 @@ const PokemonCard = ({ obj, i, isDarkMode }) => {
   const cardNum = "000" + i;
   const pokeIdURL = `/pokemon/${i}`;
 
+  // Capitalize the first word of each part of the pokémon's name
+  const getPokeName = (name) => {
+    const formattedName = name.split("-").map((obj, i) => {
+      return obj[0].toUpperCase() + obj.slice(1);
+    });
+
+    return formattedName.join(" ");
+  };
+
   // If the image is still loading, display the loading card. Otherwise, show the full Pokémon card with image
   return (
     <motion.div
@@ -36,7 +45,7 @@ const PokemonCard = ({ obj, i, isDarkMode }) => {
         to={pokeIdURL}
       >
         <div className={`pokemon-card-title ${cardTitleStyle}`}>
-          {obj.name[0].toUpperCase() + obj.name.slice(1)}
+          {getPokeName(obj.name)}
         </div>
         <img
           className="pokemon-image"
