@@ -306,40 +306,40 @@ const PokeView = ({ fullPokeResults, screenSize, isDarkMode }) => {
                 number === pokeSpeciesData.id || obj.name === pokeData.name;
               const formName = obj.name.split("-");
               return (
-                <Link
-                  className={`clean-text ${fontStyle}`}
-                  to={pokeIdURL}
+                // <Link
+                //   className={`clean-text ${fontStyle}`}
+                //   to={pokeIdURL}
+                //   key={i}
+                // >
+                <motion.button
+                  className={`dyn-section-button ${fontStyle} ${infoButtonStyle} ${
+                    isDisabled ? inactiveButtonStyle : ""
+                  }`}
                   key={i}
+                  disabled
+                  // disabled={isDisabled}
+                  // whileHover={
+                  //   !isDisabled ? { scale: 1.1, rotate: "-1.5deg" } : undefined
+                  // }
+                  // whileTap={
+                  //   !isDisabled ? { scale: 0.9, rotate: "5deg" } : undefined
+                  // }
+                  // transition={!isDisabled ? { duration: 0.1 } : undefined}
                 >
-                  <motion.button
-                    className={`dyn-section-button ${fontStyle} ${infoButtonStyle} ${
-                      isDisabled ? inactiveButtonStyle : ""
-                    }`}
-                    disabled={isDisabled}
-                    whileHover={
-                      !isDisabled
-                        ? { scale: 1.1, rotate: "-1.5deg" }
-                        : undefined
-                    }
-                    whileTap={
-                      !isDisabled ? { scale: 0.9, rotate: "5deg" } : undefined
-                    }
-                    transition={!isDisabled ? { duration: 0.1 } : undefined}
-                  >
-                    {getPokeName(obj.name)}
-                    <div className="dyn-section-button-img-container">
-                      <img
-                        src={
-                          number === pokeData.id || i === 0
-                            ? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeData.id}.png`
-                            : `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeData.id}-${formName[1]}.png`
-                        }
-                        alt={`${obj.name}`}
-                        className="dyn-section-button-full-img"
-                      />
-                    </div>
-                  </motion.button>
-                </Link>
+                  {getPokeName(obj.name)}
+                  <div className="dyn-section-button-img-container">
+                    <img
+                      src={
+                        number === pokeData.id || i === 0
+                          ? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeData.id}.png`
+                          : `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeData.id}-${formName[1]}.png`
+                      }
+                      alt={`${obj.name}`}
+                      className="dyn-section-button-full-img"
+                    />
+                  </div>
+                </motion.button>
+                // </Link>
               );
             })}
           </div>

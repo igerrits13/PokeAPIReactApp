@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const SearchItem = ({ resultItem, isDarkMode, i }) => {
+const SearchItem = ({ clearSearchText, resultItem, isDarkMode, i }) => {
   // Setup the search results style based on if the user is using light or dark mode
   const searchResultsItemsStyle = isDarkMode
     ? "component-background-dark font-dark"
@@ -22,6 +22,7 @@ const SearchItem = ({ resultItem, isDarkMode, i }) => {
     <Link
       className={`search-results-item clean-text ${searchResultsItemsStyle}`}
       to={pokeIdURL}
+      onClick={() => clearSearchText()}
     >
       <div>
         <img

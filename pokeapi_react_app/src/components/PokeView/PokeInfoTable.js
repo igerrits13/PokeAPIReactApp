@@ -111,7 +111,7 @@ const PokeInfoTable = ({
 
   // Lines to be displayed for the basic type information table. Only add move damage class if it is not null
   const pokeInfo = [
-    { text: "Pokémon ID", info: `#${pokeData.id}`, id: 0 },
+    { text: "Pokémon ID", info: `#${pokeSpeciesData.id}`, id: 0 },
     {
       text: "Introduced",
       info: `${getGenerationTitle(pokeSpeciesData.generation.name)}`,

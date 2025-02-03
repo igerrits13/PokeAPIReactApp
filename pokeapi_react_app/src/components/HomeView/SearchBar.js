@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SearchResults from "./SearchResults";
 
 // Search bar for searching Pokémon
@@ -8,6 +8,7 @@ const SearchBar = ({ fullPokeResults, isDarkMode }) => {
   const [searchText, setSearchText] = useState("");
   const [searchBarFocus, setSearchBarFocus] = useState(false);
   const [resultsHTML, setResultsHTML] = useState([]);
+  const navigate = useNavigate();
 
   // Ref to keep track of where the cursor is within the input search box
   const inputRef = useRef(null);
@@ -23,6 +24,11 @@ const SearchBar = ({ fullPokeResults, isDarkMode }) => {
   // Update the text in the search bar
   const updateSearchText = (e) => {
     setSearchText(e.target.value);
+  };
+
+  // Clear the search text
+  const clearSearchText = () => {
+    setSearchText("");
   };
 
   // Update state for when the search bar is being focused
@@ -49,6 +55,11 @@ const SearchBar = ({ fullPokeResults, isDarkMode }) => {
           input.setSelectionRange(searchText.length, searchText.length);
         }
       }
+    }
+    if (e.key === "Enter") {
+      navigate(`/pokemon/${searchText}`);
+      clearSearchText();
+      handleOnBlur();
     }
     // if (e.key === "ArrowDown") {
     //   if (resultsHTML.length > 0) {
@@ -87,20 +98,22 @@ const SearchBar = ({ fullPokeResults, isDarkMode }) => {
         onKeyDown={autoFillSearchText}
         ref={inputRef}
       />
-      <Link to="/pokemon/">
-        {/* <Link to={`/pokemon/${searchText}`}> */}
-        <button className={`searchbar-search-icon ${searchIconStyle}`}>
+      {/* <Link to="/pokemon/"> */}
+      <Link to={`/pokemon/${searchText}`}>
+        <button
+          className={`searchbar-search-icon ${searchIconStyle}`}
+          onClick={() => clearSearchText()}
+        >
           <i className="fa-solid fa-magnifying-glass searchbar-icon"></i>{" "}
         </button>
       </Link>
       <SearchResults
         searchText={searchText}
+        clearSearchText={clearSearchText}
         searchBarFocus={searchBarFocus}
         fullPokeResults={fullPokeResults}
         resultsHTML={resultsHTML}
         setResultsHTML={setResultsHTML}
-        handleOnFocus={handleOnFocus}
-        handleOnBlur={handleOnBlur}
         isDarkMode={isDarkMode}
       />
     </div>
