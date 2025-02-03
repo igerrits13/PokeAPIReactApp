@@ -12,6 +12,7 @@ const PokeView = ({ fullPokeResults, screenSize, isDarkMode }) => {
   // Setup data structures to store the id of the Pokémon search, and for navigation to other pages
   const { id } = useParams();
   const [isPokeLoading, setIsPokeLoading] = useState(true);
+  const [isPokeSpeciesLoading, setIsPokeSpeciesLoading] = useState(true);
   const [pokeData, setPokeData] = useState(null);
   const [pokeId, setPokeId] = useState(id);
   const [pokeSpeciesData, setPokeSpeciesData] = useState(null);
@@ -51,7 +52,7 @@ const PokeView = ({ fullPokeResults, screenSize, isDarkMode }) => {
           (pokeSpeciesId > 0 && pokeSpeciesId <= fullPokeResults.length) ||
           isNaN(pokeSpeciesId)
         ) {
-          setIsPokeLoading(true);
+          setIsPokeSpeciesLoading(true);
           try {
             const [response] = await Promise.all([
               fetch(
@@ -67,10 +68,10 @@ const PokeView = ({ fullPokeResults, screenSize, isDarkMode }) => {
           } catch (error) {
             setError(error);
           } finally {
-            setIsPokeLoading(false);
+            setIsPokeSpeciesLoading(false);
           }
         } else {
-          setIsPokeLoading(false);
+          setIsPokeSpeciesLoading(false);
           navigate("/notfound");
           return;
         }
@@ -82,7 +83,6 @@ const PokeView = ({ fullPokeResults, screenSize, isDarkMode }) => {
 
   // Fetch data for the current type
   useEffect(() => {
-    console.log("Reloading poke infor for " + pokeId);
     if (fullPokeResults.length > 0) {
       const fetchData = async () => {
         setIsPokeLoading(true);
@@ -159,11 +159,20 @@ const PokeView = ({ fullPokeResults, screenSize, isDarkMode }) => {
 
   // Create the objects that hold infromation for training, breeding and form information
   let trainingInfo, breedingInfo, formInfo;
-  if (!isPokeLoading) {
+  if (!isPokeLoading && !isPokeSpeciesLoading) {
     trainingInfo = [
       { text: "Base XP", info: `${pokeData.base_experience} XP`, id: 0 },
       {
         text: "Base Happiness",
+        // info: `${
+        //   pokeSpeciesData?.base_happiness !== undefined &&
+        //   pokeSpeciesData?.base_happiness !== null
+        //     ? pokeSpeciesData.base_happiness +
+        //       " (" +
+        //       ((pokeSpeciesData.base_happiness / 255) * 100).toFixed(0) +
+        //       "% Happy)"
+        //     : "None"
+        // }`,
         info: `${pokeSpeciesData.base_happiness} (${(
           (pokeSpeciesData.base_happiness / 255) *
           100
@@ -293,9 +302,9 @@ const PokeView = ({ fullPokeResults, screenSize, isDarkMode }) => {
               const lastPart = cleanedParts[cleanedParts.length - 1];
               const number = parseInt(lastPart, 10);
               const pokeIdURL = `/pokemon/${number}`;
-              const isDisabled = number === pokeSpeciesData.id;
+              const isDisabled =
+                number === pokeSpeciesData.id || obj.name === pokeData.name;
               const formName = obj.name.split("-");
-              console.log("Number: " + number + "/nID: " + pokeData.id);
               return (
                 <Link
                   className={`clean-text ${fontStyle}`}
@@ -321,8 +330,8 @@ const PokeView = ({ fullPokeResults, screenSize, isDarkMode }) => {
                     <div className="dyn-section-button-img-container">
                       <img
                         src={
-                          number === pokeData.id
-                            ? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${number}.png`
+                          number === pokeData.id || i === 0
+                            ? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeData.id}.png`
                             : `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeData.id}-${formName[1]}.png`
                         }
                         alt={`${obj.name}`}
@@ -347,14 +356,8 @@ const PokeView = ({ fullPokeResults, screenSize, isDarkMode }) => {
               const cleanedParts = parts.filter((part) => part !== "");
               const lastPart = cleanedParts[cleanedParts.length - 1];
               const number = parseInt(lastPart, 10);
-              // const pokeIdURL = `/pokemon/${number}`;
-              const isDisabled = number === pokeSpeciesData.id;
+              const isDisabled = number === pokeData.id;
               return (
-                // <Link
-                //   className={`clean-text ${fontStyle}`}
-                //   to={pokeIdURL}
-                //   key={i}
-                // >
                 <motion.button
                   className={`dyn-section-button ${fontStyle} ${infoButtonStyle} ${
                     isDisabled ? inactiveButtonStyle : ""
@@ -379,7 +382,6 @@ const PokeView = ({ fullPokeResults, screenSize, isDarkMode }) => {
                     />
                   </div>
                 </motion.button>
-                // </Link>
               );
             })}
           </div>
@@ -401,7 +403,7 @@ const PokeView = ({ fullPokeResults, screenSize, isDarkMode }) => {
         screenSize={screenSize}
         isDarkMode={isDarkMode}
       />
-      {!isPokeLoading && (
+      {!isPokeLoading && !isPokeSpeciesLoading && (
         <PokeInfoTable
           pokeData={pokeData}
           pokeSpeciesData={pokeSpeciesData}
@@ -425,7 +427,7 @@ const PokeView = ({ fullPokeResults, screenSize, isDarkMode }) => {
           }`}
         >
           <div className={`${fontStyle} ${secondaryHeaderStyle}`}>Breeding</div>
-          {!isPokeLoading && (
+          {!isPokeLoading && !isPokeSpeciesLoading && (
             <DynamicTableSection
               sectionInfo={breedingInfo}
               isDarkMode={isDarkMode}
@@ -440,7 +442,7 @@ const PokeView = ({ fullPokeResults, screenSize, isDarkMode }) => {
           }`}
         >
           <div className={`${fontStyle} ${secondaryHeaderStyle}`}>Training</div>
-          {!isPokeLoading && (
+          {!isPokeLoading && !isPokeSpeciesLoading && (
             <DynamicTableSection
               sectionInfo={trainingInfo}
               isDarkMode={isDarkMode}
@@ -455,7 +457,7 @@ const PokeView = ({ fullPokeResults, screenSize, isDarkMode }) => {
           }`}
         >
           <div className={`${fontStyle} ${secondaryHeaderStyle}`}>Forms</div>
-          {!isPokeLoading && (
+          {!isPokeLoading && !isPokeSpeciesLoading && (
             <DynamicTableSection
               sectionInfo={formInfo}
               isDarkMode={isDarkMode}
