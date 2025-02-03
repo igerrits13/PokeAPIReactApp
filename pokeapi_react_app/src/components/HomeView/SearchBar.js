@@ -24,6 +24,7 @@ const SearchBar = ({ fullPokeResults, isDarkMode }) => {
   // Update the text in the search bar
   const updateSearchText = (e) => {
     setSearchText(e.target.value);
+    handleOnFocus();
   };
 
   // Clear the search text
@@ -50,15 +51,17 @@ const SearchBar = ({ fullPokeResults, isDarkMode }) => {
       e.preventDefault();
       if (resultsHTML.length > 0) {
         setSearchText(resultsHTML[0].props.resultItem.name);
-        if (inputRef.current) {
-          const input = inputRef.current;
-          input.setSelectionRange(searchText.length, searchText.length);
-        }
       }
     }
+    // When 'Enter' is pressed, search for the text that is currently in the search bar
     if (e.key === "Enter") {
-      navigate(`/pokemon/${searchText}`);
-      clearSearchText();
+      if (resultsHTML.length > 0) {
+        navigate(`/pokemon/${resultsHTML[0].props.resultItem.name}`);
+        clearSearchText();
+      } else {
+        navigate(`/pokemon/${searchText}`);
+        clearSearchText();
+      }
       handleOnBlur();
     }
     // if (e.key === "ArrowDown") {

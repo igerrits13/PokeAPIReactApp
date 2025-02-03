@@ -295,53 +295,57 @@ const PokeView = ({ fullPokeResults, screenSize, isDarkMode }) => {
         // info: `Forms`,
         info: (
           <div className="dyn-section-button-container">
-            {pokeData.forms.map((obj, i) => {
-              // Extract the Pokémon number from the Pokémon URL
-              const parts = obj.url.split("/");
-              const cleanedParts = parts.filter((part) => part !== "");
-              const lastPart = cleanedParts[cleanedParts.length - 1];
-              const number = parseInt(lastPart, 10);
-              const pokeIdURL = `/pokemon/${number}`;
-              const isDisabled =
-                number === pokeSpeciesData.id || obj.name === pokeData.name;
-              const formName = obj.name.split("-");
-              return (
-                // <Link
-                //   className={`clean-text ${fontStyle}`}
-                //   to={pokeIdURL}
-                //   key={i}
-                // >
-                <motion.button
-                  className={`dyn-section-button ${fontStyle} ${infoButtonStyle} ${
-                    isDisabled ? inactiveButtonStyle : ""
-                  }`}
-                  key={i}
-                  disabled
-                  // disabled={isDisabled}
-                  // whileHover={
-                  //   !isDisabled ? { scale: 1.1, rotate: "-1.5deg" } : undefined
-                  // }
-                  // whileTap={
-                  //   !isDisabled ? { scale: 0.9, rotate: "5deg" } : undefined
-                  // }
-                  // transition={!isDisabled ? { duration: 0.1 } : undefined}
-                >
-                  {getPokeName(obj.name)}
-                  <div className="dyn-section-button-img-container">
-                    <img
-                      src={
-                        number === pokeData.id || i === 0
-                          ? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeData.id}.png`
-                          : `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeData.id}-${formName[1]}.png`
-                      }
-                      alt={`${obj.name}`}
-                      className="dyn-section-button-full-img"
-                    />
-                  </div>
-                </motion.button>
-                // </Link>
-              );
-            })}
+            {pokeData.forms.length < 5 ? (
+              pokeData.forms.map((obj, i) => {
+                // Extract the Pokémon number from the Pokémon URL
+                const parts = obj.url.split("/");
+                const cleanedParts = parts.filter((part) => part !== "");
+                const lastPart = cleanedParts[cleanedParts.length - 1];
+                const number = parseInt(lastPart, 10);
+                const pokeIdURL = `/pokemon/${number}`;
+                const isDisabled =
+                  number === pokeSpeciesData.id || obj.name === pokeData.name;
+                const formName = obj.name.split("-");
+                return (
+                  // <Link
+                  //   className={`clean-text ${fontStyle}`}
+                  //   to={pokeIdURL}
+                  //   key={i}
+                  // >
+                  <motion.button
+                    className={`dyn-section-button ${fontStyle} ${infoButtonStyle} ${
+                      isDisabled ? inactiveButtonStyle : ""
+                    }`}
+                    key={i}
+                    disabled
+                    // disabled={isDisabled}
+                    // whileHover={
+                    //   !isDisabled ? { scale: 1.1, rotate: "-1.5deg" } : undefined
+                    // }
+                    // whileTap={
+                    //   !isDisabled ? { scale: 0.9, rotate: "5deg" } : undefined
+                    // }
+                    // transition={!isDisabled ? { duration: 0.1 } : undefined}
+                  >
+                    {getPokeName(obj.name)}
+                    <div className="dyn-section-button-img-container">
+                      <img
+                        src={
+                          number === pokeData.id || i === 0
+                            ? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeData.id}.png`
+                            : `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeData.id}-${formName[1]}.png`
+                        }
+                        alt={`${obj.name}`}
+                        className="dyn-section-button-full-img"
+                      />
+                    </div>
+                  </motion.button>
+                  // </Link>
+                );
+              })
+            ) : (
+              <></>
+            )}
           </div>
         ),
         id: 1,
