@@ -1,12 +1,13 @@
 import DynamicTableSection from "../CommonComponents/DynamicTableSection";
 
+// Training information section for the current Pokémon
 const TrainingInfo = ({
   pokeData,
   pokeSpeciesData,
   screenSize,
   isDarkMode,
 }) => {
-  // Setup the title font style based on if the user is using light or dark mode and screen size
+  // Setup the font style based on if the user is using light or dark mode and screen size
   const fontStyle = isDarkMode ? "font-dark" : "font-light";
   const secondaryHeaderStyle =
     screenSize === "small"
@@ -17,7 +18,7 @@ const TrainingInfo = ({
       ? "secondary-page-header-large"
       : "secondary-page-header-x-large";
 
-  // Display the training information for the current Pokémon
+  // Data structure to store the training information for the current Pokémon
   const trainingInfo = [
     { text: "Base XP", info: `${pokeData.base_experience} XP`, id: 0 },
     {
@@ -38,6 +39,7 @@ const TrainingInfo = ({
     },
   ];
 
+  // Display the training information for the current Pokémon
   return (
     <div
       className={`${

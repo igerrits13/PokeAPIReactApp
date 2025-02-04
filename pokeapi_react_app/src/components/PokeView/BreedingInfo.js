@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
-import egg from "../icons/egg.png";
 import DynamicTableSection from "../CommonComponents/DynamicTableSection";
+import egg from "../icons/egg.png";
 
+// Breeding information section for the current Pokémon
 const BreedingInfo = ({ pokeSpeciesData, screenSize, isDarkMode }) => {
-  // Setup the title font style based on if the user is using light or dark mode and screen size
+  // Setup the title font style based on if the user is using light or dark mode and screen size, as well as
+  // the active and inactive buton styles based on if the user is using light or dark mode
   const fontStyle = isDarkMode ? "font-dark" : "font-light";
   const secondaryHeaderStyle =
     screenSize === "small"
@@ -43,7 +45,7 @@ const BreedingInfo = ({ pokeSpeciesData, screenSize, isDarkMode }) => {
     return 255 * (counter + 1);
   };
 
-  // Display the breeding information for the current Pokémon
+  // Data structure to store the breeding information for the current Pokémon
   const breedingInfo = [
     {
       text: "Egg Groups",
@@ -136,6 +138,7 @@ const BreedingInfo = ({ pokeSpeciesData, screenSize, isDarkMode }) => {
     },
   ];
 
+  // Display the breeding information for the current Pokémon
   return (
     <div
       className={`${

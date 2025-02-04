@@ -118,9 +118,7 @@ const PokeView = ({ fullPokeResults, screenSize, isDarkMode }) => {
         <PokeInfoTable
           setPokeId={setPokeId}
           pokeData={pokeData}
-          // isPokeLoading={isPokeLoading}
           pokeSpeciesData={pokeSpeciesData}
-          // isPokeSpeciesLoading={isPokeSpeciesLoading}
           isDarkMode={isDarkMode}
           screenSize={screenSize}
         />

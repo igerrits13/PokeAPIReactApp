@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import DynamicTableSection from "../CommonComponents/DynamicTableSection";
 
+// Forms information section for the current Pokémon
 const FormsInfo = ({
   pokeData,
   setPokeId,
@@ -8,7 +9,8 @@ const FormsInfo = ({
   screenSize,
   isDarkMode,
 }) => {
-  // Setup the title font style based on if the user is using light or dark mode and screen size
+  // Setup the title font style based on if the user is using light or dark mode and screen size, as well as
+  // the active and inactive buton styles based on if the user is using light or dark mode
   const fontStyle = isDarkMode ? "font-dark" : "font-light";
   const secondaryHeaderStyle =
     screenSize === "small"
@@ -38,7 +40,7 @@ const FormsInfo = ({
     setPokeId(pokeNum);
   };
 
-  // Display the forms information for the current Pokémon
+  // Data structure to store the forms information for the current Pokémon
   const formInfo = [
     {
       text: "Default Form",
@@ -146,6 +148,7 @@ const FormsInfo = ({
     },
   ];
 
+  // Display the forms information for the current Pokémon
   return (
     <div
       className={`${
