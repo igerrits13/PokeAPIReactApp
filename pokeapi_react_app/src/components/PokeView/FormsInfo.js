@@ -115,6 +115,14 @@ const FormsInfo = ({
             const lastPart = cleanedParts[cleanedParts.length - 1];
             const number = parseInt(lastPart, 10);
             const isDisabled = number === pokeData.id;
+
+            // Function to handle image error and hide the parent div
+            const handleImageError = (e) => {
+              e.target.closest(
+                ".dyn-section-button-img-container"
+              ).style.display = "none";
+            };
+
             return (
               <motion.button
                 className={`dyn-section-button ${fontStyle} ${infoButtonStyle} ${
@@ -137,6 +145,7 @@ const FormsInfo = ({
                     src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${number}.png`}
                     alt={`${obj.pokemon.name}`}
                     className="dyn-section-button-full-img"
+                    onError={handleImageError} // Add error handling
                   />
                 </div>
               </motion.button>

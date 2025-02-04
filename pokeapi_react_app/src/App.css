@@ -1120,7 +1120,6 @@ const colours = {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  /* flex-wrap: nowrap; */
   justify-content: space-between;
   width: 100%;
   padding: 1rem 0 3rem 0;
@@ -1152,11 +1151,6 @@ const colours = {
   width: 50%;
   padding: 0 0.5rem;
 }
-
-/* .typeview-info-name {
-  width: 50%;
-  padding: 0 0.5rem;
-} */
 
 .table-info-icon-container {
   display: flex;
@@ -1196,6 +1190,7 @@ const colours = {
 }
 
 /* .typeview-table-damage-relations */
+
 .secondary-table-conainer-50 {
   display: flex;
   flex: 2 1 50%;
@@ -1204,6 +1199,7 @@ const colours = {
 }
 
 /* .typeview-table-icon-container */
+
 .secondary-table-conainer-20 {
   display: flex;
   flex: 1 1 20%;
@@ -1415,14 +1411,12 @@ const colours = {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* background-color: #7ac74c; */
 }
 
 .pokeview-image {
   height: auto;
   width: 100%;
   object-fit: contain;
-  /* background-color: #b61744; */
 }
 
 .pokeview-image-toggle {
@@ -1430,14 +1424,12 @@ const colours = {
   justify-content: center;
   height: auto;
   width: 100%;
-  /* background-color: #163ec3; */
 }
 
 .pokeview-image-toggle-normal {
   display: flex;
   align-items: center;
   border-radius: 8px 0 0 8px;
-  /* height: 2rem; */
   width: 5rem;
   padding: 0.75rem;
   justify-content: center;
@@ -1448,9 +1440,16 @@ const colours = {
   justify-content: center;
   align-items: center;
   border-radius: 0 8px 8px 0;
-  /* height: 2rem; */
-  /* width: 7rem; */
   padding: 0.75rem;
+}
+
+.pokeview-image-normal-only {
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  width: 5rem;
+  padding: 0.75rem;
+  justify-content: center;
 }
 
 /* Dynamic Section Buttons */
@@ -1466,17 +1465,20 @@ const colours = {
 }
 
 .dyn-section-button {
-  /* padding: 0.5rem; */
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
   gap: 10px;
   max-width: 200px;
-  /* font-size: 0.75rem; */
   text-decoration: none;
-  /* padding: 0.5rem; */
   border-radius: 8px;
+}
+
+.dyn-section-text {
+  width: 100%;
+  text-align: center;
+  background-color: #7ac74c;
 }
 
 .dyn-section-button-img-container {

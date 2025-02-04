@@ -40,7 +40,11 @@ const PokeImage = ({ pokeData, isDarkMode }) => {
         <div className="pokeview-image-toggle">
           <button
             onClick={handleNormalMode}
-            className={`pokeview-image-toggle-normal ${imageToggleStyle} ${
+            className={`${
+              pokeData.sprites.other["official-artwork"].front_shiny === null
+                ? "pokeview-image-normal-only"
+                : "pokeview-image-toggle-normal"
+            } ${imageToggleStyle} ${
               isNormalToggle
                 ? activeImageVersionFontStyle
                 : imageVersionFontStyle
@@ -48,16 +52,18 @@ const PokeImage = ({ pokeData, isDarkMode }) => {
           >
             Normal
           </button>
-          <button
-            onClick={handleShinyMode}
-            className={`pokeview-image-toggle-shiny ${imageToggleStyle} ${
-              isNormalToggle
-                ? imageVersionFontStyle
-                : activeImageVersionFontStyle
-            }`}
-          >
-            Shiny
-          </button>
+          {pokeData.sprites.other["official-artwork"].front_shiny && (
+            <button
+              onClick={handleShinyMode}
+              className={`pokeview-image-toggle-shiny ${imageToggleStyle} ${
+                isNormalToggle
+                  ? imageVersionFontStyle
+                  : activeImageVersionFontStyle
+              }`}
+            >
+              Shiny
+            </button>
+          )}
         </div>
       </div>
     </div>

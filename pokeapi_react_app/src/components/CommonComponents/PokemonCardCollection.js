@@ -64,8 +64,8 @@ const PokemonCardCollection = ({
 
   // Update how many cards are to be displayed
   const fetchMoreData = () => {
-    // setCardsToDisplay(cardsToDisplay + 24);
-    setCardsToDisplay(cardsToDisplay + 12);
+    setCardsToDisplay(cardsToDisplay + 24);
+    // setCardsToDisplay(cardsToDisplay + 12);
   };
 
   return (
