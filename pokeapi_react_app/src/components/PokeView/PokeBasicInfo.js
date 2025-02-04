@@ -19,7 +19,7 @@ import { ReactComponent as WaterType } from "../icons/water.svg";
 import TypesResultsItem from "../HomeView/TypesResultsItem";
 import DynamicTableSection from "../CommonComponents/DynamicTableSection";
 
-// Display for basic information on the current Pokémon
+// Basic information of current Pokémon
 const PokeBasicInfo = ({
   pokeData,
   pokeSpeciesData,

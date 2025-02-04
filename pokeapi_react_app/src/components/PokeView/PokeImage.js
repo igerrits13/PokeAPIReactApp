@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+// Normal or shiny image of current Pokémon
 const PokeImage = ({ pokeData, isDarkMode }) => {
   // Setup the type results and text style based on if the user is using light or dark mode
   const imageToggleStyle = isDarkMode
@@ -23,6 +24,7 @@ const PokeImage = ({ pokeData, isDarkMode }) => {
     setIsNormalToggle(false);
   };
 
+  // Display the normal or shiny image of the current Pokémon
   return (
     <div className="secondary-table-conainer-50">
       <div className="pokeview-image-container">

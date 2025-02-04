@@ -413,8 +413,6 @@ const PokeView = ({ fullPokeResults, screenSize, isDarkMode }) => {
         <PokeInfoTable
           pokeData={pokeData}
           pokeSpeciesData={pokeSpeciesData}
-          isPokeLoading={isPokeLoading}
-          isPokeSpeciesLoading={isPokeSpeciesLoading}
           isDarkMode={isDarkMode}
           screenSize={screenSize}
         />
@@ -478,3 +476,5 @@ const PokeView = ({ fullPokeResults, screenSize, isDarkMode }) => {
 };
 
 export default PokeView;
+
+// 478
