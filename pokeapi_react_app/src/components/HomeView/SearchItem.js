@@ -22,7 +22,8 @@ const SearchItem = ({ clearSearchText, resultItem, isDarkMode, i }) => {
     <Link
       className={`search-results-item clean-text ${searchResultsItemsStyle}`}
       to={pokeIdURL}
-      onClick={() => clearSearchText()}
+      // onClick={clearSearchText}
+      // onClick={() => clearSearchText()}
     >
       <div>
         <img

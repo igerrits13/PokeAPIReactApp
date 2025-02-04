@@ -197,7 +197,8 @@ const PokeView = ({ fullPokeResults, screenSize, isDarkMode }) => {
             {pokeSpeciesData.egg_groups.map((obj, i) => {
               return (
                 <motion.button
-                  className={`dyn-section-button ${fontStyle} ${infoButtonStyle}`}
+                  // className={`dyn-section-button ${fontStyle} ${infoButtonStyle}`}
+                  className={`dyn-section-button ${fontStyle} ${infoButtonStyle} ${inactiveButtonStyle}`}
                   key={i}
                   disabled
                   // whileHover={{ scale: 1.1, rotate: "-1.5deg" }}
@@ -302,9 +303,9 @@ const PokeView = ({ fullPokeResults, screenSize, isDarkMode }) => {
                 const cleanedParts = parts.filter((part) => part !== "");
                 const lastPart = cleanedParts[cleanedParts.length - 1];
                 const number = parseInt(lastPart, 10);
-                const pokeIdURL = `/pokemon/${number}`;
-                const isDisabled =
-                  number === pokeSpeciesData.id || obj.name === pokeData.name;
+                // const pokeIdURL = `/pokemon/${number}`;
+                // const isDisabled =
+                //   number === pokeSpeciesData.id || obj.name === pokeData.name;
                 const formName = obj.name.split("-");
                 return (
                   // <Link
@@ -313,9 +314,10 @@ const PokeView = ({ fullPokeResults, screenSize, isDarkMode }) => {
                   //   key={i}
                   // >
                   <motion.button
-                    className={`dyn-section-button ${fontStyle} ${infoButtonStyle} ${
-                      isDisabled ? inactiveButtonStyle : ""
-                    }`}
+                    // className={`dyn-section-button ${fontStyle} ${infoButtonStyle} ${
+                    //   isDisabled ? inactiveButtonStyle : ""
+                    // }`}
+                    className={`dyn-section-button ${fontStyle} ${infoButtonStyle} ${inactiveButtonStyle}`}
                     key={i}
                     disabled
                     // disabled={isDisabled}
@@ -412,6 +414,7 @@ const PokeView = ({ fullPokeResults, screenSize, isDarkMode }) => {
           pokeData={pokeData}
           pokeSpeciesData={pokeSpeciesData}
           isPokeLoading={isPokeLoading}
+          isPokeSpeciesLoading={isPokeSpeciesLoading}
           isDarkMode={isDarkMode}
           screenSize={screenSize}
         />

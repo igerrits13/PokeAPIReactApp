@@ -33,7 +33,7 @@ const SearchResults = ({
         fullPokeResults.slice(0, 12).map((resultItem, i) => {
           return (
             <SearchItem
-              clearSearchText={clearSearchText}
+              // clearSearchText={clearSearchText}
               resultItem={resultItem}
               isDarkMode={isDarkMode}
               key={i}
@@ -55,7 +55,7 @@ const SearchResults = ({
           .map((resultItem, i) => {
             return (
               <SearchItem
-                clearSearchText={clearSearchText}
+                // clearSearchText={clearSearchText}
                 resultItem={resultItem}
                 isDarkMode={isDarkMode}
                 key={i}
