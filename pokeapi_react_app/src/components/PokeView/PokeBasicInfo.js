@@ -178,7 +178,7 @@ const PokeBasicInfo = ({
             : "description-box-large"
         } ${pokemonDescStyle} ${fontStyle}`}
       >
-        {flavorText.replace("\u000c", "")}
+        {flavorText}
       </div>
       <DynamicTableSection sectionInfo={pokeInfo} isDarkMode={isDarkMode} />
     </div>

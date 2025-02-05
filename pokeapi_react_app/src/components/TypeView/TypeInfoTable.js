@@ -14,12 +14,12 @@ const TypeInfoTable = ({
   const fontStyle = isDarkMode ? "font-dark" : "font-light";
   const secondaryHeaderStyle =
     screenSize === "small"
-      ? "typeview-header-small"
+      ? "secondary-page-header-small"
       : screenSize === "medium"
-      ? "typeview-header-med"
+      ? "secondary-page-header-med"
       : screenSize === "large"
-      ? "typeview-header-large"
-      : "typeview-header-x-large";
+      ? "secondary-page-header-large"
+      : "secondary-page-header-x-large";
   const iconStyle = isDarkMode
     ? "component-background-dark component-rounded-outline-thin-dark"
     : "component-background-light component-rounded-outline-thin-light";

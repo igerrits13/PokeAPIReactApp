@@ -1507,3 +1507,39 @@ const colours = {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+/* Stats table */
+
+.secondary-table-conainer-100 {
+  display: flex;
+  flex: 2 1 100%;
+  width: 100%;
+  flex-direction: column;
+  padding: 0.5rem 1rem;
+  /* background-color: #96d9d6; */
+}
+
+.stats-table-section {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  padding: 0.5rem;
+  min-height: 2rem;
+  gap: 10px;
+}
+
+.stats-table-name {
+  width: 20%;
+  padding: 0 0.5rem;
+}
+
+.stats-table-number {
+  width: 10%;
+  padding: 0 0.5rem;
+}
+
+.stats-table-progress-bar {
+  width: 50%;
+  padding: 0 0.5rem;
+}

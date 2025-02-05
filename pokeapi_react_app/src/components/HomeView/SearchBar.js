@@ -41,7 +41,8 @@ const SearchBar = ({ fullPokeResults, isDarkMode }) => {
     // Create a small delay to allow for a search result item link to work if one is clicked
     setTimeout(() => {
       setSearchBarFocus(false);
-    }, 100);
+      clearSearchText();
+    }, 150);
   };
 
   // Automatically fill the search text based on key pressed
@@ -53,10 +54,14 @@ const SearchBar = ({ fullPokeResults, isDarkMode }) => {
         setSearchText(resultsHTML[0].props.resultItem.name);
       }
     }
-    // When 'Enter' is pressed, search for the text that is currently in the search bar
+    // When 'Enter' is pressed, search for the current text or ID of the Pokémon if it exists
     if (e.key === "Enter") {
       if (resultsHTML.length > 0) {
-        navigate(`/pokemon/${resultsHTML[0].props.resultItem.name}`);
+        const urlArr = resultsHTML[0].props.resultItem.url.split("/");
+        const urlNoSlash = urlArr.filter((part) => part !== "");
+        const urlNumber = urlNoSlash[urlNoSlash.length - 1];
+        const pokeNum = parseInt(urlNumber, 10);
+        navigate(`/pokemon/${pokeNum}`);
         clearSearchText();
       } else {
         navigate(`/pokemon/${searchText}`);

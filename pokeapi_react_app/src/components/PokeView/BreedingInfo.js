@@ -114,8 +114,7 @@ const BreedingInfo = ({ pokeSpeciesData, screenSize, isDarkMode }) => {
     },
     {
       text: "Gender Differences",
-      info:
-        pokeSpeciesData.has_gender_differences === "true" ? "True" : "False",
+      info: pokeSpeciesData.has_gender_differences === true ? "True" : "False",
       id: 3,
     },
     {

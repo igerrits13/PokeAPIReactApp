@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import SecondaryViewHeader from "../CommonComponents/SecondaryViewHeader";
 import PokeInfoTable from "./PokeInfoTable";
+import StatsTable from "./StatsTable";
 import Footer from "../CommonComponents/Footer";
 
 // Temporary page while Pokémon page is not done
@@ -102,6 +103,26 @@ const PokeView = ({ fullPokeResults, screenSize, isDarkMode }) => {
     return;
   }
 
+  const statsInfo = [
+    {
+      name: "Stat",
+      base: "Base",
+      fullMin: "Min",
+      fullMax: "Max",
+      id: 0,
+    },
+  ];
+
+  if (pokeData !== null) {
+    pokeData.stats.forEach((stat, index) => {
+      statsInfo.push({
+        name: stat.stat.name,
+        base: stat.base_stat,
+        id: index + 1,
+      });
+    });
+  }
+
   // Display the Pokémon page
   return (
     <div
@@ -121,6 +142,13 @@ const PokeView = ({ fullPokeResults, screenSize, isDarkMode }) => {
           pokeSpeciesData={pokeSpeciesData}
           isDarkMode={isDarkMode}
           screenSize={screenSize}
+        />
+      )}
+      {!isPokeLoading && !isPokeSpeciesLoading && (
+        <StatsTable
+          statsInfo={statsInfo}
+          screenSize={screenSize}
+          isDarkMode={isDarkMode}
         />
       )}
       <Footer isDarkMode={isDarkMode} />
