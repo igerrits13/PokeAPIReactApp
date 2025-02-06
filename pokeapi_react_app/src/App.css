@@ -1508,6 +1508,56 @@ const colours = {
   transform: translate(-50%, -50%);
 }
 
+/* Dynamic Section Dropdown */
+
+.dyn-section-dropdown-container {
+  position: relative;
+  width: 100%;
+}
+
+.dyn-section-dropdown-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 2.5rem;
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 8px;
+}
+
+.dyn-section-dropdown-text {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.dyn-section-dropdown-results {
+  display: none;
+  position: absolute;
+  overflow: hidden;
+  overflow-y: auto;
+  height: auto;
+  max-height: 250px;
+  width: 100%;
+  text-align: center;
+  border-radius: 5px;
+  border-top: none;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 6px 0;
+  z-index: 1;
+}
+
+.dyn-section-dropdown-results-active {
+  display: block;
+}
+
+.dyn-section-dropdown-items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  text-decoration: none;
+}
+
 /* Stats table */
 
 .secondary-table-conainer-100 {

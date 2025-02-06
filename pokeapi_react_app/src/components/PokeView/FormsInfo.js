@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from "react";
 import { motion } from "motion/react";
 import DynamicTableSection from "../CommonComponents/DynamicTableSection";
 
@@ -26,6 +27,13 @@ const FormsInfo = ({
   const inactiveButtonStyle = isDarkMode
     ? "option-font-dark clean-border"
     : "option-font-light clean-border";
+  const formsResultsStyle = isDarkMode
+    ? "component-background-dark component-outline-dark"
+    : "component-background-light component-outline-light";
+
+  const [isActiveFormsDropdown, setIsActiveFormsDropdown] = useState(false);
+  const formssDropdownRef = useRef(null);
+  const formsButtonRef = useRef(null);
 
   // Capitalize the first word of each part of the pokémon's name
   const getPokeName = (name) => {
@@ -39,6 +47,29 @@ const FormsInfo = ({
   const handleChangePokemon = (pokeNum) => {
     setPokeId(pokeNum);
   };
+
+  // Close dropdown if click is outside of the dropdown or button
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        formssDropdownRef.current &&
+        !formssDropdownRef.current.contains(event.target) &&
+        formsButtonRef.current &&
+        !formsButtonRef.current.contains(event.target)
+      ) {
+        formssDropdownRef.current.scrollTop = 0;
+        setIsActiveFormsDropdown(false); // Close dropdown if click is outside
+      }
+    };
+
+    // Listen for clicks on the document
+    document.addEventListener("click", handleClickOutside);
+
+    // Cleanup the event listener when component is unmounted
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   // Data structure to store the forms information for the current Pokémon
   const formInfo = [
@@ -60,26 +91,10 @@ const FormsInfo = ({
               const number = parseInt(lastPart, 10);
               const formName = obj.name.split("-");
               return (
-                // <Link
-                //   className={`clean-text ${fontStyle}`}
-                //   to={pokeIdURL}
-                //   key={i}
-                // >
                 <motion.button
-                  // className={`dyn-section-button ${fontStyle} ${infoButtonStyle} ${
-                  //   isDisabled ? inactiveButtonStyle : ""
-                  // }`}
                   className={`dyn-section-button ${fontStyle} ${infoButtonStyle} ${inactiveButtonStyle}`}
                   key={i}
                   disabled
-                  // disabled={isDisabled}
-                  // whileHover={
-                  //   !isDisabled ? { scale: 1.1, rotate: "-1.5deg" } : undefined
-                  // }
-                  // whileTap={
-                  //   !isDisabled ? { scale: 0.9, rotate: "5deg" } : undefined
-                  // }
-                  // transition={!isDisabled ? { duration: 0.1 } : undefined}
                 >
                   {getPokeName(obj.name)}
                   <div className="dyn-section-button-img-container">
@@ -94,11 +109,62 @@ const FormsInfo = ({
                     />
                   </div>
                 </motion.button>
-                // </Link>
               );
             })
           ) : (
-            <></>
+            <div className="dyn-section-dropdown-container">
+              <button
+                className={`dyn-section-dropdown-button ${fontStyle} ${infoButtonStyle}`}
+                onClick={() => setIsActiveFormsDropdown(!isActiveFormsDropdown)}
+                ref={formsButtonRef}
+              >
+                <div className="dyn-section-dropdown-text">Forms</div>
+                <motion.i
+                  class="fa-solid fa-circle-chevron-down"
+                  animate={{
+                    rotate: isActiveFormsDropdown ? -180 : 0,
+                  }}
+                  transition={{ duration: 0.2 }}
+                ></motion.i>
+              </button>
+              <div
+                className={`dyn-section-dropdown-results ${formsResultsStyle} ${
+                  isActiveFormsDropdown
+                    ? "dyn-section-dropdown-results-active"
+                    : ""
+                }`}
+                ref={formssDropdownRef}
+              >
+                {pokeData.forms.map((obj, i) => {
+                  // Extract the Pokémon number from the Pokémon URL
+                  const parts = obj.url.split("/");
+                  const cleanedParts = parts.filter((part) => part !== "");
+                  const lastPart = cleanedParts[cleanedParts.length - 1];
+                  const number = parseInt(lastPart, 10);
+                  const formName = obj.name.split("-");
+                  return (
+                    <motion.button
+                      className={`dyn-section-dropdown-items ${fontStyle} ${infoButtonStyle} ${inactiveButtonStyle}`}
+                      key={i}
+                      disabled
+                    >
+                      {getPokeName(obj.name)}
+                      <div className="dyn-section-button-img-container">
+                        <img
+                          src={
+                            number === pokeData.id || i === 0
+                              ? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeData.id}.png`
+                              : `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeData.id}-${formName[1]}.png`
+                          }
+                          alt={`${obj.name}`}
+                          className="dyn-section-button-full-img"
+                        />
+                      </div>
+                    </motion.button>
+                  );
+                })}
+              </div>
+            </div>
           )}
         </div>
       ),

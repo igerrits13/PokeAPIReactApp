@@ -24,7 +24,7 @@ const SearchResults = ({
 
   useEffect(() => {
     searchDropdownRef.current.scrollTop = 0;
-  }, [searchBarFocus, searchDropdownRef]);
+  }, [searchDropdownRef]);
 
   // Create search results for the first 12 Pokémon based off number, starting at 1, if no search text has been entered
   useEffect(() => {
