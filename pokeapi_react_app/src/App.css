@@ -1522,7 +1522,7 @@ const colours = {
 .stats-table-section {
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
+  /* flex-wrap: nowrap; */
   align-items: center;
   padding: 0.5rem;
   min-height: 2rem;
@@ -1535,11 +1535,56 @@ const colours = {
 }
 
 .stats-table-number {
+  display: flex;
+  justify-content: center;
   width: 10%;
   padding: 0 0.5rem;
 }
 
 .stats-table-progress-bar {
+  position: relative;
   width: 50%;
+  height: 1rem;
+  /* padding: 0 0.5rem; */
+  border-radius: 8px;
+}
+
+.stats-progress-base {
+  position: absolute;
+  height: 100%;
+  border-radius: 8px;
+  top: 0;
+  left: 0;
+}
+
+.stats-progress-example-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+
+.stats-progress-example {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  width: min-content;
   padding: 0 0.5rem;
+  border-radius: 15px;
+}
+
+.stats-progress-dark-min {
+  background-color: #757575;
+}
+
+.stats-progress-dark-max {
+  background-color: #fff9fc;
+}
+
+.stats-progress-light-min {
+  background-color: #2b2e2a;
+}
+
+.stats-progress-light-max {
+  background-color: #757575;
 }

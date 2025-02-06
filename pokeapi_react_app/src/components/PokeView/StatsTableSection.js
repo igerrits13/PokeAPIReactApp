@@ -1,3 +1,5 @@
+import { motion } from "motion/react";
+
 // Create a table section based on the input array of information
 const StatsTableSection = ({ statsInfo, screenSize, isDarkMode }) => {
   // Setup the line styling between information sections based on if the user is using light or dark mode
@@ -5,6 +7,15 @@ const StatsTableSection = ({ statsInfo, screenSize, isDarkMode }) => {
   const lineStyle = isDarkMode
     ? "component-outline-bottom-dark"
     : "component-outline-bottom-light";
+  const progressBarOutline = isDarkMode
+    ? "component-outline-dark"
+    : "component-outline-light";
+  const progressBarMinStyle = isDarkMode
+    ? "stats-progress-dark-min"
+    : "stats-progress-light-min";
+  const progressBarMaxStyle = isDarkMode
+    ? "stats-progress-dark-max"
+    : "stats-progress-light-max";
 
   //  Get the min and max total stats the current Pokémon can obtain
   const calcMin = (obj) => {
@@ -48,12 +59,68 @@ const StatsTableSection = ({ statsInfo, screenSize, isDarkMode }) => {
           >
             <div className="stats-table-name">{getStatTitle(obj.name)}</div>
             <div className="stats-table-number">{obj.base}</div>
-            <div className="stats-table-progress-bar"></div>
-            <div className="stats-table-number">
-              {obj.fullMin ? obj.fullMin : calcMin(obj).toFixed(0)}
+            <div
+              className={`stats-table-progress-bar ${
+                !isNaN(obj.base) ? progressBarOutline : ""
+              }`}
+            >
+              {!isNaN(obj.base) ? (
+                <>
+                  <motion.div
+                    initial={{ width: "0" }}
+                    animate={{
+                      width: `${(obj.base / calcMin(obj).toFixed(0)) * 100}%`,
+                    }}
+                    transition={{ duration: 1.4, origin: 1 }}
+                    className={`stats-progress-base ${progressBarMinStyle}`}
+                  ></motion.div>
+
+                  <motion.div
+                    initial={{ width: "0" }}
+                    animate={{
+                      width: `${(obj.base / calcMax(obj).toFixed(0)) * 100}%`,
+                    }}
+                    transition={{ duration: 1.4, origin: 1 }}
+                    className={`stats-progress-base ${progressBarMaxStyle}`}
+                  ></motion.div>
+                </>
+              ) : (
+                <></>
+                // <div className="stats-progress-example-container">
+                //   <div
+                //     className={`stats-progress-example ${progressBarMinStyle}`}
+                //   >
+                //     Total Min Percent
+                //   </div>
+                //   <div
+                //     className={`stats-progress-example ${progressBarMaxStyle}`}
+                //   >
+                //     Total Max Percent
+                //   </div>
+                // </div>
+              )}
             </div>
             <div className="stats-table-number">
+              {/* <div
+                className={`${
+                  obj.fullMin
+                    ? `stats-progress-example ${progressBarMinStyle}`
+                    : ""
+                }`}
+              > */}
+              {obj.fullMin ? obj.fullMin : calcMin(obj).toFixed(0)}
+              {/* </div> */}
+            </div>
+            <div className="stats-table-number">
+              {/* <div
+                className={`${
+                  obj.fullMin
+                    ? `stats-progress-example ${progressBarMaxStyle}`
+                    : ""
+                }`}
+              > */}
               {obj.fullMax ? obj.fullMax : calcMax(obj).toFixed(0)}
+              {/* </div> */}
             </div>
           </div>
         );
