@@ -34,6 +34,10 @@ const FormsInfo = ({
   const [isActiveFormsDropdown, setIsActiveFormsDropdown] = useState(false);
   const formssDropdownRef = useRef(null);
   const formsButtonRef = useRef(null);
+  const [isActiveVarietiesDropdown, setIsActiveVarietiesDropdown] =
+    useState(false);
+  const varietiesDropdownRef = useRef(null);
+  const varietiesButtonRef = useRef(null);
 
   // Capitalize the first word of each part of the pokémon's name
   const getPokeName = (name) => {
@@ -59,6 +63,15 @@ const FormsInfo = ({
       ) {
         formssDropdownRef.current.scrollTop = 0;
         setIsActiveFormsDropdown(false); // Close dropdown if click is outside
+      }
+      if (
+        varietiesDropdownRef.current &&
+        !varietiesDropdownRef.current.contains(event.target) &&
+        varietiesButtonRef.current &&
+        !varietiesButtonRef.current.contains(event.target)
+      ) {
+        varietiesDropdownRef.current.scrollTop = 0;
+        setIsActiveVarietiesDropdown(false); // Close dropdown if click is outside
       }
     };
 
@@ -120,7 +133,7 @@ const FormsInfo = ({
               >
                 <div className="dyn-section-dropdown-text">Forms</div>
                 <motion.i
-                  class="fa-solid fa-circle-chevron-down"
+                  className="fa-solid fa-circle-chevron-down"
                   animate={{
                     rotate: isActiveFormsDropdown ? -180 : 0,
                   }}
@@ -174,49 +187,118 @@ const FormsInfo = ({
       text: "Varieties",
       info: (
         <div className="dyn-section-button-container">
-          {pokeSpeciesData.varieties.map((obj, i) => {
-            // Extract the Pokémon number from the Pokémon URL
-            const parts = obj.pokemon.url.split("/");
-            const cleanedParts = parts.filter((part) => part !== "");
-            const lastPart = cleanedParts[cleanedParts.length - 1];
-            const number = parseInt(lastPart, 10);
-            const isDisabled = number === pokeData.id;
+          {pokeSpeciesData.varieties.length < 5 ? (
+            pokeSpeciesData.varieties.map((obj, i) => {
+              // Extract the Pokémon number from the Pokémon URL
+              const parts = obj.pokemon.url.split("/");
+              const cleanedParts = parts.filter((part) => part !== "");
+              const lastPart = cleanedParts[cleanedParts.length - 1];
+              const number = parseInt(lastPart, 10);
+              const isDisabled = number === pokeData.id;
 
-            // Function to handle image error and hide the parent div
-            const handleImageError = (e) => {
-              e.target.closest(
-                ".dyn-section-button-img-container"
-              ).style.display = "none";
-            };
+              // Function to handle image error and hide the parent div
+              const handleImageError = (e) => {
+                e.target.closest(
+                  ".dyn-section-button-img-container"
+                ).style.display = "none";
+              };
 
-            return (
-              <motion.button
-                className={`dyn-section-button ${fontStyle} ${infoButtonStyle} ${
-                  isDisabled ? inactiveButtonStyle : ""
-                }`}
-                key={i}
-                onClick={() => handleChangePokemon(number)}
-                disabled={isDisabled}
-                whileHover={
-                  !isDisabled ? { scale: 1.1, rotate: "-1.5deg" } : undefined
+              return (
+                <motion.button
+                  className={`dyn-section-button ${fontStyle} ${infoButtonStyle} ${
+                    isDisabled ? inactiveButtonStyle : ""
+                  }`}
+                  key={i}
+                  onClick={() => handleChangePokemon(number)}
+                  disabled={isDisabled}
+                  whileHover={
+                    !isDisabled ? { scale: 1.1, rotate: "-1.5deg" } : undefined
+                  }
+                  whileTap={
+                    !isDisabled ? { scale: 0.9, rotate: "5deg" } : undefined
+                  }
+                  transition={!isDisabled ? { duration: 0.1 } : undefined}
+                >
+                  {getPokeName(obj.pokemon.name)}
+                  <div className="dyn-section-button-img-container">
+                    <img
+                      src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${number}.png`}
+                      alt={`${obj.pokemon.name}`}
+                      className="dyn-section-button-full-img"
+                      onError={handleImageError} // Add error handling
+                    />
+                  </div>
+                </motion.button>
+              );
+            })
+          ) : (
+            <div className="dyn-section-dropdown-container">
+              <button
+                className={`dyn-section-dropdown-button ${fontStyle} ${infoButtonStyle}`}
+                onClick={() =>
+                  setIsActiveVarietiesDropdown(!isActiveVarietiesDropdown)
                 }
-                whileTap={
-                  !isDisabled ? { scale: 0.9, rotate: "5deg" } : undefined
-                }
-                transition={!isDisabled ? { duration: 0.1 } : undefined}
+                ref={varietiesButtonRef}
               >
-                {getPokeName(obj.pokemon.name)}
-                <div className="dyn-section-button-img-container">
-                  <img
-                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${number}.png`}
-                    alt={`${obj.pokemon.name}`}
-                    className="dyn-section-button-full-img"
-                    onError={handleImageError} // Add error handling
-                  />
-                </div>
-              </motion.button>
-            );
-          })}
+                <div className="dyn-section-dropdown-text">Varieties</div>
+                <motion.i
+                  className="fa-solid fa-circle-chevron-down"
+                  animate={{
+                    rotate: isActiveVarietiesDropdown ? -180 : 0,
+                  }}
+                  transition={{ duration: 0.2 }}
+                ></motion.i>
+              </button>
+              <div
+                className={`dyn-section-dropdown-results ${formsResultsStyle} ${
+                  isActiveVarietiesDropdown
+                    ? "dyn-section-dropdown-results-active"
+                    : ""
+                }`}
+                ref={varietiesDropdownRef}
+              >
+                {pokeSpeciesData.varieties.map((obj, i) => {
+                  // Extract the Pokémon number from the Pokémon URL
+                  const parts = obj.pokemon.url.split("/");
+                  const cleanedParts = parts.filter((part) => part !== "");
+                  const lastPart = cleanedParts[cleanedParts.length - 1];
+                  const number = parseInt(lastPart, 10);
+                  const isDisabled = number === pokeData.id;
+
+                  // Function to handle image error and hide the parent div
+                  const handleImageError = (e) => {
+                    e.target.closest(
+                      ".dyn-section-button-img-container"
+                    ).style.display = "none";
+                  };
+
+                  return (
+                    <motion.button
+                      className={`dyn-section-dropdown-items ${fontStyle} ${infoButtonStyle} ${
+                        isDisabled ? inactiveButtonStyle : ""
+                      }`}
+                      key={i}
+                      onClick={() => handleChangePokemon(number)}
+                      disabled={isDisabled}
+                      whileHover={!isDisabled ? { scale: 1.1 } : undefined}
+                      whileTap={!isDisabled ? { scale: 0.9 } : undefined}
+                      transition={!isDisabled ? { duration: 0.1 } : undefined}
+                    >
+                      {getPokeName(obj.pokemon.name)}
+                      <div className="dyn-section-button-img-container">
+                        <img
+                          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${number}.png`}
+                          alt={`${obj.pokemon.name}`}
+                          className="dyn-section-button-full-img"
+                          onError={handleImageError} // Add error handling
+                        />
+                      </div>
+                    </motion.button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
         </div>
       ),
       id: 2,
