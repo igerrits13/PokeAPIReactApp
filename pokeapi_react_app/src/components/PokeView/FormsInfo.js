@@ -103,6 +103,14 @@ const FormsInfo = ({
               const lastPart = cleanedParts[cleanedParts.length - 1];
               const number = parseInt(lastPart, 10);
               const formName = obj.name.split("-");
+
+              // Function to handle image error and hide the parent div
+              const handleImageError = (e) => {
+                e.target.closest(
+                  ".dyn-section-button-img-container"
+                ).style.display = "none";
+              };
+
               return (
                 <motion.button
                   className={`dyn-section-button ${fontStyle} ${infoButtonStyle} ${inactiveButtonStyle}`}
@@ -119,6 +127,7 @@ const FormsInfo = ({
                       }
                       alt={`${obj.name}`}
                       className="dyn-section-button-full-img"
+                      onError={handleImageError} // Add error handling
                     />
                   </div>
                 </motion.button>
@@ -155,6 +164,14 @@ const FormsInfo = ({
                   const lastPart = cleanedParts[cleanedParts.length - 1];
                   const number = parseInt(lastPart, 10);
                   const formName = obj.name.split("-");
+
+                  // Function to handle image error and hide the parent div
+                  const handleImageError = (e) => {
+                    e.target.closest(
+                      ".dyn-section-button-img-container"
+                    ).style.display = "none";
+                  };
+
                   return (
                     <motion.button
                       className={`dyn-section-dropdown-items ${fontStyle} ${infoButtonStyle} ${inactiveButtonStyle}`}
@@ -171,6 +188,7 @@ const FormsInfo = ({
                           }
                           alt={`${obj.name}`}
                           className="dyn-section-button-full-img"
+                          onError={handleImageError} // Add error handling
                         />
                       </div>
                     </motion.button>

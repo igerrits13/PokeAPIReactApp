@@ -85,42 +85,27 @@ const StatsTableSection = ({ statsInfo, screenSize, isDarkMode }) => {
                   ></motion.div>
                 </>
               ) : (
-                <></>
-                // <div className="stats-progress-example-container">
-                //   <div
-                //     className={`stats-progress-example ${progressBarMinStyle}`}
-                //   >
-                //     Total Min Percent
-                //   </div>
-                //   <div
-                //     className={`stats-progress-example ${progressBarMaxStyle}`}
-                //   >
-                //     Total Max Percent
-                //   </div>
-                // </div>
+                <>
+                  <div className="stats-progress-example-container">
+                    <div
+                      className={`stats-progress-example ${progressBarMinStyle}`}
+                    >
+                      Min Percent
+                    </div>
+                    <div
+                      className={`stats-progress-example ${progressBarMaxStyle}`}
+                    >
+                      Max Percent
+                    </div>
+                  </div>
+                </>
               )}
             </div>
             <div className="stats-table-number">
-              {/* <div
-                className={`${
-                  obj.fullMin
-                    ? `stats-progress-example ${progressBarMinStyle}`
-                    : ""
-                }`}
-              > */}
               {obj.fullMin ? obj.fullMin : calcMin(obj).toFixed(0)}
-              {/* </div> */}
             </div>
             <div className="stats-table-number">
-              {/* <div
-                className={`${
-                  obj.fullMin
-                    ? `stats-progress-example ${progressBarMaxStyle}`
-                    : ""
-                }`}
-              > */}
               {obj.fullMax ? obj.fullMax : calcMax(obj).toFixed(0)}
-              {/* </div> */}
             </div>
           </div>
         );

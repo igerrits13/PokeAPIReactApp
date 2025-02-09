@@ -1113,7 +1113,7 @@ const colours = {
   justify-content: space-between;
   height: auto;
   width: 100%;
-  padding: 1rem 0 3rem 0;
+  padding: 1rem 0;
 }
 
 .secondary-grid-row-large {
@@ -1122,10 +1122,11 @@ const colours = {
   flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
-  padding: 1rem 0 3rem 0;
+  padding: 1rem 0;
 }
 
 /* .typeview-table-info */
+
 .secondary-table-conainer-30 {
   display: flex;
   flex: 1 1 30%;
@@ -1369,7 +1370,7 @@ const colours = {
   min-width: 100vw;
   display: grid;
   place-items: center;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: auto;
   gap: 20px 0px;
 }
 
@@ -1478,7 +1479,6 @@ const colours = {
 .dyn-section-text {
   width: 100%;
   text-align: center;
-  background-color: #7ac74c;
 }
 
 .dyn-section-button-img-container {
@@ -1565,14 +1565,12 @@ const colours = {
   flex: 2 1 100%;
   width: 100%;
   flex-direction: column;
-  padding: 0.5rem 1rem;
-  /* background-color: #96d9d6; */
+  padding: 1rem 0;
 }
 
 .stats-table-section {
   display: flex;
   flex-direction: row;
-  /* flex-wrap: nowrap; */
   align-items: center;
   padding: 0.5rem;
   min-height: 2rem;
@@ -1595,7 +1593,6 @@ const colours = {
   position: relative;
   width: 50%;
   height: 1rem;
-  /* padding: 0 0.5rem; */
   border-radius: 8px;
 }
 
@@ -1616,9 +1613,11 @@ const colours = {
 
 .stats-progress-example {
   display: flex;
+  flex-wrap: nowrap;
   flex-direction: column;
   align-content: center;
-  width: min-content;
+  text-align: center;
+  width: fit-content;
   padding: 0 0.5rem;
   border-radius: 15px;
 }
@@ -1637,4 +1636,47 @@ const colours = {
 
 .stats-progress-light-max {
   background-color: #757575;
+}
+
+/* Evolution Chain */
+
+.evolution-chain-container-horizontal {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 1rem 0;
+  width: 100%;
+  max-height: 75vh;
+  gap: 5%;
+}
+
+.evolution-chain-section-horizontal {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.evolution-chain-section-horizontal::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+.evolution-chain-section-horizontal::-webkit-scrollbar-thumb {
+  background-color: #757575;
+  border-radius: 10px;
+}
+
+.flex-centered {
+  align-self: center;
+}
+
+.evolution-chain-icon-row {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  gap: 20%;
+}
+
+.evolution-chain-card {
+  width: 12rem;
 }
