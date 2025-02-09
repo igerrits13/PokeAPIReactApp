@@ -1646,14 +1646,15 @@ const colours = {
   justify-content: center;
   padding: 1rem 0;
   width: 100%;
+  min-height: 20vh;
   max-height: 75vh;
-  gap: 5%;
 }
 
 .evolution-chain-section-horizontal {
   display: flex;
-  flex-direction: column;
-  overflow-y: auto;
+  flex-direction: row;
+  /* max-width: 100%;
+  max-height: 100%; */
 }
 
 .evolution-chain-section-horizontal::-webkit-scrollbar {
@@ -1661,6 +1662,21 @@ const colours = {
 }
 
 .evolution-chain-section-horizontal::-webkit-scrollbar-thumb {
+  background-color: #757575;
+  border-radius: 10px;
+}
+
+.evolution-chain-section-vertical {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+.evolution-chain-section-vertical::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+.evolution-chain-section-vertical::-webkit-scrollbar-thumb {
   background-color: #757575;
   border-radius: 10px;
 }
@@ -1674,7 +1690,7 @@ const colours = {
   align-items: center;
   text-align: center;
   padding: 2rem;
-  gap: 20%;
+  gap: 25%;
 }
 
 .evolution-chain-card {

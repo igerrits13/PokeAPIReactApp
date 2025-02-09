@@ -56,9 +56,16 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
 
   const getEvolutions = (evolutions) => {
     return evolutions.map((evolution, i) => {
-      console.log(evolution);
       return (
-        <div key={i}>
+        <div
+          className={`evolution-chain-section-horizontal ${
+            Object.entries(pokeChainData.chain.evolves_to).length === 1
+              ? "flex-centered"
+              : ""
+          }
+          }`}
+          key={i}
+        >
           <div className="evolution-chain-icon-row">
             <i className="fa-solid fa-arrow-right-long" />
             <div className="evolution-chain-card">
@@ -69,8 +76,18 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
               />
             </div>
           </div>
-          {evolution[1].evolves_to &&
-            getEvolutions(Object.entries(evolution[1].evolves_to))}
+          {evolution[1].evolves_to && (
+            <div
+              className={`evolution-chain-section-vertical ${
+                Object.entries(pokeChainData.chain.evolves_to).length === 1
+                  ? "flex-centered"
+                  : ""
+              }
+        }`}
+            >
+              {getEvolutions(Object.entries(evolution[1].evolves_to))}
+            </div>
+          )}
         </div>
       );
     });
@@ -95,7 +112,7 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
             </div>
           </div>
           <div
-            className={`evolution-chain-section-horizontal ${
+            className={`evolution-chain-section-vertical ${
               Object.entries(pokeChainData.chain.evolves_to).length === 1
                 ? "flex-centered"
                 : ""

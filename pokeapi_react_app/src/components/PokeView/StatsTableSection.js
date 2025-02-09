@@ -90,12 +90,12 @@ const StatsTableSection = ({ statsInfo, screenSize, isDarkMode }) => {
                     <div
                       className={`stats-progress-example ${progressBarMinStyle}`}
                     >
-                      Min Percent
+                      Base/Min
                     </div>
                     <div
                       className={`stats-progress-example ${progressBarMaxStyle}`}
                     >
-                      Max Percent
+                      Base/Max
                     </div>
                   </div>
                 </>
