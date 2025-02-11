@@ -54,28 +54,6 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
     return parseInt(urlNumber, 10);
   };
 
-  // Map to match for each possible type case
-  // const evoMapping = {
-  //   gender: [BugType, "bug-type"],
-  //   held_item: [DarkType, "dark-type"],
-  //   item: [DragonType, "dragon-type"],
-  //   known_move: [ElectricType, "electric-type"],
-  //   known_move_type: [FairyType, "fairy-type"],
-  //   location: [FightingType, "fighting-type"],
-  //   min_affection: [FireType, "fire-type"],
-  //   min_beauty: [FlyingType, "flying-type"],
-  //   min_happiness: [GhostType, "ghost-type"],
-  //   min_level: [GrassType, "grass-type"],
-  //   needs_overworld_rain: [GroundType, "ground-type"],
-  //   party_species: [IceType, "ice-type"],
-  //   party_type: [NormalType, "normal-type"],
-  //   relative_physical_stats: [PoisonType, "poison-type"],
-  //   time_of_day: [PsychicType, "psychic-type"],
-  //   trade_species: [RockType, "rock-type"],
-  //   turn_upside_down: [SteelType, "steel-type"],
-  //   trigger: [WaterType, "water-type"],
-  // };
-
   // Map to match for each possible evolution trigger case
   const getTrigger = (evolutionDetails) => {
     let evoArr = Array.from(Object.entries(evolutionDetails)).filter(
@@ -122,23 +100,6 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
       default:
         return [`Not found: ${evolutionDetails.trigger.name}`, [], evoArr];
     }
-    // held_item: [DarkType, "dark-type"],
-    // item: [DragonType, "dragon-type"],
-    // known_move: [ElectricType, "electric-type"],
-    // known_move_type: [FairyType, "fairy-type"],
-    // location: [FightingType, "fighting-type"],
-    // min_affection: [FireType, "fire-type"],
-    // min_beauty: [FlyingType, "flying-type"],
-    // min_happiness: [GhostType, "ghost-type"],
-    // min_level: [GrassType, "grass-type"],
-    // needs_overworld_rain: [GroundType, "ground-type"],
-    // party_species: [IceType, "ice-type"],
-    // party_type: [NormalType, "normal-type"],
-    // relative_physical_stats: [PoisonType, "poison-type"],
-    // time_of_day: [PsychicType, "psychic-type"],
-    // trade_species: [RockType, "rock-type"],
-    // turn_upside_down: [SteelType, "steel-type"],
-    // trigger: [WaterType, "water-type"],
   };
 
   const genderMapping = {
@@ -157,13 +118,7 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
         console.log("Skipping");
         console.log(detail);
       }
-      // if (evolutionDetails.gender !== null) {
-      //   detailsArr.push(`(${genderMapping[evolutionDetails.gender]} only)`);
-      // } else {
-      //   detailsArr.push("None");
-      // }
     });
-    // console.log(detailsArr);
     return [detailsArr];
 
     // held_item: [DarkType, "dark-type"],
@@ -185,41 +140,12 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
   };
 
   const getTriggerEvent = (evolution) => {
-    // console.log(Object.entries(evolution.evolution_details)[0][1]);
-    // if (
-    //   Object.entries(evolution.evolution_details)[0][1].trigger.name ===
-    //     "level-up" &&
-    //   Object.entries(evolution.evolution_details)[0][1].min_level
-    // ) {
-    //   return (
-    //     <div className="evolution-chain-section-vertical">
-    //       Reach level{" "}
-    //       {Object.entries(evolution.evolution_details)[0][1].min_level}
-    //       <img
-    //         className="evolution-chain-image"
-    //         src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rare-candy.png"
-    //         alt="Rare Candy"
-    //       />
-    //     </div>
-    //   );
-    // }
-    // let evoArr,
-    //   iconsArr = [];
-
     // Get the trigger string, array of details to still look through and icon URL of the current evolution chain link
     const [evoTrigger, iconURL, evoArr] = getTrigger(
       Object.entries(evolution.evolution_details)[0][1]
     );
 
-    // console.log(iconURL);
-
     const [evoTriggerArr, iconURLArr] = getEvoDetails(evoArr);
-
-    // Iterate over the other items within the array and form sentences and icons
-
-    // const []
-
-    // console.log(Object.entries(evolution.evolution_details)[0][1]);
 
     evoTriggerArr.unshift(evoTrigger);
 
