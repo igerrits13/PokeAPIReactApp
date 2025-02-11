@@ -68,7 +68,11 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
               "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rare-candy.png",
               evoArr.filter((item) => item[0] !== "min_level"),
             ]
-          : ["Level up", [], evoArr];
+          : [
+              "Level up",
+              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rare-candy.png",
+              evoArr,
+            ];
       case "trade":
         return ["Trade for", [], evoArr];
       case "use-item":
@@ -108,57 +112,109 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
     2: "Genderless",
   };
 
+  // Seperate the generation title by '-' and capitalize appropriate letters
+  const getDetailTitle = (detail) => {
+    let detailTitle = detail.split("-");
+    detailTitle = detailTitle.map((detailName, i) => {
+      return detailName[0].toUpperCase() + detailName.slice(1);
+    });
+    return detailTitle.join(" ");
+  };
+
+  const getCurrDetail = (detail) => {
+    switch (detail[0]) {
+      case "gender":
+        return [`(${genderMapping[detail[1]]} only)`, ""];
+      case "held_item":
+        return [
+          `while holding ${getDetailTitle(detail[1].name)}`,
+          `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${detail[1].name}.png`,
+        ];
+      case "item":
+        return [
+          `${getDetailTitle(detail[1].name)}`,
+          `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${detail[1].name}.png`,
+        ];
+      case "known_move":
+        return [`while Pokémon knows ${getDetailTitle(detail[1].name)}`, ""];
+      case "known_move_type":
+        return [
+          `while Pokémon knows a ${getDetailTitle(detail[1].name)} type move`,
+          "",
+        ];
+      case "location":
+        return [`while at ${getDetailTitle(detail[1].name)}`, ""];
+      case "min_affection":
+        return [`with a minimum affection of ${detail[1]}`, ""];
+      case "min_beauty":
+        return [`with a minimum beauty of ${detail[1]}`, ""];
+      case "min_happiness":
+        return [`with a minimum happiness of ${detail[1]}`, ""];
+      case "min_level":
+        return [`with a minimum level of ${detail[1]}`, ""];
+      case "needs_overworld_rain":
+        if (detail[1] === true) return [`while it is raining`, ""];
+      default:
+        return ["", ""];
+    }
+  };
+
+  function getItemName(url) {
+    // Use regular expression to match the item name part in the URL
+    const match = url.match(/items\/([^/]+)\.png/);
+
+    // If a match is found, return the item name, else return null
+    return match ? match[1] : null;
+  }
+
   const getEvoDetails = (evolutionDetails) => {
-    let detailsArr = [];
+    let detailsArr = [],
+      iconsArr = [];
     Object.entries(evolutionDetails).forEach((detail, i) => {
       if (detail[1][1] !== null && detail[1][1] !== undefined) {
-        console.log("Keeping");
-        console.log(detail);
+        const [currDetail, currIcon] = getCurrDetail(detail[1]);
+        detailsArr.push(currDetail);
+        iconsArr.push(currIcon);
       } else {
-        console.log("Skipping");
-        console.log(detail);
       }
     });
-    return [detailsArr];
-
-    // held_item: [DarkType, "dark-type"],
-    // item: [DragonType, "dragon-type"],
-    // known_move: [ElectricType, "electric-type"],
-    // known_move_type: [FairyType, "fairy-type"],
-    // location: [FightingType, "fighting-type"],
-    // min_affection: [FireType, "fire-type"],
-    // min_beauty: [FlyingType, "flying-type"],
-    // min_happiness: [GhostType, "ghost-type"],
-    // min_level: [GrassType, "grass-type"],
-    // needs_overworld_rain: [GroundType, "ground-type"],
-    // party_species: [IceType, "ice-type"],
-    // party_type: [NormalType, "normal-type"],
-    // relative_physical_stats: [PoisonType, "poison-type"],
-    // time_of_day: [PsychicType, "psychic-type"],
-    // trade_species: [RockType, "rock-type"],
-    // turn_upside_down: [SteelType, "steel-type"],
+    // console.log(iconsArr);
+    return [detailsArr, iconsArr];
   };
 
   const getTriggerEvent = (evolution) => {
+    // console.log(evolution);****
     // Get the trigger string, array of details to still look through and icon URL of the current evolution chain link
     const [evoTrigger, iconURL, evoArr] = getTrigger(
       Object.entries(evolution.evolution_details)[0][1]
     );
 
-    const [evoTriggerArr, iconURLArr] = getEvoDetails(evoArr);
+    let [evoTriggerArr, iconURLArr] = getEvoDetails(evoArr);
 
     evoTriggerArr.unshift(evoTrigger);
+    iconURLArr.unshift(iconURL);
+    evoTriggerArr = evoTriggerArr.filter(
+      (item) => item !== "" && !(Array.isArray(item) && item.length === 0)
+    );
+    iconURLArr = iconURLArr.filter(
+      (item) => item !== "" && !(Array.isArray(item) && item.length === 0)
+    );
 
     return (
       <div className="evolution-chain-section-vertical evolution-chain-section-details">
-        {evoTriggerArr}
-        {iconURL[0] !== undefined && (
-          <img
-            className="evolution-chain-image"
-            src={iconURL}
-            alt="Rare Candy"
-          />
-        )}
+        {evoTriggerArr.join(" ")}
+        {iconURLArr.map((iconURL, i) => {
+          return (
+            iconURL !== "" && (
+              <img
+                className="evolution-chain-image"
+                src={iconURL}
+                alt={getDetailTitle(getItemName(iconURL))}
+                key={i}
+              />
+            )
+          );
+        })}
       </div>
     );
   };
