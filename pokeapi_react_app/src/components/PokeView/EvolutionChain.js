@@ -77,14 +77,6 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
     return detailTitle.join(" ");
   };
 
-  // function getItemName(url) {
-  //   // Use regular expression to match the item name part in the URL
-  //   const match = url.match(/items\/([^/]+)\.png/);
-
-  //   // If a match is found, return the item name, else return null
-  //   return match ? match[1] : null;
-  // }
-
   const shedMapping = {
     shedinja: [
       "Reach level 20 with an empty slot in your party and a Poké ball in your bag",
@@ -209,7 +201,6 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
         return evolutionDetails.min_level
           ? [
               `Reach level ${evolutionDetails.min_level}`,
-              // "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rare-candy.png",
               <img
                 className="evolution-chain-image"
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rare-candy.png`}
@@ -218,35 +209,15 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
               />,
               evoArr.filter((item) => item[0] !== "min_level"),
             ]
-          : [
-              "Level up",
-              // "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rare-candy.png",
-              // <img
-              //   className="evolution-chain-image"
-              //   src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rare-candy.png`}
-              //   alt={"Rare Candy"}
-              //   // key={i}
-              // />,
-              "",
-              evoArr.filter((item) => item[0] !== "min_level"),
-            ];
+          : ["Level up", "", evoArr.filter((item) => item[0] !== "min_level")];
       case "trade":
-        return (
-          // evolutionDetails.trade_species
-          //   ?
-          [
-            evolutionDetails.trade_species
-              ? `Trade for ${evolutionDetails.trade_species.name}`
-              : "Trade for any Pokémon",
-            <i className="fa-solid fa-rotate evolution-chain-image" />,
-            evoArr.filter((item) => item[0] !== "trade_species"),
-          ]
-        );
-      // : [
-      //     "Trade for any Pokémon",
-      //     <i className="fa-solid fa-rotate" />,
-      //     evoArr.filter((item) => item[0] !== "trade_species"),
-      //   ];
+        return [
+          evolutionDetails.trade_species
+            ? `Trade for ${evolutionDetails.trade_species.name}`
+            : "Trade for any Pokémon",
+          <i className="fa-solid fa-rotate evolution-chain-image" />,
+          evoArr.filter((item) => item[0] !== "trade_species"),
+        ];
       case "use-item":
         return ["Use", [], evoArr];
       case "shed":
@@ -343,23 +314,19 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
       case "held_item":
         return [
           `while holding ${getDetailTitle(detail[1].name)}`,
-          // `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${detail[1].name}.png`,
           <img
             className="evolution-chain-image"
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${detail[1].name}.png`}
             alt={getDetailTitle(detail[1].name)}
-            // key={i}
           />,
         ];
       case "item":
         return [
           `${getDetailTitle(detail[1].name)}`,
-          // `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${detail[1].name}.png`,
           <img
             className="evolution-chain-image"
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${detail[1].name}.png`}
             alt={getDetailTitle(detail[1].name)}
-            // key={i}
           />,
         ];
       case "known_move":
@@ -385,7 +352,6 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
       case "location":
         return [
           `while at ${getDetailTitle(detail[1].name)}`,
-          // <i class="fa-solid fa-location-dot"/>,
           <i className="fa-solid fa-signs-post evolution-chain-image" />,
         ];
       case "min_affection":
@@ -439,11 +405,7 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
     let detailsArr = [],
       iconsArr = [];
     Object.entries(evolutionDetails).forEach((detail, i) => {
-      // console.log(detail);
-      if (
-        detail[1][1] !== null
-        //  && detail[1][1] !== undefined
-      ) {
+      if (detail[1][1] !== null) {
         const [currDetail, currIcon] = getCurrDetail(detail[1], triggerName);
         detailsArr.push(currDetail);
         iconsArr.push(currIcon);
@@ -458,7 +420,6 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
     const i = evoTriggerArr.findIndex((trigger) => trigger.startsWith("("));
     const j = iconHTMLArr.findIndex(
       (icon) =>
-        // console.log(icon.props.className)
         icon.props.className.includes("fa-venus") ||
         icon.props.className.includes("fa-mars")
     );
@@ -477,83 +438,15 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
       iconHTMLArr.push(iconItem);
     }
     return [evoTriggerArr, iconHTMLArr];
-    // evoTriggerArr
-    //   .filter((trigger) => !trigger.startsWith("(")) // Get items that don't start with '('
-    //   .concat(evoTriggerArr.filter((trigger) => trigger.startsWith("("))); // Get items that do start with '(' and add them to the end
   }
 
-  // const getTriggerEvent = (evolution) => {
-  //   // console.log(evolution.evolution_details);
-  //   // evolution.map((currDetail) => {
-  //   //   console.log(currDetail);
-  //   //   return "";
-  //   // });
-  //   // Get the trigger string, array of details to still look through and icon URL of the current evolution chain link
-  //   const [evoTrigger, iconHTML, evoArr] = getTrigger(
-  //     Object.entries(evolution.evolution_details)[0][1]
-  //   );
-
-  //   let [evoTriggerArr, iconHTMLArr] = getEvoDetails(evoArr);
-
-  //   evoTriggerArr.unshift(evoTrigger);
-  //   iconHTMLArr.unshift(iconHTML);
-  //   evoTriggerArr = evoTriggerArr.filter(
-  //     (trigger) =>
-  //       trigger !== "" && !(Array.isArray(trigger) && trigger.length === 0)
-  //   );
-  //   evoTriggerArr = moveItemToEnd(evoTriggerArr);
-  //   iconHTMLArr = iconHTMLArr.filter(
-  //     (trigger) =>
-  //       trigger !== "" && !(Array.isArray(trigger) && trigger.length === 0)
-  //   );
-
-  //   return (
-  //     <div
-  //       className={`evolution-chain-section-vertical ${
-  //         screenSize === "x-large"
-  //           ? "evolution-chain-section-details-large"
-  //           : "evolution-chain-section-details-small"
-  //       }`}
-  //     >
-  //       {(evoTriggerArr = evoTriggerArr.join(" "))}
-  //       <div>{evoTriggerArr}</div>
-
-  //       <div className="evolution-chain-image-container">
-  //         {iconHTMLArr.map((iconHTML, i) => {
-  //           console.log(evoTriggerArr[0]);
-  //           return (
-  //             <div key={i} className="evolution-chain-image">
-  //               {iconHTML}
-  //             </div>
-  //           ); // Will this cause issues showing items in a row together?
-  //           // iconHTML !== "" && (
-  //           // <img
-  //           //   className="evolution-chain-image"
-  //           //   src={iconHTML}
-  //           //   alt={getDetailTitle(getItemName(iconHTML))}
-  //           //   key={i}
-  //           // />
-  //           // )
-  //         })}
-  //       </div>
-  //     </div>
-  //   );
-  // };
-
   const getTriggerEvent = (evolution) => {
-    // console.log(evolution.species.name);
     const evoHTML = evolution.evolution_details.map((currDetail, i) => {
-      // console.log(currDetail);
-      //   return "";
-      // });
       // Get the trigger string, array of details to still look through and icon URL of the current evolution chain link
       const [evoTrigger, iconHTML, evoArr] = getTrigger(
         Object.entries(evolution.evolution_details)[i][1],
         evolution.species.name
       );
-      // console.log(evoTrigger);
-      // console.log(evoArr);
-      // console.log(evolution.evolution_details[0].trigger.name);
       let [evoTriggerArr, iconHTMLArr] = getEvoDetails(
         evoArr,
         evolution.evolution_details[0].trigger.name
@@ -572,19 +465,7 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
       [evoTriggerArr, iconHTMLArr] = moveItemToEnd(evoTriggerArr, iconHTMLArr);
 
       return (
-        // <div
-        //   className={`evolution-chain-section-vertical ${
-        //     screenSize === "x-large"
-        //       ? "evolution-chain-section-details-large"
-        //       : "evolution-chain-section-details-small"
-        //   }`}
-        // >
-        <div
-          className="evoluion-chain-trigger-desc"
-          key={i}
-          // obj.id !== sectionInfo.length - 1 ? lineStyle : ""div
-          // className={`${obj.id !== sectionInfo.length - 1 ? lineStyle : ""}`}
-        >
+        <div className="evoluion-chain-trigger-desc" key={i}>
           {evoTriggerArr.join(" ")}
           <div
             className={`evolution-chain-image-container ${
@@ -592,28 +473,10 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
             }`}
           >
             {iconHTMLArr.map((iconHTML, i) => {
-              // console.log(iconHTML.props.src);
-              // console.log(iconHTML);
-              return (
-                <div
-                  key={i}
-                  // className="evolution-chain-image"
-                >
-                  {iconHTML}
-                </div>
-              ); // Will this cause issues showing items in a row together?
-              // iconHTML !== "" && (
-              // <img
-              //   className="evolution-chain-image"
-              //   src={iconHTML}
-              //   alt={getDetailTitle(getItemName(iconHTML))}
-              //   key={i}
-              // />
-              // )
+              return <div key={i}>{iconHTML}</div>; // Will this cause issues showing items in a row together?
             })}
           </div>
         </div>
-        // </div>
       );
     });
     return evoHTML;
@@ -641,7 +504,6 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
             >
               {getTriggerEvent(evolution[1])}
             </div>
-            {/* {console.log(evolution)} */}
             <i className="fa-solid fa-arrow-right-long evolution-chain-image" />
             <div
               className={`${
