@@ -25,8 +25,8 @@ const FormsInfo = ({
     ? "component-background-dark component-outline-dark"
     : "component-background-light component-outline-light";
   const inactiveButtonStyle = isDarkMode
-    ? "option-font-dark clean-border"
-    : "option-font-light clean-border";
+    ? "option-font-dark"
+    : "option-font-light";
   const formsResultsStyle = isDarkMode
     ? "component-background-dark component-outline-dark"
     : "component-background-light component-outline-light";
