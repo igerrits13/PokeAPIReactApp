@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PokemonCard from "../CommonComponents/PokemonCard";
 import pokeBall from "../icons/poke-ball.png";
 
@@ -57,6 +57,15 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
     const urlNoSlash = urlArr.filter((part) => part !== "");
     const urlNumber = urlNoSlash[urlNoSlash.length - 1];
     return parseInt(urlNumber, 10);
+  };
+
+  // Capitalize the first word of each part of the pokémon's name
+  const getPokeName = (name) => {
+    const formattedName = name.split("-").map((obj, i) => {
+      return obj[0].toUpperCase() + obj.slice(1);
+    });
+
+    return formattedName.join(" ");
   };
 
   // Seperate the generation title by '-' and capitalize appropriate letters
@@ -122,9 +131,64 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
     ],
   };
 
+  const otherMapping = {
+    pawmot: [
+      "Walk with the Pokémon in 'Let's Go' mode for 1,000 steps, then level it up",
+      <i className="fa-solid fa-shoe-prints evolution-chain-image" />,
+    ],
+    maushold: [
+      "Catch a Tandemaus Pokémon and then level the Pokémon up",
+      <img
+        className="evolution-chain-image-ball"
+        src={pokeBall}
+        alt={`Poké Ball`}
+      />,
+    ],
+    brambleghast: [
+      "Walk with the Pokémon in 'Let's Go' mode for 1,000 steps, then level it up",
+      <i className="fa-solid fa-shoe-prints evolution-chain-image" />,
+    ],
+    rabsca: [
+      "Walk with the Pokémon in 'Let's Go' mode for 1,000 steps, then level it up",
+      <i className="fa-solid fa-shoe-prints evolution-chain-image" />,
+    ],
+    palafin: [
+      "While in a multiplayer session, either online or locally with another player, level up the Pokémon",
+      <img
+        className="evolution-chain-image"
+        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rare-candy.png`}
+        alt={"Rare Candy"}
+      />,
+    ],
+    annihilape: [
+      "Level up the Pokémon after using the move 'Rage Fist' 20 times in battle",
+      <img
+        className="evolution-chain-image"
+        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rare-candy.png`}
+        alt={"Rare Candy"}
+      />,
+    ],
+    kingambit: [
+      "Catch a 'leader' Bisharp that is holding a Leader's Crest, then defeat three other 'leader' Bisharp that hold Leader's Crests, then level up the Pokémon",
+      <img
+        className="evolution-chain-image"
+        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rare-candy.png`}
+        alt={"Rare Candy"}
+      />,
+    ],
+    gholdengo: [
+      "Collect 999 Gimmighoul Coins and then level up your Pokémon",
+      <img
+        className="evolution-chain-image"
+        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rare-candy.png`}
+        alt={"Rare Candy"}
+      />,
+    ],
+  };
+
   const recoilDamageMapping = {
     basculegion: [
-      "Pokémon must take at least 249 recoil damage, then level up",
+      "Pokémon must take at least 294 recoil damage, then level up",
       <img
         className="evolution-chain-image"
         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rare-candy.png`}
@@ -238,7 +302,11 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
           evoArr,
         ];
       case "other":
-        return ["Other", [], evoArr];
+        return [
+          otherMapping[speciesName] ? otherMapping[speciesName][0] : "Other",
+          otherMapping[speciesName] ? otherMapping[speciesName][1] : "",
+          evoArr,
+        ];
       case "agile-style-move":
         return [speciesName === "wyrdeer" ? "" : "Agile moves", [], evoArr];
       case "strong-style-move":
@@ -265,9 +333,9 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
   };
 
   const getCurrDetail = (detail, triggerName) => {
+    console.log(detail[1]);
     switch (detail[0]) {
       case "gender":
-        // console.log(detail[1]);
         return [
           `(${genderMapping[detail[1]][0]} Only)`,
           genderMapping[detail[1]][1],
@@ -299,9 +367,9 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
           `${
             triggerName !== "agile-style-move" &&
             triggerName !== "strong-style-move"
-              ? "while p"
-              : "P"
-          }okémon knows the move ${getDetailTitle(detail[1].name)}`,
+              ? "while "
+              : ""
+          }Pokémon knows the move ${getDetailTitle(detail[1].name)}`,
           "",
         ];
       case "known_move_type":
@@ -309,9 +377,9 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
           `${
             triggerName !== "agile-style-move" &&
             triggerName !== "strong-style-move"
-              ? "while p"
-              : "P"
-          }okémon knows a ${getDetailTitle(detail[1].name)} type move`,
+              ? "while "
+              : ""
+          }Pokémon knows a ${getDetailTitle(detail[1].name)} type move`,
           "",
         ];
       case "location":
@@ -346,6 +414,22 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
         else {
           return ["", ""];
         }
+      case "party_species":
+        // return [
+        // `with a ${(
+        //   <Link to={`/pokemon/${detail[1].name}`}>
+        //     {getPokeName(detail[1].name)}
+        //   </Link>
+        // )}
+        // species Pokémon in their party`,
+        // ];
+        return [
+          `with a
+            ${getPokeName(detail[1].name)}
+            species Pokémon in their party`,
+          "",
+          "",
+        ];
       default:
         return ["", ""];
     }
@@ -370,10 +454,32 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
     return [detailsArr, iconsArr];
   };
 
-  function moveItemToEnd(evoTriggerArr) {
-    return evoTriggerArr
-      .filter((trigger) => !trigger.startsWith("(")) // Get items that don't start with '('
-      .concat(evoTriggerArr.filter((trigger) => trigger.startsWith("("))); // Get items that do start with '(' and add them to the end
+  function moveItemToEnd(evoTriggerArr, iconHTMLArr) {
+    const i = evoTriggerArr.findIndex((trigger) => trigger.startsWith("("));
+    const j = iconHTMLArr.findIndex(
+      (icon) =>
+        // console.log(icon.props.className)
+        icon.props.className.includes("fa-venus") ||
+        icon.props.className.includes("fa-mars")
+    );
+
+    // Get the item from array2 at the same index
+    if (i !== -1 && j !== -1) {
+      const triggerItem = evoTriggerArr[i];
+      const iconItem = iconHTMLArr[j];
+
+      // Remove the item from its current position in iconHTMLArr
+      evoTriggerArr.splice(i, 1);
+      iconHTMLArr.splice(j, 1);
+
+      // Push the item to the end of iconHTMLArr
+      evoTriggerArr.push(triggerItem);
+      iconHTMLArr.push(iconItem);
+    }
+    return [evoTriggerArr, iconHTMLArr];
+    // evoTriggerArr
+    //   .filter((trigger) => !trigger.startsWith("(")) // Get items that don't start with '('
+    //   .concat(evoTriggerArr.filter((trigger) => trigger.startsWith("("))); // Get items that do start with '(' and add them to the end
   }
 
   // const getTriggerEvent = (evolution) => {
@@ -459,11 +565,11 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
         (trigger) =>
           trigger !== "" && !(Array.isArray(trigger) && trigger.length === 0)
       );
-      evoTriggerArr = moveItemToEnd(evoTriggerArr);
       iconHTMLArr = iconHTMLArr.filter(
         (trigger) =>
           trigger !== "" && !(Array.isArray(trigger) && trigger.length === 0)
       );
+      [evoTriggerArr, iconHTMLArr] = moveItemToEnd(evoTriggerArr, iconHTMLArr);
 
       return (
         // <div
