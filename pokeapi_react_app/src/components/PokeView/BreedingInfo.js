@@ -79,7 +79,7 @@ const BreedingInfo = ({ pokeSpeciesData, screenSize, isDarkMode }) => {
         pokeSpeciesData.evolves_from_species !== undefined &&
         pokeSpeciesData.evolves_from_species !== null ? (
           <Link
-            className={`clean-text ${fontStyle}`}
+            className={`clean-text`} // ${fontStyle}
             to={`/pokemon/${pokeSpeciesData.evolves_from_species.name}`}
           >
             <motion.div

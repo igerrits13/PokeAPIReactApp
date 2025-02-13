@@ -239,13 +239,34 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
             ]
           : [
               <>Level up</>,
-              "",
+              <img
+                className="evolution-chain-image"
+                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rare-candy.png`}
+                alt={"Rare Candy"}
+              />,
               evoArr.filter((item) => item[0] !== "min_level"),
             ];
       case "trade":
         return [
           evolutionDetails.trade_species ? (
-            <>Trade for {evolutionDetails.trade_species.name}</>
+            <>
+              Trade for{" "}
+              <Link
+                className={`clean-text`}
+                // ${fontStyle}
+                to={`/pokemon/${evolutionDetails.trade_species.name}`}
+              >
+                <motion.div
+                  className="dyn-section-link"
+                  whileHover={{ scale: 1.1, rotate: "-1.5deg" }}
+                  whileTap={{ scale: 0.9, rotate: "5deg" }}
+                  transition={{ duration: 0.1 }}
+                  style={{ display: "inline-block" }}
+                >
+                  {evolutionDetails.trade_species.name}
+                </motion.div>
+              </Link>
+            </>
           ) : (
             <>Trade for any Pokémon</>
           ),
@@ -367,6 +388,15 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
     3: ["Genderless", []],
   };
 
+  const relativeStatsMapping = {
+    0: [
+      "attack is less than defense",
+      <i className="fa-solid fa-shield evolution-chain-image" />,
+    ],
+    1: ["attack is equal to defense", []],
+    2: ["attack is greater than defense", []],
+  };
+
   const getCurrDetail = (detail, triggerName) => {
     switch (detail[0]) {
       case "gender":
@@ -450,7 +480,8 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
           <>
             with a{" "}
             <Link
-              className={`clean-text ${fontStyle}`}
+              className={`clean-text`}
+              // ${fontStyle}
               to={`/pokemon/${detail[1].name}`}
             >
               <motion.div
@@ -467,6 +498,58 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
           </>,
           "",
         ];
+      case "party_type":
+        return [
+          <>
+            with a{" "}
+            <Link
+              className={`clean-text`}
+              // ${fontStyle}
+              to={`/types/${detail[1].name}`}
+            >
+              <motion.div
+                className="dyn-section-link"
+                whileHover={{ scale: 1.1, rotate: "-1.5deg" }}
+                whileTap={{ scale: 0.9, rotate: "5deg" }}
+                transition={{ duration: 0.1 }}
+                style={{ display: "inline-block" }}
+              >
+                {getPokeName(detail[1].name)}
+              </motion.div>
+            </Link>{" "}
+            type Pokémon in their party
+          </>,
+          "",
+        ];
+      case "relative_physical_stats":
+        return [
+          <>{relativeStatsMapping[detail[1]][0]}</>,
+          relativeStatsMapping[detail[1]][1],
+        ];
+      case "time_of_day":
+        if (detail[1] === "day")
+          return [
+            <>during the day</>,
+            <i className="fa-solid fa-sun evolution-chain-image" />,
+          ];
+        else if (detail[1] === "night")
+          return [
+            <>at night</>,
+            <i className="fa-solid fa-moon evolution-chain-image" />,
+          ];
+        else if (detail[1] === "") return [<></>, []];
+        else {
+          return [<>Not found: {detail[1]}</>, ""];
+        }
+      case "turn_upside_down":
+        if (detail[1] === true)
+          return [
+            <> while holding the 3DS upside down</>,
+            <i className="fa-solid fa-gamepad evolution-chain-image-upside-down" />,
+          ];
+        else {
+          return [<></>, ""];
+        }
       default:
         return ["", ""];
     }
@@ -555,7 +638,7 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
         <div className="evoluion-chain-trigger-desc" key={i}>
           {/* {evoTriggerArr.join(" ")} */}
           {evoTriggerArr.map((trigger, j) => {
-            return <React.Fragment key={j}>{trigger}</React.Fragment>;
+            return <React.Fragment key={j}>{trigger} </React.Fragment>;
           })}
           <div
             className={`evolution-chain-image-container ${

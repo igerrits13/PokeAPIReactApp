@@ -1734,6 +1734,13 @@ const colours = {
   align-items: center;
 }
 
+.evolution-chain-image-upside-down {
+  width: 2.5rem;
+  font-size: 1.5rem;
+  align-items: center;
+  transform: rotate(180deg);
+}
+
 .evolution-chain-image-ball {
   width: 1.5rem;
   align-items: center;
