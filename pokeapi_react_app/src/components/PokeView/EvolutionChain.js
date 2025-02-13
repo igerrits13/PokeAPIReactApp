@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import React from "react"; // Works for React 17+
+import { motion } from "motion/react";
 import { Link, useNavigate } from "react-router-dom";
 import PokemonCard from "../CommonComponents/PokemonCard";
 import pokeBall from "../icons/poke-ball.png";
@@ -79,7 +81,10 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
 
   const shedMapping = {
     shedinja: [
-      "Reach level 20 with an empty slot in your party and a Poké ball in your bag",
+      <>
+        Reach level 20 with an empty slot in your party and a Poké ball in your
+        bag
+      </>,
       <img
         className="evolution-chain-image-ball"
         src={pokeBall}
@@ -90,46 +95,56 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
 
   const spinMapping = {
     alcremie: [
-      "Give the Pokémon a sweet treat, spin around, and strike a pose",
+      <>Give the Pokémon a sweet treat, spin around, and strike a pose</>,
       <i className="fa-solid fa-ice-cream evolution-chain-image" />,
     ],
   };
 
   const towerOfDarknessMapping = {
     urshifu: [
-      "Single Strike Style - Clear the Tower of Darkness with this Pokémon",
+      <>Single Strike Style - Clear the Tower of Darkness with this Pokémon</>,
       <i className="fa-solid fa-gopuram evolution-chain-image" />,
     ],
   };
 
   const towerOfWaterMapping = {
     urshifu: [
-      "Rapid Strike Style - Clear the Tower of Water with this Pokémon",
+      <>Rapid Strike Style - Clear the Tower of Water with this Pokémon</>,
       <i className="fa-solid fa-gopuram evolution-chain-image" />,
     ],
   };
 
   const threeCriticalMapping = {
     sirfetchd: [
-      "Land three critical hits with this Pokémon in single battle (Galarian variant only)",
+      <>
+        Land three critical hits with this Pokémon in single battle (Galarian
+        variant only)
+      </>,
       <i className="fa-solid fa-person-falling-burst evolution-chain-image" />,
     ],
   };
 
   const takeDamageMapping = {
     runerigus: [
-      "Pokémon must take at least 49 damage, then take it under the largest stone arch in the Dusty Bowl in the Wild Area",
+      <>
+        Pokémon must take at least 49 damage, then take the Pokémon under the
+        largest stone arch in the Dusty Bowl in the Wild Area (Galarian variant
+        only)
+      </>,
       <i className="fa-solid fa-archway evolution-chain-image" />,
     ],
   };
 
   const otherMapping = {
     pawmot: [
-      "Walk with the Pokémon in 'Let's Go' mode for 1,000 steps, then level it up",
+      <>
+        Walk with the Pokémon in 'Let's Go' mode for 1,000 steps, then level it
+        up
+      </>,
       <i className="fa-solid fa-shoe-prints evolution-chain-image" />,
     ],
     maushold: [
-      "Catch a Tandemaus Pokémon and then level the Pokémon up",
+      <>Catch a Tandemaus Pokémon, then level the Pokémon up</>,
       <img
         className="evolution-chain-image-ball"
         src={pokeBall}
@@ -137,15 +152,24 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
       />,
     ],
     brambleghast: [
-      "Walk with the Pokémon in 'Let's Go' mode for 1,000 steps, then level it up",
+      <>
+        Walk with the Pokémon in 'Let's Go' mode for 1,000 steps, then level it
+        up
+      </>,
       <i className="fa-solid fa-shoe-prints evolution-chain-image" />,
     ],
     rabsca: [
-      "Walk with the Pokémon in 'Let's Go' mode for 1,000 steps, then level it up",
+      <>
+        Walk with the Pokémon in 'Let's Go' mode for 1,000 steps, then level it
+        up
+      </>,
       <i className="fa-solid fa-shoe-prints evolution-chain-image" />,
     ],
     palafin: [
-      "While in a multiplayer session, either online or locally with another player, level up the Pokémon",
+      <>
+        While in a multiplayer session, either online or locally with another
+        player, level up the Pokémon
+      </>,
       <img
         className="evolution-chain-image"
         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rare-candy.png`}
@@ -153,7 +177,9 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
       />,
     ],
     annihilape: [
-      "Level up the Pokémon after using the move 'Rage Fist' 20 times in battle",
+      <>
+        Level up the Pokémon after using the move 'Rage Fist' 20 times in battle
+      </>,
       <img
         className="evolution-chain-image"
         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rare-candy.png`}
@@ -161,7 +187,11 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
       />,
     ],
     kingambit: [
-      "Catch a 'leader' Bisharp that is holding a Leader's Crest, then defeat three other 'leader' Bisharp that hold Leader's Crests, then level up the Pokémon",
+      <>
+        Catch a 'leader' Bisharp that is holding a Leader's Crest, then defeat
+        three other 'leader' Bisharp that hold Leader's Crests, then level up
+        the Pokémon
+      </>,
       <img
         className="evolution-chain-image"
         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rare-candy.png`}
@@ -169,7 +199,7 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
       />,
     ],
     gholdengo: [
-      "Collect 999 Gimmighoul Coins and then level up your Pokémon",
+      <>Collect 999 Gimmighoul Coins and then level up your Pokémon</>,
       <img
         className="evolution-chain-image"
         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rare-candy.png`}
@@ -180,7 +210,7 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
 
   const recoilDamageMapping = {
     basculegion: [
-      "Pokémon must take at least 294 recoil damage, then level up",
+      <>Pokémon must take at least 294 recoil damage, then level up</>,
       <img
         className="evolution-chain-image"
         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rare-candy.png`}
@@ -195,48 +225,62 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
       (item) => item[0] !== "trigger"
     );
 
-    // console.log(evolutionDetails);
     switch (evolutionDetails.trigger.name) {
       case "level-up":
         return evolutionDetails.min_level
           ? [
-              `Reach level ${evolutionDetails.min_level}`,
+              <>Reach level {evolutionDetails.min_level}</>,
               <img
                 className="evolution-chain-image"
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/rare-candy.png`}
                 alt={"Rare Candy"}
-                // key={i}
               />,
               evoArr.filter((item) => item[0] !== "min_level"),
             ]
-          : ["Level up", "", evoArr.filter((item) => item[0] !== "min_level")];
+          : [
+              <>Level up</>,
+              "",
+              evoArr.filter((item) => item[0] !== "min_level"),
+            ];
       case "trade":
         return [
-          evolutionDetails.trade_species
-            ? `Trade for ${evolutionDetails.trade_species.name}`
-            : "Trade for any Pokémon",
+          evolutionDetails.trade_species ? (
+            <>Trade for {evolutionDetails.trade_species.name}</>
+          ) : (
+            <>Trade for any Pokémon</>
+          ),
           <i className="fa-solid fa-rotate evolution-chain-image" />,
           evoArr.filter((item) => item[0] !== "trade_species"),
         ];
       case "use-item":
-        return ["Use", [], evoArr];
+        return [<>Use</>, [], evoArr];
       case "shed":
         return [
-          shedMapping[speciesName] ? shedMapping[speciesName][0] : "Shed",
+          shedMapping[speciesName] ? (
+            <>{shedMapping[speciesName][0].props.children}</>
+          ) : (
+            <>Shed</>
+          ),
           shedMapping[speciesName] ? shedMapping[speciesName][1] : "",
           evoArr,
         ];
       case "spin":
         return [
-          spinMapping[speciesName] ? spinMapping[speciesName][0] : "Spin",
+          spinMapping[speciesName] ? (
+            <>{spinMapping[speciesName][0].props.children}</>
+          ) : (
+            <>Spin</>
+          ),
           spinMapping[speciesName] ? spinMapping[speciesName][1] : "",
           evoArr,
         ];
       case "tower-of-darkness":
         return [
-          towerOfDarknessMapping[speciesName]
-            ? towerOfDarknessMapping[speciesName][0]
-            : "Tower of Darkness",
+          towerOfDarknessMapping[speciesName] ? (
+            <>{towerOfDarknessMapping[speciesName][0].props.children}</>
+          ) : (
+            <>Tower of Darkness</>
+          ),
           towerOfDarknessMapping[speciesName]
             ? towerOfDarknessMapping[speciesName][1]
             : "",
@@ -244,9 +288,11 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
         ];
       case "tower-of-waters":
         return [
-          towerOfWaterMapping[speciesName]
-            ? towerOfWaterMapping[speciesName][0]
-            : "Tower of Water",
+          towerOfWaterMapping[speciesName] ? (
+            <>{towerOfWaterMapping[speciesName][0].props.children}</>
+          ) : (
+            <>Tower of Water</>
+          ),
           towerOfWaterMapping[speciesName]
             ? towerOfWaterMapping[speciesName][1]
             : "",
@@ -254,9 +300,11 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
         ];
       case "three-critical-hits":
         return [
-          threeCriticalMapping[speciesName]
-            ? threeCriticalMapping[speciesName][0]
-            : "Three critical hits",
+          threeCriticalMapping[speciesName] ? (
+            <>{threeCriticalMapping[speciesName][0].props.children}</>
+          ) : (
+            <>Three critical hits</>
+          ),
           threeCriticalMapping[speciesName]
             ? threeCriticalMapping[speciesName][1]
             : "",
@@ -264,9 +312,11 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
         ];
       case "take-damage":
         return [
-          takeDamageMapping[speciesName]
-            ? takeDamageMapping[speciesName][0]
-            : "Take damage",
+          takeDamageMapping[speciesName] ? (
+            <>{takeDamageMapping[speciesName][0].props.children}</>
+          ) : (
+            <>Take damage</>
+          ),
           takeDamageMapping[speciesName]
             ? takeDamageMapping[speciesName][1]
             : "",
@@ -274,26 +324,40 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
         ];
       case "other":
         return [
-          otherMapping[speciesName] ? otherMapping[speciesName][0] : "Other",
+          otherMapping[speciesName] ? (
+            <>{otherMapping[speciesName][0].props.children}</>
+          ) : (
+            <>Other</>
+          ),
           otherMapping[speciesName] ? otherMapping[speciesName][1] : "",
           evoArr,
         ];
       case "agile-style-move":
-        return [speciesName === "wyrdeer" ? "" : "Agile moves", [], evoArr];
+        return [
+          speciesName === "wyrdeer" ? <></> : <>Agile moves</>,
+          [],
+          evoArr,
+        ];
       case "strong-style-move":
-        return [speciesName === "overqwil" ? "" : "Strong moves", [], evoArr];
+        return [
+          speciesName === "overqwil" ? <></> : <>Strong moves</>,
+          [],
+          evoArr,
+        ];
       case "recoil-damage":
         return [
-          recoilDamageMapping[speciesName]
-            ? recoilDamageMapping[speciesName][0]
-            : "Recoil damage",
+          recoilDamageMapping[speciesName] ? (
+            <>{recoilDamageMapping[speciesName][0].props.children}</>
+          ) : (
+            <>Recoil damage</>
+          ),
           recoilDamageMapping[speciesName]
             ? recoilDamageMapping[speciesName][1]
             : "",
           evoArr,
         ];
       default:
-        return [`Not found: ${evolutionDetails.trigger.name}`, [], evoArr];
+        return [<>Not found: {evolutionDetails.trigger.name}</>, [], evoArr];
     }
   };
 
@@ -304,16 +368,15 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
   };
 
   const getCurrDetail = (detail, triggerName) => {
-    console.log(detail[1]);
     switch (detail[0]) {
       case "gender":
         return [
-          `(${genderMapping[detail[1]][0]} Only)`,
+          <>({genderMapping[detail[1]][0]} Only)</>,
           genderMapping[detail[1]][1],
         ];
       case "held_item":
         return [
-          `while holding ${getDetailTitle(detail[1].name)}`,
+          <>while holding {getDetailTitle(detail[1].name)}</>,
           <img
             className="evolution-chain-image"
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${detail[1].name}.png`}
@@ -322,7 +385,7 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
         ];
       case "item":
         return [
-          `${getDetailTitle(detail[1].name)}`,
+          <>{getDetailTitle(detail[1].name)}</>,
           <img
             className="evolution-chain-image"
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${detail[1].name}.png`}
@@ -331,69 +394,77 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
         ];
       case "known_move":
         return [
-          `${
-            triggerName !== "agile-style-move" &&
+          <>
+            {triggerName !== "agile-style-move" &&
             triggerName !== "strong-style-move"
               ? "while "
-              : ""
-          }Pokémon knows the move ${getDetailTitle(detail[1].name)}`,
+              : ""}
+            Pokémon knows the move {getDetailTitle(detail[1].name)}
+          </>,
           "",
         ];
       case "known_move_type":
         return [
-          `${
-            triggerName !== "agile-style-move" &&
+          <>
+            {triggerName !== "agile-style-move" &&
             triggerName !== "strong-style-move"
               ? "while "
-              : ""
-          }Pokémon knows a ${getDetailTitle(detail[1].name)} type move`,
+              : ""}
+            Pokémon knows a {getDetailTitle(detail[1].name)} type move
+          </>,
           "",
         ];
       case "location":
         return [
-          `while at ${getDetailTitle(detail[1].name)}`,
+          <>while at {getDetailTitle(detail[1].name)}</>,
           <i className="fa-solid fa-signs-post evolution-chain-image" />,
         ];
       case "min_affection":
         return [
-          `with a minimum affection of ${detail[1]}`,
+          <>with a minimum affection of {detail[1]}</>,
           <i className="fa-solid fa-hand-holding-heart evolution-chain-image" />,
         ];
       case "min_beauty":
         return [
-          `with a minimum beauty of ${detail[1]}`,
+          <>with a minimum beauty of {detail[1]}</>,
           <i className="fa-solid fa-spray-can-sparkles evolution-chain-image" />,
         ];
       case "min_happiness":
         return [
-          `with a minimum happiness of ${detail[1]}`,
+          <>with a minimum happiness of {detail[1]}</>,
           <i className="fa-solid fa-face-laugh-beam evolution-chain-image" />,
         ];
       case "min_level":
-        return [`with a minimum level of ${detail[1]}`, ""];
+        return [<>with a minimum level of {detail[1]}</>, ""];
       case "needs_overworld_rain":
         if (detail[1] === true)
           return [
-            `while it is raining`,
+            <>while it is raining</>,
             <i className="fa-solid fa-cloud-rain evolution-chain-image" />,
           ];
         else {
-          return ["", ""];
+          return [<></>, ""];
         }
       case "party_species":
-        // return [
-        // `with a ${(
-        //   <Link to={`/pokemon/${detail[1].name}`}>
-        //     {getPokeName(detail[1].name)}
-        //   </Link>
-        // )}
-        // species Pokémon in their party`,
-        // ];
         return [
-          `with a
-            ${getPokeName(detail[1].name)}
-            species Pokémon in their party`,
-          "",
+          <>
+            with a{" "}
+            <Link
+              className={`clean-text ${fontStyle}`}
+              to={`/pokemon/${detail[1].name}`}
+            >
+              <motion.div
+                className="dyn-section-link"
+                whileHover={{ scale: 1.1, rotate: "-1.5deg" }}
+                whileTap={{ scale: 0.9, rotate: "5deg" }}
+                transition={{ duration: 0.1 }}
+                style={{ display: "inline-block" }}
+              >
+                {getPokeName(detail[1].name)}
+              </motion.div>
+            </Link>{" "}
+            species Pokémon in their party
+          </>,
           "",
         ];
       default:
@@ -417,7 +488,23 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
   };
 
   function moveItemToEnd(evoTriggerArr, iconHTMLArr) {
-    const i = evoTriggerArr.findIndex((trigger) => trigger.startsWith("("));
+    const i = evoTriggerArr.findIndex((trigger) => {
+      const children = trigger.props.children;
+
+      // If children is an array, check each element for '('
+      if (Array.isArray(children)) {
+        return children.some(
+          (child) => typeof child === "string" && child.includes("(")
+        );
+      }
+
+      // If children is a string, check if it contains '('
+      if (typeof children === "string") {
+        return children.includes("(");
+      }
+
+      return false;
+    });
     const j = iconHTMLArr.findIndex(
       (icon) =>
         icon.props.className.includes("fa-venus") ||
@@ -466,14 +553,17 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
 
       return (
         <div className="evoluion-chain-trigger-desc" key={i}>
-          {evoTriggerArr.join(" ")}
+          {/* {evoTriggerArr.join(" ")} */}
+          {evoTriggerArr.map((trigger, j) => {
+            return <React.Fragment key={j}>{trigger}</React.Fragment>;
+          })}
           <div
             className={`evolution-chain-image-container ${
               i !== evolution.evolution_details.length - 1 ? lineStyle : ""
             }`}
           >
-            {iconHTMLArr.map((iconHTML, i) => {
-              return <div key={i}>{iconHTML}</div>; // Will this cause issues showing items in a row together?
+            {iconHTMLArr.map((iconHTML, j) => {
+              return <div key={j}>{iconHTML}</div>; // Will this cause issues showing items in a row together?
             })}
           </div>
         </div>
