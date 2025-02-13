@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
-import React from "react"; // Works for React 17+
-import { motion } from "motion/react";
+// import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { motion } from "motion/react";
 import PokemonCard from "../CommonComponents/PokemonCard";
 import pokeBall from "../icons/poke-ball.png";
 
+// Current Pokémon's evolution chain
 const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
+  // Setup the font style, header style and, line style between information sections based on if the user is using light or dark mode
   const fontStyle = isDarkMode ? "font-dark" : "font-light";
   const secondaryHeaderStyle =
     screenSize === "small"
@@ -15,17 +17,17 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
       : screenSize === "large"
       ? "secondary-page-header-large"
       : "secondary-page-header-x-large";
-  // Setup the line styling between information sections based on if the user is using light or dark mode
   const lineStyle = isDarkMode
     ? "component-outline-bottom-dark"
     : "component-outline-bottom-light";
 
+  // Setup data structures to contain the current Pokéchain data, its loading and error state and navigation
   const [pokeChainData, setPokeChainData] = useState(null);
   const [isPokeChainLoading, setIsPokeChainLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  // Fetch data for the current Pokémon chain
+  // Fetch data for the current Pokémon's chain
   useEffect(() => {
     const fetchData = async () => {
       setIsPokeChainLoading(true);
@@ -53,6 +55,7 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
     return;
   }
 
+  // Get the current Pokémons number from their url
   const getPokeNum = (pokeURL) => {
     // Seperate out the integer from the url
     const urlArr = pokeURL.split("/");
@@ -79,6 +82,7 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
     return detailTitle.join(" ");
   };
 
+  // Mapping for Pokémon who evolve through shedding
   const shedMapping = {
     shedinja: [
       <>
@@ -93,6 +97,7 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
     ],
   };
 
+  // Mapping for Pokémon who evolve through spinning
   const spinMapping = {
     alcremie: [
       <>Give the Pokémon a sweet treat, spin around, and strike a pose</>,
@@ -100,6 +105,7 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
     ],
   };
 
+  // Mapping for Pokémon who evolve through training in the tower of darkness
   const towerOfDarknessMapping = {
     urshifu: [
       <>Single Strike Style - Clear the Tower of Darkness with this Pokémon</>,
@@ -107,6 +113,7 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
     ],
   };
 
+  // Mapping for Pokémon who evolve through training in the tower of water
   const towerOfWaterMapping = {
     urshifu: [
       <>Rapid Strike Style - Clear the Tower of Water with this Pokémon</>,
@@ -114,6 +121,7 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
     ],
   };
 
+  // Mapping for Pokémon who evolve by landing critical hits
   const threeCriticalMapping = {
     sirfetchd: [
       <>
@@ -124,6 +132,7 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
     ],
   };
 
+  // Mapping for Pokémon who evolve by taking damage
   const takeDamageMapping = {
     runerigus: [
       <>
@@ -135,6 +144,7 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
     ],
   };
 
+  // Mapping for Pokémon who evolve in other ways not listed
   const otherMapping = {
     pawmot: [
       <>
@@ -208,6 +218,7 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
     ],
   };
 
+  // Mapping for Pokémon who evolve by taking recoil damage
   const recoilDamageMapping = {
     basculegion: [
       <>Pokémon must take at least 294 recoil damage, then level up</>,
@@ -219,12 +230,15 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
     ],
   };
 
-  // Map to match for each possible evolution trigger case
+  // Match each possible evolution trigger case and return the appropriate array
   const getTrigger = (evolutionDetails, speciesName) => {
+    // Remove the "trigger" entry from evolution details as it does not need to be looked at again
     let evoArr = Array.from(Object.entries(evolutionDetails)).filter(
       (item) => item[0] !== "trigger"
     );
 
+    // Find the current trigger name and return an array containing JSX for the descriptive text,
+    // icons that are applicable, and the rest of the evolution details, removing any as needed
     switch (evolutionDetails.trigger.name) {
       case "level-up":
         return evolutionDetails.min_level
@@ -253,7 +267,6 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
               Trade for{" "}
               <Link
                 className={`clean-text`}
-                // ${fontStyle}
                 to={`/pokemon/${evolutionDetails.trade_species.name}`}
               >
                 <motion.div
@@ -382,12 +395,14 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
     }
   };
 
+  // Mapping for possible genders
   const genderMapping = {
     1: ["Female", <i className="fa-solid fa-venus evolution-chain-image" />],
     2: ["Male", <i className="fa-solid fa-mars evolution-chain-image" />],
     3: ["Genderless", []],
   };
 
+  // Mapping for possible stat comparisons
   const relativeStatsMapping = {
     0: [
       "attack is less than defense",
@@ -397,6 +412,8 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
     2: ["attack is greater than defense", []],
   };
 
+  // Find the correct detail, check if it has a value and return the appropriate array containing information text
+  // and icon in JSX form
   const getCurrDetail = (detail, triggerName) => {
     switch (detail[0]) {
       case "gender":
@@ -479,11 +496,7 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
         return [
           <>
             with a{" "}
-            <Link
-              className={`clean-text`}
-              // ${fontStyle}
-              to={`/pokemon/${detail[1].name}`}
-            >
+            <Link className={`clean-text`} to={`/pokemon/${detail[1].name}`}>
               <motion.div
                 className="dyn-section-link"
                 whileHover={{ scale: 1.1, rotate: "-1.5deg" }}
@@ -502,11 +515,7 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
         return [
           <>
             with a{" "}
-            <Link
-              className={`clean-text`}
-              // ${fontStyle}
-              to={`/types/${detail[1].name}`}
-            >
+            <Link className={`clean-text`} to={`/types/${detail[1].name}`}>
               <motion.div
                 className="dyn-section-link"
                 whileHover={{ scale: 1.1, rotate: "-1.5deg" }}
@@ -555,88 +564,110 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
     }
   };
 
+  // Iterate through the possible evolution details and call helper function
   const getEvoDetails = (evolutionDetails, triggerName) => {
     let detailsArr = [],
       iconsArr = [];
     Object.entries(evolutionDetails).forEach((detail, i) => {
+      // Only call helper function if there is a possible value for the current detail
       if (detail[1][1] !== null) {
         const [currDetail, currIcon] = getCurrDetail(detail[1], triggerName);
         detailsArr.push(currDetail);
         iconsArr.push(currIcon);
-      } else {
-        // Why is there an else?
       }
     });
     return [detailsArr, iconsArr];
   };
 
+  // Move part of the text description and its corresponding icon to the end of the array,
+  // to be rendered last
   function moveItemToEnd(evoTriggerArr, iconHTMLArr) {
+    // Get the index of an evolution detail that should be moved
     const i = evoTriggerArr.findIndex((trigger) => {
-      const children = trigger.props.children;
+      const details = trigger.props.children;
 
-      // If children is an array, check each element for '('
-      if (Array.isArray(children)) {
-        return children.some(
-          (child) => typeof child === "string" && child.includes("(")
+      // If detail is an array, check each element for '('
+      if (Array.isArray(details)) {
+        return details.some(
+          (detail) => typeof detail === "string" && detail.includes("(")
         );
       }
 
-      // If children is a string, check if it contains '('
-      if (typeof children === "string") {
-        return children.includes("(");
+      // If detail is a string, check if it contains '('
+      if (typeof details === "string") {
+        return details.includes("(");
       }
 
       return false;
     });
-    const j = iconHTMLArr.findIndex(
-      (icon) =>
-        icon.props.className.includes("fa-venus") ||
-        icon.props.className.includes("fa-mars")
-    );
 
-    // Get the item from array2 at the same index
+    let j = -1;
+    // Get the index of an icon that should be moved only if a detail was found
+    if (i !== -1) {
+      j = iconHTMLArr.findIndex(
+        (icon) =>
+          icon.props.className.includes("fa-venus") ||
+          icon.props.className.includes("fa-mars")
+      );
+    }
+
+    // If there are items to be moved, move them both to the end
     if (i !== -1 && j !== -1) {
+      // Store a copy of both items
       const triggerItem = evoTriggerArr[i];
       const iconItem = iconHTMLArr[j];
 
-      // Remove the item from its current position in iconHTMLArr
+      // Remove the items from the existing array
       evoTriggerArr.splice(i, 1);
       iconHTMLArr.splice(j, 1);
 
-      // Push the item to the end of iconHTMLArr
+      // Add the stored items to the end of the array
       evoTriggerArr.push(triggerItem);
       iconHTMLArr.push(iconItem);
     }
     return [evoTriggerArr, iconHTMLArr];
   }
 
+  // Get the trigger event and description for one Pokémon to evolve to another
   const getTriggerEvent = (evolution) => {
+    // Iterate through the evolution details, creating line seperated sections for each
     const evoHTML = evolution.evolution_details.map((currDetail, i) => {
-      // Get the trigger string, array of details to still look through and icon URL of the current evolution chain link
+      // Get the trigger for the current evolution detail
       const [evoTrigger, iconHTML, evoArr] = getTrigger(
-        Object.entries(evolution.evolution_details)[i][1],
+        currDetail,
         evolution.species.name
       );
+
+      // Get the rest of the current evolution details and create arrays to hold the evolution details and icons
       let [evoTriggerArr, iconHTMLArr] = getEvoDetails(
         evoArr,
-        evolution.evolution_details[0].trigger.name
+        currDetail.trigger.name
+        // evolution.evolution_details[0].trigger.name
       );
 
+      // Add the trigger detail and icon to the beginning of the arrays
       evoTriggerArr.unshift(evoTrigger);
       iconHTMLArr.unshift(iconHTML);
+
+      // Remove any empty details
       evoTriggerArr = evoTriggerArr.filter(
-        (trigger) =>
-          trigger !== "" && !(Array.isArray(trigger) && trigger.length === 0)
+        (detail) =>
+          detail !== "" && !(Array.isArray(detail) && detail.length === 0)
       );
+
+      // Remove any empty icons
       iconHTMLArr = iconHTMLArr.filter(
-        (trigger) =>
-          trigger !== "" && !(Array.isArray(trigger) && trigger.length === 0)
+        (icon) => icon !== "" && !(Array.isArray(icon) && icon.length === 0)
       );
+
+      // Move any items within the arrays to the end if needed
       [evoTriggerArr, iconHTMLArr] = moveItemToEnd(evoTriggerArr, iconHTMLArr);
 
+      // Create a display for the current evolution detail string and icons
       return (
         <div className="evoluion-chain-trigger-desc" key={i}>
-          {/* {evoTriggerArr.join(" ")} */}
+          {/* Add all strings and icons to the current evolution details display,
+           only adding a line if we are at the last evolution detail */}
           {evoTriggerArr.map((trigger, j) => {
             return <React.Fragment key={j}>{trigger} </React.Fragment>;
           })}
@@ -646,7 +677,7 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
             }`}
           >
             {iconHTMLArr.map((iconHTML, j) => {
-              return <div key={j}>{iconHTML}</div>; // Will this cause issues showing items in a row together?
+              return <div key={j}>{iconHTML}</div>;
             })}
           </div>
         </div>
@@ -655,6 +686,7 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
     return evoHTML;
   };
 
+  // Recursively get evolutions of the current Pokémon if there are any
   const getEvolutions = (evolutions) => {
     return evolutions.map((evolution, i) => {
       return (
@@ -709,6 +741,7 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
     });
   };
 
+  // Display the full evolution chain for the current Pokémon species including cards and evolution details
   return (
     <>
       <div className={`${fontStyle} ${secondaryHeaderStyle}`}>
