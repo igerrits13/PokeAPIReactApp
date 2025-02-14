@@ -1,69 +1,20 @@
-// import React from "react";
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+// import { Link } from "react-router-dom";
 // import { motion } from "motion/react";
-import EvolutionChainHorizontal from "./EvolutionChainHorizontal";
-// import PokemonCard from "../CommonComponents/PokemonCard";
+import PokemonCard from "../CommonComponents/PokemonCard";
+import EvolutionChainHorizontalSection from "./EvolutionChainHorizontalSection";
 // import pokeBall from "../icons/poke-ball.png";
 
-// Current Pokémon's evolution chain
-const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
-  // Setup the font style, header style, and line style between information sections based on if the user is using light or dark mode
+const EvolutionChainHorizontal = ({
+  pokeChainData,
+  screenSize,
+  isDarkMode,
+}) => {
+  // Setup the font style, and line style between information sections based on if the user is using light or dark mode
   const fontStyle = isDarkMode ? "font-dark" : "font-light";
-  const secondaryHeaderStyle =
-    screenSize === "small"
-      ? "secondary-page-header-small"
-      : screenSize === "medium"
-      ? "secondary-page-header-med"
-      : screenSize === "large"
-      ? "secondary-page-header-large"
-      : "secondary-page-header-x-large";
   // const lineStyle = isDarkMode
   //   ? "component-outline-bottom-dark"
   //   : "component-outline-bottom-light";
-
-  // Setup data structures to contain the current Pokéchain data, its loading and error state and navigation
-  const [pokeChainData, setPokeChainData] = useState(null);
-  const [isPokeChainLoading, setIsPokeChainLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const navigate = useNavigate();
-
-  // Fetch data for the current Pokémon's chain
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsPokeChainLoading(true);
-      try {
-        const [response] = await Promise.all([fetch(`${pokeChainURL}`)]);
-        if (!response) {
-          return;
-        }
-        const jsonData = await response.json();
-        setPokeChainData(jsonData);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setIsPokeChainLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [pokeChainURL]);
-
-  // If the API call returns an error, navigate to the page not found
-  // (Redundant to inside fetch call to avoid compilation error)
-  if (error) {
-    navigate("/notfound");
-    return;
-  }
-
-  // // Get the current Pokémons number from their url
-  // const getPokeNum = (pokeURL) => {
-  //   // Seperate out the integer from the url
-  //   const urlArr = pokeURL.split("/");
-  //   const urlNoSlash = urlArr.filter((part) => part !== "");
-  //   const urlNumber = urlNoSlash[urlNoSlash.length - 1];
-  //   return parseInt(urlNumber, 10);
-  // };
 
   // // Capitalize the first word of each part of the pokémon's name
   // const getPokeName = (name) => {
@@ -73,6 +24,15 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
 
   //   return formattedName.join(" ");
   // };
+
+  // Get the current Pokémons number from their url
+  const getPokeNum = (pokeURL) => {
+    // Seperate out the integer from the url
+    const urlArr = pokeURL.split("/");
+    const urlNoSlash = urlArr.filter((part) => part !== "");
+    const urlNumber = urlNoSlash[urlNoSlash.length - 1];
+    return parseInt(urlNumber, 10);
+  };
 
   // // Seperate the generation title by '-' and capitalize appropriate letters
   // const getDetailTitle = (detail) => {
@@ -230,6 +190,55 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
   //     />,
   //   ],
   // };
+
+  // // Move part of the text description and its corresponding icon to the end of the array,
+  // // to be rendered last
+  // function moveItemToEnd(evoTriggerArr, iconHTMLArr) {
+  //   // Get the index of an evolution detail that should be moved
+  //   const i = evoTriggerArr.findIndex((trigger) => {
+  //     const details = trigger.props.children;
+
+  //     // If detail is an array, check each element for '('
+  //     if (Array.isArray(details)) {
+  //       return details.some(
+  //         (detail) => typeof detail === "string" && detail.includes("(")
+  //       );
+  //     }
+
+  //     // If detail is a string, check if it contains '('
+  //     if (typeof details === "string") {
+  //       return details.includes("(");
+  //     }
+
+  //     return false;
+  //   });
+
+  //   let j = -1;
+  //   // Get the index of an icon that should be moved only if a detail was found
+  //   if (i !== -1) {
+  //     j = iconHTMLArr.findIndex(
+  //       (icon) =>
+  //         icon.props.className.includes("fa-venus") ||
+  //         icon.props.className.includes("fa-mars")
+  //     );
+  //   }
+
+  //   // If there are items to be moved, move them both to the end
+  //   if (i !== -1 && j !== -1) {
+  //     // Store a copy of both items
+  //     const triggerItem = evoTriggerArr[i];
+  //     const iconItem = iconHTMLArr[j];
+
+  //     // Remove the items from the existing array
+  //     evoTriggerArr.splice(i, 1);
+  //     iconHTMLArr.splice(j, 1);
+
+  //     // Add the stored items to the end of the array
+  //     evoTriggerArr.push(triggerItem);
+  //     iconHTMLArr.push(iconItem);
+  //   }
+  //   return [evoTriggerArr, iconHTMLArr];
+  // }
 
   // // Match each possible evolution trigger case and return the appropriate array
   // const getTrigger = (evolutionDetails, speciesName) => {
@@ -580,55 +589,6 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
   //   return [detailsArr, iconsArr];
   // };
 
-  // // Move part of the text description and its corresponding icon to the end of the array,
-  // // to be rendered last
-  // function moveItemToEnd(evoTriggerArr, iconHTMLArr) {
-  //   // Get the index of an evolution detail that should be moved
-  //   const i = evoTriggerArr.findIndex((trigger) => {
-  //     const details = trigger.props.children;
-
-  //     // If detail is an array, check each element for '('
-  //     if (Array.isArray(details)) {
-  //       return details.some(
-  //         (detail) => typeof detail === "string" && detail.includes("(")
-  //       );
-  //     }
-
-  //     // If detail is a string, check if it contains '('
-  //     if (typeof details === "string") {
-  //       return details.includes("(");
-  //     }
-
-  //     return false;
-  //   });
-
-  //   let j = -1;
-  //   // Get the index of an icon that should be moved only if a detail was found
-  //   if (i !== -1) {
-  //     j = iconHTMLArr.findIndex(
-  //       (icon) =>
-  //         icon.props.className.includes("fa-venus") ||
-  //         icon.props.className.includes("fa-mars")
-  //     );
-  //   }
-
-  //   // If there are items to be moved, move them both to the end
-  //   if (i !== -1 && j !== -1) {
-  //     // Store a copy of both items
-  //     const triggerItem = evoTriggerArr[i];
-  //     const iconItem = iconHTMLArr[j];
-
-  //     // Remove the items from the existing array
-  //     evoTriggerArr.splice(i, 1);
-  //     iconHTMLArr.splice(j, 1);
-
-  //     // Add the stored items to the end of the array
-  //     evoTriggerArr.push(triggerItem);
-  //     iconHTMLArr.push(iconItem);
-  //   }
-  //   return [evoTriggerArr, iconHTMLArr];
-  // }
-
   // // Get the trigger event and description for one Pokémon to evolve to another
   // const getTriggerEvent = (evolution) => {
   //   // Iterate through the evolution details, creating line seperated sections for each
@@ -668,7 +628,7 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
   //     return (
   //       <div className="evoluion-chain-trigger-desc" key={i}>
   //         {/* Add all strings and icons to the current evolution details display,
-  //          only adding a line if we are at the last evolution detail */}
+  //            only adding a line if we are at the last evolution detail */}
   //         {evoTriggerArr.map((trigger, j) => {
   //           return <React.Fragment key={j}>{trigger} </React.Fragment>;
   //         })}
@@ -697,7 +657,7 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
   //             ? "flex-centered"
   //             : ""
   //         }
-  //         }`}
+  //           }`}
   //         key={i}
   //       >
   //         <div className="evolution-chain-icon-row">
@@ -732,7 +692,7 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
   //                 ? "flex-centered"
   //                 : ""
   //             }
-  //       }`}
+  //         }`}
   //           >
   //             {getEvolutions(Object.entries(evolution[1].evolves_to))}
   //           </div>
@@ -742,68 +702,42 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
   //   });
   // };
 
-  // console.log(screenSize);
-
-  // Display the full evolution chain for the current Pokémon species including cards and evolution details
   return (
-    <>
-      <div className={`${fontStyle} ${secondaryHeaderStyle}`}>
-        Evolution Chain
+    <div className={`evolution-chain-container-horizontal ${fontStyle}`}>
+      <div className="evolution-chain-section-horizontal flex-centered">
+        <div className="evolution-chain-icon-row">
+          <div
+            className="evolution-chain-card-large" //     ? //   screenSize === "x-large" // {`${
+            //     : "evolution-chain-card-small"
+            // }`}
+          >
+            <PokemonCard
+              obj={pokeChainData.chain.species}
+              i={getPokeNum(pokeChainData.chain.species.url)}
+              isDarkMode={isDarkMode}
+            />
+          </div>
+        </div>
       </div>
-      {/* {
-        !isPokeChainLoading && 
-        (
-          <EvolutionChainVertical
-            pokeChainData={pokeChainData}
-            screenSize={screenSize}
-            isDarkMode={isDarkMode}
-          />
-        ) */}
-      {!isPokeChainLoading &&
-        (screenSize === "x-large" ? (
-          <EvolutionChainHorizontal
-            pokeChainData={pokeChainData}
-            screenSize={screenSize}
-            isDarkMode={isDarkMode}
-          />
-        ) : (
-          <></>
-        ))}
-
-      {/* // ( */}
-      {/* //   <div className={`evolution-chain-container-horizontal ${fontStyle}`}> */}
-      {/* //     <div className="evolution-chain-section-horizontal flex-centered"> */}
-      {/* //       <div className="evolution-chain-icon-row"> */}
-      {/* //         <div */}
-      {/* //           className={`${ */}
-      {/* //             screenSize === "x-large"
-        //               ? "evolution-chain-card-large"
-        //               : "evolution-chain-card-small"
-        //           }`}
-        //         >
-        //           <PokemonCard
-        //             obj={pokeChainData.chain.species}
-        //             i={getPokeNum(pokeChainData.chain.species.url)}
-        //             isDarkMode={isDarkMode}
-        //           />
-        //         </div>
-        //       </div>
-        //     </div>
-        //     <div
-        //       className={`evolution-chain-section-vertical ${
-        //         Object.entries(pokeChainData.chain.evolves_to).length === 1
-        //           ? "flex-centered"
-        //           : ""
-        //       }
-        //     }`}
-        //     >
-        //       {getEvolutions(Object.entries(pokeChainData.chain.evolves_to))}
-        //     </div>
-        //   </div>
-        // )
-      // } */}
-    </>
+      {/* If there is only one evolution for a specific Pokémon, center it vertically */}
+      <div
+        className={`evolution-chain-section-vertical ${
+          Object.entries(pokeChainData.chain.evolves_to).length === 1
+            ? "flex-centered"
+            : ""
+        }
+            }`}
+      >
+        <EvolutionChainHorizontalSection
+          pokeChainData={pokeChainData}
+          getPokeNum={getPokeNum}
+          screenSize={screenSize}
+          isDarkMode={isDarkMode}
+        />
+        {/* {getEvolutions(Object.entries(pokeChainData.chain.evolves_to))} */}
+      </div>
+    </div>
   );
 };
 
-export default EvolutionChain;
+export default EvolutionChainHorizontal;

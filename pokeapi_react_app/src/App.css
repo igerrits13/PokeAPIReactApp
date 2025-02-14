@@ -1668,8 +1668,6 @@ const colours = {
   display: flex;
   flex-direction: column;
   overflow: auto;
-  /* border: 1px solid black; */
-  /* background-color: #7ac74c; */
 }
 
 .evolution-chain-section-vertical::-webkit-scrollbar {
@@ -1690,7 +1688,7 @@ const colours = {
   align-items: center;
   text-align: center;
   padding: 1rem;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .evolution-chain-card-large {
@@ -1704,7 +1702,7 @@ const colours = {
 }
 
 .evolution-chain-section-details-large {
-  width: 12rem;
+  width: 10rem;
 }
 
 .evolution-chain-section-details-small {
@@ -1713,19 +1711,14 @@ const colours = {
 
 .evoluion-chain-trigger-desc {
   padding: 0.5rem 0;
-  /* background-color: #96d9d6; */
 }
 
 .evolution-chain-image-container {
   display: flex;
-  /* align-self: center; */
   justify-content: center;
   align-items: center;
   width: 100%;
   padding: 0.5rem 0;
-  /* padding: 0 0 0.5rem 0; */
-  /* padding: 0 0 0.25rem 0; */
-  /* background-color: #96d9d6; */
 }
 
 .evolution-chain-image {
