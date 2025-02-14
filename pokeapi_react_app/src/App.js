@@ -63,8 +63,6 @@ function App() {
       });
   }, []);
 
-  console.log(screenSize);
-
   return (
     <div className={`${isDarkMode ? "background-dark" : "background-light"}`}>
       <Routes>

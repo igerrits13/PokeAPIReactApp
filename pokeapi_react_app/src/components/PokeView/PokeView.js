@@ -125,8 +125,6 @@ const PokeView = ({ fullPokeResults, screenSize, isDarkMode }) => {
     });
   }
 
-  // console.log(screenSize);
-
   // Display the Pokémon page
   return (
     <div
