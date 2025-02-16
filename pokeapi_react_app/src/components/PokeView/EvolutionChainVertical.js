@@ -17,10 +17,27 @@ const EvolutionChainVertical = ({ pokeChainData, screenSize, isDarkMode }) => {
 
   return (
     //
-    <div className={`evolution-chain-container-small ${fontStyle}`}>
-      {/* <div className="evolution-chain-section-vertical-small flex-centered"> */}
-      <div className="evolution-chain-initial-small">
-        <div className="evolution-chain-card-small">
+    <div
+      className={`${
+        screenSize === "x-large"
+          ? "evolution-chain-container-large"
+          : "evolution-chain-container-small"
+      } ${fontStyle}`}
+    >
+      <div
+        className={`${
+          screenSize === "x-large"
+            ? "evolution-chain-initial-large"
+            : "evolution-chain-initial-small"
+        }`}
+      >
+        <div
+          className={`${
+            screenSize === "x-large"
+              ? "evolution-chain-card-large"
+              : "evolution-chain-card-small"
+          }`}
+        >
           <PokemonCard
             obj={pokeChainData.chain.species}
             i={getPokeNum(pokeChainData.chain.species.url)}
@@ -29,7 +46,13 @@ const EvolutionChainVertical = ({ pokeChainData, screenSize, isDarkMode }) => {
         </div>
       </div>
       {/* If there is only one evolution for a specific Pokémon, center it vertically */}
-      <div className={`evolution-chain-table-small`}>
+      <div
+        className={`${
+          screenSize === "x-large"
+            ? "evolution-chain-table-large"
+            : "evolution-chain-table-small"
+        }`}
+      >
         <EvolutionChainVerticalSection
           pokeChainData={pokeChainData}
           getPokeNum={getPokeNum}

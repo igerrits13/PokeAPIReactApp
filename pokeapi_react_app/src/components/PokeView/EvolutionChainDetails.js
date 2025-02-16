@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { motion } from "motion/react";
 import pokeBall from "../icons/poke-ball.png";
 
-const EvolutionChainDetails = ({ evolution, isDarkMode }) => {
+const EvolutionChainDetails = ({ evolution, screenSize, isDarkMode }) => {
   // Setup the line style between information sections based on if the user is using light or dark mode
   const lineStyle = isDarkMode
     ? "component-outline-bottom-dark"
@@ -639,7 +639,15 @@ const EvolutionChainDetails = ({ evolution, isDarkMode }) => {
   const triggerHTML = getTriggerEvent(evolution[1]);
 
   return (
-    <div className="evolution-chain-section-details-small">{triggerHTML}</div>
+    <div
+      className={`${
+        screenSize === "x-large"
+          ? "evolution-chain-section-details-large"
+          : "evolution-chain-section-details-small"
+      }`}
+    >
+      {triggerHTML}
+    </div>
   );
 };
 

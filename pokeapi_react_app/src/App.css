@@ -1722,36 +1722,68 @@ const colours = {
   border-radius: 10px;
 }
 
-/*  */
+/* Evolution Chain Large */
 
-.flex-centered {
-  align-self: center;
-  justify-self: center;
+.evolution-chain-container-large {
+  display: flex;
+  flex-direction: row;
+  padding: 1rem 0;
+  height: 100%;
+  overflow: hidden;
 }
 
-.evolution-chain-icon-row {
+.evolution-chain-initial-large {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.evolution-chain-table-large {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: auto;
+  max-height: 80vh;
+  width: 100%;
+  gap: 20px;
+}
+
+.evolution-chain-path-large {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  width: 100%;
+  height: 100%;
+}
+
+.evolution-chain-path-large::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+.evolution-chain-path-large::-webkit-scrollbar-thumb {
+  background-color: #757575;
+  border-radius: 10px;
+}
+
+.evolution-chain-path-section-large {
+  display: flex;
+  flex-direction: row;
   align-items: center;
   text-align: center;
   padding: 1rem;
   gap: 1rem;
+  height: 100%;
+  width: 100%;
 }
 
-.evolution-chain-icon-column {
+.evolution-chain-path-fork-large {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 1rem;
-  gap: 1rem;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .evolution-chain-card-large {
-  width: 12rem;
-  flex-shrink: 0;
-}
-
-.evolution-chain-card-small {
   width: 12rem;
   margin: 1rem 0 0 0;
   flex-shrink: 0;
@@ -1761,41 +1793,7 @@ const colours = {
   width: 10rem;
 }
 
-.evolution-chain-section-details-small {
-  width: 10rem;
-}
-
-.evoluion-chain-trigger-desc {
-  padding: 0.5rem 0;
-}
-
-.evolution-chain-image-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  padding: 0.5rem 0;
-}
-
-.evolution-chain-image {
-  width: 2.5rem;
-  font-size: 1.5rem;
-  align-items: center;
-}
-
-.evolution-chain-image-upside-down {
-  width: 2.5rem;
-  font-size: 1.5rem;
-  align-items: center;
-  transform: rotate(180deg);
-}
-
-.evolution-chain-image-ball {
-  width: 1.5rem;
-  align-items: center;
-}
-
-/*  */
+/* Evolution Chain Small */
 
 .evolution-chain-container-small {
   display: flex;
@@ -1856,4 +1854,68 @@ const colours = {
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
+}
+
+.evolution-chain-card-small {
+  width: 12rem;
+  margin: 1rem 0 0 0;
+  flex-shrink: 0;
+}
+
+.evolution-chain-section-details-small {
+  width: 10rem;
+}
+
+/* Evolution Chain Shared */
+
+.flex-centered {
+  align-self: center;
+  justify-self: center;
+}
+
+.evolution-chain-icon-row {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.evolution-chain-icon-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.evoluion-chain-trigger-desc {
+  padding: 0.5rem 0;
+}
+
+.evolution-chain-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem 0;
+}
+
+.evolution-chain-image {
+  width: 2.5rem;
+  font-size: 1.5rem;
+  align-items: center;
+}
+
+.evolution-chain-image-upside-down {
+  width: 2.5rem;
+  font-size: 1.5rem;
+  align-items: center;
+  transform: rotate(180deg);
+}
+
+.evolution-chain-image-ball {
+  width: 1.5rem;
+  align-items: center;
 }
