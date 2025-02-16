@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 import PokemonCard from "../CommonComponents/PokemonCard";
 import EvolutionChainDetails from "./EvolutionChainDetails";
 
-const EvolutionChainVerticalSection = ({
+const EvolutionChainTableSection = ({
   pokeChainData,
   getPokeNum,
   screenSize,
@@ -104,4 +104,4 @@ const EvolutionChainVerticalSection = ({
   return <> {evolutionHTML}</>;
 };
 
-export default EvolutionChainVerticalSection;
+export default EvolutionChainTableSection;

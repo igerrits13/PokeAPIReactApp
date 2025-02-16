@@ -1631,95 +1631,11 @@ const colours = {
 }
 
 .stats-progress-light-min {
-  background-color: #2b2e2a;
+  background-color: #c2c0bf;
 }
 
 .stats-progress-light-max {
-  background-color: #757575;
-}
-
-/* Evolution Chain */
-
-.evolution-chain-container-horizontal {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  padding: 1rem 0;
-  width: 100%;
-  min-height: 20vh;
-  max-height: 75vh;
-}
-
-.evolution-chain-section-horizontal {
-  display: flex;
-  flex-direction: row;
-}
-
-.evolution-chain-section-horizontal::-webkit-scrollbar {
-  width: 0.25rem;
-}
-
-.evolution-chain-section-horizontal::-webkit-scrollbar-thumb {
-  background-color: #757575;
-  border-radius: 10px;
-}
-
-.evolution-chain-section-vertical {
-  display: flex;
-  flex-direction: column;
-  overflow: auto;
-}
-
-.evolution-chain-section-vertical::-webkit-scrollbar {
-  width: 0.25rem;
-}
-
-.evolution-chain-section-vertical::-webkit-scrollbar-thumb {
-  background-color: #757575;
-  border-radius: 10px;
-}
-
-/* Small screen evolution chain */
-
-.evolution-chain-container-vertical {
-  display: flex;
-  flex-direction: column;
-  padding: 1rem 0;
-  width: 100%;
-  height: 100%;
-  min-height: 20vh;
-  max-height: 75vh;
-  overflow: auto;
-}
-
-.evolution-chain-section-horizontal-small {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-.evolution-chain-section-horizontal-small::-webkit-scrollbar {
-  width: 0.25rem;
-}
-
-.evolution-chain-section-horizontal-small::-webkit-scrollbar-thumb {
-  background-color: #757575;
-  border-radius: 10px;
-}
-
-.evolution-chain-section-vertical-small {
-  display: flex;
-  height: 100%;
-  justify-content: space-around;
-}
-
-.evolution-chain-section-vertical-small::-webkit-scrollbar {
-  width: 0.25rem;
-}
-
-.evolution-chain-section-vertical-small::-webkit-scrollbar-thumb {
-  background-color: #757575;
-  border-radius: 10px;
+  background-color: #dad8d7;
 }
 
 /* Evolution Chain Large */

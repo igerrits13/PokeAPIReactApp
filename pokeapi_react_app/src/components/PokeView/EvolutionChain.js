@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-// import EvolutionChainHorizontal from "./EvolutionChainHorizontal";
-import EvolutionChainVertical from "./EvolutionChainVertical";
+import EvolutionChainTable from "./EvolutionChainTable";
 
 // Current Pokémon's evolution chain
 const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
@@ -57,17 +56,12 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
         Evolution Chain
       </div>
       {!isPokeChainLoading && (
-        <EvolutionChainVertical
+        <EvolutionChainTable
           pokeChainData={pokeChainData}
           screenSize={screenSize}
           isDarkMode={isDarkMode}
         />
       )}
-      {/* <EvolutionChainHorizontal
-        pokeChainData={pokeChainData}
-        screenSize={screenSize}
-        isDarkMode={isDarkMode}
-      /> */}
     </>
   );
 };
