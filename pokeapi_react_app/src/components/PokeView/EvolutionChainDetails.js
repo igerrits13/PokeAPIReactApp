@@ -406,6 +406,11 @@ const EvolutionChainDetails = ({ evolution, screenSize, isDarkMode }) => {
     2: ["while attack is greater than defense", []],
   };
 
+  // Function to handle image error and hide the parent div
+  const handleImageError = (e) => {
+    e.target.closest(".evolution-chain-image").style.display = "none";
+  };
+
   // Find the correct detail, check if it has a value and return the appropriate array containing information text
   // and icon in JSX form
   const getCurrDetail = (detail, triggerName) => {
@@ -422,6 +427,7 @@ const EvolutionChainDetails = ({ evolution, screenSize, isDarkMode }) => {
             className="evolution-chain-image"
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${detail[1].name}.png`}
             alt={getDetailTitle(detail[1].name)}
+            onError={handleImageError}
           />,
         ];
       case "item":
@@ -431,6 +437,7 @@ const EvolutionChainDetails = ({ evolution, screenSize, isDarkMode }) => {
             className="evolution-chain-image"
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/${detail[1].name}.png`}
             alt={getDetailTitle(detail[1].name)}
+            onError={handleImageError}
           />,
         ];
       case "known_move":
@@ -627,6 +634,7 @@ const EvolutionChainDetails = ({ evolution, screenSize, isDarkMode }) => {
             }`}
           >
             {iconHTMLArr.map((iconHTML, j) => {
+              console.log(iconHTML);
               return <div key={j}>{iconHTML}</div>;
             })}
           </div>

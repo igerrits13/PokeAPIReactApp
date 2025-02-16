@@ -20,7 +20,6 @@ const EvolutionChainTableSection = ({
         }`}
       >
         {evolutions.map((evolution, i) => {
-          console.log(evolution);
           return (
             <div
               className={`${
