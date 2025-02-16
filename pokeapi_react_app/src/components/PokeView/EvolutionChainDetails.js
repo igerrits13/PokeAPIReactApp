@@ -399,11 +399,11 @@ const EvolutionChainDetails = ({ evolution, isDarkMode }) => {
   // Mapping for possible stat comparisons
   const relativeStatsMapping = {
     0: [
-      "attack is less than defense",
+      "while attack is less than defense",
       <i className="fa-solid fa-shield evolution-chain-image" />,
     ],
-    1: ["attack is equal to defense", []],
-    2: ["attack is greater than defense", []],
+    1: ["while attack is equal to defense", []],
+    2: ["while attack is greater than defense", []],
   };
 
   // Find the correct detail, check if it has a value and return the appropriate array containing information text
@@ -526,8 +526,8 @@ const EvolutionChainDetails = ({ evolution, isDarkMode }) => {
         ];
       case "relative_physical_stats":
         return [
-          <>{relativeStatsMapping[detail[1]][0]}</>,
-          relativeStatsMapping[detail[1]][1],
+          <>{relativeStatsMapping[detail[1] + 1][0]}</>,
+          relativeStatsMapping[detail[1] + 1][1],
         ];
       case "time_of_day":
         if (detail[1] === "day")
@@ -539,6 +539,11 @@ const EvolutionChainDetails = ({ evolution, isDarkMode }) => {
           return [
             <>at night</>,
             <i className="fa-solid fa-moon evolution-chain-image" />,
+          ];
+        else if (detail[1] === "dusk")
+          return [
+            <>at dusk</>,
+            <i class="fa-solid fa-mountain-sun evolution-chain-image" />,
           ];
         else if (detail[1] === "") return [<></>, []];
         else {
