@@ -633,7 +633,9 @@ const EvolutionChainDetails = ({ evolution, isDarkMode }) => {
 
   const triggerHTML = getTriggerEvent(evolution[1]);
 
-  return <>{triggerHTML}</>;
+  return (
+    <div className="evolution-chain-section-details-small">{triggerHTML}</div>
+  );
 };
 
 export default EvolutionChainDetails;

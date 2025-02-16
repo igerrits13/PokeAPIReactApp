@@ -1679,12 +1679,67 @@ const colours = {
   border-radius: 10px;
 }
 
+/* Small screen evolution chain */
+
+.evolution-chain-container-vertical {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+  width: 100%;
+  height: 100%;
+  min-height: 20vh;
+  max-height: 75vh;
+  overflow: auto;
+}
+
+.evolution-chain-section-horizontal-small {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.evolution-chain-section-horizontal-small::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+.evolution-chain-section-horizontal-small::-webkit-scrollbar-thumb {
+  background-color: #757575;
+  border-radius: 10px;
+}
+
+.evolution-chain-section-vertical-small {
+  display: flex;
+  height: 100%;
+  justify-content: space-around;
+}
+
+.evolution-chain-section-vertical-small::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+.evolution-chain-section-vertical-small::-webkit-scrollbar-thumb {
+  background-color: #757575;
+  border-radius: 10px;
+}
+
+/*  */
+
 .flex-centered {
   align-self: center;
+  justify-self: center;
 }
 
 .evolution-chain-icon-row {
   display: flex;
+  align-items: center;
+  text-align: center;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.evolution-chain-icon-column {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   text-align: center;
   padding: 1rem;
@@ -1697,7 +1752,8 @@ const colours = {
 }
 
 .evolution-chain-card-small {
-  width: 8rem;
+  width: 12rem;
+  margin: 1rem 0 0 0;
   flex-shrink: 0;
 }
 
@@ -1706,7 +1762,7 @@ const colours = {
 }
 
 .evolution-chain-section-details-small {
-  width: 6rem;
+  width: 10rem;
 }
 
 .evoluion-chain-trigger-desc {
@@ -1737,4 +1793,59 @@ const colours = {
 .evolution-chain-image-ball {
   width: 1.5rem;
   align-items: center;
+}
+
+/*  */
+
+.evolution-chain-container-small {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.evolution-chain-initial-small {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.evolution-chain-table-small {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: auto;
+  height: 100%;
+  gap: 20px;
+  justify-content: space-around;
+  align-items: stretch;
+}
+
+.evolution-chain-path-small {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  height: 100%;
+}
+
+.evolution-chain-path-small::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+.evolution-chain-path-small::-webkit-scrollbar-thumb {
+  background-color: #757575;
+  border-radius: 10px;
+}
+
+.evolution-chain-path-section-small {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: space-between;
+  padding: 1rem;
+  gap: 1rem;
+  height: 100%;
 }
