@@ -1331,7 +1331,6 @@ const colours = {
 }
 
 .spritestab-icon-container {
-  display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 20px;
@@ -1489,7 +1488,7 @@ const colours = {
 }
 
 .dyn-section-link {
-  width: min-content;
+  width: max-content;
 }
 
 .dyn-section-button {
@@ -1877,6 +1876,24 @@ const colours = {
   border-radius: 10px;
 }
 
+.sprites-table-game-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+}
+
+.sprites-table-game-title-text {
+  flex: 1;
+  text-align: center;
+}
+
+.sprites-table-game-title-icon {
+  margin-left: auto;
+  padding: 0.5rem;
+}
+
 .sprites-table-game {
   text-align: center;
   align-items: center;
@@ -1886,8 +1903,8 @@ const colours = {
 }
 
 .sprites-table-img {
-  height: 8rem;
-  width: 8rem;
+  height: 6rem;
+  width: 6rem;
   margin: 0 7px 0 0;
   object-fit: contain;
 }

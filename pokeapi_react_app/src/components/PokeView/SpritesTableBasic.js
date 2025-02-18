@@ -1,15 +1,10 @@
 import React from "react";
 import SpriteTableImage from "./SpriteTableImage";
+import SpriteTableSection from "./SpriteTableSection";
 
 // Sction to display the Pokémon's basic sprites
 const SpritesTableBasic = ({ pokeData, getPokeName, isDarkMode }) => {
   // Setup the sprites section style based on if the user is using light or dark mode
-  const fontStyle = isDarkMode ? "title-font-dark" : "title-font-light";
-  const spriteSectionStyle = isDarkMode
-    ? "component-background-dark component-outline-thin-dark"
-    : "component-background-light component-outline-thin-light";
-
-  // Mapping for basic Pokémon sprites
   const basicSpritesMapping = [
     { iconsStyle: "front_default", description: "Front Default" },
     { iconsStyle: "back_default", description: "Back Default" },
@@ -38,23 +33,17 @@ const SpritesTableBasic = ({ pokeData, getPokeName, isDarkMode }) => {
               description={description}
             />
           </React.Fragment>
-          // <div className="spritestab-item" key={spriteUrl}>
-          //   <img
-          //     src={spriteUrl}
-          //     alt={getPokeName(pokeData.name)}
-          //     className="sprites-table-img"
-          //   />
-          //   {description}
-          // </div>
         );
       })
       .filter(Boolean);
 
     return (
-      <div className={`sprites-table-game ${spriteSectionStyle} ${fontStyle}`}>
-        <div>Basic Sprites</div>
-        <div className="spritestab-icon-container">{basicIconsHTML}</div>
-      </div>
+      <SpriteTableSection
+        sectionDescription={"Basic Sprites"}
+        sectionHTML={basicIconsHTML}
+        index={0}
+        isDarkMode={isDarkMode}
+      />
     );
   };
 

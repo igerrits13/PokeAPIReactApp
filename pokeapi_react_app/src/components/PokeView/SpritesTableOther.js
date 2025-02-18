@@ -1,5 +1,6 @@
 import React from "react";
 import SpriteTableImage from "./SpriteTableImage";
+import SpriteTableSection from "./SpriteTableSection";
 
 // Sction to display the Pokémon's other sprites
 const SpritesTableOther = ({
@@ -10,9 +11,6 @@ const SpritesTableOther = ({
 }) => {
   // Setup the sprites section style based on if the user is using light or dark mode
   const fontStyle = isDarkMode ? "title-font-dark" : "title-font-light";
-  const spriteSectionStyle = isDarkMode
-    ? "component-background-dark component-outline-thin-dark"
-    : "component-background-light component-outline-thin-light";
   const tirtiaryHeaderStyle =
     screenSize === "small"
       ? "tirtiary-page-header-small"
@@ -54,7 +52,7 @@ const SpritesTableOther = ({
   ];
 
   // Create the HTML for the other Pokémon sprites
-  const getOtherIcons = (category) => {
+  const getOtherIcons = (category, i) => {
     const otherIconsHTML = otherSpritesMapping
       .map(({ iconsStyle, description }) => {
         // Do not display sprite if URL does not exist
@@ -70,29 +68,23 @@ const SpritesTableOther = ({
               description={description}
             />
           </React.Fragment>
-          // <div className="spritestab-item" key={spriteUrl}>
-          //   <img
-          //     src={spriteUrl}
-          //     alt={getPokeName(pokeData.name)}
-          //     className="sprites-table-img"
-          //   />
-          //   {description}
-          // </div>
         );
       })
       .filter(Boolean);
 
     return (
-      <div className={`sprites-table-game ${spriteSectionStyle} ${fontStyle}`}>
-        <div>{getCategoryName(category[0])}</div>
-        <div className="spritestab-icon-container">{otherIconsHTML}</div>
-      </div>
+      <SpriteTableSection
+        sectionDescription={getCategoryName(category[0])}
+        sectionHTML={otherIconsHTML}
+        index={i}
+        isDarkMode={isDarkMode}
+      />
     );
   };
 
   // Create the HTML for the Pokémon's "other" icons
   const otherIconsHTML = Object.entries(pokeData.sprites.other).map(
-    (category) => {
+    (category, i) => {
       // Check if current category has sprites
       const hasSprites = Object.entries(category).some(
         ([name, { front_default }]) => front_default
@@ -103,7 +95,7 @@ const SpritesTableOther = ({
 
       return (
         <React.Fragment key={category}>
-          {getOtherIcons(category)}
+          {getOtherIcons(category, i)}
         </React.Fragment>
       );
     }

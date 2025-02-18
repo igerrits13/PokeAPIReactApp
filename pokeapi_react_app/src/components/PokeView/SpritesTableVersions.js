@@ -1,5 +1,6 @@
 import React from "react";
 import SpriteTableImage from "./SpriteTableImage";
+import SpriteTableSection from "./SpriteTableSection";
 
 // Versions section of the Pokéview sprites
 const SpritesTableVersions = ({
@@ -10,9 +11,6 @@ const SpritesTableVersions = ({
 }) => {
   // Setup the sprites section style based on if the user is using light or dark mode
   const fontStyle = isDarkMode ? "title-font-dark" : "title-font-light";
-  const spriteSectionStyle = isDarkMode
-    ? "component-background-dark component-outline-thin-dark"
-    : "component-background-light component-outline-thin-light";
   const tirtiaryHeaderStyle =
     screenSize === "small"
       ? "tirtiary-page-header-small"
@@ -119,7 +117,7 @@ const SpritesTableVersions = ({
   ];
 
   // Create the HTML for the version Pokémon sprites
-  const getVersionIcons = (gameIcons, game, isAnimated) => {
+  const getVersionIcons = (gameIcons, game, isAnimated, i) => {
     const versionIconsHTML = versionsSpritesMapping
       .map(({ iconsStyle, description }) => {
         // Make sure the current game has the current icon style
@@ -138,25 +136,19 @@ const SpritesTableVersions = ({
               description={description}
             />
           </React.Fragment>
-          // <div className="spritestab-item" key={spriteUrl}>
-          //   <img
-          //     src={spriteUrl}
-          //     alt={getPokeName(pokeData.name)}
-          //     className="sprites-table-img"
-          //   />
-          //   {description}
-          // </div>
         );
       })
       .filter(Boolean);
 
     return (
-      <div className={`sprites-table-game ${spriteSectionStyle} ${fontStyle}`}>
-        <div>
-          {getGameTitle(game)} {isAnimated && " - Animated"}
-        </div>
-        <div className="spritestab-icon-container">{versionIconsHTML}</div>
-      </div>
+      <SpriteTableSection
+        sectionDescription={`${getGameTitle(game)}${
+          isAnimated ? " - Animated" : ""
+        }`}
+        sectionHTML={versionIconsHTML}
+        index={i}
+        isDarkMode={isDarkMode}
+      />
     );
   };
 
@@ -196,8 +188,11 @@ const SpritesTableVersions = ({
                 const gameTitleB = getGameTitle(gameB);
                 return gameTitleA.localeCompare(gameTitleB);
               })
-              .map(([game, { front_default }]) => {
+              .map(([game, { front_default }], i) => {
                 if (!front_default) return null;
+                if ("animated" in generationData[game]) {
+                  i = i++;
+                }
                 return (
                   <React.Fragment key={game}>
                     {"animated" in generationData[game] &&
@@ -205,9 +200,10 @@ const SpritesTableVersions = ({
                       getVersionIcons(
                         generationData[game].animated,
                         game,
-                        true
+                        true,
+                        i--
                       )}
-                    {getVersionIcons(generationData[game], game, false)}
+                    {getVersionIcons(generationData[game], game, false, i)}
                   </React.Fragment>
                 );
               })}

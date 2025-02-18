@@ -36,6 +36,15 @@ const BreedingInfo = ({ pokeSpeciesData, screenSize, isDarkMode }) => {
     "generation-ix": 128,
   };
 
+  // Capitalize the first word of each part of the pokémon's name
+  const getPokeName = (name) => {
+    const formattedName = name.split("-").map((obj, i) => {
+      return obj[0].toUpperCase() + obj.slice(1);
+    });
+
+    return formattedName.join(" ");
+  };
+
   // Calculate the egg hatch counter based on the current gen
   const getHatchCounter = (counter) => {
     if (genCounter[pokeSpeciesData.generation.name]) {
@@ -88,8 +97,7 @@ const BreedingInfo = ({ pokeSpeciesData, screenSize, isDarkMode }) => {
               whileTap={{ scale: 0.9, rotate: "5deg" }}
               transition={{ duration: 0.1 }}
             >
-              {pokeSpeciesData.evolves_from_species.name[0].toUpperCase() +
-                pokeSpeciesData.evolves_from_species.name.slice(1)}
+              {getPokeName(pokeSpeciesData.evolves_from_species.name)}
             </motion.div>
           </Link>
         ) : (
