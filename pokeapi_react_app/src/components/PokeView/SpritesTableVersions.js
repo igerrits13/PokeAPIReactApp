@@ -1,4 +1,5 @@
 import React from "react";
+import SpriteTableImage from "./SpriteTableImage";
 
 // Versions section of the Pokéview sprites
 const SpritesTableVersions = ({
@@ -129,14 +130,22 @@ const SpritesTableVersions = ({
         if (!spriteUrl) return null;
 
         return (
-          <div className="spritestab-item" key={spriteUrl}>
-            <img
-              src={spriteUrl}
-              alt={getPokeName(pokeData.name)}
-              className="sprites-table-img"
+          <React.Fragment key={spriteUrl}>
+            <SpriteTableImage
+              pokeData={pokeData}
+              getPokeName={getPokeName}
+              spriteUrl={spriteUrl}
+              description={description}
             />
-            {description}
-          </div>
+          </React.Fragment>
+          // <div className="spritestab-item" key={spriteUrl}>
+          //   <img
+          //     src={spriteUrl}
+          //     alt={getPokeName(pokeData.name)}
+          //     className="sprites-table-img"
+          //   />
+          //   {description}
+          // </div>
         );
       })
       .filter(Boolean);
