@@ -44,15 +44,6 @@ const SpritesTableVersions = ({ pokeData, getPokeName, isDarkMode }) => {
     );
   };
 
-  // Capitalize the first word of each part of the pokémon's name
-  const getIconName = (name) => {
-    const formattedName = name.split("_").map((obj, i) => {
-      return obj[0].toUpperCase() + obj.slice(1);
-    });
-
-    return formattedName.join(" ");
-  };
-
   // Roman numeral to integer conversion function
   function romanToInt(roman) {
     const romanNumerals = {
@@ -89,61 +80,60 @@ const SpritesTableVersions = ({ pokeData, getPokeName, isDarkMode }) => {
     return false;
   }
 
-  // Display the icons for the current game
-  const getGameIcons = (gameIcons, game) => {
-    const gameIconsHTML = (
-      <>
-        {/* Render the game section for animated sprites if they exist */}
-        {"animated" in gameIcons && hasNonNullValues(gameIcons.animated) && (
-          <div
-            className={`sprites-table-game ${spriteSectionStyle} ${fontStyle}`}
-          >
-            <div>{getGameTitle(game)} - Animations</div>
-            <div className="spritestab-icon-container">
-              {Object.entries(gameIcons["animated"]).map((icon) => {
-                return (
-                  icon[1] && (
-                    <div className="spritestab-item" key={icon[0]}>
-                      <img
-                        src={icon[1]}
-                        alt={getPokeName(pokeData.name)}
-                        className="sprites-table-img"
-                      />
-                      {getIconName(icon[0])}
-                    </div>
-                  )
-                );
-              })}
-            </div>
-          </div>
-        )}
+  // Mapping for version Pokémon sprites
+  const versionsSpritesMapping = [
+    { iconsStyle: "front_default", description: "Front Default" },
+    { iconsStyle: "back_default", description: "Back Default" },
+    { iconsStyle: "front_shiny", description: "Front Shiny" },
+    { iconsStyle: "back_shiny", description: "Back Shiny" },
+    { iconsStyle: "front_female", description: "Front Female" },
+    { iconsStyle: "back_female", description: "Back Female" },
+    { iconsStyle: "front_shiny_female", description: "Front Female Shiny" },
+    { iconsStyle: "back_shiny_female", description: "Back Female Shiny" },
+    { iconsStyle: "front_gray", description: "Front Gray" },
+    { iconsStyle: "back_gray", description: "Back Gray" },
+    { iconsStyle: "front_transparent", description: "Front Transparent" },
+    { iconsStyle: "back_transparent", description: "Back Transparent" },
+    {
+      iconsStyle: "front_shiny_transparent",
+      description: "Front Shiny Transparent",
+    },
+    {
+      iconsStyle: "back_shiny_transparent",
+      description: "Back Shiny Transparent",
+    },
+  ];
 
-        {/* Render the game section for normal sprites */}
-        <div
-          className={`sprites-table-game ${spriteSectionStyle} ${fontStyle}`}
-        >
-          <div>{getGameTitle(game)}</div>
-          <div className="spritestab-icon-container">
-            {Object.entries(gameIcons).map((icon) => {
-              return (
-                icon[0] !== "animated" &&
-                icon[1] && (
-                  <div className="spritestab-item" key={icon[0]}>
-                    <img
-                      src={icon[1]}
-                      alt={getPokeName(pokeData.name)}
-                      className="sprites-table-img"
-                    />
-                    {getIconName(icon[0])}
-                  </div>
-                )
-              );
-            })}
+  // Create the HTML for the version Pokémon sprites
+  const getVersionIcons = (gameIcons, game) => {
+    const versionIconsHTML = versionsSpritesMapping
+      .map(({ iconsStyle, description }) => {
+        // Make sure the current game has the current icon style
+        if (!gameIcons.hasOwnProperty(iconsStyle)) return null;
+
+        // Do not display sprite if URL does not exist
+        const spriteUrl = gameIcons[iconsStyle];
+        if (!spriteUrl) return null;
+
+        return (
+          <div className="spritestab-item" key={spriteUrl}>
+            <img
+              src={spriteUrl}
+              alt={getPokeName(pokeData.name)}
+              className="sprites-table-img"
+            />
+            {description}
           </div>
-        </div>
-      </>
+        );
+      })
+      .filter(Boolean);
+
+    return (
+      <div className={`sprites-table-game ${spriteSectionStyle} ${fontStyle}`}>
+        <div>{getGameTitle(game)}</div>
+        <div className="spritestab-icon-container">{versionIconsHTML}</div>
+      </div>
     );
-    return gameIconsHTML;
   };
 
   // Make sure the version sprites are sorted in order, then create the HTML for them
@@ -186,7 +176,10 @@ const SpritesTableVersions = ({ pokeData, getPokeName, isDarkMode }) => {
                 if (!front_default) return null;
                 return (
                   <React.Fragment key={game}>
-                    {getGameIcons(generationData[game], game)}
+                    {"animated" in generationData[game] &&
+                      hasNonNullValues(generationData[game].animated) &&
+                      getVersionIcons(generationData[game].animated, game)}
+                    {getVersionIcons(generationData[game], game)}
                   </React.Fragment>
                 );
               })}

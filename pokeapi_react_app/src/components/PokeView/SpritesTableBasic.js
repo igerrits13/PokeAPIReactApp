@@ -22,8 +22,8 @@ const SpritesTableBasic = ({ pokeData, getPokeName, isDarkMode }) => {
   const getBasicIcons = () => {
     const basicIconsHTML = basicSpritesMapping
       .map(({ iconsStyle, description }) => {
-        const spriteUrl = pokeData.sprites[iconsStyle];
         // Do not display sprite if URL does not exist
+        const spriteUrl = pokeData.sprites[iconsStyle];
         if (!spriteUrl) return null;
 
         return (
