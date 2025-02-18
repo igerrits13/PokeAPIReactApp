@@ -1,14 +1,12 @@
 import React from "react";
 import SpritesTableBasic from "./SpritesTableBasic";
 import SpritesTableVersions from "./SpritesTableVersions";
+import SpritesTableOther from "./SpritesTableOther";
 
 // Basic table for displaying all of the current Pokémon's sprites
 const SpritesTable = ({ pokeData, screenSize, isDarkMode }) => {
   // Setup the sprites section style based on if the user is using light or dark mode
   const fontStyle = isDarkMode ? "title-font-dark" : "title-font-light";
-  // const spriteSectionStyle = isDarkMode
-  //   ? "component-background-dark component-outline-thin-dark"
-  //   : "component-background-light component-outline-thin-light";
   const secondaryHeaderStyle =
     screenSize === "small"
       ? "secondary-page-header-small"
@@ -17,6 +15,14 @@ const SpritesTable = ({ pokeData, screenSize, isDarkMode }) => {
       : screenSize === "large"
       ? "secondary-page-header-large"
       : "secondary-page-header-x-large";
+  const tirtiaryHeaderStyle =
+    screenSize === "small"
+      ? "tirtiary-page-header-small"
+      : screenSize === "medium"
+      ? "tirtiary-page-header-med"
+      : screenSize === "large"
+      ? "tirtiary-page-header-large"
+      : "tirtiary-page-header-x-large";
 
   // Capitalize the first word of each part of the pokémon's name
   const getPokeName = (name) => {
@@ -39,6 +45,17 @@ const SpritesTable = ({ pokeData, screenSize, isDarkMode }) => {
           getPokeName={getPokeName}
           isDarkMode={isDarkMode}
         />
+        <div className={`${fontStyle} ${tirtiaryHeaderStyle}`}>
+          Other {getPokeName(pokeData.name)} Sprites
+        </div>
+        <SpritesTableOther
+          pokeData={pokeData}
+          getPokeName={getPokeName}
+          isDarkMode={isDarkMode}
+        />
+        <div className={`${fontStyle} ${tirtiaryHeaderStyle}`}>
+          {getPokeName(pokeData.name)} Sprites by Generation
+        </div>
         <SpritesTableVersions
           pokeData={pokeData}
           getPokeName={getPokeName}
