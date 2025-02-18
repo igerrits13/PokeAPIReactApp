@@ -77,6 +77,15 @@ const PokeBasicInfo = ({
     return null;
   }
 
+  // Capitalize the first word of each part of the pokémon's name
+  const getPokeName = (name) => {
+    const formattedName = name.split("-").map((obj, i) => {
+      return obj[0].toUpperCase() + obj.slice(1);
+    });
+
+    return formattedName.join(" ");
+  };
+
   // Seperate the generation title by '-' and capitalize appropriate letters
   const getGenerationTitle = (generation) => {
     let genTitle = generation.split("-");
@@ -167,8 +176,7 @@ const PokeBasicInfo = ({
   return (
     <div className="secondary-table-conainer-50">
       <div className={`${fontStyle} ${secondaryHeaderStyle}`}>
-        {pokeData.species.name[0].toUpperCase() +
-          pokeData.species.name.slice(1)}
+        {getPokeName(pokeData.species.name)}
       </div>
       {typeIconsHTML}
       <div

@@ -6,10 +6,14 @@ const SearchItem = ({ clearSearchText, resultItem, isDarkMode, i }) => {
     ? "component-background-dark font-dark"
     : "component-background-light font-light";
 
-  // Function to capitalize the first letter of each name
-  function capitalizeFirstLetter(name) {
-    return String(name).charAt(0).toUpperCase() + String(name).slice(1);
-  }
+  // Capitalize the first word of each part of the pokémon's name
+  const getPokeName = (name) => {
+    const formattedName = name.split(" ").map((obj) => {
+      return obj[0].toUpperCase() + obj.slice(1);
+    });
+
+    return formattedName.join(" ");
+  };
 
   // Extract the Pokémon number from the Pokémon URL
   const parts = resultItem.url.split("/");
@@ -31,7 +35,7 @@ const SearchItem = ({ clearSearchText, resultItem, isDarkMode, i }) => {
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${number}.png`}
           alt={`${resultItem.name}`}
         />
-        {capitalizeFirstLetter(resultItem.name)}
+        {getPokeName(resultItem.name)}
       </div>
       <div>#{number}</div>
     </Link>

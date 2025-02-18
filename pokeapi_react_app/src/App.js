@@ -58,7 +58,12 @@ function App() {
     fetch(`https://pokeapi.co/api/v2/pokemon-species/?limit=5000`)
       .then((response) => response.json())
       .then((data) => {
-        setFullPokeResults(data.results);
+        // setFullPokeResults(removeHyphens(data.results));
+        // Remove all hyphens from Pokémon names and replace them with a space
+        const updatedPokemonNames = data.results.map((pokemon) => {
+          return { ...pokemon, name: pokemon.name.replace(/-/g, " ") };
+        });
+        setFullPokeResults(updatedPokemonNames);
         setPokeCountTotal(data.count);
       });
   }, []);

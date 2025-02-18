@@ -1,12 +1,25 @@
 import React from "react";
 
 // Versions section of the Pokéview sprites
-const SpritesTableVersions = ({ pokeData, getPokeName, isDarkMode }) => {
+const SpritesTableVersions = ({
+  pokeData,
+  getPokeName,
+  screenSize,
+  isDarkMode,
+}) => {
   // Setup the sprites section style based on if the user is using light or dark mode
   const fontStyle = isDarkMode ? "title-font-dark" : "title-font-light";
   const spriteSectionStyle = isDarkMode
     ? "component-background-dark component-outline-thin-dark"
     : "component-background-light component-outline-thin-light";
+  const tirtiaryHeaderStyle =
+    screenSize === "small"
+      ? "tirtiary-page-header-small"
+      : screenSize === "medium"
+      ? "tirtiary-page-header-med"
+      : screenSize === "large"
+      ? "tirtiary-page-header-large"
+      : "tirtiary-page-header-x-large";
 
   // Seperate the generation title by '-' and capitalize appropriate letters
   const getGenerationTitle = (generation) => {
@@ -105,7 +118,7 @@ const SpritesTableVersions = ({ pokeData, getPokeName, isDarkMode }) => {
   ];
 
   // Create the HTML for the version Pokémon sprites
-  const getVersionIcons = (gameIcons, game) => {
+  const getVersionIcons = (gameIcons, game, isAnimated) => {
     const versionIconsHTML = versionsSpritesMapping
       .map(({ iconsStyle, description }) => {
         // Make sure the current game has the current icon style
@@ -130,7 +143,9 @@ const SpritesTableVersions = ({ pokeData, getPokeName, isDarkMode }) => {
 
     return (
       <div className={`sprites-table-game ${spriteSectionStyle} ${fontStyle}`}>
-        <div>{getGameTitle(game)}</div>
+        <div>
+          {getGameTitle(game)} {isAnimated && " - Animated"}
+        </div>
         <div className="spritestab-icon-container">{versionIconsHTML}</div>
       </div>
     );
@@ -178,8 +193,12 @@ const SpritesTableVersions = ({ pokeData, getPokeName, isDarkMode }) => {
                   <React.Fragment key={game}>
                     {"animated" in generationData[game] &&
                       hasNonNullValues(generationData[game].animated) &&
-                      getVersionIcons(generationData[game].animated, game)}
-                    {getVersionIcons(generationData[game], game)}
+                      getVersionIcons(
+                        generationData[game].animated,
+                        game,
+                        true
+                      )}
+                    {getVersionIcons(generationData[game], game, false)}
                   </React.Fragment>
                 );
               })}
@@ -188,7 +207,16 @@ const SpritesTableVersions = ({ pokeData, getPokeName, isDarkMode }) => {
       });
 
   // Render the versions icons section
-  return <>{versionIconsHTML}</>;
+  return (
+    <>
+      {hasNonNullValues(versionIconsHTML) && (
+        <div className={`${fontStyle} ${tirtiaryHeaderStyle}`}>
+          {getPokeName(pokeData.name)} Sprites by Generation
+        </div>
+      )}
+      {versionIconsHTML}
+    </>
+  );
 };
 
 export default SpritesTableVersions;

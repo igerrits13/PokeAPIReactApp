@@ -1,21 +1,44 @@
 import React from "react";
 
 // Sction to display the Pokémon's other sprites
-const SpritesTableOther = ({ pokeData, getPokeName, isDarkMode }) => {
+const SpritesTableOther = ({
+  pokeData,
+  getPokeName,
+  screenSize,
+  isDarkMode,
+}) => {
   // Setup the sprites section style based on if the user is using light or dark mode
   const fontStyle = isDarkMode ? "title-font-dark" : "title-font-light";
   const spriteSectionStyle = isDarkMode
     ? "component-background-dark component-outline-thin-dark"
     : "component-background-light component-outline-thin-light";
+  const tirtiaryHeaderStyle =
+    screenSize === "small"
+      ? "tirtiary-page-header-small"
+      : screenSize === "medium"
+      ? "tirtiary-page-header-med"
+      : screenSize === "large"
+      ? "tirtiary-page-header-large"
+      : "tirtiary-page-header-x-large";
 
   // Capitalize the first word of each part of the pokémon's name
   const getCategoryName = (name) => {
-    const formattedName = name.split("_").map((obj, i) => {
+    const formattedName = name.split(/[-_]/).map((obj, i) => {
       return obj[0].toUpperCase() + obj.slice(1);
     });
 
     return formattedName.join(" ");
   };
+
+  // Check to see if an object has any values that are not null
+  function hasNonNullValues(obj) {
+    for (const key in obj) {
+      if (obj[key] !== null) {
+        return true;
+      }
+    }
+    return false;
+  }
 
   // Mapping for other Pokémon sprites
   const otherSpritesMapping = [
@@ -78,7 +101,16 @@ const SpritesTableOther = ({ pokeData, getPokeName, isDarkMode }) => {
   );
 
   // Display the other icons of the current Pokémon
-  return <>{otherIconsHTML}</>;
+  return (
+    <>
+      {hasNonNullValues(otherIconsHTML) && (
+        <div className={`${fontStyle} ${tirtiaryHeaderStyle}`}>
+          Other {getPokeName(pokeData.name)} Sprites
+        </div>
+      )}
+      {otherIconsHTML}
+    </>
+  );
 };
 
 export default SpritesTableOther;
