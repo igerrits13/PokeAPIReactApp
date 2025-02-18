@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import SecondaryViewHeader from "../CommonComponents/SecondaryViewHeader";
 import PokeInfoTable from "./PokeInfoTable";
-import EvolutionChain from "./EvolutionChain";
 import StatsTable from "./StatsTable";
-
+import EvolutionChain from "./EvolutionChain";
+import SpritesTable from "./SpritesTable";
 import Footer from "../CommonComponents/Footer";
 
 // Temporary page while Pokémon page is not done
@@ -156,6 +156,13 @@ const PokeView = ({ fullPokeResults, screenSize, isDarkMode }) => {
       {!isPokeSpeciesLoading && (
         <EvolutionChain
           pokeChainURL={pokeSpeciesData.evolution_chain.url}
+          screenSize={screenSize}
+          isDarkMode={isDarkMode}
+        />
+      )}
+      {!isPokeLoading && (
+        <SpritesTable
+          pokeData={pokeData}
           screenSize={screenSize}
           isDarkMode={isDarkMode}
         />

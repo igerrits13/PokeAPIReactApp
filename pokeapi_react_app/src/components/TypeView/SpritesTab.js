@@ -70,8 +70,6 @@ const SpritesTab = ({ typeData, isDarkMode }) => {
   // Display for the sprites tab information
   const spritesHTML =
     typeData.sprites &&
-    // typeof typeData.sprites === "object"
-    // ?
     Object.entries(typeData.sprites)
       // Sort the generations based on Roman numeral value
       .sort(([generationA], [generationB]) => {
@@ -128,7 +126,6 @@ const SpritesTab = ({ typeData, isDarkMode }) => {
           </div>
         );
       });
-  // : null;
 
   // Display the full sprites tab
   return <div className="spritestab-container">{spritesHTML}</div>;

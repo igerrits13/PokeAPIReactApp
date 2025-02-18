@@ -1030,7 +1030,7 @@ const colours = {
 
 .secondary-header-small {
   margin: 1rem 0;
-  font-size: 2.5rem;
+  font-size: 2rem;
 }
 
 .secondary-header-med {
@@ -1566,6 +1566,7 @@ const colours = {
   width: 100%;
   flex-direction: column;
   padding: 1rem 0;
+  overflow: auto;
 }
 
 .stats-table-section {
@@ -1730,7 +1731,6 @@ const colours = {
 .evolution-chain-table-small {
   display: flex;
   flex-wrap: nowrap;
-  overflow: auto;
   height: 100%;
   width: 100%;
   gap: 20px;
@@ -1768,8 +1768,10 @@ const colours = {
 .evolution-chain-path-fork-small {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  overflow: auto;
+  justify-content: flex-start;
   width: 100%;
+  padding: 1rem;
 }
 
 .evolution-chain-card-small {
@@ -1834,4 +1836,31 @@ const colours = {
 .evolution-chain-image-ball {
   width: 1.5rem;
   align-items: center;
+}
+
+/* Pokéview Sprites */
+
+.sprites-table-game {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  gap: 10px 15px;
+  padding: 20px 10px;
+  border-radius: 10px;
+}
+
+.sprites-table-game {
+  text-align: center;
+  align-items: center;
+  gap: 10px 15px;
+  padding: 20px 10px;
+  border-radius: 10px;
+}
+
+.sprites-table-img {
+  height: 6rem;
+  width: 6rem;
+  margin: 0 7px 0 0;
+  object-fit: contain;
 }

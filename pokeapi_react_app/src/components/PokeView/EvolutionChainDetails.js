@@ -634,7 +634,6 @@ const EvolutionChainDetails = ({ evolution, screenSize, isDarkMode }) => {
             }`}
           >
             {iconHTMLArr.map((iconHTML, j) => {
-              console.log(iconHTML);
               return <div key={j}>{iconHTML}</div>;
             })}
           </div>
