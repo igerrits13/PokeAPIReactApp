@@ -1908,3 +1908,34 @@ const colours = {
   margin: 0 7px 0 0;
   object-fit: contain;
 }
+
+/* Nav Buttons */
+
+.nav-button-container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+  gap: 10px;
+  height: 100px;
+  width: 500px;
+  background-color: #6390f0;
+}
+
+.nav-button-prev {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  height: 5rem;
+  width: 10rem;
+  background-color: #7ac74c;
+}
+
+.nav-button-next {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  height: 5rem;
+  width: 10rem;
+  background-color: #7ac74c;
+}

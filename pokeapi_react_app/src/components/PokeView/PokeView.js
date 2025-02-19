@@ -5,6 +5,7 @@ import PokeInfoTable from "./PokeInfoTable";
 import StatsTable from "./StatsTable";
 import EvolutionChain from "./EvolutionChain";
 import SpritesTable from "./SpritesTable";
+import NavButtons from "./NavButons";
 import Footer from "../CommonComponents/Footer";
 
 // Temporary page while Pokémon page is not done
@@ -166,6 +167,9 @@ const PokeView = ({ fullPokeResults, screenSize, isDarkMode }) => {
           screenSize={screenSize}
           isDarkMode={isDarkMode}
         />
+      )}
+      {!isPokeLoading && !isPokeSpeciesLoading && (
+        <NavButtons id={pokeSpeciesId} fullPokeResults={fullPokeResults} />
       )}
       <Footer isDarkMode={isDarkMode} />
     </div>
