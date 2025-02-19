@@ -82,9 +82,13 @@ const SpritesTableOther = ({
     );
   };
 
+  // Track index to ensure the first dropdown is initially open
+  let index = 0;
+
   // Create the HTML for the Pokémon's "other" icons
-  const otherIconsHTML = Object.entries(pokeData.sprites.other).map(
-    (category, i) => {
+  const otherIconsHTML = Object.entries(pokeData.sprites.other)
+    .toReversed()
+    .map((category, i) => {
       // Check if current category has sprites
       const hasSprites = Object.entries(category).some(
         ([name, { front_default }]) => front_default
@@ -93,13 +97,15 @@ const SpritesTableOther = ({
       // If the current generation does not have sprites, do not create a section for the current gen
       if (!hasSprites) return null;
 
+      // Only iterate index if the current section is to be rendered, then use index - 1 to stay zero-based
+      index++;
+
       return (
         <React.Fragment key={category}>
-          {getOtherIcons(category, i)}
+          {getOtherIcons(category, index - 1)}
         </React.Fragment>
       );
-    }
-  );
+    });
 
   // Display the other icons of the current Pokémon
   return (
