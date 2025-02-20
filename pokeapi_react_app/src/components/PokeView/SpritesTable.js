@@ -50,7 +50,6 @@ const SpritesTable = ({ pokeData, screenSize, isDarkMode }) => {
           isDarkMode={isDarkMode}
         />
       </div>
-      ;
     </>
   );
 };

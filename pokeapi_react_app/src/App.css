@@ -1913,29 +1913,67 @@ const colours = {
 
 .nav-button-container {
   display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-around;
-  align-items: center;
   gap: 10px;
-  height: 100px;
-  width: 500px;
-  background-color: #6390f0;
+}
+
+.nav-button-container-small {
+  flex-direction: column;
+}
+
+.nav-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  padding: 0 1rem;
+}
+
+.nav-button-detail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .nav-button-prev {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  height: 5rem;
-  width: 10rem;
-  background-color: #7ac74c;
+  border-radius: 10px 0 0 10px;
+}
+
+.nav-button-prev-detail {
+  clip-path: polygon(
+    0% 62%,
+    55% 62%,
+    70% 0%,
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%
+  );
+  border-radius: 10px 0 0 10px;
 }
 
 .nav-button-next {
+  border-radius: 0 10px 10px 0;
+}
+
+.nav-button-next-detail {
+  clip-path: polygon(0% 0%, 30% 0%, 45% 62%, 100% 62%, 100% 100%, 0% 100%);
+  border-radius: 0 10px 10px 0;
+}
+
+.nav-button-img {
+  object-fit: contain;
+  height: 6rem;
+  z-index: 1;
+}
+
+.nav-button-icon-container {
   display: flex;
   flex-direction: column;
-  text-align: center;
-  height: 5rem;
-  width: 10rem;
-  background-color: #7ac74c;
+  z-index: 1;
+}
+
+.nav-button-icon {
+  font-size: 3rem;
 }
