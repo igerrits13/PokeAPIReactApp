@@ -18,6 +18,7 @@ const PokeView = ({ fullPokeResults, screenSize, isDarkMode }) => {
   const [pokeSpeciesId, setPokeSpeciesId] = useState(id);
   const [pokeSpeciesData, setPokeSpeciesData] = useState(null);
   const [isPokeSpeciesLoading, setIsPokeSpeciesLoading] = useState(true);
+  const [babyTriggerItem, setBabyTriggerItem] = useState(null);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
@@ -143,6 +144,7 @@ const PokeView = ({ fullPokeResults, screenSize, isDarkMode }) => {
           setPokeId={setPokeId}
           pokeData={pokeData}
           pokeSpeciesData={pokeSpeciesData}
+          babyTriggerItem={babyTriggerItem}
           isDarkMode={isDarkMode}
           screenSize={screenSize}
         />
@@ -157,6 +159,7 @@ const PokeView = ({ fullPokeResults, screenSize, isDarkMode }) => {
       {!isPokeSpeciesLoading && (
         <EvolutionChain
           pokeChainURL={pokeSpeciesData.evolution_chain.url}
+          setBabyTriggerItem={setBabyTriggerItem}
           screenSize={screenSize}
           isDarkMode={isDarkMode}
         />

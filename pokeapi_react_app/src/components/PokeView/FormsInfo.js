@@ -92,6 +92,19 @@ const FormsInfo = ({
       id: 0,
     },
     {
+      text: "Form Descriptions",
+      info:
+        pokeSpeciesData.form_descriptions.find(
+          (obj) => obj.language.name === "en"
+        )?.description ?? "None",
+      id: 1,
+    },
+    {
+      text: "Can Switch Forms",
+      info: pokeSpeciesData.forms_switchable === true ? "True" : "False",
+      id: 2,
+    },
+    {
       text: "Alternate Forms",
       info: (
         <div className="dyn-section-button-container">
@@ -199,7 +212,7 @@ const FormsInfo = ({
           )}
         </div>
       ),
-      id: 1,
+      id: 3,
     },
     {
       text: "Varieties",
@@ -319,7 +332,7 @@ const FormsInfo = ({
           )}
         </div>
       ),
-      id: 2,
+      id: 4,
     },
   ];
 

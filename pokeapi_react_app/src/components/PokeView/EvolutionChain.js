@@ -3,7 +3,12 @@ import { useNavigate } from "react-router-dom";
 import EvolutionChainTable from "./EvolutionChainTable";
 
 // Current Pokémon's evolution chain
-const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
+const EvolutionChain = ({
+  pokeChainURL,
+  setBabyTriggerItem,
+  screenSize,
+  isDarkMode,
+}) => {
   // Setup the font style, header style, and line style between information sections based on if the user is using light or dark mode
   const fontStyle = isDarkMode ? "font-dark" : "font-light";
   const secondaryHeaderStyle =
@@ -31,6 +36,7 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
           return;
         }
         const jsonData = await response.json();
+        setBabyTriggerItem(jsonData.baby_trigger_item);
         setPokeChainData(jsonData);
       } catch (error) {
         setError(error);
@@ -40,7 +46,7 @@ const EvolutionChain = ({ pokeChainURL, screenSize, isDarkMode }) => {
     };
 
     fetchData();
-  }, [pokeChainURL]);
+  }, [pokeChainURL, setBabyTriggerItem]);
 
   // If the API call returns an error, navigate to the page not found
   // (Redundant to inside fetch call to avoid compilation error)

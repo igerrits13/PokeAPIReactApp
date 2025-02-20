@@ -9,6 +9,7 @@ const PokeInfoTable = ({
   setPokeId,
   pokeData,
   pokeSpeciesData,
+  babyTriggerItem,
   isDarkMode,
   screenSize,
 }) => {
@@ -56,6 +57,7 @@ const PokeInfoTable = ({
       >
         <BreedingInfo
           pokeSpeciesData={pokeSpeciesData}
+          babyTriggerItem={babyTriggerItem}
           screenSize={screenSize}
           isDarkMode={isDarkMode}
         />

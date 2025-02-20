@@ -4,7 +4,12 @@ import DynamicTableSection from "../CommonComponents/DynamicTableSection";
 import egg from "../icons/egg.png";
 
 // Breeding information section for the current Pokémon
-const BreedingInfo = ({ pokeSpeciesData, screenSize, isDarkMode }) => {
+const BreedingInfo = ({
+  pokeSpeciesData,
+  babyTriggerItem,
+  screenSize,
+  isDarkMode,
+}) => {
   // Setup the title font style based on if the user is using light or dark mode and screen size, as well as
   // the active and inactive buton styles based on if the user is using light or dark mode
   const fontStyle = isDarkMode ? "font-dark" : "font-light";
@@ -57,6 +62,14 @@ const BreedingInfo = ({ pokeSpeciesData, screenSize, isDarkMode }) => {
   // Data structure to store the breeding information for the current Pokémon
   const breedingInfo = [
     {
+      text: "Baby Trigger Item",
+      info:
+        babyTriggerItem !== null
+          ? `${getPokeName(babyTriggerItem.name)}`
+          : "None",
+      id: 0,
+    },
+    {
       text: "Egg Groups",
       info: (
         <div className="dyn-section-button-container">
@@ -80,7 +93,34 @@ const BreedingInfo = ({ pokeSpeciesData, screenSize, isDarkMode }) => {
           })}
         </div>
       ),
-      id: 0,
+      id: 1,
+    },
+    {
+      text: "Hatch Counter",
+      info: `${pokeSpeciesData.hatch_counter} Cycles (${getHatchCounter(
+        pokeSpeciesData.hatch_counter
+      ).toLocaleString()} Steps)`,
+      id: 2,
+    },
+    {
+      text: "Gender Rate",
+      info:
+        pokeSpeciesData.gender_rate === -1 ? (
+          "Genderless"
+        ) : (
+          <>
+            {(1 - pokeSpeciesData.gender_rate / 8) * 100}%{" "}
+            <i className="fa-solid fa-mars"></i> /{" "}
+            {(pokeSpeciesData.gender_rate / 8) * 100}%{" "}
+            <i className="fa-solid fa-venus"></i>
+          </>
+        ),
+      id: 3,
+    },
+    {
+      text: "Gender Differences",
+      info: pokeSpeciesData.has_gender_differences === true ? "True" : "False",
+      id: 4,
     },
     {
       text: "Evolves From",
@@ -103,34 +143,18 @@ const BreedingInfo = ({ pokeSpeciesData, screenSize, isDarkMode }) => {
         ) : (
           "None"
         ),
-      id: 1,
+      id: 5,
     },
     {
-      text: "Gender Rate",
-      info:
-        pokeSpeciesData.gender_rate === -1 ? (
-          "Genderless"
-        ) : (
-          <>
-            {(1 - pokeSpeciesData.gender_rate / 8) * 100}%{" "}
-            <i className="fa-solid fa-mars"></i> /{" "}
-            {(pokeSpeciesData.gender_rate / 8) * 100}%{" "}
-            <i className="fa-solid fa-venus"></i>
-          </>
-        ),
-      id: 2,
-    },
-    {
-      text: "Gender Differences",
-      info: pokeSpeciesData.has_gender_differences === true ? "True" : "False",
-      id: 3,
-    },
-    {
-      text: "Hatch Counter",
-      info: `${pokeSpeciesData.hatch_counter} Cycles (${getHatchCounter(
-        pokeSpeciesData.hatch_counter
-      ).toLocaleString()} Steps)`,
-      id: 4,
+      text: "Growth Rate",
+      info: `${
+        pokeSpeciesData?.growth_rate?.name !== undefined &&
+        pokeSpeciesData?.growth_rate?.name !== null
+          ? pokeSpeciesData?.growth_rate?.name[0].toUpperCase() +
+            pokeSpeciesData?.growth_rate?.name.slice(1)
+          : "None"
+      }`,
+      id: 6,
     },
     {
       text: "Habitat",
@@ -141,7 +165,7 @@ const BreedingInfo = ({ pokeSpeciesData, screenSize, isDarkMode }) => {
             pokeSpeciesData.habitat.name.slice(1)
           : "None"
       }`,
-      id: 5,
+      id: 7,
     },
   ];
 
