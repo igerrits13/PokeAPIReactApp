@@ -1,4 +1,4 @@
-import DynamicTableSectionIcons from "../CommonComponents/DynamicTableSectionIcons";
+import DynamicTableSectionIcons from "../CommonComponents/DynamicComponents/DynamicTableSectionIcons";
 
 // Damage relations table for the currently selected type
 const DamageRelations = ({

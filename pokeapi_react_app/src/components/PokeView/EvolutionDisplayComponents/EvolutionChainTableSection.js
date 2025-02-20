@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "motion/react";
-import PokemonCard from "../CommonComponents/PokemonCard";
+import PokemonCard from "../../CommonComponents/PokemonCardComponents/PokemonCard";
 import EvolutionChainDetails from "./EvolutionChainDetails";
 
 const EvolutionChainTableSection = ({

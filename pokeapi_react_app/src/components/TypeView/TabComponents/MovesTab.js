@@ -1,4 +1,4 @@
-import DynamicSvgIcon from "../CommonComponents/DynamicSvgIcon";
+import DynamicSvgIcon from "../../CommonComponents/DynamicComponents/DynamicSvgIcon";
 
 // Tab displaying a list of moves
 const MovesTab = ({ typeData, isTypesLoading, getTypeIcon, isDarkMode }) => {

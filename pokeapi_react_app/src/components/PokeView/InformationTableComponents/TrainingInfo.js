@@ -1,4 +1,4 @@
-import DynamicTableSection from "../CommonComponents/DynamicTableSection";
+import DynamicTableSection from "../../CommonComponents/DynamicComponents/DynamicTableSection";
 
 // Training information section for the current Pokémon
 const TrainingInfo = ({

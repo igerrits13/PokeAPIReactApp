@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
-import DynamicSvgIcon from "../CommonComponents/DynamicSvgIcon";
+import DynamicSvgIcon from "./DynamicSvgIcon";
 
 // Create a table section based on the input array of information
 const DynamicTableSectionIcons = ({

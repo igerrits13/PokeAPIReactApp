@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
-import DynamicTableSection from "../CommonComponents/DynamicTableSection";
-import egg from "../icons/egg.png";
+import DynamicTableSection from "../../CommonComponents/DynamicComponents/DynamicTableSection";
+import egg from "../../icons/egg.png";
 
 // Breeding information section for the current Pokémon
 const BreedingInfo = ({

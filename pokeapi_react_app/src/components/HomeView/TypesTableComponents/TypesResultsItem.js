@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
-import DynamicSvgIcon from "../CommonComponents/DynamicSvgIcon";
+import DynamicSvgIcon from "../../CommonComponents/DynamicComponents/DynamicSvgIcon";
 
 // Display for each type base on screen size
 const TypesResultsItem = ({ obj, typeIcon, typeStyle, isDarkMode }) => {

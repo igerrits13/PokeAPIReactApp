@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
-import pokeBall from "../icons/poke-ball.png";
+import pokeBall from "../../icons/poke-ball.png";
 
 const EvolutionChainDetails = ({ evolution, screenSize, isDarkMode }) => {
   // Setup the line style between information sections based on if the user is using light or dark mode

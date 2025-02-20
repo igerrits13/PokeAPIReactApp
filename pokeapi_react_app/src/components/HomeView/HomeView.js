@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import Title from "./Title";
-import SearchBar from "./SearchBar";
-import TypeseTable from "./TypesTable";
-import DynamicSortOptions from "../CommonComponents/DynamicSortOptions";
-import OptionGen from "../CommonComponents/OptionGen";
-import OptionType from "../CommonComponents/OptionType";
-import OptionSort from "../CommonComponents/OptionSort";
-import PokemonTable from "../CommonComponents/PokemonTable";
+import SearchBar from "../CommonComponents/SearchBarComponents/SearchBar";
+import TypeseTable from "./TypesTableComponents/TypesTable";
+import DynamicSortOptions from "../CommonComponents/DynamicComponents/DynamicSortOptions";
+import OptionGen from "../CommonComponents/OptionsComponents/OptionGen";
+import OptionType from "../CommonComponents/OptionsComponents/OptionType";
+import OptionSort from "../CommonComponents/OptionsComponents/OptionSort";
+import PokemonTable from "../CommonComponents/PokemonCardComponents/PokemonTable";
 import Footer from "../CommonComponents/Footer";
 
 // Homeview page of the Pokémon app

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import PokemonCardCollection from "../CommonComponents/PokemonCardCollection";
+import PokemonCardCollection from "../../CommonComponents/PokemonCardComponents/PokemonCardCollection";
 
 // Display Pokémon of the specified type for the types view page
 const PokemonTypesCardCollection = ({

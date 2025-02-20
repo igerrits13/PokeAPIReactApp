@@ -1,6 +1,6 @@
-import DynamicSortOptions from "../CommonComponents/DynamicSortOptions";
-import OptionGen from "../CommonComponents/OptionGen";
-import OptionSort from "../CommonComponents/OptionSort";
+import DynamicSortOptions from "../../CommonComponents/DynamicComponents/DynamicSortOptions";
+import OptionGen from "../../CommonComponents/OptionsComponents/OptionGen";
+import OptionSort from "../../CommonComponents/OptionsComponents/OptionSort";
 import PokemonTypesCardCollection from "./PokemonTypesCardCollection";
 
 // Tab to display Pokémon within the types table

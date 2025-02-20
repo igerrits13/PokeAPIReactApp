@@ -1,4 +1,4 @@
-import DynamicTableSection from "../CommonComponents/DynamicTableSection";
+import DynamicTableSection from "../CommonComponents/DynamicComponents/DynamicTableSection";
 
 // Display for the general information of the currently selected type
 const TypeInfo = ({ typeData, isDarkMode }) => {

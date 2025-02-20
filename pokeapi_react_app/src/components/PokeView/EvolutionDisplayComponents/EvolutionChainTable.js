@@ -1,5 +1,5 @@
 import React from "react";
-import PokemonCard from "../CommonComponents/PokemonCard";
+import PokemonCard from "../../CommonComponents/PokemonCardComponents/PokemonCard";
 import EvolutionChainTableSection from "./EvolutionChainTableSection";
 
 const EvolutionChainTable = ({ pokeChainData, screenSize, isDarkMode }) => {

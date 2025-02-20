@@ -1,4 +1,4 @@
-import DynamicSvgIcon from "../CommonComponents/DynamicSvgIcon";
+import DynamicSvgIcon from "../CommonComponents/DynamicComponents/DynamicSvgIcon";
 import TypeInfo from "./TypeInfo";
 import DamageRelations from "./DamageRelations";
 

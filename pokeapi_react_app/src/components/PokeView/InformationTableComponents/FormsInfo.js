@@ -1,4 +1,4 @@
-import DynamicTableSection from "../CommonComponents/DynamicTableSection";
+import DynamicTableSection from "../../CommonComponents/DynamicComponents/DynamicTableSection";
 import FormsInfoForms from "./FormsInfoForms";
 import FormsInfoVarieties from "./FormsInfoVarieties";
 

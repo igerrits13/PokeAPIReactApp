@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import SecondaryViewHeader from "../CommonComponents/SecondaryViewHeader";
-import PokeInfoTable from "./PokeInfoTable";
+import PokeInfoTable from "./InformationTableComponents/PokeInfoTable";
 import StatsTable from "./StatsTable";
-import EvolutionChain from "./EvolutionChain";
-import SpritesTable from "./SpritesTable";
-import NavButtons from "./NavButons";
+import EvolutionChain from "./EvolutionDisplayComponents/EvolutionChain";
+import SpritesTable from "./SpritesTableComponents/SpritesTable";
+import NavButtons from "./NavigationComponents/NavButons";
 import Footer from "../CommonComponents/Footer";
 
 // Temporary page while Pokémon page is not done

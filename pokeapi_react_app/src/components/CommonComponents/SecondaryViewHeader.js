@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "motion/react";
-import SearchBar from "../HomeView/SearchBar";
+import SearchBar from "./SearchBarComponents/SearchBar";
 
 // Header to be used on secondary pages to display a link to the homepage and the search bar
 const SecondaryViewHeader = ({ fullPokeResults, screenSize, isDarkMode }) => {
