@@ -31,15 +31,22 @@ const TrainingInfo = ({
   const trainingInfo = [
     {
       text: "EV Stats",
-      info: `${Object.entries(pokeData.stats)
-        .map((stat) => {
-          if (stat[1].effort !== 0) {
-            return `${stat[1].effort} ${getStatName(stat[1].stat.name)}`;
-          }
-          return null;
-        })
-        .filter(Boolean)
-        .join(", ")}`,
+      info: (
+        <>
+          {Object.entries(pokeData.stats)
+            .map((stat) => {
+              if (stat[1].effort !== 0) {
+                return (
+                  <div>
+                    {stat[1].effort} {getStatName(stat[1].stat.name)}
+                  </div>
+                );
+              }
+              return null;
+            })
+            .filter(Boolean)}
+        </>
+      ),
       id: 0,
     },
     { text: "Base XP", info: `${pokeData.base_experience} XP`, id: 1 },
