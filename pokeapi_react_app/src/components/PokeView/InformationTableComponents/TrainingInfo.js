@@ -37,7 +37,7 @@ const TrainingInfo = ({
             .map((stat) => {
               if (stat[1].effort !== 0) {
                 return (
-                  <div>
+                  <div key={stat}>
                     {stat[1].effort} {getStatName(stat[1].stat.name)}
                   </div>
                 );

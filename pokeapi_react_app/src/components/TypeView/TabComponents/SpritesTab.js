@@ -1,11 +1,9 @@
+import React from "react";
+import SpriteTableImage from "../../PokeView/SpritesTableComponents/SpriteTableImage";
+import SpriteTableSection from "../../PokeView/SpritesTableComponents/SpriteTableSection";
+
 // Tab displaying a list of sprites
 const SpritesTab = ({ typeData, isDarkMode }) => {
-  // Setup the sprites section style based on if the user is using light or dark mode
-  const fontStyle = isDarkMode ? "title-font-dark" : "title-font-light";
-  const spriteSectionStyle = isDarkMode
-    ? "component-background-dark component-outline-thin-dark"
-    : "component-background-light component-outline-thin-light";
-
   // Seperate the generation title by '-' and capitalize appropriate letters
   const getGenerationTitle = (generation) => {
     let genTitle = generation.split("-");
@@ -41,6 +39,11 @@ const SpritesTab = ({ typeData, isDarkMode }) => {
     );
   };
 
+  // Capitalize the first letter of the current type
+  const getTypeName = (name) => {
+    return name[0].toUpperCase() + name.slice(1);
+  };
+
   // Roman numeral to integer conversion function
   function romanToInt(roman) {
     const romanNumerals = {
@@ -66,6 +69,33 @@ const SpritesTab = ({ typeData, isDarkMode }) => {
 
     return result;
   }
+
+  // Create the HTML for the version Pokémon sprites
+  const getGameIcons = (genTitle, gameIcons, i) => {
+    const gameIconsHTML = Object.entries(gameIcons)
+      .map(([currGame, iconURL]) => {
+        return (
+          <React.Fragment key={currGame}>
+            <SpriteTableImage
+              pokeData={typeData}
+              getPokeName={getTypeName}
+              spriteUrl={iconURL.name_icon}
+              description={getGameTitle(currGame)}
+            />
+          </React.Fragment>
+        );
+      })
+      .filter(Boolean);
+
+    return (
+      <SpriteTableSection
+        sectionDescription={`${genTitle}`}
+        sectionHTML={gameIconsHTML}
+        index={i}
+        isDarkMode={isDarkMode}
+      />
+    );
+  };
 
   // Display for the sprites tab information
   const spritesHTML =
@@ -94,36 +124,9 @@ const SpritesTab = ({ typeData, isDarkMode }) => {
         if (!hasSprites) return null;
 
         return (
-          <div
-            key={i}
-            className={`spritestab-generation ${spriteSectionStyle} ${fontStyle}`}
-          >
-            <div>{genTitle}</div>
-            <div className="spritestab-icon-container">
-              {Object.entries(generationData)
-                // Sort the sprites alphabetically by game title
-                .sort(([gameA], [gameB]) => {
-                  const gameTitleA = getGameTitle(gameA);
-                  const gameTitleB = getGameTitle(gameB);
-                  return gameTitleA.localeCompare(gameTitleB);
-                })
-                .map(([game, { name_icon }], i) => {
-                  if (!name_icon) return null;
-
-                  const gameTitle = getGameTitle(game);
-                  return (
-                    <div key={i} className="spritestab-item">
-                      <img
-                        src={name_icon}
-                        alt={generation}
-                        className="spritestab-img"
-                      />
-                      {gameTitle}
-                    </div>
-                  );
-                })}
-            </div>
-          </div>
+          <React.Fragment key={generation}>
+            {getGameIcons(genTitle, generationData, 0)}
+          </React.Fragment>
         );
       });
 
