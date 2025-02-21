@@ -173,7 +173,7 @@ const PokeView = ({ fullPokeResults, screenSize, isDarkMode }) => {
       )}
       {!isPokeLoading && !isPokeSpeciesLoading && (
         <NavButtons
-          id={pokeSpeciesId}
+          id={pokeSpeciesData.id}
           fullPokeResults={fullPokeResults}
           screenSize={screenSize}
           isDarkMode={isDarkMode}
