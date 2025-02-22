@@ -25,8 +25,8 @@ const BreedingInfo = ({
     ? "component-background-dark component-outline-dark"
     : "component-background-light component-outline-light";
   const inactiveButtonStyle = isDarkMode
-    ? "option-font-dark clean-border"
-    : "option-font-light clean-border";
+    ? "option-font-dark"
+    : "option-font-light";
 
   // Map to match for each possible gen counter
   const genCounter = {

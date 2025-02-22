@@ -10,9 +10,6 @@ const FormsInfoVarieties = ({
 }) => {
   // Setup the page font and alternate forms butons based on if tthe user is using dark mode or not
   const fontStyle = isDarkMode ? "font-dark" : "font-light";
-  const infoButtonStyle = isDarkMode
-    ? "component-background-dark component-outline-dark"
-    : "component-background-light component-outline-light";
   const inactiveButtonStyle = isDarkMode
     ? "option-font-dark"
     : "option-font-light";
@@ -87,7 +84,7 @@ const FormsInfoVarieties = ({
 
           return (
             <motion.button
-              className={`dyn-section-button ${fontStyle} ${infoButtonStyle} ${
+              className={`dyn-section-button ${fontStyle} ${formsResultsStyle} ${
                 isDisabled ? inactiveButtonStyle : ""
               }`}
               key={i}
@@ -116,7 +113,7 @@ const FormsInfoVarieties = ({
       ) : (
         <div className="dyn-section-dropdown-container">
           <button
-            className={`dyn-section-dropdown-button ${fontStyle} ${infoButtonStyle}`}
+            className={`dyn-section-dropdown-button ${fontStyle} ${formsResultsStyle}`}
             onClick={() =>
               setIsActiveVarietiesDropdown(!isActiveVarietiesDropdown)
             }
@@ -144,7 +141,7 @@ const FormsInfoVarieties = ({
 
               return (
                 <motion.button
-                  className={`dyn-section-dropdown-items ${fontStyle} ${infoButtonStyle} ${
+                  className={`dyn-section-dropdown-items ${fontStyle} ${formsResultsStyle} ${
                     isDisabled ? inactiveButtonStyle : ""
                   }`}
                   key={i}

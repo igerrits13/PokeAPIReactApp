@@ -63,12 +63,7 @@ const HomeView = ({
       typesResults={typesResults}
       isDarkMode={isDarkMode}
     />,
-    <OptionSort
-      key={2}
-      sortBy={sortBy}
-      setSortBy={setSortBy}
-      isDarkMode={isDarkMode}
-    />,
+    <OptionSort key={2} setSortBy={setSortBy} isDarkMode={isDarkMode} />,
   ];
 
   // Display the overall veiw of the homepage using components

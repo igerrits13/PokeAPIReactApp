@@ -115,13 +115,6 @@ function App() {
               isDarkMode={isDarkMode}
             />
           }
-          // element={
-          //   <PokeViewTemp
-          //     fullPokeResults={fullPokeResults}
-          //     screenSize={screenSize}
-          //     isDarkMode={isDarkMode}
-          //   />
-          // }
         />
         <Route
           path="/notfound"

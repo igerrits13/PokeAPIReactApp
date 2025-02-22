@@ -117,7 +117,6 @@ const SearchBar = ({ fullPokeResults, isDarkMode }) => {
       </Link>
       <SearchResults
         searchText={searchText}
-        clearSearchText={clearSearchText}
         searchBarFocus={searchBarFocus}
         fullPokeResults={fullPokeResults}
         resultsHTML={resultsHTML}

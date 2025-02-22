@@ -4,7 +4,6 @@ import SearchItem from "./SearchItem";
 // Display the dropdown search results from the search bar
 const SearchResults = ({
   searchText,
-  clearSearchText,
   searchBarFocus,
   fullPokeResults,
   resultsHTML,
@@ -33,7 +32,6 @@ const SearchResults = ({
         fullPokeResults.slice(0, 12).map((resultItem, i) => {
           return (
             <SearchItem
-              // clearSearchText={clearSearchText}
               resultItem={resultItem}
               isDarkMode={isDarkMode}
               key={i}
@@ -55,7 +53,6 @@ const SearchResults = ({
           .map((resultItem, i) => {
             return (
               <SearchItem
-                // clearSearchText={clearSearchText}
                 resultItem={resultItem}
                 isDarkMode={isDarkMode}
                 key={i}
