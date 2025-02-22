@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 
 // Dropdown items for the filter options
 const OptionFilterItem = ({
+  filterType,
   filter,
   filterNum,
   filterByGen,
@@ -55,7 +56,7 @@ const OptionFilterItem = ({
       className={`option-sort-dropdown-result-item ${fontStyle} ${optionStyle}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      onClick={() => updateGen(filter)}
+      onClick={filterType === "gen" ? () => updateGen(filter) : ""}
     >
       {filter}
       <motion.i

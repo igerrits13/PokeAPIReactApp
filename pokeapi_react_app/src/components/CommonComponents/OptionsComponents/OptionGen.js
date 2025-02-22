@@ -95,6 +95,7 @@ const OptionGen = ({ filterByGen, setFilterByGen, isDarkMode }) => {
           return (
             <React.Fragment key={filter.name}>
               <OptionFilterItem
+                filterType={"gen"}
                 filter={getGenerationTitle(filter.name)}
                 filterNum={getGenNum(filter.url)}
                 filterByGen={filterByGen}
