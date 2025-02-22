@@ -98,7 +98,7 @@ const TypeView = ({
 
   // Reset sort options on initial page load
   useEffect(() => {
-    setFilterByGen("all");
+    setFilterByGen(["all"]);
     setSortBy("number");
   }, [setFilterByGen, setSortBy]);
 

@@ -29,7 +29,7 @@ const HomeView = ({
   // Fetch the Pokémon types
   useEffect(() => {
     // Reset sort options
-    setFilterByGen("all");
+    setFilterByGen(["all"]);
     setFilterByType("all");
     setSortBy("number");
 

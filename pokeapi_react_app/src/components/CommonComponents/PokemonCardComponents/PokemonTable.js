@@ -18,7 +18,7 @@ const PokemonTable = ({
 
   // Fetch the Pokémon information for all Pokémon cards if no gen is selected
   useEffect(() => {
-    if (filterByGen === "all") {
+    if (filterByGen[0] === "all") {
       fetch(`https://pokeapi.co/api/v2/pokemon-species/?limit=5000`)
         .then((response) => response.json())
         .then((data) => {
@@ -27,16 +27,39 @@ const PokemonTable = ({
     }
   }, [filterByGen, setPokeResults]);
 
-  // Otherwise, fetch the Pokémon information from the requested gen
   useEffect(() => {
-    if (filterByGen !== "all") {
-      fetch(`https://pokeapi.co/api/v2/generation/${filterByGen}/`)
-        .then((response) => response.json())
-        .then((data) => {
-          setPokeResults(data.pokemon_species);
+    console.log(filterByGen);
+    if (filterByGen[0] !== "all") {
+      // Create an array of promises for each generation
+      const fetchGenData = filterByGen.map((gen) => {
+        return fetch(`https://pokeapi.co/api/v2/generation/${gen}/`)
+          .then((response) => response.json())
+          .then((data) => data.pokemon_species); // Extract the pokemon species from each gen
+      });
+
+      // Use Promise.all to wait for all fetch requests to complete
+      Promise.all(fetchGenData)
+        .then((results) => {
+          // Combine all the results from different generations
+          const allPokemon = results.flat();
+          setPokeResults(allPokemon);
+        })
+        .catch((error) => {
+          console.error("Error fetching generation data:", error);
         });
     }
   }, [filterByGen, setPokeResults]);
+
+  // // Otherwise, fetch the Pokémon information from the requested gen
+  // useEffect(() => {
+  //   if (filterByGen[0] !== "all") {
+  //     fetch(`https://pokeapi.co/api/v2/generation/${filterByGen}/`)
+  //       .then((response) => response.json())
+  //       .then((data) => {
+  //         setPokeResults(data.pokemon_species);
+  //       });
+  //   }
+  // }, [filterByGen, setPokeResults]);
 
   // If a type is selected, fetch the Pokémon information of the requested type
   useEffect(() => {

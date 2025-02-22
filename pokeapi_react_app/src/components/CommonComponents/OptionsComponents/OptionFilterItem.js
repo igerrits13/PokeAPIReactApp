@@ -5,7 +5,9 @@ import { motion } from "motion/react";
 const OptionFilterItem = ({
   filter,
   filterNum,
+  filterByGen,
   setFilterByGen,
+  isFilteredBy,
   setIsFilteredBy,
   isDarkMode,
 }) => {
@@ -27,12 +29,22 @@ const OptionFilterItem = ({
   const updateGen = () => {
     setIsFiltered(!isFiltered);
     if (isFiltered) {
-      setFilterByGen("all");
       setIsFilteredBy((prevState) =>
         prevState.filter((currFilter) => currFilter !== filter)
       );
+      if (isFilteredBy.length - 1 === 0) {
+        setFilterByGen(["all"]);
+      } else {
+        setFilterByGen((prevState) =>
+          prevState.filter((currFilter) => currFilter !== filterNum)
+        );
+      }
     } else {
-      setFilterByGen(filterNum);
+      if (filterByGen[0] === "all")
+        setFilterByGen((prevState) =>
+          prevState.filter((currFilter) => currFilter !== "all")
+        );
+      setFilterByGen((existingFilters) => [...existingFilters, filterNum]);
       setIsFilteredBy((existingFilters) => [...existingFilters, filter]);
     }
   };

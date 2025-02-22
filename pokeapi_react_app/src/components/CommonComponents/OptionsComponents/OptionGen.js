@@ -97,7 +97,9 @@ const OptionGen = ({ filterByGen, setFilterByGen, isDarkMode }) => {
               <OptionFilterItem
                 filter={getGenerationTitle(filter.name)}
                 filterNum={getGenNum(filter.url)}
+                filterByGen={filterByGen}
                 setFilterByGen={setFilterByGen}
+                isFilteredBy={isFilteredBy}
                 setIsFilteredBy={setIsFilteredBy}
                 isDarkMode={isDarkMode}
               />
