@@ -57,6 +57,7 @@ const OptionGen = ({ filterByGen, setFilterByGen, isDarkMode }) => {
     return genTitle.join(" ");
   };
 
+  // Get the number of the current gen
   const getGenNum = (genURL) => {
     // Seperate out the integer from the url
     const urlArr = genURL.split("/");

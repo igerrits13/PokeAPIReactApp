@@ -14,19 +14,7 @@ const PokemonTypesCardCollection = ({
   screenSize,
   isDarkMode,
 }) => {
-  // If not all gens are selected, fetch the Pokémon information from the requested gen
-  // useEffect(() => {
-  //   if (filterByGen !== "all") {
-  //     fetch(`https://pokeapi.co/api/v2/generation/${filterByGen}/`)
-  //       .then((response) => response.json())
-  //       .then((data) => {
-  //         setPokeResults(data.pokemon_species);
-  //         setIsTypesLoading(false);
-  //       });
-  //   }
-  // }, [filterByGen, setPokeResults, setIsTypesLoading]);
-
-  // Otherwise, fetch the Pokémon information from the requested gen
+  // Fetch the Pokémon information from the requested gens if user has specified gens
   useEffect(() => {
     if (filterByGen[0] !== "all") {
       setIsTypesLoading(true);

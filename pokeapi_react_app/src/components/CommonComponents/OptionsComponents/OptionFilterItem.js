@@ -28,49 +28,26 @@ const OptionFilterItem = ({
   const handleMouseEnter = () => setIsHovered(true);
   const handleMouseLeave = () => setIsHovered(false);
 
-  // Update the current gen based on what value has been selected or deselected
-  const updateGen = () => {
+  // Update the displayed Pokémon based on what filter has been selected or deselected
+  const updateFilter = (filterBy, setFilterBy) => {
     setIsFiltered(!isFiltered);
     if (isFiltered) {
       setIsFilteredBy((prevState) =>
         prevState.filter((currFilter) => currFilter !== filter)
       );
       if (isFilteredBy.length - 1 === 0) {
-        setFilterByGen(["all"]);
+        setFilterBy(["all"]);
       } else {
-        setFilterByGen((prevState) =>
+        setFilterBy((prevState) =>
           prevState.filter((currFilter) => currFilter !== filterNum)
         );
       }
     } else {
-      if (filterByGen[0] === "all")
-        setFilterByGen((prevState) =>
+      if (filterBy[0] === "all")
+        setFilterBy((prevState) =>
           prevState.filter((currFilter) => currFilter !== "all")
         );
-      setFilterByGen((existingFilters) => [...existingFilters, filterNum]);
-      setIsFilteredBy((existingFilters) => [...existingFilters, filter]);
-    }
-  };
-
-  const updateType = () => {
-    setIsFiltered(!isFiltered);
-    if (isFiltered) {
-      setIsFilteredBy((prevState) => {
-        prevState.filter((currFilter) => currFilter !== filter);
-      });
-      if (isFilteredBy.length - 1 === 0) {
-        setIsFilteredBy(["all"]);
-      } else {
-        setFilterByType((prevState) =>
-          prevState.filter((currFilter) => currFilter !== filterNum)
-        );
-      }
-    } else {
-      if (filterByType[0] === "all")
-        setFilterByType((prevState) =>
-          prevState.filter((currFilter) => currFilter !== "all")
-        );
-      setFilterByType((existingFilters) => [...existingFilters, filterNum]);
+      setFilterBy((existingFilters) => [...existingFilters, filterNum]);
       setIsFilteredBy((existingFilters) => [...existingFilters, filter]);
     }
   };
@@ -83,8 +60,8 @@ const OptionFilterItem = ({
       onMouseLeave={handleMouseLeave}
       onClick={
         filterType === "gen"
-          ? () => updateGen(filter)
-          : () => updateType(filter)
+          ? () => updateFilter(filterByGen, setFilterByGen)
+          : () => updateFilter(filterByType, setFilterByType)
       }
     >
       {filter}

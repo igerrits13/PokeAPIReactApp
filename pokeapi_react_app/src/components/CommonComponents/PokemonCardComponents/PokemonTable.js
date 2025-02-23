@@ -13,7 +13,6 @@ const PokemonTable = ({
   isDarkMode,
 }) => {
   // Create states to keep track of what Pokémon cards are to be displayed given the current filters
-  // const [pokeResults, setPokeResults] = useState([]);
   const [pokeTypes, setPokeTypes] = useState([]);
 
   // Fetch the Pokémon information for all Pokémon cards if no gen is selected
@@ -27,7 +26,7 @@ const PokemonTable = ({
     }
   }, [filterByGen, setPokeResults]);
 
-  // Otherwise, fetch the Pokémon information from the requested gen
+  // Otherwise, fetch the Pokémon information from the requested gens
   useEffect(() => {
     if (filterByGen[0] !== "all") {
       const fetchGenData = filterByGen.map((gen) => {
@@ -46,27 +45,29 @@ const PokemonTable = ({
     }
   }, [filterByGen, setPokeResults]);
 
-  // If a type is selected, fetch the Pokémon information of the requested type
+  // If types are selected, fetch the Pokémon information of the requested types
   useEffect(() => {
     if (filterByType[0] !== "all") {
-      const fetchTypeData = filterByType.map((type) => {
-        return fetch(`https://pokeapi.co/api/v2/type/${type}/`)
+      const alreadyFetched = new Set();
+      const fetchTypeData = filterByType.map((type) =>
+        fetch(`https://pokeapi.co/api/v2/type/${type}/`)
           .then((response) => response.json())
-          .then((data) => data.pokemon);
-      });
+          .then((data) => {
+            return data.pokemon.filter((pokemon) => {
+              const testInfo = pokemon.pokemon.name + pokemon.pokemon.url;
+              if (!alreadyFetched.has(testInfo)) {
+                alreadyFetched.add(testInfo);
+                return true;
+              }
+              return false;
+            });
+          })
+      );
+
       Promise.all(fetchTypeData)
         .then((results) => {
           const allPokemon = results.flat();
-          const allPokemonNoDuplicates = allPokemon.filter(
-            (pokemon, i, arr) =>
-              i ===
-              arr.findIndex(
-                (currPokemon) =>
-                  currPokemon.pokemon.name === pokemon.pokemon.name ||
-                  currPokemon.pokemon.url === pokemon.pokemon.url
-              )
-          );
-          setPokeTypes(allPokemonNoDuplicates);
+          setPokeTypes(allPokemon);
         })
         .catch((error) => {
           console.log("Error fetching type data:", error);

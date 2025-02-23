@@ -24,9 +24,8 @@ const HomeView = ({
   screenSize,
   isDarkMode,
 }) => {
+  // State to store data of all possible Pokémon types
   const [typesResults, setTypesResult] = useState([]);
-  // const [filterByGen, setFilterByGen] = useState("all");
-  // const [filterByType, setFilterByType] = useState("all");
 
   // Fetch the Pokémon types
   useEffect(() => {

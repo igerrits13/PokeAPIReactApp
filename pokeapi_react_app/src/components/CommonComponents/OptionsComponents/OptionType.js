@@ -21,15 +21,6 @@ const OptionType = ({
   const filterDropdownRef = useRef(null);
   const filterButtonRef = useRef(null);
 
-  // Fetch the generations
-  // useEffect(() => {
-  //   fetch(`https://pokeapi.co/api/v2/generation/?limit=20`)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setTypeResults(data.results);
-  //     });
-  // }, []);
-
   // Close dropdown if user clicks outside of the dropdown
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -58,6 +49,7 @@ const OptionType = ({
     return type[0].toUpperCase() + type.slice(1);
   };
 
+  // Get the number of the current type
   const getTypeNum = (genURL) => {
     // Seperate out the integer from the url
     const urlArr = genURL.split("/");
@@ -65,22 +57,6 @@ const OptionType = ({
     const urlNumber = urlNoSlash[urlNoSlash.length - 1];
     return parseInt(urlNumber, 10);
   };
-
-  // Create the HTML for the dropdown view for filtering by type
-  // const typesHTML = typesResults
-  //   .slice(0, typesResults.length - 2)
-  //   .map((obj, i) => {
-  //     return (
-  //       <option className={`${optionStyle}`} key={i} value={i + 1}>
-  //         {obj.name[0].toUpperCase() + obj.name.slice(1)}
-  //       </option>
-  //     );
-  //   });
-
-  // // Update the current type based on what value has been selected
-  // const updateType = (e) => {
-  //   setFilterByType(e.target.value);
-  // };
 
   // Create the view of the filter dropdown
   return (
@@ -127,23 +103,6 @@ const OptionType = ({
       </div>
     </div>
   );
-  // return (
-  //   <div className={`sortoptions-item sortoption-text ${optionTextStyle}`}>
-  //     <label htmlFor="types">Filter by Type</label>
-  //     <select
-  //       className={`sortoptions-dropdown ${optionStyle}`}
-  //       name="types"
-  //       id="types"
-  //       value={filterByType}
-  //       onChange={updateType}
-  //     >
-  //       <option className={`${optionStyle}`} value="all">
-  //         All
-  //       </option>
-  //       {typesHTML}
-  //     </select>
-  //   </div>
-  // );
 };
 
 export default OptionType;
