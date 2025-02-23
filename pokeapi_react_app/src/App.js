@@ -12,6 +12,7 @@ function App() {
   const [pokeResults, setPokeResults] = useState([]);
   const [pokeCountTotal, setPokeCountTotal] = useState(1025);
   const [filterByGen, setFilterByGen] = useState(["all"]);
+  const [filterByType, setFilterByType] = useState(["all"]);
   const [sortBy, setSortBy] = useState("number");
   const [screenSize, setscreenSize] = useState("large");
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -82,6 +83,8 @@ function App() {
               pokeCountTotal={pokeCountTotal}
               filterByGen={filterByGen}
               setFilterByGen={setFilterByGen}
+              filterByType={filterByType}
+              setFilterByType={setFilterByType}
               sortBy={sortBy}
               setSortBy={setSortBy}
               screenSize={screenSize}

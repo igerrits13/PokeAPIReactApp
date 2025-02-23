@@ -8,6 +8,8 @@ const OptionFilterItem = ({
   filterNum,
   filterByGen,
   setFilterByGen,
+  filterByType,
+  setFilterByType,
   isFilteredBy,
   setIsFilteredBy,
   isDarkMode,
@@ -50,13 +52,40 @@ const OptionFilterItem = ({
     }
   };
 
+  const updateType = () => {
+    setIsFiltered(!isFiltered);
+    if (isFiltered) {
+      setIsFilteredBy((prevState) => {
+        prevState.filter((currFilter) => currFilter !== filter);
+      });
+      if (isFilteredBy.length - 1 === 0) {
+        setIsFilteredBy(["all"]);
+      } else {
+        setFilterByType((prevState) =>
+          prevState.filter((currFilter) => currFilter !== filterNum)
+        );
+      }
+    } else {
+      if (filterByType[0] === "all")
+        setFilterByType((prevState) =>
+          prevState.filter((currFilter) => currFilter !== "all")
+        );
+      setFilterByType((existingFilters) => [...existingFilters, filterNum]);
+      setIsFilteredBy((existingFilters) => [...existingFilters, filter]);
+    }
+  };
+
   // Display the current filter option item
   return (
     <button
       className={`option-sort-dropdown-result-item ${fontStyle} ${optionStyle}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      onClick={filterType === "gen" ? () => updateGen(filter) : ""}
+      onClick={
+        filterType === "gen"
+          ? () => updateGen(filter)
+          : () => updateType(filter)
+      }
     >
       {filter}
       <motion.i

@@ -48,11 +48,28 @@ const PokemonTable = ({
 
   // If a type is selected, fetch the Pokémon information of the requested type
   useEffect(() => {
-    if (filterByType !== "all") {
-      fetch(`https://pokeapi.co/api/v2/type/${filterByType}/`)
-        .then((response) => response.json())
-        .then((data) => {
-          setPokeTypes(data.pokemon);
+    if (filterByType[0] !== "all") {
+      const fetchTypeData = filterByType.map((type) => {
+        return fetch(`https://pokeapi.co/api/v2/type/${type}/`)
+          .then((response) => response.json())
+          .then((data) => data.pokemon);
+      });
+      Promise.all(fetchTypeData)
+        .then((results) => {
+          const allPokemon = results.flat();
+          const allPokemonNoDuplicates = allPokemon.filter(
+            (pokemon, i, arr) =>
+              i ===
+              arr.findIndex(
+                (currPokemon) =>
+                  currPokemon.pokemon.name === pokemon.pokemon.name ||
+                  currPokemon.pokemon.url === pokemon.pokemon.url
+              )
+          );
+          setPokeTypes(allPokemonNoDuplicates);
+        })
+        .catch((error) => {
+          console.log("Error fetching type data:", error);
         });
     }
   }, [filterByType]);
@@ -60,7 +77,7 @@ const PokemonTable = ({
   // Create a set of Pokémon of the current type and use set to prevent duplicates
   let commonElementsSet = new Set();
 
-  if (filterByType !== "all") {
+  if (filterByType[0] !== "all") {
     for (const element of pokeTypes) {
       for (const element2 of pokeResults) {
         const pokeName = element2.name;
@@ -80,7 +97,7 @@ const PokemonTable = ({
   // Convert the set back to an array of all the Pokémon that are to be displayed
   let commonElements;
 
-  if (filterByType !== "all") {
+  if (filterByType[0] !== "all") {
     commonElements = Array.from(commonElementsSet);
   } else {
     commonElements = Array.from(pokeResults);

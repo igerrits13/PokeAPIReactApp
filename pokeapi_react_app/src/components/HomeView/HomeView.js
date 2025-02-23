@@ -17,6 +17,8 @@ const HomeView = ({
   pokeCountTotal,
   filterByGen,
   setFilterByGen,
+  filterByType,
+  setFilterByType,
   sortBy,
   setSortBy,
   screenSize,
@@ -24,13 +26,13 @@ const HomeView = ({
 }) => {
   const [typesResults, setTypesResult] = useState([]);
   // const [filterByGen, setFilterByGen] = useState("all");
-  const [filterByType, setFilterByType] = useState("all");
+  // const [filterByType, setFilterByType] = useState("all");
 
   // Fetch the Pokémon types
   useEffect(() => {
     // Reset sort options
     setFilterByGen(["all"]);
-    setFilterByType("all");
+    setFilterByType(["all"]);
     setSortBy("number");
 
     fetch(`https://pokeapi.co/api/v2/type/?limit=-1`)
