@@ -857,6 +857,10 @@ const colours = {
   border-radius: 8px;
 }
 
+.option-sort-reset-button {
+  align-self: flex-end;
+}
+
 .option-sort-dropdown-results {
   display: none;
   position: absolute;

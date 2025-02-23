@@ -96,11 +96,10 @@ const OptionGen = ({ filterByGen, setFilterByGen, isDarkMode }) => {
           return (
             <React.Fragment key={filter.name}>
               <OptionFilterItem
-                filterType={"gen"}
                 filter={getGenerationTitle(filter.name)}
                 filterNum={getGenNum(filter.url)}
-                filterByGen={filterByGen}
-                setFilterByGen={setFilterByGen}
+                filterBy={filterByGen}
+                setFilterBy={setFilterByGen}
                 isFilteredBy={isFilteredBy}
                 setIsFilteredBy={setIsFilteredBy}
                 isDarkMode={isDarkMode}

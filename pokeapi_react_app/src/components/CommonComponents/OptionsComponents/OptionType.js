@@ -88,11 +88,10 @@ const OptionType = ({
           return (
             <React.Fragment key={filter.name}>
               <OptionFilterItem
-                filterType={"type"}
                 filter={getTypeTitle(filter.name)}
                 filterNum={getTypeNum(filter.url)}
-                filterByType={filterByType}
-                setFilterByType={setFilterByType}
+                filterBy={filterByType}
+                setFilterBy={setFilterByType}
                 isFilteredBy={isFilteredBy}
                 setIsFilteredBy={setIsFilteredBy}
                 isDarkMode={isDarkMode}

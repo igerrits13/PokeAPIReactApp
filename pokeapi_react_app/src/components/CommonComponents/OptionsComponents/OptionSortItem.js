@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 
 // Dropdown items for the sort options
@@ -6,6 +6,7 @@ const OptionSortItem = ({
   method,
   isSortedBy,
   setIsSortedBy,
+  sortBy,
   setSortBy,
   isDarkMode,
 }) => {
@@ -21,6 +22,13 @@ const OptionSortItem = ({
   // Handle user actions applied to the button
   const handleMouseEnter = () => setIsHovered(true);
   const handleMouseLeave = () => setIsHovered(false);
+
+  // If reset is pressed, sort by number
+  useEffect(() => {
+    if (sortBy === "number") {
+      setIsSortedBy("Number");
+    }
+  }, [sortBy, setIsSortedBy]);
 
   // Update the current sort method based on what value has been selected
   const updateSort = (sortMethod) => {

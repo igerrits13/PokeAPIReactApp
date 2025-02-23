@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 import OptionSortItem from "./OptionSortItem";
 
 // Handles the logic for sorting Pokémon by name or number
-const OptionSort = ({ setSortBy, isDarkMode }) => {
+const OptionSort = ({ sortBy, setSortBy, isDarkMode }) => {
   // Setup the sort options style based on if the user is using light or dark mode
   const fontStyle = isDarkMode ? "font-dark" : "font-light";
   const optionStyle = isDarkMode
@@ -73,6 +73,7 @@ const OptionSort = ({ setSortBy, isDarkMode }) => {
             <React.Fragment key={method}>
               <OptionSortItem
                 method={method}
+                sortBy={sortBy}
                 isSortedBy={isSortedBy}
                 setIsSortedBy={setIsSortedBy}
                 setSortBy={setSortBy}

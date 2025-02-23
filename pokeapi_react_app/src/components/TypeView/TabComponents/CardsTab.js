@@ -1,6 +1,7 @@
 import DynamicSortOptions from "../../CommonComponents/DynamicComponents/DynamicSortOptions";
 import OptionGen from "../../CommonComponents/OptionsComponents/OptionGen";
 import OptionSort from "../../CommonComponents/OptionsComponents/OptionSort";
+import ResetOptions from "../../CommonComponents/OptionsComponents/ResetOptions";
 import PokemonTypesCardCollection from "./PokemonTypesCardCollection";
 
 // Tab to display Pokémon within the types table
@@ -27,7 +28,18 @@ const CardsTab = ({
       setFilterByGen={setFilterByGen}
       isDarkMode={isDarkMode}
     />,
-    <OptionSort key={1} setSortBy={setSortBy} isDarkMode={isDarkMode} />,
+    <OptionSort
+      key={1}
+      sortBy={sortBy}
+      setSortBy={setSortBy}
+      isDarkMode={isDarkMode}
+    />,
+    <ResetOptions
+      key={2}
+      setFilterOptions={[setFilterByGen]}
+      setSortOptions={setSortBy}
+      isDarkMode={isDarkMode}
+    />,
   ];
 
   // Display Pokémon tab when active

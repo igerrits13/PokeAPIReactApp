@@ -6,6 +6,7 @@ import DynamicSortOptions from "../CommonComponents/DynamicComponents/DynamicSor
 import OptionGen from "../CommonComponents/OptionsComponents/OptionGen";
 import OptionType from "../CommonComponents/OptionsComponents/OptionType";
 import OptionSort from "../CommonComponents/OptionsComponents/OptionSort";
+import ResetOptions from "../CommonComponents/OptionsComponents/ResetOptions";
 import PokemonTable from "../CommonComponents/PokemonCardComponents/PokemonTable";
 import Footer from "../CommonComponents/Footer";
 
@@ -64,7 +65,18 @@ const HomeView = ({
       typesResults={typesResults}
       isDarkMode={isDarkMode}
     />,
-    <OptionSort key={2} setSortBy={setSortBy} isDarkMode={isDarkMode} />,
+    <OptionSort
+      key={2}
+      sortBy={sortBy}
+      setSortBy={setSortBy}
+      isDarkMode={isDarkMode}
+    />,
+    <ResetOptions
+      key={3}
+      setFilterOptions={[setFilterByGen, setFilterByType]}
+      setSortOptions={setSortBy}
+      isDarkMode={isDarkMode}
+    />,
   ];
 
   // Display the overall veiw of the homepage using components

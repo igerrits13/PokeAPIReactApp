@@ -1,15 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 
 // Dropdown items for the filter options
 const OptionFilterItem = ({
-  filterType,
   filter,
   filterNum,
-  filterByGen,
-  setFilterByGen,
-  filterByType,
-  setFilterByType,
+  filterBy,
+  setFilterBy,
   isFilteredBy,
   setIsFilteredBy,
   isDarkMode,
@@ -28,8 +25,16 @@ const OptionFilterItem = ({
   const handleMouseEnter = () => setIsHovered(true);
   const handleMouseLeave = () => setIsHovered(false);
 
+  // If filters have been reset, clear all check boxes and isFilteredBy array to display "All"
+  useEffect(() => {
+    if (filterBy[0] === "all") {
+      setIsFiltered(false);
+      setIsFilteredBy([]);
+    }
+  }, [filterBy, setIsFiltered, setIsFilteredBy]);
+
   // Update the displayed Pokémon based on what filter has been selected or deselected
-  const updateFilter = (filterBy, setFilterBy) => {
+  const updateFilter = () => {
     setIsFiltered(!isFiltered);
     if (isFiltered) {
       setIsFilteredBy((prevState) =>
@@ -58,11 +63,7 @@ const OptionFilterItem = ({
       className={`option-sort-dropdown-result-item ${fontStyle} ${optionStyle}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      onClick={
-        filterType === "gen"
-          ? () => updateFilter(filterByGen, setFilterByGen)
-          : () => updateFilter(filterByType, setFilterByType)
-      }
+      onClick={() => updateFilter()}
     >
       {filter}
       <motion.i
