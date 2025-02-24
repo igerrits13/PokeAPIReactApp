@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import ScrollToTop from "../CommonComponents/ScrollToTop";
 import SecondaryViewHeader from "../CommonComponents/SecondaryViewHeader";
 import PokeInfoTable from "./InformationTableComponents/PokeInfoTable";
 import StatsTable from "./StatsTable";
@@ -134,6 +135,7 @@ const PokeView = ({ fullPokeResults, screenSize, isDarkMode }) => {
         isDarkMode ? "background-dark" : "background-light"
       }`}
     >
+      <ScrollToTop isDarkMode={isDarkMode} />
       <SecondaryViewHeader
         fullPokeResults={fullPokeResults}
         screenSize={screenSize}

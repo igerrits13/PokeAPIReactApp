@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import ScrollToTop from "../CommonComponents/ScrollToTop";
 import Title from "./Title";
 import SearchBar from "../CommonComponents/SearchBarComponents/SearchBar";
 import TypeseTable from "./TypesTableComponents/TypesTable";
@@ -86,6 +87,7 @@ const HomeView = ({
         isDarkMode ? "background-dark" : "background-light"
       }`}
     >
+      <ScrollToTop isDarkMode={isDarkMode} />
       <Title screenSize={screenSize} isDarkMode={isDarkMode} />
       <SearchBar fullPokeResults={fullPokeResults} isDarkMode={isDarkMode} />
       <TypeseTable

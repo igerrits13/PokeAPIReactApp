@@ -31,19 +31,14 @@ const NavButtonPrev = ({ fullPokeResults, id, isDarkMode }) => {
     e.target(".dyn-section-button-img-container").style.display = "none";
   };
 
-  // Handle user actions applied to the button
-  const handleMouseEnter = () => setIsHovered(true);
-  const handleMouseLeave = () => setIsHovered(false);
-  const handleOnClick = () => navigate(`/pokemon/${id}`);
-
   // Display the previous button if the previous ID is valid
   return (
     id > 0 && (
       <motion.button
         className={`nav-button nav-button-prev ${navButtonStyle}`}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        onClick={handleOnClick}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        onClick={() => navigate(`/pokemon/${id}`)}
         whileHover={{ scale: 1.1, rotate: "-1.5deg" }}
         whileTap={{ scale: 0.9, rotate: "5deg" }}
         transition={{ duration: 0.1 }}

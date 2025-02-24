@@ -18,6 +18,7 @@ import { ReactComponent as PsychicType } from "../icons/TypeIcons/psychic.svg";
 import { ReactComponent as RockType } from "../icons/TypeIcons/rock.svg";
 import { ReactComponent as SteelType } from "../icons/TypeIcons/steel.svg";
 import { ReactComponent as WaterType } from "../icons/TypeIcons/water.svg";
+import ScrollToTop from "../CommonComponents/ScrollToTop";
 import SecondaryViewHeader from "../CommonComponents/SecondaryViewHeader";
 import TypeInfoTable from "./TypeInfoTable";
 import DynamicTabOptions from "../CommonComponents/DynamicComponents/DynamicTabOptions";
@@ -156,6 +157,7 @@ const TypeView = ({
         isDarkMode ? "background-dark" : "background-light"
       }`}
     >
+      <ScrollToTop isDarkMode={isDarkMode} />
       <SecondaryViewHeader
         fullPokeResults={fullPokeResults}
         screenSize={screenSize}

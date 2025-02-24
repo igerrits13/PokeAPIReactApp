@@ -2030,3 +2030,18 @@ const colours = {
 .nav-button-icon {
   font-size: 3rem;
 }
+
+/* Scroll to Top Icon */
+
+.scroll-top-icon {
+  display: none;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.scroll-top-icon-active {
+  display: block;
+}

@@ -1,3 +1,4 @@
+import ScrollToTop from "../CommonComponents/ScrollToTop";
 import SecondaryViewHeader from "../CommonComponents/SecondaryViewHeader";
 import Footer from "../CommonComponents/Footer";
 
@@ -33,6 +34,7 @@ const NotFoundView = ({ fullPokeResults, screenSize, isDarkMode }) => {
         isDarkMode ? "background-dark" : "background-light"
       }`}
     >
+      <ScrollToTop isDarkMode={isDarkMode} />
       <SecondaryViewHeader
         fullPokeResults={fullPokeResults}
         screenSize={screenSize}
