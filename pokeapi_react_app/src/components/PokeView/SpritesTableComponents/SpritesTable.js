@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import CollapseExpandButton from "../../CommonComponents/CollapseExpandButton";
 import SpritesTableBasic from "./SpritesTableBasic";
 import SpritesTableVersions from "./SpritesTableVersions";
 import SpritesTableOther from "./SpritesTableOther";
@@ -16,6 +17,10 @@ const SpritesTable = ({ pokeData, screenSize, isDarkMode }) => {
       ? "secondary-page-header-large"
       : "secondary-page-header-x-large";
 
+  // State to keep track if the user has selected to expand or collapse all sections of table
+  // Null if the user has not selected anything
+  const [isExpanded, setIsExpanded] = useState(null);
+
   // Capitalize the first word of each part of the pokémon's name
   const getPokeName = (name) => {
     const formattedName = name.split("-").map((obj, i) => {
@@ -28,24 +33,36 @@ const SpritesTable = ({ pokeData, screenSize, isDarkMode }) => {
   // Render the full sprites table
   return (
     <>
-      <div className={`${fontStyle} ${secondaryHeaderStyle}`}>
+      <div
+        className={`sprites-table-label ${fontStyle} ${secondaryHeaderStyle}`}
+      >
         {getPokeName(pokeData.name)} Sprites
+        <CollapseExpandButton
+          setIsExpanded={setIsExpanded}
+          isDarkMode={isDarkMode}
+        />
       </div>
       <div className="spritestab-container">
         <SpritesTableBasic
           pokeData={pokeData}
           getPokeName={getPokeName}
+          isExpanded={isExpanded}
+          setIsExpanded={setIsExpanded}
           isDarkMode={isDarkMode}
         />
         <SpritesTableOther
           pokeData={pokeData}
           getPokeName={getPokeName}
+          isExpanded={isExpanded}
+          setIsExpanded={setIsExpanded}
           screenSize={screenSize}
           isDarkMode={isDarkMode}
         />
         <SpritesTableVersions
           pokeData={pokeData}
           getPokeName={getPokeName}
+          isExpanded={isExpanded}
+          setIsExpanded={setIsExpanded}
           screenSize={screenSize}
           isDarkMode={isDarkMode}
         />

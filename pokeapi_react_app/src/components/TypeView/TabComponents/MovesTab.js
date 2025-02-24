@@ -7,12 +7,18 @@ const MovesTab = ({ typeData, isTypesLoading, getTypeIcon, isDarkMode }) => {
   const moveSectionStyle = isDarkMode
     ? "component-background-dark component-outline-thin-dark"
     : "component-background-light component-outline-thin-light";
+  const titleFontStyle = isDarkMode ? "title-font-dark" : "title-font-light";
 
   // Get the styling for the current type
   let typeIcon, typeStyle;
   if (!isTypesLoading) {
     [typeIcon, typeStyle] = getTypeIcon(typeData.name);
   }
+
+  // Capitalize the first letter of the current type
+  const getTypeName = (name) => {
+    return name[0].toUpperCase() + name.slice(1);
+  };
 
   // Return the name of the current game in formatted form
   const getMoveTitle = (move) => {
@@ -29,6 +35,9 @@ const MovesTab = ({ typeData, isTypesLoading, getTypeIcon, isDarkMode }) => {
   return (
     !isTypesLoading && (
       <div className="movestab-container">
+        <div className={`sub-header ${titleFontStyle}`}>
+          {getTypeName(typeData.name)} Type Moves
+        </div>
         <div
           className={`movestab-section-head ${fontStyle} ${moveSectionStyle}`}
         >

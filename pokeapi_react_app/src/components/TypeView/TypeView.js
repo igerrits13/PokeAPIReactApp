@@ -210,7 +210,11 @@ const TypeView = ({
         />
       )}
       {activeTab === "Sprites" && (
-        <SpritesTab typeData={typeData} isDarkMode={isDarkMode} />
+        <SpritesTab
+          typeData={typeData}
+          screenSize={screenSize}
+          isDarkMode={isDarkMode}
+        />
       )}
       <Footer isDarkMode={isDarkMode} screenSize={screenSize} />
     </div>

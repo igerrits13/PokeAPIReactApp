@@ -954,7 +954,6 @@ const colours = {
   border-radius: 5px;
   text-decoration: none;
   outline: 1px solid #1e201d;
-  height: 100%;
   min-height: 10rem;
 }
 
@@ -991,7 +990,6 @@ const colours = {
 
 .footer-container {
   display: grid;
-  /* width: 100%; */
   gap: 10px 10px;
   padding: 10px;
   align-items: center;
@@ -1941,6 +1939,15 @@ const colours = {
 
 /* Pokéview Sprites */
 
+.sprites-table-label {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
 .sprites-table-game {
   display: flex;
   flex-direction: column;
@@ -2066,4 +2073,64 @@ const colours = {
 
 .scroll-top-icon-active {
   display: block;
+}
+
+/* Expand and Collapse Button */
+
+.expand-collapse-conatainer {
+  position: relative;
+  height: 2rem;
+  width: 2rem;
+  font-size: 1rem;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.expand-collapse-icon-conatainer {
+  position: relative;
+}
+
+.expand-collapse-icon {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.expand-collapse-icon-up {
+  top: 0.1rem;
+}
+
+.expand-collapse-icon-down {
+  bottom: 0.1rem;
+}
+
+.expand-collapse-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  border-radius: 5px;
+  padding: 6px 0;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.expand-collapse-dropdown-active {
+  display: block;
+}
+
+.expand-collapse-dropdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 4px 8px;
+}
+
+.expand-collapse-dropdown-item:hover {
+  background-image: linear-gradient(rgb(0 0 0/40%) 0 0);
+}
+
+.expand-collapse-dropdown-text {
+  width: 6rem;
 }

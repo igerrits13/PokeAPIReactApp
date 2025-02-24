@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
+import CollapseExpandButton from "../../CommonComponents/CollapseExpandButton";
 import SpriteTableImage from "../../PokeView/SpritesTableComponents/SpriteTableImage";
 import SpriteTableSection from "../../PokeView/SpritesTableComponents/SpriteTableSection";
 
 // Tab displaying a list of sprites
 const SpritesTab = ({ typeData, isDarkMode }) => {
+  // Setup the search bar style based on if the user is using light or dark mode
+  const fontStyle = isDarkMode ? "title-font-dark" : "title-font-light";
+
+  // State to keep track if the user has selected to expand or collapse all sections of table
+  // Null if the user has not selected anything
+  const [isExpanded, setIsExpanded] = useState(null);
+
   // Seperate the generation title by '-' and capitalize appropriate letters
   const getGenerationTitle = (generation) => {
     let genTitle = generation.split("-");
@@ -92,6 +100,8 @@ const SpritesTab = ({ typeData, isDarkMode }) => {
         sectionDescription={`${genTitle}`}
         sectionHTML={gameIconsHTML}
         index={i}
+        isExpanded={isExpanded}
+        setIsExpanded={setIsExpanded}
         isDarkMode={isDarkMode}
       />
     );
@@ -131,7 +141,18 @@ const SpritesTab = ({ typeData, isDarkMode }) => {
       });
 
   // Display the full sprites tab
-  return <div className="spritestab-container">{spritesHTML}</div>;
+  return (
+    <div className="spritestab-container">
+      <div className={`sprites-table-label sub-header ${fontStyle}`}>
+        {getTypeName(typeData.name)} Sprites
+        <CollapseExpandButton
+          setIsExpanded={setIsExpanded}
+          isDarkMode={isDarkMode}
+        />
+      </div>
+      {spritesHTML}
+    </div>
+  );
 };
 
 export default SpritesTab;

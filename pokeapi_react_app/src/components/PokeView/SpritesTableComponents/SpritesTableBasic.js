@@ -3,7 +3,13 @@ import SpriteTableImage from "./SpriteTableImage";
 import SpriteTableSection from "./SpriteTableSection";
 
 // Sction to display the Pokémon's basic sprites
-const SpritesTableBasic = ({ pokeData, getPokeName, isDarkMode }) => {
+const SpritesTableBasic = ({
+  pokeData,
+  getPokeName,
+  isExpanded,
+  setIsExpanded,
+  isDarkMode,
+}) => {
   // Setup the sprites section style based on if the user is using light or dark mode
   const basicSpritesMapping = [
     { iconsStyle: "front_default", description: "Front Default" },
@@ -42,6 +48,8 @@ const SpritesTableBasic = ({ pokeData, getPokeName, isDarkMode }) => {
         sectionDescription={"Basic Sprites"}
         sectionHTML={basicIconsHTML}
         index={0}
+        isExpanded={isExpanded}
+        setIsExpanded={setIsExpanded}
         isDarkMode={isDarkMode}
       />
     );

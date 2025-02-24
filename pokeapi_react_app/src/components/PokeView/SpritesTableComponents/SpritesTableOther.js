@@ -6,6 +6,8 @@ import SpriteTableSection from "./SpriteTableSection";
 const SpritesTableOther = ({
   pokeData,
   getPokeName,
+  isExpanded,
+  setIsExpanded,
   screenSize,
   isDarkMode,
 }) => {
@@ -77,6 +79,8 @@ const SpritesTableOther = ({
         sectionDescription={getCategoryName(category[0])}
         sectionHTML={otherIconsHTML}
         index={i}
+        isExpanded={isExpanded}
+        setIsExpanded={setIsExpanded}
         isDarkMode={isDarkMode}
       />
     );

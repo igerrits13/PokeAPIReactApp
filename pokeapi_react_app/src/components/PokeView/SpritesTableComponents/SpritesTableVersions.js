@@ -6,6 +6,8 @@ import SpriteTableSection from "./SpriteTableSection";
 const SpritesTableVersions = ({
   pokeData,
   getPokeName,
+  isExpanded,
+  setIsExpanded,
   screenSize,
   isDarkMode,
 }) => {
@@ -147,6 +149,8 @@ const SpritesTableVersions = ({
         }`}
         sectionHTML={versionIconsHTML}
         index={i}
+        isExpanded={isExpanded}
+        setIsExpanded={setIsExpanded}
         isDarkMode={isDarkMode}
       />
     );

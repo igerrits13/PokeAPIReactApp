@@ -28,7 +28,7 @@ const OptionSort = ({ sortBy, setSortBy, isDarkMode }) => {
         sortButtonRef.current &&
         !sortButtonRef.current.contains(event.target)
       ) {
-        sortDropdownRef.current.scrollTop = 0;
+        // sortDropdownRef.current.scrollTop = 0;
         setIsActiveSortDropdown(false);
       }
     };
