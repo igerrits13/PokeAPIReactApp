@@ -181,7 +181,7 @@ const PokeView = ({ fullPokeResults, screenSize, isDarkMode }) => {
           isDarkMode={isDarkMode}
         />
       )}
-      <Footer isDarkMode={isDarkMode} />
+      <Footer isDarkMode={isDarkMode} screenSize={screenSize} />
     </div>
   );
 };

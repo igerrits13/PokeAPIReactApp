@@ -2,17 +2,30 @@ import { motion } from "motion/react";
 import APILogo from "../icons/PokeAPILogo.svg";
 
 // Website footer
-const Footer = ({ isDarkMode }) => {
-  // Setup the search bar style based on if the user is using light or dark mode
+const Footer = ({ isDarkMode, screenSize }) => {
+  // Setup the font, icon and background style based on if the user is using dark mode or not
   const footerStyle = isDarkMode ? "font-dark" : "font-light";
   const iconStyle = isDarkMode ? "footer-icon-dark" : "footer-icon-light";
+  const backgroundStyle = isDarkMode
+    ? "stats-progress-dark-min"
+    : "stats-progress-light-min";
+
+  // Set what the container size for the page should be based on viewport width
+  const containerSize =
+    screenSize === "small"
+      ? "footer-small"
+      : screenSize === "medium"
+      ? "footer-med"
+      : "footer-large";
 
   // Get the current year for displaying within the footer
   const currentYear = new Date().getFullYear();
 
   // Display a footer showing Github, copywrite information and API information
   return (
-    <div className={`footer-container ${footerStyle}`}>
+    <div
+      className={`footer-container ${footerStyle} ${backgroundStyle} ${containerSize}`}
+    >
       <div className="footer-item-1">
         <a
           className=""

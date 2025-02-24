@@ -51,7 +51,7 @@ const NotFoundView = ({ fullPokeResults, screenSize, isDarkMode }) => {
           Oh no! It looks like this page does not exist!{" "}
         </div>
       </div>
-      <Footer isDarkMode={isDarkMode} />
+      <Footer isDarkMode={isDarkMode} screenSize={screenSize} />
     </div>
   );
 };

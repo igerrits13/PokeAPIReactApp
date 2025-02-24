@@ -955,6 +955,7 @@ const colours = {
   text-decoration: none;
   outline: 1px solid #1e201d;
   height: 100%;
+  min-height: 10rem;
 }
 
 .pokemon-card:hover {
@@ -990,7 +991,7 @@ const colours = {
 
 .footer-container {
   display: grid;
-  width: 100%;
+  /* width: 100%; */
   gap: 10px 10px;
   padding: 10px;
   align-items: center;
@@ -1000,6 +1001,27 @@ const colours = {
     "github developed api"
     "trademark trademark trademark";
   font-size: 1rem;
+}
+
+.footer-small {
+  margin: 0 -2%;
+  padding: 10px 2%;
+  width: calc(100% + 4%);
+  overflow-x: hidden;
+}
+
+.footer-med {
+  margin: 0 -5%;
+  padding: 10px 5%;
+  width: calc(100% + 10%);
+  overflow-x: hidden;
+}
+
+.footer-large {
+  margin: 0 -10%;
+  padding: 10px 10%;
+  width: calc(100% + 25%);
+  overflow-x: hidden;
 }
 
 .footer-item-1 {

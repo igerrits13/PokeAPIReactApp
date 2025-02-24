@@ -150,6 +150,8 @@ const TypeView = ({
     return;
   }
 
+  console.log(typeData.name);
+
   // Display the type view page from its components, displaying the currently active tab
   return (
     <div
@@ -210,7 +212,7 @@ const TypeView = ({
       {activeTab === "Sprites" && (
         <SpritesTab typeData={typeData} isDarkMode={isDarkMode} />
       )}
-      <Footer isDarkMode={isDarkMode} />
+      <Footer isDarkMode={isDarkMode} screenSize={screenSize} />
     </div>
   );
 };

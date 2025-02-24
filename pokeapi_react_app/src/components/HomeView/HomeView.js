@@ -106,7 +106,7 @@ const HomeView = ({
         sortBy={sortBy}
         isDarkMode={isDarkMode}
       />
-      <Footer isDarkMode={isDarkMode} />
+      <Footer isDarkMode={isDarkMode} screenSize={screenSize} />
     </div>
   );
 };
