@@ -105,12 +105,10 @@ const TypeView = ({
   }, [setFilterByGen, setSortBy]);
 
   // If the API call returns an error, navigate to the page not found
-  // useEffect(() => {
   if (error) {
     navigate("/notfound");
     return;
   }
-  // }, [error, navigate]);
 
   // Map to match for each possible type case
   const typeMapping = {

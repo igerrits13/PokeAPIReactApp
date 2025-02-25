@@ -1,18 +1,19 @@
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import SearchResults from "./SearchResults";
 
 // Search bar for searching Pokémon
 const SearchBar = ({ typesResults, fullPokeResults, isDarkMode }) => {
-  // Variables for checking the text being searched, if the search bar should be active and the search results
+  // Variables for checking the text being searched and the search results
   const [searchText, setSearchText] = useState("");
-  const [searchBarFocus, setSearchBarFocus] = useState(false);
+  const [isActiveDropdown, setIsActiveDropdown] = useState(false);
   const [pokeResultsHTML, setPokeResultsHTML] = useState([]);
   const [typesResultsHTML, setTypesResultsHTML] = useState([]);
   const navigate = useNavigate();
 
   // Ref to keep track of where the cursor is within the input search box
   const inputRef = useRef(null);
+  const searchDropdownRef = useRef(null);
 
   // Setup the search bar style based on if the user is using light or dark mode
   const searchFontStyle = isDarkMode
@@ -22,28 +23,36 @@ const SearchBar = ({ typesResults, fullPokeResults, isDarkMode }) => {
     ? "icon-dark component-outline-background-dark"
     : "icon-light component-outline-background-light";
 
+  // Close dropdown if user clicks outside of the dropdown
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        searchDropdownRef.current &&
+        !searchDropdownRef.current.contains(event.target) &&
+        inputRef.current &&
+        !inputRef.current.contains(event.target)
+      ) {
+        searchDropdownRef.current.scrollTop = 0;
+        setSearchText("");
+        setIsActiveDropdown(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
   // Update the text in the search bar
   const updateSearchText = (e) => {
     setSearchText(e.target.value);
-    handleOnFocus();
   };
 
   // Clear the search text
   const clearSearchText = () => {
     setSearchText("");
-  };
-
-  // Update state for when the search bar is being focused
-  const handleOnFocus = () => {
-    setSearchBarFocus(true);
-  };
-
-  const handleOnBlur = () => {
-    // Create a small delay to allow for a search result item link to work if one is clicked
-    setTimeout(() => {
-      setSearchBarFocus(false);
-      clearSearchText();
-    }, 150);
   };
 
   // Automatically fill the search text based on key pressed
@@ -53,12 +62,13 @@ const SearchBar = ({ typesResults, fullPokeResults, isDarkMode }) => {
       e.preventDefault();
       if (pokeResultsHTML.length > 0) {
         setSearchText(pokeResultsHTML[0].props.resultItem.name);
+      } else if (typesResultsHTML.length > 0) {
+        setSearchText(typesResultsHTML[0].props.resultItem.name);
       }
     }
     // When 'Enter' is pressed, search for the current text or ID of the Pokémon if it exists
     if (e.key === "Enter") {
       if (pokeResultsHTML.length > 0) {
-        console.log(pokeResultsHTML[0]);
         const urlArr = pokeResultsHTML[0].props.resultItem.url.split("/");
         const urlNoSlash = urlArr.filter((part) => part !== "");
         const urlNumber = urlNoSlash[urlNoSlash.length - 1];
@@ -72,7 +82,6 @@ const SearchBar = ({ typesResults, fullPokeResults, isDarkMode }) => {
         navigate(`/pokemon/${searchText}`);
         clearSearchText();
       }
-      handleOnBlur();
     }
     // if (e.key === "ArrowDown") {
     //   if (resultsHTML.length > 0) {
@@ -105,13 +114,11 @@ const SearchBar = ({ typesResults, fullPokeResults, isDarkMode }) => {
         placeholder="Search Pokémon . . ."
         aria-label="Search Pokémon"
         value={searchText}
+        onClick={() => setIsActiveDropdown(true)}
         onChange={updateSearchText}
-        onFocus={handleOnFocus}
-        onBlur={handleOnBlur}
         onKeyDown={autoFillSearchText}
         ref={inputRef}
       />
-      {/* <Link to="/pokemon/"> */}
       <Link to={`/pokemon/${searchText}`}>
         <button
           className={`searchbar-search-icon ${searchIconStyle}`}
@@ -122,7 +129,8 @@ const SearchBar = ({ typesResults, fullPokeResults, isDarkMode }) => {
       </Link>
       <SearchResults
         searchText={searchText}
-        searchBarFocus={searchBarFocus}
+        searchDropdownRef={searchDropdownRef}
+        isActiveDropdown={isActiveDropdown}
         fullPokeResults={fullPokeResults}
         typesResults={typesResults}
         pokeResultsHTML={pokeResultsHTML}
