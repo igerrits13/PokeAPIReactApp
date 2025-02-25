@@ -41,6 +41,18 @@ const SpritesTableOther = ({
     return false;
   }
 
+  // Get the total number of generations that will be displayed
+  const numOthers = Object.entries(pokeData.sprites.other || {}).reduce(
+    (num, category) => {
+      // Check if categoryData is an object and contains sprite data
+      const hasSprites = Object.entries(category || {}).some(
+        ([name, { front_default }]) => front_default
+      );
+      return hasSprites ? num + 1 : num;
+    },
+    0
+  );
+
   // Mapping for other Pokémon sprites
   const otherSpritesMapping = [
     { iconsStyle: "front_default", description: "Front Default" },
@@ -79,7 +91,7 @@ const SpritesTableOther = ({
         sectionDescription={getCategoryName(category[0])}
         sectionHTML={otherIconsHTML}
         index={i}
-        totalIndices={Object.keys(pokeData.sprites.other).length - 1}
+        totalIndices={numOthers - 1}
         isExpanded={isExpanded}
         setIsExpanded={setIsExpanded}
         isDarkMode={isDarkMode}

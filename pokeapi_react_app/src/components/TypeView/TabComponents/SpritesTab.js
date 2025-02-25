@@ -97,8 +97,8 @@ const SpritesTab = ({ typeData, isDarkMode }) => {
       }
 
       return total;
-    },
-    0
+    }
+    // 0
   );
 
   // Create the HTML for the version Pokémon sprites
