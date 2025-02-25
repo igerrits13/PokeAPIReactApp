@@ -17,6 +17,9 @@ const SearchResults = ({
   const searchResultsItemsStyle = isDarkMode
     ? "component-background-dark font-dark"
     : "component-background-light font-light";
+  const resultLabelStyle = isDarkMode
+    ? "stats-progress-dark-min font-dark"
+    : "stats-progress-light-min font-light";
 
   // Scroll back to the top of the search results when closing the search results dropdown
   const searchDropdownRef = React.createRef();
@@ -79,6 +82,7 @@ const SearchResults = ({
       }`}
       ref={searchDropdownRef}
     >
+      <div className={`search-results-label ${resultLabelStyle}`}>Pokémon</div>
       {resultsHTML}
     </div>
   );
