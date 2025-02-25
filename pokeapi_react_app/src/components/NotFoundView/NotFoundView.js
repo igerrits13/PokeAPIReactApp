@@ -2,7 +2,12 @@ import ScrollToTop from "../CommonComponents/ScrollToTop";
 import SecondaryViewHeader from "../CommonComponents/SecondaryViewHeader";
 import Footer from "../CommonComponents/Footer";
 
-const NotFoundView = ({ fullPokeResults, screenSize, isDarkMode }) => {
+const NotFoundView = ({
+  fullPokeResults,
+  typesResults,
+  screenSize,
+  isDarkMode,
+}) => {
   // Setup the title font style based on if the user is using light or dark mode and screen size
   const fontStyle = isDarkMode ? "font-dark" : "font-light";
 
@@ -37,6 +42,7 @@ const NotFoundView = ({ fullPokeResults, screenSize, isDarkMode }) => {
       <ScrollToTop isDarkMode={isDarkMode} />
       <SecondaryViewHeader
         fullPokeResults={fullPokeResults}
+        typesResults={typesResults}
         screenSize={screenSize}
         isDarkMode={isDarkMode}
       />

@@ -3,11 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import SearchResults from "./SearchResults";
 
 // Search bar for searching Pokémon
-const SearchBar = ({ fullPokeResults, isDarkMode }) => {
+const SearchBar = ({ typesResults, fullPokeResults, isDarkMode }) => {
   // Variables for checking the text being searched, if the search bar should be active and the search results
   const [searchText, setSearchText] = useState("");
   const [searchBarFocus, setSearchBarFocus] = useState(false);
-  const [resultsHTML, setResultsHTML] = useState([]);
+  const [pokeResultsHTML, setPokeResultsHTML] = useState([]);
+  const [typesResultsHTML, setTypesResultsHTML] = useState([]);
   const navigate = useNavigate();
 
   // Ref to keep track of where the cursor is within the input search box
@@ -50,18 +51,22 @@ const SearchBar = ({ fullPokeResults, isDarkMode }) => {
     // When 'Tab' is pressed, autofill search text with the next filtered Pokémon
     if (e.key === "Tab") {
       e.preventDefault();
-      if (resultsHTML.length > 0) {
-        setSearchText(resultsHTML[0].props.resultItem.name);
+      if (pokeResultsHTML.length > 0) {
+        setSearchText(pokeResultsHTML[0].props.resultItem.name);
       }
     }
     // When 'Enter' is pressed, search for the current text or ID of the Pokémon if it exists
     if (e.key === "Enter") {
-      if (resultsHTML.length > 0) {
-        const urlArr = resultsHTML[0].props.resultItem.url.split("/");
+      if (pokeResultsHTML.length > 0) {
+        console.log(pokeResultsHTML[0]);
+        const urlArr = pokeResultsHTML[0].props.resultItem.url.split("/");
         const urlNoSlash = urlArr.filter((part) => part !== "");
         const urlNumber = urlNoSlash[urlNoSlash.length - 1];
         const pokeNum = parseInt(urlNumber, 10);
         navigate(`/pokemon/${pokeNum}`);
+        clearSearchText();
+      } else if (typesResultsHTML.length > 0) {
+        navigate(`/types/${typesResultsHTML[0].props.resultItem.name}`);
         clearSearchText();
       } else {
         navigate(`/pokemon/${searchText}`);
@@ -119,8 +124,11 @@ const SearchBar = ({ fullPokeResults, isDarkMode }) => {
         searchText={searchText}
         searchBarFocus={searchBarFocus}
         fullPokeResults={fullPokeResults}
-        resultsHTML={resultsHTML}
-        setResultsHTML={setResultsHTML}
+        typesResults={typesResults}
+        pokeResultsHTML={pokeResultsHTML}
+        setPokeResultsHTML={setPokeResultsHTML}
+        typesResultsHTML={typesResultsHTML}
+        setTypesResultsHTML={setTypesResultsHTML}
         isDarkMode={isDarkMode}
       />
     </div>

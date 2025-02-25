@@ -1,13 +1,17 @@
 import React, { useEffect } from "react";
 import SearchItem from "./SearchItem";
+import SearchItemType from "./SearchItemType";
 
 // Display the dropdown search results from the search bar
 const SearchResults = ({
   searchText,
   searchBarFocus,
   fullPokeResults,
-  resultsHTML,
-  setResultsHTML,
+  typesResults,
+  pokeResultsHTML,
+  setPokeResultsHTML,
+  typesResultsHTML,
+  setTypesResultsHTML,
   isDarkMode,
 }) => {
   // Setup the search bar style based on if the user is using light or dark mode
@@ -31,7 +35,7 @@ const SearchResults = ({
   // Create search results for the first 12 Pokémon based off number, starting at 1, if no search text has been entered
   useEffect(() => {
     if (searchText === "") {
-      setResultsHTML(
+      setPokeResultsHTML(
         fullPokeResults.slice(0, 12).map((resultItem, i) => {
           return (
             <SearchItem
@@ -45,7 +49,7 @@ const SearchResults = ({
     }
     // Otherwise, create the first 12 Pokémon with names or numbers containing the search text
     else {
-      setResultsHTML(
+      setPokeResultsHTML(
         fullPokeResults
           .filter(
             (res, i) =>
@@ -64,11 +68,41 @@ const SearchResults = ({
           })
       );
     }
-  }, [fullPokeResults, searchText, setResultsHTML, isDarkMode]);
+  }, [fullPokeResults, searchText, setPokeResultsHTML, isDarkMode]);
+
+  useEffect(() => {
+    if (pokeResultsHTML.length <= 12) {
+      setTypesResultsHTML(
+        typesResults
+          .filter(
+            (res, i) =>
+              res.name.includes(`${searchText.toLowerCase()}`) ||
+              (i + Number(1)).toString().includes(`${searchText}`)
+          )
+          .slice(0, 12 - pokeResultsHTML.length)
+          .map((resultItem, i) => {
+            return (
+              <SearchItemType
+                resultItem={resultItem}
+                typeID={resultItem.id}
+                isDarkMode={isDarkMode}
+                key={i}
+              />
+            );
+          })
+      );
+    }
+  }, [
+    typesResults,
+    pokeResultsHTML.length,
+    searchText,
+    setTypesResultsHTML,
+    isDarkMode,
+  ]);
 
   // Display if there are no Pokémon given the current search filter
-  if (resultsHTML.length === 0) {
-    resultsHTML = (
+  if (pokeResultsHTML.length === 0 && typesResultsHTML.length === 0) {
+    pokeResultsHTML = (
       <div className={`search-results-item ${searchResultsItemsStyle}`}>
         No Pokémon Found
       </div>
@@ -82,8 +116,16 @@ const SearchResults = ({
       }`}
       ref={searchDropdownRef}
     >
-      <div className={`search-results-label ${resultLabelStyle}`}>Pokémon</div>
-      {resultsHTML}
+      {pokeResultsHTML.length > 0 && (
+        <div className={`search-results-label ${resultLabelStyle}`}>
+          Pokémon
+        </div>
+      )}
+      {pokeResultsHTML}
+      {typesResultsHTML.length > 0 && (
+        <div className={`search-results-label ${resultLabelStyle}`}>Types</div>
+      )}
+      {typesResultsHTML}
     </div>
   );
 };

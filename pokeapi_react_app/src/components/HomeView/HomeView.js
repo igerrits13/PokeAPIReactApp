@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import ScrollToTop from "../CommonComponents/ScrollToTop";
 import Title from "./Title";
 import SearchBar from "../CommonComponents/SearchBarComponents/SearchBar";
@@ -15,6 +14,9 @@ import Footer from "../CommonComponents/Footer";
 const HomeView = ({
   pokeResults,
   setPokeResults,
+  isPokeResultsLoading,
+  typesResults,
+  isTypesResultsLoading,
   fullPokeResults,
   pokeCountTotal,
   filterByGen,
@@ -26,23 +28,6 @@ const HomeView = ({
   screenSize,
   isDarkMode,
 }) => {
-  // State to store data of all possible Pokémon types
-  const [typesResults, setTypesResult] = useState([]);
-
-  // Fetch the Pokémon types
-  useEffect(() => {
-    // Reset sort options
-    setFilterByGen(["all"]);
-    setFilterByType(["all"]);
-    setSortBy("number");
-
-    fetch(`https://pokeapi.co/api/v2/type/?limit=-1`)
-      .then((response) => response.json())
-      .then((data) => {
-        setTypesResult(data.results);
-      });
-  }, [setFilterByGen, setFilterByType, setSortBy]);
-
   // Set what the container size for the page should be based on viewport width
   const containerSize =
     screenSize === "small"
@@ -89,7 +74,14 @@ const HomeView = ({
     >
       <ScrollToTop isDarkMode={isDarkMode} />
       <Title screenSize={screenSize} isDarkMode={isDarkMode} />
-      <SearchBar fullPokeResults={fullPokeResults} isDarkMode={isDarkMode} />
+      {/* getTypeIcon(resultItem.name) */}
+      {!isPokeResultsLoading && !isTypesResultsLoading && (
+        <SearchBar
+          fullPokeResults={fullPokeResults}
+          typesResults={typesResults}
+          isDarkMode={isDarkMode}
+        />
+      )}
       <TypeseTable
         screenSize={screenSize}
         typesResults={typesResults}

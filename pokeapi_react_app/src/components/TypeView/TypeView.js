@@ -31,6 +31,7 @@ import Footer from "../CommonComponents/Footer";
 const TypeView = ({
   pokeResults,
   setPokeResults,
+  typesResults,
   fullPokeResults,
   pokeCountTotal,
   filterByGen,
@@ -77,7 +78,8 @@ const TypeView = ({
         try {
           const response = await fetch(`https://pokeapi.co/api/v2/type/${id}/`);
           if (!response.ok) {
-            navigate("/notfound");
+            setError("Error");
+            setIsTypesLoading(false);
             return;
           }
           const jsonData = await response.json();
@@ -89,11 +91,10 @@ const TypeView = ({
         }
       } else {
         setIsTypesLoading(false);
-        navigate("/notfound");
+        setError("Error ID:", id);
         return;
       }
     };
-
     fetchData();
   }, [id, navigate]);
 
@@ -102,6 +103,14 @@ const TypeView = ({
     setFilterByGen(["all"]);
     setSortBy("number");
   }, [setFilterByGen, setSortBy]);
+
+  // If the API call returns an error, navigate to the page not found
+  // useEffect(() => {
+  if (error) {
+    navigate("/notfound");
+    return;
+  }
+  // }, [error, navigate]);
 
   // Map to match for each possible type case
   const typeMapping = {
@@ -143,13 +152,6 @@ const TypeView = ({
   ];
   const activeTab = tabLabels[activeButton].label;
 
-  // If the API call returns an error, navigate to the page not found
-  // (Redundant to inside fetch call to avoid compilation error)
-  if (error) {
-    navigate("/notfound");
-    return;
-  }
-
   // Display the type view page from its components, displaying the currently active tab
   return (
     <div
@@ -160,6 +162,7 @@ const TypeView = ({
       <ScrollToTop isDarkMode={isDarkMode} />
       <SecondaryViewHeader
         fullPokeResults={fullPokeResults}
+        typesResults={typesResults}
         screenSize={screenSize}
         isDarkMode={isDarkMode}
       />

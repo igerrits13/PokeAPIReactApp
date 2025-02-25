@@ -12,14 +12,6 @@ const SpritesTab = ({ typeData, isDarkMode }) => {
   // Null if the user has not selected anything
   const [isExpanded, setIsExpanded] = useState(null);
 
-  // Seperate the generation title by '-' and capitalize appropriate letters
-  const getGenerationTitle = (generation) => {
-    let genTitle = generation.split("-");
-    genTitle[0] = genTitle[0][0].toUpperCase() + genTitle[0].slice(1);
-    genTitle[1] = genTitle[1].toUpperCase();
-    return genTitle.join(" ");
-  };
-
   // Dictionary holding unique game titles that are strangely formatted
   const gameTitleDictionary = {
     "firered-leafgreen": "Fire Red / Leaf Green",
@@ -31,6 +23,14 @@ const SpritesTab = ({ typeData, isDarkMode }) => {
     "ultra-sun-ultra-moon": "Ultra Sun / Ultra Moon",
     "brilliant-diamond-and-shining-pearl": "Brilliant Diamond / Shining Pearl",
     "legends-arceus": "Legends Arceus",
+  };
+
+  // Seperate the generation title by '-' and capitalize appropriate letters
+  const getGenerationTitle = (generation) => {
+    let genTitle = generation.split("-");
+    genTitle[0] = genTitle[0][0].toUpperCase() + genTitle[0].slice(1);
+    genTitle[1] = genTitle[1].toUpperCase();
+    return genTitle.join(" ");
   };
 
   // Return the name of the current game in formatted form
@@ -71,10 +71,8 @@ const SpritesTab = ({ typeData, isDarkMode }) => {
       } else {
         result += currentValue;
       }
-
       prevValue = currentValue;
     }
-
     return result;
   }
 
@@ -97,8 +95,8 @@ const SpritesTab = ({ typeData, isDarkMode }) => {
       }
 
       return total;
-    }
-    // 0
+    },
+    0
   );
 
   // Create the HTML for the version Pokémon sprites

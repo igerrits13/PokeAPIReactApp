@@ -3,7 +3,12 @@ import { motion } from "motion/react";
 import SearchBar from "./SearchBarComponents/SearchBar";
 
 // Header to be used on secondary pages to display a link to the homepage and the search bar
-const SecondaryViewHeader = ({ fullPokeResults, screenSize, isDarkMode }) => {
+const SecondaryViewHeader = ({
+  fullPokeResults,
+  typesResults,
+  screenSize,
+  isDarkMode,
+}) => {
   // Setup the title font style based on if the user is using light or dark mode and screen size
   const fontStyle = isDarkMode ? "title-font-dark" : "title-font-light";
   const secondaryHeaderStyle =
@@ -32,7 +37,11 @@ const SecondaryViewHeader = ({ fullPokeResults, screenSize, isDarkMode }) => {
           Pokémon Lookup
         </motion.div>
       </Link>
-      <SearchBar fullPokeResults={fullPokeResults} isDarkMode={isDarkMode} />
+      <SearchBar
+        fullPokeResults={fullPokeResults}
+        typesResults={typesResults}
+        isDarkMode={isDarkMode}
+      />
     </div>
   );
 };

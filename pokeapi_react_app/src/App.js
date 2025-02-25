@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import HomeView from "./components/HomeView/HomeView";
 import TypeView from "./components/TypeView/TypeView";
 import PokeView from "./components/PokeView/PokeView";
@@ -10,12 +10,17 @@ function App() {
   // Variables to be passed around to different views
   const [fullPokeResults, setFullPokeResults] = useState([]);
   const [pokeResults, setPokeResults] = useState([]);
+  const [isPokeResultsLoading, setIsPokeResultsLoading] = useState(false);
+  const [typesResults, setTypesResult] = useState([]);
+  const [isTypesResultsLoading, setIsTypesResultsLoading] = useState(false);
   const [pokeCountTotal, setPokeCountTotal] = useState(1025);
   const [filterByGen, setFilterByGen] = useState(["all"]);
   const [filterByType, setFilterByType] = useState(["all"]);
   const [sortBy, setSortBy] = useState("number");
   const [screenSize, setscreenSize] = useState("large");
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   // Check screen size to see if types table should collapse (small, medium, large, x-large)
   useEffect(() => {
@@ -56,16 +61,65 @@ function App() {
 
   // Fetch the Pokémon information for all Pokémon as soon as the page is loaded
   useEffect(() => {
-    fetch(`https://pokeapi.co/api/v2/pokemon-species/?limit=5000`)
-      .then((response) => response.json())
-      .then((data) => {
-        const updatedPokemonNames = data.results.map((pokemon) => {
-          return { ...pokemon, name: pokemon.name.replace(/-/g, " ") };
-        });
+    const fetchData = async () => {
+      setIsPokeResultsLoading(true);
+      try {
+        const response = await fetch(
+          `https://pokeapi.co/api/v2/pokemon-species/?limit=5000`
+        );
+        if (!response.ok) {
+          setError("Error");
+          return;
+        }
+        const data = await response.json();
+        const updatedPokemonNames = data.results.map((pokemon) => ({
+          ...pokemon,
+          name: pokemon.name.replace(/-/g, " "),
+        }));
         setFullPokeResults(updatedPokemonNames);
         setPokeCountTotal(data.count);
-      });
+      } catch (error) {
+        setError(error.message);
+        console.log("Error fetching Pokémon data:", error);
+      } finally {
+        setIsPokeResultsLoading(false);
+      }
+    };
+
+    fetchData();
   }, []);
+
+  // Fetch the Pokémon types
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsTypesResultsLoading(true);
+      try {
+        const response = await fetch(
+          `https://pokeapi.co/api/v2/type/?limit=-1`
+        );
+        if (!response.ok) {
+          setError("Error");
+          return;
+        }
+        const jsonData = await response.json();
+        setTypesResult(jsonData.results);
+      } catch (error) {
+        setError(error.message);
+        console.log("Error fetching type data:", error);
+      } finally {
+        setIsTypesResultsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // If the API call returns an error, navigate to the page not found
+  useEffect(() => {
+    if (error) {
+      navigate("/notfound");
+    }
+  }, [error, navigate]);
 
   // Provide routing for pages within the application
   return (
@@ -78,6 +132,9 @@ function App() {
             <HomeView
               pokeResults={pokeResults}
               setPokeResults={setPokeResults}
+              isPokeResultsLoading={isPokeResultsLoading}
+              typesResults={typesResults}
+              isTypesResultsLoading={isTypesResultsLoading}
               fullPokeResults={fullPokeResults}
               pokeCountTotal={pokeCountTotal}
               filterByGen={filterByGen}
@@ -97,6 +154,7 @@ function App() {
             <TypeView
               pokeResults={pokeResults}
               setPokeResults={setPokeResults}
+              typesResults={typesResults}
               fullPokeResults={fullPokeResults}
               pokeCountTotal={pokeCountTotal}
               filterByGen={filterByGen}
@@ -113,6 +171,7 @@ function App() {
           element={
             <PokeView
               fullPokeResults={fullPokeResults}
+              typesResults={typesResults}
               screenSize={screenSize}
               isDarkMode={isDarkMode}
             />
@@ -123,6 +182,7 @@ function App() {
           element={
             <NotFoundView
               fullPokeResults={fullPokeResults}
+              typesResults={typesResults}
               screenSize={screenSize}
               isDarkMode={isDarkMode}
             />
@@ -133,6 +193,7 @@ function App() {
           element={
             <NotFoundView
               fullPokeResults={fullPokeResults}
+              typesResults={typesResults}
               screenSize={screenSize}
               isDarkMode={isDarkMode}
             />

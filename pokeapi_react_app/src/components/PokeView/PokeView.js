@@ -10,7 +10,12 @@ import NavButtons from "./NavigationComponents/NavButons";
 import Footer from "../CommonComponents/Footer";
 
 // Temporary page while Pokémon page is not done
-const PokeView = ({ fullPokeResults, screenSize, isDarkMode }) => {
+const PokeView = ({
+  fullPokeResults,
+  typesResults,
+  screenSize,
+  isDarkMode,
+}) => {
   // Setup data structures to store various Pokemon and loading information
   const { id } = useParams();
   const [pokeId, setPokeId] = useState(id);
@@ -138,6 +143,7 @@ const PokeView = ({ fullPokeResults, screenSize, isDarkMode }) => {
       <ScrollToTop isDarkMode={isDarkMode} />
       <SecondaryViewHeader
         fullPokeResults={fullPokeResults}
+        typesResults={typesResults}
         screenSize={screenSize}
         isDarkMode={isDarkMode}
       />
