@@ -119,7 +119,7 @@ const SpritesTableVersions = ({
   ];
 
   // Create the HTML for the version Pokémon sprites
-  const getVersionIcons = (gameIcons, game, isAnimated, i) => {
+  const getVersionIcons = (gameIcons, game, isAnimated, i, totalIndices) => {
     const versionIconsHTML = versionsSpritesMapping
       .map(({ iconsStyle, description }) => {
         // Make sure the current game has the current icon style
@@ -149,6 +149,7 @@ const SpritesTableVersions = ({
         }`}
         sectionHTML={versionIconsHTML}
         index={i}
+        totalIndices={totalIndices}
         isExpanded={isExpanded}
         setIsExpanded={setIsExpanded}
         isDarkMode={isDarkMode}
@@ -181,10 +182,11 @@ const SpritesTableVersions = ({
 
         // If the current generation does not have sprites, do not create a section for the current gen
         if (!hasSprites) return null;
-
         return (
           <React.Fragment key={genTitle}>
-            <div className={`${fontStyle}`}>{genTitle}</div>
+            <div className={`sprites-table-gen-title ${fontStyle}`}>
+              {genTitle}
+            </div>
             {Object.entries(generationData)
               // Sort the sprites alphabetically by game title
               .sort(([gameA], [gameB]) => {
@@ -205,9 +207,19 @@ const SpritesTableVersions = ({
                         generationData[game].animated,
                         game,
                         true,
-                        i--
+                        i++,
+                        Object.keys(generationData).length
                       )}
-                    {getVersionIcons(generationData[game], game, false, i)}
+                    {getVersionIcons(
+                      generationData[game],
+                      game,
+                      false,
+                      i,
+                      "animated" in generationData[game] &&
+                        hasNonNullValues(generationData[game].animated)
+                        ? Object.keys(generationData).length
+                        : Object.keys(generationData).length - 1
+                    )}
                   </React.Fragment>
                 );
               })}
@@ -223,7 +235,7 @@ const SpritesTableVersions = ({
           {getPokeName(pokeData.name)} Sprites by Generation
         </div>
       )}
-      {versionIconsHTML}
+      <div>{versionIconsHTML}</div>
     </>
   );
 };

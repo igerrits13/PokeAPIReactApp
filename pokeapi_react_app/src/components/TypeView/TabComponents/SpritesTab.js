@@ -78,6 +78,29 @@ const SpritesTab = ({ typeData, isDarkMode }) => {
     return result;
   }
 
+  // Get the current index of the generation to be displayed
+  let currIndex = 0;
+
+  // Get the total number of generations that will be displayed
+  const numGens = Object.entries(typeData.sprites || {}).reduce(
+    (total, [generation, generationData]) => {
+      if (typeof generationData !== "object") return total;
+
+      // Check if current generation has sprites
+      const hasSprites = Object.entries(generationData).some(
+        ([game, { name_icon }]) => name_icon
+      );
+
+      // If the current generation has sprites, increment the total
+      if (hasSprites) {
+        return total + 1;
+      }
+
+      return total;
+    },
+    0
+  );
+
   // Create the HTML for the version Pokémon sprites
   const getGameIcons = (genTitle, gameIcons, i) => {
     const gameIconsHTML = Object.entries(gameIcons)
@@ -97,9 +120,11 @@ const SpritesTab = ({ typeData, isDarkMode }) => {
 
     return (
       <SpriteTableSection
+        spritePage={"types"}
         sectionDescription={`${genTitle}`}
         sectionHTML={gameIconsHTML}
-        index={i}
+        index={currIndex++}
+        totalIndices={numGens - 1}
         isExpanded={isExpanded}
         setIsExpanded={setIsExpanded}
         isDarkMode={isDarkMode}
@@ -135,7 +160,7 @@ const SpritesTab = ({ typeData, isDarkMode }) => {
 
         return (
           <React.Fragment key={generation}>
-            {getGameIcons(genTitle, generationData, 0)}
+            {getGameIcons(genTitle, generationData, i)}
           </React.Fragment>
         );
       });
@@ -150,7 +175,7 @@ const SpritesTab = ({ typeData, isDarkMode }) => {
           isDarkMode={isDarkMode}
         />
       </div>
-      {spritesHTML}
+      <div>{spritesHTML}</div>
     </div>
   );
 };

@@ -1408,8 +1408,9 @@ const colours = {
 .spritestab-icon-container {
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 20px;
   width: 100%;
+  gap: 20px;
+  margin: 25px;
   justify-content: space-around;
 }
 
@@ -1942,7 +1943,6 @@ const colours = {
 .sprites-table-label {
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
   width: 100%;
@@ -1953,17 +1953,34 @@ const colours = {
   flex-direction: column;
   text-align: center;
   align-items: center;
-  gap: 10px 15px;
   padding: 20px 10px;
   border-radius: 10px;
+}
+
+.sprites-table-game-active {
+  margin: 0 0 25px 0;
 }
 
 .sprites-table-game-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: calc(100% + 20px);
+  margin: -20px -10px;
+  padding: 10px 15px;
   cursor: pointer;
+}
+
+.sprites-table-game-title-single {
+  border-radius: 10px;
+}
+
+.sprites-table-game-title-top {
+  border-radius: 10px 10px 0 0;
+}
+
+.sprites-table-game-title-bottom {
+  border-radius: 0 0 10px 10px;
 }
 
 .sprites-table-game-title-text {
@@ -1976,12 +1993,8 @@ const colours = {
   padding: 0.5rem;
 }
 
-.sprites-table-game {
-  text-align: center;
-  align-items: center;
-  gap: 10px 15px;
-  padding: 20px 10px;
-  border-radius: 10px;
+.sprites-table-gen-title {
+  padding: 20px 0;
 }
 
 .sprites-table-img {

@@ -48,6 +48,7 @@ const SpritesTableBasic = ({
         sectionDescription={"Basic Sprites"}
         sectionHTML={basicIconsHTML}
         index={0}
+        totalIndices={0}
         isExpanded={isExpanded}
         setIsExpanded={setIsExpanded}
         isDarkMode={isDarkMode}
@@ -56,7 +57,7 @@ const SpritesTableBasic = ({
   };
 
   // Render the basic icons section
-  return <>{getBasicIcons()}</>;
+  return <div>{getBasicIcons()}</div>;
 };
 
 export default SpritesTableBasic;

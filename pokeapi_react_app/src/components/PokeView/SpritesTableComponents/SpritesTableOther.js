@@ -79,6 +79,7 @@ const SpritesTableOther = ({
         sectionDescription={getCategoryName(category[0])}
         sectionHTML={otherIconsHTML}
         index={i}
+        totalIndices={Object.keys(pokeData.sprites.other).length - 1}
         isExpanded={isExpanded}
         setIsExpanded={setIsExpanded}
         isDarkMode={isDarkMode}
@@ -119,7 +120,7 @@ const SpritesTableOther = ({
           Other {getPokeName(pokeData.name)} Sprites
         </div>
       )}
-      {otherIconsHTML}
+      <div>{otherIconsHTML}</div>
     </>
   );
 };

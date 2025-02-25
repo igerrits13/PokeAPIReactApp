@@ -150,8 +150,6 @@ const TypeView = ({
     return;
   }
 
-  console.log(typeData.name);
-
   // Display the type view page from its components, displaying the currently active tab
   return (
     <div
