@@ -231,6 +231,15 @@
   border: none;
 }
 
+hr {
+  display: block;
+  height: 1px;
+  width: 100%;
+  border: 0;
+  border-top: 2px solid #65d9ff;
+  margin: 1em 0;
+}
+
 /* Loading components */
 
 .loading-ball-container {

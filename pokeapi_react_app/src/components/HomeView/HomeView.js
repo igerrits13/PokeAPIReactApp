@@ -81,11 +81,13 @@ const HomeView = ({
           isDarkMode={isDarkMode}
         />
       )}
+      <hr />
       <TypeseTable
         screenSize={screenSize}
         typesResults={typesResults}
         isDarkMode={isDarkMode}
       />
+      <hr />
       <DynamicSortOptions sortOptions={sortOptions} screenSize={screenSize} />
       <PokemonTable
         pokeResults={pokeResults}

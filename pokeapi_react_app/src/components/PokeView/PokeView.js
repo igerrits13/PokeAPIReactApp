@@ -157,6 +157,7 @@ const PokeView = ({
           screenSize={screenSize}
         />
       )}
+      <hr />
       {!isPokeLoading && !isPokeSpeciesLoading && (
         <StatsTable
           statsInfo={statsInfo}
@@ -164,6 +165,7 @@ const PokeView = ({
           isDarkMode={isDarkMode}
         />
       )}
+      <hr />
       {!isPokeSpeciesLoading && (
         <EvolutionChain
           pokeChainURL={pokeSpeciesData.evolution_chain.url}
@@ -172,6 +174,7 @@ const PokeView = ({
           isDarkMode={isDarkMode}
         />
       )}
+      <hr />
       {!isPokeLoading && (
         <SpritesTable
           pokeData={pokeData}

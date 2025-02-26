@@ -176,6 +176,7 @@ const TypeView = ({
         screenSize={screenSize}
         isDarkMode={isDarkMode}
       />
+      <hr />
       <DynamicTabOptions
         tabLabels={tabLabels}
         setActiveButton={setActiveButton}

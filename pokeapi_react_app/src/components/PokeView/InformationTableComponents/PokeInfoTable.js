@@ -55,6 +55,7 @@ const PokeInfoTable = ({
             : "secondary-grid-row-large"
         } ${fontStyle}`}
       >
+        <hr />
         <BreedingInfo
           pokeSpeciesData={pokeSpeciesData}
           babyTriggerItem={babyTriggerItem}
