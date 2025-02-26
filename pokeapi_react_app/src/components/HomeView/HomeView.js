@@ -74,7 +74,6 @@ const HomeView = ({
     >
       <ScrollToTop isDarkMode={isDarkMode} />
       <Title screenSize={screenSize} isDarkMode={isDarkMode} />
-      {/* getTypeIcon(resultItem.name) */}
       {!isPokeResultsLoading && !isTypesResultsLoading && (
         <SearchBar
           fullPokeResults={fullPokeResults}

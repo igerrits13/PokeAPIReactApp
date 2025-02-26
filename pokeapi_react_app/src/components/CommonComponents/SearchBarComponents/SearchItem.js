@@ -1,6 +1,13 @@
 import { Link } from "react-router-dom";
 
-const SearchItem = ({ resultItem, isDarkMode, i }) => {
+const SearchItem = ({
+  activeSearchIndex,
+  setActiveSearchIndex,
+  setIsActiveDropdown,
+  resultItem,
+  isDarkMode,
+  index,
+}) => {
   // Setup the search results style based on if the user is using light or dark mode
   const searchResultsItemsStyle = isDarkMode
     ? "component-background-dark font-dark"
@@ -22,10 +29,15 @@ const SearchItem = ({ resultItem, isDarkMode, i }) => {
   const number = parseInt(lastPart, 10);
   const pokeIdURL = `/pokemon/${number}`;
 
+  // Display the current search item
   return (
     <Link
-      className={`search-results-item clean-text ${searchResultsItemsStyle}`}
+      className={`search-results-item clean-text ${searchResultsItemsStyle} ${
+        activeSearchIndex === index ? "search-results-item-active" : ""
+      }`}
       to={pokeIdURL}
+      onClick={() => setIsActiveDropdown(false)}
+      onMouseEnter={() => setActiveSearchIndex(index)}
     >
       <div>
         <img

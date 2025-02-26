@@ -377,8 +377,8 @@
   margin: 0 10px 0 0;
 }
 
-.search-results-item:hover {
-  background-image: linear-gradient(rgb(0 0 0/40%) 0 0);
+.search-results-item-active {
+  background-image: linear-gradient(rgb(0 0 0/15%) 0 0);
 }
 
 /* Types Table */

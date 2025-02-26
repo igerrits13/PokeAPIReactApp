@@ -19,7 +19,15 @@ import { ReactComponent as SteelType } from "../../icons/TypeIcons/steel.svg";
 import { ReactComponent as WaterType } from "../../icons/TypeIcons/water.svg";
 import DynamicSvgIcon from "../DynamicComponents/DynamicSvgIcon";
 
-const SearchItemType = ({ resultItem, typeID, isDarkMode, i }) => {
+const SearchItemType = ({
+  activeSearchIndex,
+  setActiveSearchIndex,
+  setIsActiveDropdown,
+  resultItem,
+  typeID,
+  isDarkMode,
+  index,
+}) => {
   // Setup the search results style based on if the user is using light or dark mode
   const searchResultsItemsStyle = isDarkMode
     ? "component-background-dark font-dark"
@@ -71,13 +79,19 @@ const SearchItemType = ({ resultItem, typeID, isDarkMode, i }) => {
     return urlNum;
   };
 
+  // Store informaiton for the current type item
   const typeIdURL = `/types/${getTypeNum(resultItem)}`;
   const [typeIcon, typeStyle] = getTypeIcon(resultItem.name);
 
+  // Display the current search result item
   return (
     <Link
-      className={`search-results-item clean-text ${searchResultsItemsStyle}`}
+      className={`search-results-item clean-text ${searchResultsItemsStyle} ${
+        activeSearchIndex === index ? "search-results-item-active" : ""
+      }`}
       to={typeIdURL}
+      onClick={() => setIsActiveDropdown(false)}
+      onMouseEnter={() => setActiveSearchIndex(index)}
     >
       <div>
         <DynamicSvgIcon

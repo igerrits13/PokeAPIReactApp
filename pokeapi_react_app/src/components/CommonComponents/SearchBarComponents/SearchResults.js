@@ -5,8 +5,11 @@ import SearchItemType from "./SearchItemType";
 // Display the dropdown search results from the search bar
 const SearchResults = ({
   searchText,
+  activeSearchIndex,
+  setActiveSearchIndex,
   searchDropdownRef,
   isActiveDropdown,
+  setIsActiveDropdown,
   fullPokeResults,
   typesResults,
   pokeResultsHTML,
@@ -33,8 +36,12 @@ const SearchResults = ({
         fullPokeResults.slice(0, 12).map((resultItem, i) => {
           return (
             <SearchItem
+              activeSearchIndex={activeSearchIndex}
+              setActiveSearchIndex={setActiveSearchIndex}
+              setIsActiveDropdown={setIsActiveDropdown}
               resultItem={resultItem}
               isDarkMode={isDarkMode}
+              index={i}
               key={i}
             />
           );
@@ -54,32 +61,12 @@ const SearchResults = ({
           .map((resultItem, i) => {
             return (
               <SearchItem
+                activeSearchIndex={activeSearchIndex}
+                setActiveSearchIndex={setActiveSearchIndex}
+                setIsActiveDropdown={setIsActiveDropdown}
                 resultItem={resultItem}
                 isDarkMode={isDarkMode}
-                key={i}
-              />
-            );
-          })
-      );
-    }
-  }, [fullPokeResults, searchText, setPokeResultsHTML, isDarkMode]);
-
-  useEffect(() => {
-    if (pokeResultsHTML.length <= 12) {
-      setTypesResultsHTML(
-        typesResults
-          .filter(
-            (res, i) =>
-              res.name.includes(`${searchText.toLowerCase()}`) ||
-              (i + Number(1)).toString().includes(`${searchText}`)
-          )
-          .slice(0, 12 - pokeResultsHTML.length)
-          .map((resultItem, i) => {
-            return (
-              <SearchItemType
-                resultItem={resultItem}
-                typeID={resultItem.id}
-                isDarkMode={isDarkMode}
+                index={i}
                 key={i}
               />
             );
@@ -87,12 +74,88 @@ const SearchResults = ({
       );
     }
   }, [
+    activeSearchIndex,
+    setActiveSearchIndex,
+    setIsActiveDropdown,
+    fullPokeResults,
+    searchText,
+    setPokeResultsHTML,
+    isDarkMode,
+  ]);
+
+  // If there are less than 12 pokeresults, add in any type results given the current filter
+  useEffect(() => {
+    if (pokeResultsHTML.length <= 12) {
+      setTypesResultsHTML(
+        typesResults
+          .filter(
+            (res, i) =>
+              (res.name.includes(`${searchText.toLowerCase()}`) ||
+                (i + Number(1)).toString().includes(`${searchText}`)) &&
+              res.name !== "stellar" &&
+              res.name !== "unknown"
+          )
+          .slice(0, 12 - pokeResultsHTML.length)
+          .map((resultItem, i) => {
+            i += pokeResultsHTML.length;
+            return (
+              <SearchItemType
+                activeSearchIndex={activeSearchIndex}
+                setActiveSearchIndex={setActiveSearchIndex}
+                setIsActiveDropdown={setIsActiveDropdown}
+                resultItem={resultItem}
+                typeID={resultItem.id}
+                isDarkMode={isDarkMode}
+                index={i}
+                key={i}
+              />
+            );
+          })
+      );
+    }
+  }, [
+    activeSearchIndex,
+    setActiveSearchIndex,
+    setIsActiveDropdown,
     typesResults,
     pokeResultsHTML.length,
     searchText,
     setTypesResultsHTML,
     isDarkMode,
   ]);
+
+  // Automatically scroll to active item if it is out of view
+  useEffect(() => {
+    const dropdown = searchDropdownRef.current;
+    const activeItem = dropdown?.children[activeSearchIndex + 1];
+
+    if (activeItem) {
+      const itemTop = activeItem.offsetTop;
+      const itemHeight = activeItem.clientHeight;
+      const dropdownTop = dropdown.scrollTop;
+      const dropdownHeight = dropdown.clientHeight;
+
+      // Buffer to keep top label visible
+      const topBuffer = itemHeight / 2;
+      // Buffer space when encountering types label
+      const additionalBuffer =
+        activeSearchIndex === pokeResultsHTML.length ? 2 * itemHeight : 0;
+      const totalBufferSpace = topBuffer + additionalBuffer;
+
+      // Handle scrolling up
+      if (itemTop - dropdownTop - totalBufferSpace < 0) {
+        dropdown.scrollTop = itemTop - totalBufferSpace;
+      }
+      // Handle scrolling down
+      else if (
+        itemTop + itemHeight - dropdownTop - dropdownHeight + additionalBuffer >
+        0
+      ) {
+        dropdown.scrollTop =
+          itemTop + itemHeight - dropdownHeight + additionalBuffer;
+      }
+    }
+  }, [searchDropdownRef, activeSearchIndex, pokeResultsHTML.length]);
 
   // Display if there are no Pokémon given the current search filter
   if (pokeResultsHTML.length === 0 && typesResultsHTML.length === 0) {

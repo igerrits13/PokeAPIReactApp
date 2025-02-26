@@ -6,6 +6,7 @@ import SearchResults from "./SearchResults";
 const SearchBar = ({ typesResults, fullPokeResults, isDarkMode }) => {
   // Variables for checking the text being searched and the search results
   const [searchText, setSearchText] = useState("");
+  const [activeSearchIndex, setActiveSearchIndex] = useState(0);
   const [isActiveDropdown, setIsActiveDropdown] = useState(false);
   const [pokeResultsHTML, setPokeResultsHTML] = useState([]);
   const [typesResultsHTML, setTypesResultsHTML] = useState([]);
@@ -23,6 +24,13 @@ const SearchBar = ({ typesResults, fullPokeResults, isDarkMode }) => {
     ? "icon-dark component-outline-background-dark"
     : "icon-light component-outline-background-light";
 
+  const resetSearchBar = () => {
+    searchDropdownRef.current.scrollTop = 0;
+    setSearchText("");
+    setIsActiveDropdown(false);
+    setActiveSearchIndex(0);
+  };
+
   // Close dropdown if user clicks outside of the dropdown
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -32,9 +40,7 @@ const SearchBar = ({ typesResults, fullPokeResults, isDarkMode }) => {
         inputRef.current &&
         !inputRef.current.contains(event.target)
       ) {
-        searchDropdownRef.current.scrollTop = 0;
-        setSearchText("");
-        setIsActiveDropdown(false);
+        resetSearchBar();
       }
     };
 
@@ -50,11 +56,6 @@ const SearchBar = ({ typesResults, fullPokeResults, isDarkMode }) => {
     setSearchText(e.target.value);
   };
 
-  // Clear the search text
-  const clearSearchText = () => {
-    setSearchText("");
-  };
-
   // Automatically fill the search text based on key pressed
   const autoFillSearchText = (e) => {
     // When 'Tab' is pressed, autofill search text with the next filtered Pokémon
@@ -68,41 +69,48 @@ const SearchBar = ({ typesResults, fullPokeResults, isDarkMode }) => {
     }
     // When 'Enter' is pressed, search for the current text or ID of the Pokémon if it exists
     if (e.key === "Enter") {
-      if (pokeResultsHTML.length > 0) {
-        const urlArr = pokeResultsHTML[0].props.resultItem.url.split("/");
+      if (pokeResultsHTML.length > activeSearchIndex) {
+        const urlArr =
+          pokeResultsHTML[activeSearchIndex].props.resultItem.url.split("/");
         const urlNoSlash = urlArr.filter((part) => part !== "");
         const urlNumber = urlNoSlash[urlNoSlash.length - 1];
         const pokeNum = parseInt(urlNumber, 10);
+        resetSearchBar();
         navigate(`/pokemon/${pokeNum}`);
-        clearSearchText();
       } else if (typesResultsHTML.length > 0) {
-        navigate(`/types/${typesResultsHTML[0].props.resultItem.name}`);
-        clearSearchText();
+        resetSearchBar();
+        navigate(
+          `/types/${
+            typesResultsHTML[activeSearchIndex - pokeResultsHTML.length].props
+              .resultItem.name
+          }`
+        );
       } else {
+        resetSearchBar();
         navigate(`/pokemon/${searchText}`);
-        clearSearchText();
       }
     }
-    // if (e.key === "ArrowDown") {
-    //   if (resultsHTML.length > 0) {
-    //     setSearchText(resultsHTML[0].props.resultItem.name);
-    //     if (inputRef.current) {
-    //       const input = inputRef.current;
-    //       input.setSelectionRange(searchText.length, searchText.length);
-    //     }
-    //   }
-    // }
-    // if (e.key === "ArrowUp") {
-    //   if (resultsHTML.length > 0) {
-    //     setSearchText(
-    //       resultsHTML[resultsHTML.length - 1].props.resultItem.name
-    //     );
-    //     if (inputRef.current) {
-    //       const input = inputRef.current;
-    //       input.setSelectionRange(searchText.length, searchText.length);
-    //     }
-    //   }
-    // }
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      if (
+        activeSearchIndex + 1 >=
+        pokeResultsHTML.length + typesResultsHTML.length
+      ) {
+        setActiveSearchIndex(0);
+      } else {
+        setActiveSearchIndex(activeSearchIndex + 1);
+      }
+    }
+    if (e.key === "ArrowUp") {
+      e.preventDefault();
+      if (activeSearchIndex - 1 < 0) {
+        setActiveSearchIndex(
+          pokeResultsHTML.length + typesResultsHTML.length - 1
+        );
+      } else {
+        setActiveSearchIndex(activeSearchIndex - 1);
+      }
+    }
   };
 
   // Display the search bar with pop-up search results
@@ -122,15 +130,18 @@ const SearchBar = ({ typesResults, fullPokeResults, isDarkMode }) => {
       <Link to={`/pokemon/${searchText}`}>
         <button
           className={`searchbar-search-icon ${searchIconStyle}`}
-          onClick={() => clearSearchText()}
+          onClick={() => resetSearchBar()}
         >
           <i className="fa-solid fa-magnifying-glass searchbar-icon"></i>{" "}
         </button>
       </Link>
       <SearchResults
         searchText={searchText}
+        activeSearchIndex={activeSearchIndex}
+        setActiveSearchIndex={setActiveSearchIndex}
         searchDropdownRef={searchDropdownRef}
         isActiveDropdown={isActiveDropdown}
+        setIsActiveDropdown={setIsActiveDropdown}
         fullPokeResults={fullPokeResults}
         typesResults={typesResults}
         pokeResultsHTML={pokeResultsHTML}
