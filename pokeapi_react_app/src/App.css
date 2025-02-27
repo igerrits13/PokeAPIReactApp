@@ -1531,18 +1531,22 @@ const colours = {
   padding: 0.5rem 1rem;
 }
 
+/* Pokeview Image */
+
 .pokeview-image-container {
-  width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
 }
 
 .pokeview-image {
-  height: auto;
   width: 100%;
+  max-height: 24rem;
   object-fit: contain;
+  background-color: #65d9ff;
 }
 
 .pokeview-image-toggle {
@@ -1550,6 +1554,7 @@ const colours = {
   justify-content: center;
   height: auto;
   width: 100%;
+  padding: 1rem;
 }
 
 .pokeview-image-toggle-normal {
@@ -1576,6 +1581,47 @@ const colours = {
   width: 5rem;
   padding: 0.75rem;
   justify-content: center;
+}
+
+/* Battle toggle */
+
+.pokeview-toggle-container {
+  display: flex;
+  flex-wrap: nowrap;
+  align-self: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.pokeview-toggle {
+  width: 60px;
+  height: 35px;
+  background-color: rgba(255, 255, 255, 0.4);
+  display: flex;
+  justify-content: flex-start;
+  border-radius: 50px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.pokeview-toggle[data-battleview="false"] {
+  justify-content: flex-end;
+}
+
+.pokeview-toggle-handle {
+  height: 25px;
+  width: 25px;
+  background-color: white;
+  border-radius: 15px;
+}
+
+/* Battle Display */
+
+.battle-display-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background-color: yellowgreen;
 }
 
 /* Dynamic Section Buttons */

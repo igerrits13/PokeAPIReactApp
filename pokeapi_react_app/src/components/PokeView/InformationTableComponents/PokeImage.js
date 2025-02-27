@@ -26,47 +26,45 @@ const PokeImage = ({ pokeData, isDarkMode }) => {
 
   // Display the normal or shiny image of the current Pokémon
   return (
-    <div className="secondary-table-conainer-50">
-      <div className="pokeview-image-container">
-        <img
-          className="pokeview-image"
-          src={
-            isNormalToggle
-              ? pokeData.sprites.other["official-artwork"].front_default
-              : pokeData.sprites.other["official-artwork"].front_shiny
-          }
-          alt={`${pokeData.species.name}`}
-        />
-        <div className="pokeview-image-toggle">
+    // <div className="secondary-table-conainer-50">
+    <div className="pokeview-image-container">
+      <img
+        className="pokeview-image"
+        src={
+          isNormalToggle
+            ? pokeData.sprites.other["official-artwork"].front_default
+            : pokeData.sprites.other["official-artwork"].front_shiny
+        }
+        alt={`${pokeData.species.name}`}
+      />
+      <div className="pokeview-image-toggle">
+        <button
+          onClick={handleNormalMode}
+          className={`${
+            pokeData.sprites.other["official-artwork"].front_shiny === null
+              ? "pokeview-image-normal-only"
+              : "pokeview-image-toggle-normal"
+          } ${imageToggleStyle} ${
+            isNormalToggle ? activeImageVersionFontStyle : imageVersionFontStyle
+          }`}
+        >
+          Normal
+        </button>
+        {pokeData.sprites.other["official-artwork"].front_shiny && (
           <button
-            onClick={handleNormalMode}
-            className={`${
-              pokeData.sprites.other["official-artwork"].front_shiny === null
-                ? "pokeview-image-normal-only"
-                : "pokeview-image-toggle-normal"
-            } ${imageToggleStyle} ${
+            onClick={handleShinyMode}
+            className={`pokeview-image-toggle-shiny ${imageToggleStyle} ${
               isNormalToggle
-                ? activeImageVersionFontStyle
-                : imageVersionFontStyle
+                ? imageVersionFontStyle
+                : activeImageVersionFontStyle
             }`}
           >
-            Normal
+            Shiny
           </button>
-          {pokeData.sprites.other["official-artwork"].front_shiny && (
-            <button
-              onClick={handleShinyMode}
-              className={`pokeview-image-toggle-shiny ${imageToggleStyle} ${
-                isNormalToggle
-                  ? imageVersionFontStyle
-                  : activeImageVersionFontStyle
-              }`}
-            >
-              Shiny
-            </button>
-          )}
-        </div>
+        )}
       </div>
     </div>
+    // </div>
   );
 };
 

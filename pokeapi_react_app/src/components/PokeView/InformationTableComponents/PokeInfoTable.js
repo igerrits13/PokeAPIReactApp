@@ -1,5 +1,5 @@
 import PokeBasicInfo from "./PokeBasicInfo";
-import PokeImage from "./PokeImage";
+import BattleImageToggle from "./BattleImageToggle";
 import BreedingInfo from "./BreedingInfo";
 import TrainingInfo from "./TrainingInfo";
 import FormsInfo from "./FormsInfo";
@@ -28,7 +28,7 @@ const PokeInfoTable = ({
       {/* Display the Pokémon image and basic information vertically on small screens, otherwise horizontally */}
       {screenSize === "small" || screenSize === "medium" ? (
         <>
-          <PokeImage pokeData={pokeData} isDarkMode={isDarkMode} />
+          <BattleImageToggle pokeData={pokeData} isDarkMode={isDarkMode} />
           <PokeBasicInfo
             pokeData={pokeData}
             pokeSpeciesData={pokeSpeciesData}
@@ -44,7 +44,7 @@ const PokeInfoTable = ({
             screenSize={screenSize}
             isDarkMode={isDarkMode}
           />
-          <PokeImage pokeData={pokeData} isDarkMode={isDarkMode} />
+          <BattleImageToggle pokeData={pokeData} isDarkMode={isDarkMode} />
         </>
       )}
       {/* Display the next, in depth Pokémon information sections in a way that fits with enough room to fully show on screensize */}
