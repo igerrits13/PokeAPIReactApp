@@ -19,7 +19,6 @@ function App() {
   const [sortBy, setSortBy] = useState("number");
   const [screenSize, setscreenSize] = useState("large");
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   // Check screen size to see if types table should collapse (small, medium, large, x-large)
@@ -68,8 +67,7 @@ function App() {
           `https://pokeapi.co/api/v2/pokemon-species/?limit=5000`
         );
         if (!response.ok) {
-          setError("Error");
-          return;
+          throw new Error(`Error: ${response.statusText}`);
         }
         const data = await response.json();
         const updatedPokemonNames = data.results.map((pokemon) => ({
@@ -79,15 +77,15 @@ function App() {
         setFullPokeResults(updatedPokemonNames);
         setPokeCountTotal(data.count);
       } catch (error) {
-        setError(error.message);
-        console.log("Error fetching Pokémon data:", error);
+        console.error("Error occurred:", error);
+        navigate("/notfound");
       } finally {
         setIsPokeResultsLoading(false);
       }
     };
 
     fetchData();
-  }, []);
+  }, [navigate]);
 
   // Fetch the Pokémon types
   useEffect(() => {
@@ -98,28 +96,20 @@ function App() {
           `https://pokeapi.co/api/v2/type/?limit=-1`
         );
         if (!response.ok) {
-          setError("Error");
-          return;
+          throw new Error(`Error: ${response.statusText}`);
         }
         const jsonData = await response.json();
         setTypesResult(jsonData.results);
       } catch (error) {
-        setError(error.message);
-        console.log("Error fetching type data:", error);
+        console.error("Error occurred:", error);
+        navigate("/notfound");
       } finally {
         setIsTypesResultsLoading(false);
       }
     };
 
     fetchData();
-  }, []);
-
-  // If the API call returns an error, navigate to the page not found
-  useEffect(() => {
-    if (error) {
-      navigate("/notfound");
-    }
-  }, [error, navigate]);
+  }, [navigate]);
 
   // Provide routing for pages within the application
   return (
