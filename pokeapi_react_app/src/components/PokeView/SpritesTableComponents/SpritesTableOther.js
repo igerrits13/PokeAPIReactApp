@@ -12,7 +12,7 @@ const SpritesTableOther = ({
   isDarkMode,
 }) => {
   // Setup the sprites section style based on if the user is using light or dark mode
-  const fontStyle = isDarkMode ? "title-font-dark" : "title-font-light";
+  const fontStyle = isDarkMode ? "font-dark" : "font-light";
   const tirtiaryHeaderStyle =
     screenSize === "small"
       ? "tirtiary-page-header-small"

@@ -13,8 +13,8 @@ const OptionSortItem = ({
   // Setup the sort item style based on if the user is using light or dark mode
   const fontStyle = isDarkMode ? "font-dark" : "font-light";
   const optionStyle = isDarkMode
-    ? "component-background-dark component-outline-dark"
-    : "component-background-light component-outline-light";
+    ? "component-background-dark component-outline-dark-no-side"
+    : "component-background-light component-outline-light-no-side";
 
   // Create state to track when the item is being hovered
   const [isHovered, setIsHovered] = useState(false);

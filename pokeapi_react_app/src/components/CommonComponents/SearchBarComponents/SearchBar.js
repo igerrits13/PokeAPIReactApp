@@ -3,7 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import SearchResults from "./SearchResults";
 
 // Search bar for searching Pokémon
-const SearchBar = ({ typesResults, fullPokeResults, isDarkMode }) => {
+const SearchBar = ({
+  typesResults,
+  fullPokeResults,
+  screenSize,
+  isDarkMode,
+}) => {
   // Variables for checking the text being searched and the search results
   const [searchText, setSearchText] = useState("");
   const [activeSearchIndex, setActiveSearchIndex] = useState(0);
@@ -90,6 +95,10 @@ const SearchBar = ({ typesResults, fullPokeResults, isDarkMode }) => {
         navigate(`/pokemon/${searchText}`);
       }
     }
+    // Disable arrow keys for small screens
+    if (screenSize === "small") {
+      return;
+    }
     if (e.key === "ArrowDown") {
       e.preventDefault();
       if (
@@ -103,7 +112,10 @@ const SearchBar = ({ typesResults, fullPokeResults, isDarkMode }) => {
     }
     if (e.key === "ArrowUp") {
       e.preventDefault();
-      if (activeSearchIndex - 1 < 0) {
+      if (
+        activeSearchIndex - 1 < 0 ||
+        activeSearchIndex - 1 > pokeResultsHTML.length
+      ) {
         setActiveSearchIndex(
           pokeResultsHTML.length + typesResultsHTML.length - 1
         );
@@ -148,6 +160,7 @@ const SearchBar = ({ typesResults, fullPokeResults, isDarkMode }) => {
         setPokeResultsHTML={setPokeResultsHTML}
         typesResultsHTML={typesResultsHTML}
         setTypesResultsHTML={setTypesResultsHTML}
+        screenSize={screenSize}
         isDarkMode={isDarkMode}
       />
     </div>

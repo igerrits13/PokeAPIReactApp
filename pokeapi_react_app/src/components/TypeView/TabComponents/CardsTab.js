@@ -38,6 +38,7 @@ const CardsTab = ({
       key={2}
       setFilterOptions={[setFilterByGen]}
       setSortOptions={setSortBy}
+      screenSize={screenSize}
       isDarkMode={isDarkMode}
     />,
   ];

@@ -25,6 +25,7 @@ const SearchItemType = ({
   setIsActiveDropdown,
   resultItem,
   typeID,
+  screenSize,
   isDarkMode,
   index,
 }) => {
@@ -87,7 +88,9 @@ const SearchItemType = ({
   return (
     <Link
       className={`search-results-item clean-text ${searchResultsItemsStyle} ${
-        activeSearchIndex === index ? "search-results-item-active" : ""
+        activeSearchIndex === index && screenSize !== "small"
+          ? "search-results-item-active"
+          : ""
       }`}
       to={typeIdURL}
       onClick={() => setIsActiveDropdown(false)}

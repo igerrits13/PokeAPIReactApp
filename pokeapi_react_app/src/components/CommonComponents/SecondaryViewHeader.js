@@ -10,7 +10,7 @@ const SecondaryViewHeader = ({
   isDarkMode,
 }) => {
   // Setup the title font style based on if the user is using light or dark mode and screen size
-  const fontStyle = isDarkMode ? "title-font-dark" : "title-font-light";
+  const fontStyle = isDarkMode ? "font-dark" : "title-font-light";
   const secondaryHeaderStyle =
     screenSize === "small"
       ? "secondary-header-small"
@@ -40,6 +40,7 @@ const SecondaryViewHeader = ({
       <SearchBar
         fullPokeResults={fullPokeResults}
         typesResults={typesResults}
+        screenSize={screenSize}
         isDarkMode={isDarkMode}
       />
     </div>

@@ -2,7 +2,7 @@ import TypesResultsItem from "./TypesResultsItem";
 
 // Display for full screen types table
 const TypesResults = ({ typesResults, getTypeIcon, isDarkMode }) => {
-  const fontStyle = isDarkMode ? "title-font-dark" : "title-font-light";
+  const fontStyle = isDarkMode ? "font-dark" : "font-light";
 
   // List of types shown as a full types table
   const typesHTML = typesResults

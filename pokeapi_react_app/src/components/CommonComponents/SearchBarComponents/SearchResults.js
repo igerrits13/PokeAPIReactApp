@@ -16,6 +16,7 @@ const SearchResults = ({
   setPokeResultsHTML,
   typesResultsHTML,
   setTypesResultsHTML,
+  screenSize,
   isDarkMode,
 }) => {
   // Setup the search bar style based on if the user is using light or dark mode
@@ -40,6 +41,7 @@ const SearchResults = ({
               setActiveSearchIndex={setActiveSearchIndex}
               setIsActiveDropdown={setIsActiveDropdown}
               resultItem={resultItem}
+              screenSize={screenSize}
               isDarkMode={isDarkMode}
               index={i}
               key={i}
@@ -65,6 +67,7 @@ const SearchResults = ({
                 setActiveSearchIndex={setActiveSearchIndex}
                 setIsActiveDropdown={setIsActiveDropdown}
                 resultItem={resultItem}
+                screenSize={screenSize}
                 isDarkMode={isDarkMode}
                 index={i}
                 key={i}
@@ -81,6 +84,7 @@ const SearchResults = ({
     searchText,
     setPokeResultsHTML,
     isDarkMode,
+    screenSize,
   ]);
 
   // If there are less than 12 pokeresults, add in any type results given the current filter
@@ -105,6 +109,7 @@ const SearchResults = ({
                 setIsActiveDropdown={setIsActiveDropdown}
                 resultItem={resultItem}
                 typeID={resultItem.id}
+                screenSize={screenSize}
                 isDarkMode={isDarkMode}
                 index={i}
                 key={i}
@@ -122,6 +127,7 @@ const SearchResults = ({
     searchText,
     setTypesResultsHTML,
     isDarkMode,
+    screenSize,
   ]);
 
   // Automatically scroll to active item if it is out of view

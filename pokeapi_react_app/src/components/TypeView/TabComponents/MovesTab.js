@@ -7,7 +7,7 @@ const MovesTab = ({ typeData, isTypesLoading, getTypeIcon, isDarkMode }) => {
   const moveSectionStyle = isDarkMode
     ? "component-background-dark component-outline-thin-dark"
     : "component-background-light component-outline-thin-light";
-  const titleFontStyle = isDarkMode ? "title-font-dark" : "title-font-light";
+  const titleFontStyle = isDarkMode ? "font-dark" : "font-light";
 
   // Get the styling for the current type
   let typeIcon, typeStyle;

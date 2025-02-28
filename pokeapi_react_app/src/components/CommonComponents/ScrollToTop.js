@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 // Popup button to allow user to scroll to top of the current page on click
 const ScrollToTop = ({ isDarkMode }) => {
   // Setup the font style based on if the user is using light or dark mode and screen size
-  const fontStyle = isDarkMode ? "title-font-dark" : "title-font-light";
+  const fontStyle = isDarkMode ? "font-dark" : "font-light";
 
   // Use state to track if the button should be visible and if it is being hovered on
   const [showIcon, setShowIcon] = useState(false);

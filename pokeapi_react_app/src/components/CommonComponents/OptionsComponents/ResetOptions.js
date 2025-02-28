@@ -1,7 +1,12 @@
 import { motion } from "motion/react";
 
 // Handles the logic for filtering Pokémon by gen
-const ResetOptions = ({ setFilterOptions, setSortOptions, isDarkMode }) => {
+const ResetOptions = ({
+  setFilterOptions,
+  setSortOptions,
+  screenSize,
+  isDarkMode,
+}) => {
   // Setup the sort options style based on if the user is using light or dark mode
   const fontStyle = isDarkMode ? "font-dark" : "font-light";
   const optionStyle = isDarkMode
@@ -19,7 +24,9 @@ const ResetOptions = ({ setFilterOptions, setSortOptions, isDarkMode }) => {
   // Create the view of the filter dropdown
   return (
     <motion.button
-      className={`option-sort-dropdown-button option-sort-reset-button ${fontStyle} ${optionStyle}`}
+      className={`option-sort-dropdown-button 
+        ${screenSize !== "small" ? "option-sort-reset-button" : ""}
+       ${fontStyle} ${optionStyle}`}
       onClick={() => resetFilters()}
       whileHover={{ scale: 1.1, rotate: "-1.5deg" }}
       whileTap={{ scale: 0.9, rotate: "5deg" }}

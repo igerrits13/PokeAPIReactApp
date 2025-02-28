@@ -13,7 +13,7 @@ const SpriteTableSection = ({
   isDarkMode,
 }) => {
   // Setup the sprites section style based on if the user is using light or dark mode
-  const fontStyle = isDarkMode ? "title-font-dark" : "title-font-light";
+  const fontStyle = isDarkMode ? "font-dark" : "font-light";
   const spriteSectionStyle = isDarkMode
     ? "component-background-dark component-outline-thin-dark"
     : "component-background-light component-outline-thin-light";
@@ -47,15 +47,21 @@ const SpriteTableSection = ({
     <div
       className={`sprites-table-game ${
         isActiveIconsDropdown ? "sprites-table-game-active" : ""
+      } ${
+        isActiveIconsDropdown || totalIndices === 0
+          ? "sprites-table-game-title-single"
+          : index === 0
+          ? "sprites-table-game-title-top"
+          : index === totalIndices
+          ? "sprites-table-game-title-bottom"
+          : ""
       } ${spriteSectionStyle} ${fontStyle}`}
     >
       <div
         className={`sprites-table-game-title ${
-          isActiveIconsDropdown
-            ? "sprites-table-game-title-top"
-            : totalIndices === 0
+          !isActiveIconsDropdown && totalIndices === 0
             ? "sprites-table-game-title-single"
-            : index === 0
+            : isActiveIconsDropdown || index === 0
             ? "sprites-table-game-title-top"
             : index === totalIndices
             ? "sprites-table-game-title-bottom"

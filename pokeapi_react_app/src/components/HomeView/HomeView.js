@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import ScrollToTop from "../CommonComponents/ScrollToTop";
 import Title from "./Title";
 import SearchBar from "../CommonComponents/SearchBarComponents/SearchBar";
@@ -36,6 +37,13 @@ const HomeView = ({
       ? "homeview-med"
       : "homeview-large";
 
+  // Reset sort options on initial page load
+  useEffect(() => {
+    setFilterByGen(["all"]);
+    setFilterByType(["all"]);
+    setSortBy("number");
+  }, [setFilterByGen, setFilterByType, setSortBy]);
+
   // Options to be displayed in the home page Pokémon view
   const sortOptions = [
     <OptionGen
@@ -61,6 +69,7 @@ const HomeView = ({
       key={3}
       setFilterOptions={[setFilterByGen, setFilterByType]}
       setSortOptions={setSortBy}
+      screenSize={screenSize}
       isDarkMode={isDarkMode}
     />,
   ];
@@ -78,16 +87,17 @@ const HomeView = ({
         <SearchBar
           fullPokeResults={fullPokeResults}
           typesResults={typesResults}
+          screenSize={screenSize}
           isDarkMode={isDarkMode}
         />
       )}
-      <hr />
+      {screenSize !== "small" && <hr />}
       <TypeseTable
         screenSize={screenSize}
         typesResults={typesResults}
         isDarkMode={isDarkMode}
       />
-      <hr />
+      {screenSize !== "small" && <hr />}
       <DynamicSortOptions sortOptions={sortOptions} screenSize={screenSize} />
       <PokemonTable
         pokeResults={pokeResults}

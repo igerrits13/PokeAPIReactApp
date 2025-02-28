@@ -10,7 +10,7 @@ const PokemonCardCollection = ({
   isDarkMode,
 }) => {
   // Setup the search bar style based on if the user is using light or dark mode
-  const fontStyle = isDarkMode ? "title-font-dark" : "title-font-light";
+  const fontStyle = isDarkMode ? "font-dark" : "font-light";
 
   // Variable to hold how many cards will be displayed based on user scrolling
   const [cardsToDisplay, setCardsToDisplay] = useState(12);

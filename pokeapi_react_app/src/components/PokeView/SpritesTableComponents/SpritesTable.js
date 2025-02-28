@@ -7,7 +7,7 @@ import SpritesTableOther from "./SpritesTableOther";
 // Basic table for displaying all of the current Pokémon's sprites
 const SpritesTable = ({ pokeData, screenSize, isDarkMode }) => {
   // Setup the sprites section style based on if the user is using light or dark mode
-  const fontStyle = isDarkMode ? "title-font-dark" : "title-font-light";
+  const fontStyle = isDarkMode ? "font-dark" : "font-light";
   const secondaryHeaderStyle =
     screenSize === "small"
       ? "secondary-page-header-small"

@@ -5,15 +5,15 @@ import { motion } from "motion/react";
 const FormsInfoForms = ({ pokeData, isDarkMode }) => {
   // Setup the page font and alternate forms butons based on if tthe user is using dark mode or not
   const fontStyle = isDarkMode ? "font-dark" : "font-light";
-  const infoButtonStyle = isDarkMode
-    ? "component-background-dark component-outline-dark"
-    : "component-background-light component-outline-light";
   const inactiveButtonStyle = isDarkMode
     ? "option-font-dark"
     : "option-font-light";
-  const formsResultsStyle = isDarkMode
+  const infoButtonStyle = isDarkMode
     ? "component-background-dark component-outline-dark"
     : "component-background-light component-outline-light";
+  const formsResultsStyle = isDarkMode
+    ? "component-background-dark component-outline-dark-no-side"
+    : "component-background-light component-outline-light-no-side";
 
   // Create state and refs to track when the varieties dropdown should be displayed
   const [isActiveFormsDropdown, setIsActiveFormsDropdown] = useState(false);

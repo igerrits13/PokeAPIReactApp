@@ -80,6 +80,12 @@
   border: 2px solid #1e201d;
 }
 
+.component-outline-dark-no-side {
+  border: none;
+  border-top: 1px solid #1e201d;
+  border-bottom: 1px solid #1e201d;
+}
+
 .component-outline-bottom-dark {
   border-bottom: 2px solid #1e201d;
 }
@@ -95,13 +101,6 @@
 
 .component-outline-background-dark {
   background: #1e201d;
-}
-
-.title-font-dark {
-  font-family: josefinSans-bold, sans-serif;
-  text-shadow: -1px -1px 0 #201d1f, 1px -1px 0 #201d1f, -1px 1px 0 #201d1f,
-    1px 1px 0 #201d1f;
-  color: #fff9fc;
 }
 
 .font-dark {
@@ -162,6 +161,12 @@
 
 .component-outline-light {
   border: 2px solid #1e201d;
+}
+
+.component-outline-light-no-side {
+  border: none;
+  border-top: 1px solid #1e201d;
+  border-bottom: 1px solid #1e201d;
 }
 
 .component-outline-bottom-light {
@@ -845,10 +850,10 @@ const colours = {
 .sortoptions-container-small {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
   padding: 10px;
   width: 100%;
-  gap: 10px 0;
+  gap: 15px 0;
 }
 
 .sortoptions-container-med-large {
@@ -980,6 +985,7 @@ const colours = {
   text-decoration: none;
   outline: 1px solid #1e201d;
   min-height: 10rem;
+  height: 100%;
 }
 
 .pokemon-card:hover {
@@ -2024,10 +2030,10 @@ const colours = {
   text-align: center;
   align-items: center;
   padding: 20px 10px;
-  border-radius: 10px;
 }
 
 .sprites-table-game-active {
+  /* border-radius: 10px; */
   margin: 0 0 25px 0;
 }
 

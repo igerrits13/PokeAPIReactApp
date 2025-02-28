@@ -6,7 +6,7 @@ import SpriteTableSection from "../../PokeView/SpritesTableComponents/SpriteTabl
 // Tab displaying a list of sprites
 const SpritesTab = ({ typeData, isDarkMode }) => {
   // Setup the search bar style based on if the user is using light or dark mode
-  const fontStyle = isDarkMode ? "title-font-dark" : "title-font-light";
+  const fontStyle = isDarkMode ? "font-dark" : "font-light";
 
   // State to keep track if the user has selected to expand or collapse all sections of table
   // Null if the user has not selected anything

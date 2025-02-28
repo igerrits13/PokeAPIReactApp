@@ -44,7 +44,7 @@ const TypeView = ({
   // Setup data structures to get the id of the type, store type data of the current type,
   // setup the loading, error state for the API call and page navigation, and what tab is currently active
   const { id } = useParams();
-  const [typeData, setTypeData] = useState([]);
+  const [typeData, setTypeData] = useState({});
   const [isTypesLoading, setIsTypesLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -164,18 +164,20 @@ const TypeView = ({
         screenSize={screenSize}
         isDarkMode={isDarkMode}
       />
-      {!isTypesLoading && (
+      {!isTypesLoading && typeData.name && (
         <div className={`${fontStyle} ${secondaryHeaderStyle}`}>
           {typeData.name[0].toUpperCase() + typeData.name.slice(1)} Type
         </div>
       )}
-      <TypeInfoTable
-        isTypesLoading={isTypesLoading}
-        typeData={typeData}
-        getTypeIcon={getTypeIcon}
-        screenSize={screenSize}
-        isDarkMode={isDarkMode}
-      />
+      {!isTypesLoading && (
+        <TypeInfoTable
+          isTypesLoading={isTypesLoading}
+          typeData={typeData}
+          getTypeIcon={getTypeIcon}
+          screenSize={screenSize}
+          isDarkMode={isDarkMode}
+        />
+      )}
       <hr />
       <DynamicTabOptions
         tabLabels={tabLabels}

@@ -5,6 +5,7 @@ const SearchItem = ({
   setActiveSearchIndex,
   setIsActiveDropdown,
   resultItem,
+  screenSize,
   isDarkMode,
   index,
 }) => {
@@ -33,7 +34,9 @@ const SearchItem = ({
   return (
     <Link
       className={`search-results-item clean-text ${searchResultsItemsStyle} ${
-        activeSearchIndex === index ? "search-results-item-active" : ""
+        activeSearchIndex === index && screenSize !== "small"
+          ? "search-results-item-active"
+          : ""
       }`}
       to={pokeIdURL}
       onClick={() => setIsActiveDropdown(false)}

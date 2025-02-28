@@ -13,9 +13,12 @@ const FormsInfoVarieties = ({
   const inactiveButtonStyle = isDarkMode
     ? "option-font-dark"
     : "option-font-light";
-  const formsResultsStyle = isDarkMode
+  const formsButtonStyle = isDarkMode
     ? "component-background-dark component-outline-dark"
     : "component-background-light component-outline-light";
+  const formsResultStyle = isDarkMode
+    ? "component-background-dark component-outline-dark-no-side"
+    : "component-background-light component-outline-light-no-side";
 
   // Create state and refs to track when the varieties dropdown should be displayed
   const [isActiveVarietiesDropdown, setIsActiveVarietiesDropdown] =
@@ -84,7 +87,7 @@ const FormsInfoVarieties = ({
 
           return (
             <motion.button
-              className={`dyn-section-button ${fontStyle} ${formsResultsStyle} ${
+              className={`dyn-section-button ${fontStyle} ${formsButtonStyle} ${
                 isDisabled ? inactiveButtonStyle : ""
               }`}
               key={i}
@@ -113,7 +116,7 @@ const FormsInfoVarieties = ({
       ) : (
         <div className="dyn-section-dropdown-container">
           <button
-            className={`dyn-section-dropdown-button ${fontStyle} ${formsResultsStyle}`}
+            className={`dyn-section-dropdown-button ${fontStyle} ${formsButtonStyle}`}
             onClick={() =>
               setIsActiveVarietiesDropdown(!isActiveVarietiesDropdown)
             }
@@ -129,7 +132,7 @@ const FormsInfoVarieties = ({
             ></motion.i>
           </button>
           <div
-            className={`dyn-section-dropdown-results ${formsResultsStyle} ${
+            className={`dyn-section-dropdown-results ${formsResultStyle} ${
               isActiveVarietiesDropdown
                 ? "dyn-section-dropdown-results-active"
                 : ""
@@ -141,7 +144,7 @@ const FormsInfoVarieties = ({
 
               return (
                 <motion.button
-                  className={`dyn-section-dropdown-items ${fontStyle} ${formsResultsStyle} ${
+                  className={`dyn-section-dropdown-items ${fontStyle} ${formsButtonStyle} ${
                     isDisabled ? inactiveButtonStyle : ""
                   }`}
                   key={i}
