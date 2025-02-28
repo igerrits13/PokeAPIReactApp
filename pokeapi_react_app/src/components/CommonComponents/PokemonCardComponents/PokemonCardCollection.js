@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { debounce } from "lodash";
 import DynamicSortOptions from "../DynamicComponents/DynamicSortOptions";
 import LoadingBall from "./LoadingBall";
 import PokemonCard from "./PokemonCard";
 
+// Collection of cards within the current filter and sort options
 const PokemonCardCollection = ({
   commonElements,
   sortBy,
@@ -15,7 +17,7 @@ const PokemonCardCollection = ({
   const fontStyle = isDarkMode ? "font-dark" : "font-light";
 
   // Variable to hold how many cards will be displayed based on user scrolling
-  const [cardsToDisplay, setCardsToDisplay] = useState(12);
+  const [cardsToDisplay, setCardsToDisplay] = useState(24);
 
   // Create a card for each Pokémon
   const cardsHTML = commonElements.map((obj, i) => {
@@ -64,12 +66,29 @@ const PokemonCardCollection = ({
     cardsHTML.sort(compareName);
   }
 
-  // Update how many cards are to be displayed
-  const fetchMoreData = () => {
-    setCardsToDisplay(cardsToDisplay + 24);
-    // setCardsToDisplay(cardsToDisplay + 12);
-  };
+  // Debounced version of fetchMoreData
+  useEffect(() => {
+    // Create the debounced version of fetchMoreData
+    const debouncedFetchMoreData = debounce(() => {
+      setCardsToDisplay((prevCount) => prevCount + 48);
+    }, 100);
 
+    // Add event listeners to trigger debounced function
+    const scrollHandler = () => {
+      debouncedFetchMoreData();
+    };
+
+    // Add event listener for scrolling
+    window.addEventListener("scroll", scrollHandler);
+
+    // Cleanup on unmount
+    return () => {
+      window.removeEventListener("scroll", scrollHandler);
+      debouncedFetchMoreData.cancel();
+    };
+  }, []);
+
+  // Display the current card collection using infinite scroll
   return (
     <div>
       <div className={`sub-header ${fontStyle}`}>
@@ -78,7 +97,7 @@ const PokemonCardCollection = ({
       <DynamicSortOptions sortOptions={sortOptions} screenSize={screenSize} />
       <InfiniteScroll
         dataLength={cardsToDisplay}
-        next={fetchMoreData}
+        next={() => {}}
         hasMore={cardsToDisplay < commonElements.length}
         loader={
           <div className="loading-ball-container">

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
+import { debounce } from "lodash";
 import HomeView from "./components/HomeView/HomeView";
 import TypeView from "./components/TypeView/TypeView";
 import PokeView from "./components/PokeView/PokeView";
@@ -21,7 +22,7 @@ function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const navigate = useNavigate();
 
-  // Check screen size to see if types table should collapse (small, medium, large, x-large)
+  // Check screen size and orientation to see if types table should collapse (small, medium, large, x-large)
   useEffect(() => {
     const handleScreenResize = () => {
       if (window.innerWidth < 576) {
@@ -35,9 +36,21 @@ function App() {
       }
     };
 
-    window.addEventListener("resize", handleScreenResize);
+    // Create the debounced version of the resize function
+    const debouncedResize = debounce(handleScreenResize, 300);
+
+    // Initial screen size check
     handleScreenResize();
-    return () => window.removeEventListener("resize", handleScreenResize);
+
+    // Add event listeners for resize and orientationchange
+    window.addEventListener("resize", debouncedResize);
+    window.addEventListener("orientationchange", debouncedResize);
+
+    // Cleanup event listeners on unmount
+    return () => {
+      window.removeEventListener("resize", debouncedResize);
+      window.removeEventListener("orientationchange", debouncedResize);
+    };
   }, []);
 
   // Check if the user is in dark mode or not
