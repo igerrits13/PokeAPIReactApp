@@ -3,7 +3,6 @@ import ScrollToTop from "../CommonComponents/ScrollToTop";
 import Title from "./Title";
 import SearchBar from "../CommonComponents/SearchBarComponents/SearchBar";
 import TypeseTable from "./TypesTableComponents/TypesTable";
-import DynamicSortOptions from "../CommonComponents/DynamicComponents/DynamicSortOptions";
 import OptionGen from "../CommonComponents/OptionsComponents/OptionGen";
 import OptionType from "../CommonComponents/OptionsComponents/OptionType";
 import OptionSort from "../CommonComponents/OptionsComponents/OptionSort";
@@ -98,7 +97,7 @@ const HomeView = ({
         isDarkMode={isDarkMode}
       />
       {screenSize !== "small" && <hr />}
-      <DynamicSortOptions sortOptions={sortOptions} screenSize={screenSize} />
+      {/* <DynamicSortOptions sortOptions={sortOptions} screenSize={screenSize} /> */}
       <PokemonTable
         pokeResults={pokeResults}
         setPokeResults={setPokeResults}
@@ -107,6 +106,7 @@ const HomeView = ({
         filterByGen={filterByGen}
         filterByType={filterByType}
         sortBy={sortBy}
+        sortOptions={sortOptions}
         isDarkMode={isDarkMode}
       />
       <Footer isDarkMode={isDarkMode} screenSize={screenSize} />

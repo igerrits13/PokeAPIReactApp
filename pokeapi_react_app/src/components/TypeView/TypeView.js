@@ -46,7 +46,6 @@ const TypeView = ({
   const { id } = useParams();
   const [typeData, setTypeData] = useState({});
   const [isTypesLoading, setIsTypesLoading] = useState(true);
-  const [error, setError] = useState(null);
   const navigate = useNavigate();
   const [activeButton, setActiveButton] = useState(0);
 
@@ -73,26 +72,24 @@ const TypeView = ({
   useEffect(() => {
     const fetchData = async () => {
       // Check if the id is within the valid types
+      setIsTypesLoading(true);
       if ((id > 0 && id < 19) || isNaN(id)) {
-        setIsTypesLoading(true);
         try {
           const response = await fetch(`https://pokeapi.co/api/v2/type/${id}/`);
           if (!response.ok) {
-            setError("Error");
-            setIsTypesLoading(false);
-            return;
+            throw new Error(`Error: ${response.statusText}`);
           }
           const jsonData = await response.json();
           setTypeData(jsonData);
         } catch (error) {
-          setError(error);
+          console.error("Error occurred:", error);
+          navigate("/notfound");
         } finally {
           setIsTypesLoading(false);
         }
       } else {
         setIsTypesLoading(false);
-        setError("Error ID:", id);
-        return;
+        navigate("/notfound");
       }
     };
     fetchData();
@@ -103,12 +100,6 @@ const TypeView = ({
     setFilterByGen(["all"]);
     setSortBy("number");
   }, [setFilterByGen, setSortBy]);
-
-  // If the API call returns an error, navigate to the page not found
-  if (error) {
-    navigate("/notfound");
-    return;
-  }
 
   // Map to match for each possible type case
   const typeMapping = {
@@ -164,7 +155,7 @@ const TypeView = ({
         screenSize={screenSize}
         isDarkMode={isDarkMode}
       />
-      {!isTypesLoading && typeData.name && (
+      {!isTypesLoading && (
         <div className={`${fontStyle} ${secondaryHeaderStyle}`}>
           {typeData.name[0].toUpperCase() + typeData.name.slice(1)} Type
         </div>
@@ -186,7 +177,7 @@ const TypeView = ({
         isDarkMode={isDarkMode}
         screenSize={screenSize}
       />
-      {activeTab === "Pokémon" && (
+      {activeTab === "Pokémon" && !isTypesLoading && (
         <CardsTab
           pokeResults={pokeResults}
           setPokeResults={setPokeResults}
@@ -195,15 +186,15 @@ const TypeView = ({
           setFilterByGen={setFilterByGen}
           typeData={typeData}
           setTypeData={setTypeData}
-          isTypesLoading={isTypesLoading}
-          setIsTypesLoading={setIsTypesLoading}
+          // isTypesLoading={isTypesLoading}
+          // setIsTypesLoading={setIsTypesLoading}
           sortBy={sortBy}
           setSortBy={setSortBy}
           isDarkMode={isDarkMode}
           screenSize={screenSize}
         />
       )}
-      {activeTab === "Moves" && (
+      {activeTab === "Moves" && !isTypesLoading && (
         <MovesTab
           typeData={typeData}
           isTypesLoading={isTypesLoading}
@@ -211,7 +202,7 @@ const TypeView = ({
           isDarkMode={isDarkMode}
         />
       )}
-      {activeTab === "Sprites" && (
+      {activeTab === "Sprites" && !isTypesLoading && (
         <SpritesTab
           typeData={typeData}
           screenSize={screenSize}

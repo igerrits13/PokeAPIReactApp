@@ -1,11 +1,13 @@
 import { useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
+import DynamicSortOptions from "../DynamicComponents/DynamicSortOptions";
 import LoadingBall from "./LoadingBall";
 import PokemonCard from "./PokemonCard";
 
 const PokemonCardCollection = ({
   commonElements,
   sortBy,
+  sortOptions,
   screenSize,
   isDarkMode,
 }) => {
@@ -73,6 +75,7 @@ const PokemonCardCollection = ({
       <div className={`sub-header ${fontStyle}`}>
         Pokémon ({commonElements.length})
       </div>
+      <DynamicSortOptions sortOptions={sortOptions} screenSize={screenSize} />
       <InfiniteScroll
         dataLength={cardsToDisplay}
         next={fetchMoreData}

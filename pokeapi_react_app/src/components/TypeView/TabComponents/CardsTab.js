@@ -1,4 +1,4 @@
-import DynamicSortOptions from "../../CommonComponents/DynamicComponents/DynamicSortOptions";
+// import DynamicSortOptions from "../../CommonComponents/DynamicComponents/DynamicSortOptions";
 import OptionGen from "../../CommonComponents/OptionsComponents/OptionGen";
 import OptionSort from "../../CommonComponents/OptionsComponents/OptionSort";
 import ResetOptions from "../../CommonComponents/OptionsComponents/ResetOptions";
@@ -13,8 +13,8 @@ const CardsTab = ({
   setFilterByGen,
   typeData,
   setTypeData,
-  isTypesLoading,
-  setIsTypesLoading,
+  // isTypesLoading,
+  // setIsTypesLoading,
   sortBy,
   setSortBy,
   isDarkMode,
@@ -46,17 +46,18 @@ const CardsTab = ({
   // Display Pokémon tab when active
   return (
     <div>
-      <DynamicSortOptions sortOptions={sortOptions} screenSize={screenSize} />
+      {/* <DynamicSortOptions sortOptions={sortOptions} screenSize={screenSize} /> */}
       <PokemonTypesCardCollection
         pokeResults={pokeResults}
         setPokeResults={setPokeResults}
         typeData={typeData}
         setTypeData={setTypeData}
-        isTypesLoading={isTypesLoading}
-        setIsTypesLoading={setIsTypesLoading}
+        // isTypesLoading={isTypesLoading}
+        // setIsTypesLoading={setIsTypesLoading}
         pokeCountTotal={pokeCountTotal}
         filterByGen={filterByGen}
         sortBy={sortBy}
+        sortOptions={sortOptions}
         screenSize={screenSize}
         isDarkMode={isDarkMode}
       />

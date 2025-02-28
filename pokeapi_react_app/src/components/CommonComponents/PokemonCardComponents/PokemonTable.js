@@ -10,6 +10,7 @@ const PokemonTable = ({
   filterByGen,
   filterByType,
   sortBy,
+  sortOptions,
   isDarkMode,
 }) => {
   // Create states to keep track of what Pokémon cards are to be displayed given the current filters
@@ -110,6 +111,7 @@ const PokemonTable = ({
     <PokemonCardCollection
       commonElements={commonElements}
       sortBy={sortBy}
+      sortOptions={sortOptions}
       screenSize={screenSize}
       isDarkMode={isDarkMode}
     />

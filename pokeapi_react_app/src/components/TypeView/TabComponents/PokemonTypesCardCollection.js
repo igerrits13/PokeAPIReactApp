@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import PokemonCardCollection from "../../CommonComponents/PokemonCardComponents/PokemonCardCollection";
 
 // Display Pokémon of the specified type for the types view page
@@ -6,14 +6,17 @@ const PokemonTypesCardCollection = ({
   pokeResults,
   setPokeResults,
   typeData,
-  isTypesLoading,
-  setIsTypesLoading,
+  // isTypesLoading,
+  // setIsTypesLoading,
   pokeCountTotal,
   filterByGen,
   sortBy,
+  sortOptions,
   screenSize,
   isDarkMode,
 }) => {
+  const [isTypesLoading, setIsTypesLoading] = useState(true);
+
   // Fetch the Pokémon information from the requested gens if user has specified gens
   useEffect(() => {
     if (filterByGen[0] !== "all") {
@@ -31,6 +34,14 @@ const PokemonTypesCardCollection = ({
         })
         .catch((error) => {
           console.error("Error fetching generation data:", error);
+          setIsTypesLoading(false);
+        });
+    } else if (filterByGen[0] === "all") {
+      setIsTypesLoading(true);
+      fetch(`https://pokeapi.co/api/v2/pokemon-species/?limit=5000`)
+        .then((response) => response.json())
+        .then((data) => {
+          setPokeResults(data.results);
           setIsTypesLoading(false);
         });
     }
@@ -73,6 +84,7 @@ const PokemonTypesCardCollection = ({
     <PokemonCardCollection
       commonElements={commonElements}
       sortBy={sortBy}
+      sortOptions={sortOptions}
       screenSize={screenSize}
       isDarkMode={isDarkMode}
     />

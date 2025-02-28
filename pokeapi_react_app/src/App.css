@@ -2158,6 +2158,7 @@ const colours = {
   right: 2rem;
   font-size: 1.5rem;
   cursor: pointer;
+  z-index: 1;
 }
 
 .scroll-top-icon-active {

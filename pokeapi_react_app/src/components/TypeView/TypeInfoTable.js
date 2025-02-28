@@ -25,10 +25,10 @@ const TypeInfoTable = ({
     : "component-background-light component-rounded-outline-thin-light";
 
   // Get the styling for the current type
-  let typeIcon, typeStyle;
-  if (!isTypesLoading) {
-    [typeIcon, typeStyle] = getTypeIcon(typeData.name);
-  }
+  // let typeIcon, typeStyle;
+  // if (!isTypesLoading) {
+  const [typeIcon, typeStyle] = getTypeIcon(typeData.name);
+  // }
 
   // When the types have loaded, display the type information table showing basic information, damage relations and
   // the current type's icon
