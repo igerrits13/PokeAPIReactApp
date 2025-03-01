@@ -31,10 +31,10 @@ const PokeView = ({
   // Adjust the container style of the page based on the current screensize
   const containerSize =
     screenSize === "small"
-      ? "notfound-small"
+      ? "pokemonview-small"
       : screenSize === "medium"
-      ? "notfound-med"
-      : "notfound-large";
+      ? "pokemonview-med"
+      : "pokemonview-large";
 
   // Fetch data for the current Pokémon-Species
   useEffect(() => {
@@ -135,11 +135,7 @@ const PokeView = ({
 
   // Display the Pokémon page
   return (
-    <div
-      className={`pokemonview-container ${containerSize} ${
-        isDarkMode ? "background-dark" : "background-light"
-      }`}
-    >
+    <>
       <ScrollToTop isDarkMode={isDarkMode} />
       <SecondaryViewHeader
         fullPokeResults={fullPokeResults}
@@ -147,51 +143,57 @@ const PokeView = ({
         screenSize={screenSize}
         isDarkMode={isDarkMode}
       />
-      {!isPokeLoading && !isPokeSpeciesLoading && (
-        <PokeInfoTable
-          setPokeId={setPokeId}
-          pokeData={pokeData}
-          pokeSpeciesData={pokeSpeciesData}
-          babyTriggerItem={babyTriggerItem}
-          isDarkMode={isDarkMode}
-          screenSize={screenSize}
-        />
-      )}
-      <hr />
-      {!isPokeLoading && !isPokeSpeciesLoading && (
-        <StatsTable
-          statsInfo={statsInfo}
-          screenSize={screenSize}
-          isDarkMode={isDarkMode}
-        />
-      )}
-      <hr />
-      {!isPokeSpeciesLoading && (
-        <EvolutionChain
-          pokeChainURL={pokeSpeciesData.evolution_chain.url}
-          setBabyTriggerItem={setBabyTriggerItem}
-          screenSize={screenSize}
-          isDarkMode={isDarkMode}
-        />
-      )}
-      <hr />
-      {!isPokeLoading && (
-        <SpritesTable
-          pokeData={pokeData}
-          screenSize={screenSize}
-          isDarkMode={isDarkMode}
-        />
-      )}
-      {!isPokeLoading && !isPokeSpeciesLoading && (
-        <NavButtons
-          id={pokeSpeciesData.id}
-          fullPokeResults={fullPokeResults}
-          screenSize={screenSize}
-          isDarkMode={isDarkMode}
-        />
-      )}
+      <div
+        className={`pokemonview-container ${containerSize} ${
+          isDarkMode ? "background-dark" : "background-light"
+        }`}
+      >
+        {!isPokeLoading && !isPokeSpeciesLoading && (
+          <PokeInfoTable
+            setPokeId={setPokeId}
+            pokeData={pokeData}
+            pokeSpeciesData={pokeSpeciesData}
+            babyTriggerItem={babyTriggerItem}
+            isDarkMode={isDarkMode}
+            screenSize={screenSize}
+          />
+        )}
+        <hr />
+        {!isPokeLoading && !isPokeSpeciesLoading && (
+          <StatsTable
+            statsInfo={statsInfo}
+            screenSize={screenSize}
+            isDarkMode={isDarkMode}
+          />
+        )}
+        <hr />
+        {!isPokeSpeciesLoading && (
+          <EvolutionChain
+            pokeChainURL={pokeSpeciesData.evolution_chain.url}
+            setBabyTriggerItem={setBabyTriggerItem}
+            screenSize={screenSize}
+            isDarkMode={isDarkMode}
+          />
+        )}
+        <hr />
+        {!isPokeLoading && (
+          <SpritesTable
+            pokeData={pokeData}
+            screenSize={screenSize}
+            isDarkMode={isDarkMode}
+          />
+        )}
+        {!isPokeLoading && !isPokeSpeciesLoading && (
+          <NavButtons
+            id={pokeSpeciesData.id}
+            fullPokeResults={fullPokeResults}
+            screenSize={screenSize}
+            isDarkMode={isDarkMode}
+          />
+        )}
+      </div>
       <Footer isDarkMode={isDarkMode} screenSize={screenSize} />
-    </div>
+    </>
   );
 };
 

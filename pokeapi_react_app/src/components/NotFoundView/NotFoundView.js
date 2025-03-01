@@ -34,11 +34,7 @@ const NotFoundView = ({
 
   // Display the page not found view components
   return (
-    <div
-      className={`notfound-container ${containerSize} ${
-        isDarkMode ? "background-dark" : "background-light"
-      }`}
-    >
+    <div className="notfound-container-full">
       <ScrollToTop isDarkMode={isDarkMode} />
       <SecondaryViewHeader
         fullPokeResults={fullPokeResults}
@@ -46,15 +42,21 @@ const NotFoundView = ({
         screenSize={screenSize}
         isDarkMode={isDarkMode}
       />
-      <div className="notfound-image-text">
-        <img
-          className="notfound-image"
-          src={`${randPokemon}`}
-          alt={`Pokémon`}
-          style={{ display: fullPokeResults.length !== 0 ? "block" : "none" }}
-        />
-        <div className={`${fontStyle}`}>
-          Oh no! It looks like this page does not exist!{" "}
+      <div
+        className={`${containerSize} ${
+          isDarkMode ? "background-dark" : "background-light"
+        }`}
+      >
+        <div className="notfound-image-text">
+          <img
+            className="notfound-image"
+            src={`${randPokemon}`}
+            alt={`Pokémon`}
+            style={{ display: fullPokeResults.length !== 0 ? "block" : "none" }}
+          />
+          <div className={`${fontStyle}`}>
+            Oh no! It looks like this page does not exist!{" "}
+          </div>
         </div>
       </div>
       <Footer isDarkMode={isDarkMode} screenSize={screenSize} />

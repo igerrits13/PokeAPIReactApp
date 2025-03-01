@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { debounce } from "lodash";
 import DynamicSortOptions from "../DynamicComponents/DynamicSortOptions";
@@ -66,27 +66,10 @@ const PokemonCardCollection = ({
     cardsHTML.sort(compareName);
   }
 
-  // Debounced version of fetchMoreData
-  useEffect(() => {
-    // Create the debounced version of fetchMoreData
-    const debouncedFetchMoreData = debounce(() => {
-      setCardsToDisplay((prevCount) => prevCount + 48);
-    }, 100);
-
-    // Add event listeners to trigger debounced function
-    const scrollHandler = () => {
-      debouncedFetchMoreData();
-    };
-
-    // Add event listener for scrolling
-    window.addEventListener("scroll", scrollHandler);
-
-    // Cleanup on unmount
-    return () => {
-      window.removeEventListener("scroll", scrollHandler);
-      debouncedFetchMoreData.cancel();
-    };
-  }, []);
+  // Fetch more data when user scrolls down
+  const debouncedFetchMoreData = debounce(() => {
+    setCardsToDisplay((prevCount) => prevCount + 48);
+  }, 100);
 
   // Display the current card collection using infinite scroll
   return (
@@ -97,7 +80,7 @@ const PokemonCardCollection = ({
       <DynamicSortOptions sortOptions={sortOptions} screenSize={screenSize} />
       <InfiniteScroll
         dataLength={cardsToDisplay}
-        next={() => {}}
+        next={debouncedFetchMoreData}
         hasMore={cardsToDisplay < commonElements.length}
         loader={
           <div className="loading-ball-container">
@@ -105,6 +88,7 @@ const PokemonCardCollection = ({
           </div>
         }
         style={{ overflow: "hidden" }}
+        scrollThreshold={0.9}
       >
         <div
           className={

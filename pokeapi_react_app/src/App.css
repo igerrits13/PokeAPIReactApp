@@ -1023,6 +1023,7 @@ const colours = {
   display: grid;
   gap: 10px 10px;
   padding: 10px;
+  width: 100%;
   align-items: center;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto;
@@ -1033,24 +1034,15 @@ const colours = {
 }
 
 .footer-small {
-  margin: 0 -2%;
   padding: 10px 2%;
-  width: calc(100% + 4%);
-  overflow-x: hidden;
 }
 
 .footer-med {
-  margin: 0 -5%;
   padding: 10px 5%;
-  width: calc(100% + 10%);
-  overflow-x: hidden;
 }
 
 .footer-large {
-  margin: 0 -10%;
   padding: 10px 10%;
-  width: calc(100% + 25%);
-  overflow-x: hidden;
 }
 
 .footer-item-1 {
@@ -1094,20 +1086,20 @@ const colours = {
   min-width: 100vw;
   display: grid;
   place-items: center;
-  grid-template-rows: auto auto 1fr auto;
+  grid-template-rows: auto 1fr;
   gap: 20px 0px;
 }
 
 .typeview-small {
-  padding: 0 2%;
+  padding: 2rem 2%;
 }
 
 .typeview-med {
-  padding: 0 5%;
+  padding: 2rem 5%;
 }
 
 .typeview-large {
-  padding: 0 10%;
+  padding: 2rem 10%;
 }
 
 /* Secondary page title */
@@ -1127,7 +1119,15 @@ const colours = {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 0 0 1.5rem 0;
+  padding: 0 0 calc(1.5rem + 2%) 0;
+}
+
+.secondary-header-container-med {
+  padding: 0 5%;
+}
+
+.secondary-header-container-large {
+  padding: 0 10%;
 }
 
 .secondary-header {
@@ -1155,6 +1155,7 @@ const colours = {
 }
 
 .secondary-searchbar-container {
+  position: relative;
   justify-self: start;
 }
 
@@ -1460,25 +1461,24 @@ const colours = {
 
 /* Not found page layout */
 
-.notfound-container {
+.notfound-container-full {
   min-height: 100vh;
-  min-width: 100vw;
   display: grid;
   justify-items: center;
+  align-items: center;
   grid-template-rows: auto 1fr auto;
-  gap: 20px 0px;
 }
 
 .notfound-small {
-  padding: 0 2%;
+  padding: 2rem 2%;
 }
 
 .notfound-med {
-  padding: 0 5%;
+  padding: 2rem 5%;
 }
 
 .notfound-large {
-  padding: 0 10%;
+  padding: 2rem 10%;
 }
 
 .notfound-image-text {
@@ -1506,15 +1506,15 @@ const colours = {
 }
 
 .pokemonview-small {
-  padding: 0 2%;
+  padding: 2rem 2%;
 }
 
 .pokemonview-med {
-  padding: 0 5%;
+  padding: 2rem 5%;
 }
 
 .pokemonview-large {
-  padding: 0 10%;
+  padding: 2rem 10%;
 }
 
 .types-box {

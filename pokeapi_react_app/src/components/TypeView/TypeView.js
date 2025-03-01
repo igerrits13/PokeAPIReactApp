@@ -143,11 +143,7 @@ const TypeView = ({
 
   // Display the type view page from its components, displaying the currently active tab
   return (
-    <div
-      className={`typeview-container ${containerSize} ${
-        isDarkMode ? "background-dark" : "background-light"
-      }`}
-    >
+    <>
       <ScrollToTop isDarkMode={isDarkMode} />
       <SecondaryViewHeader
         fullPokeResults={fullPokeResults}
@@ -155,62 +151,68 @@ const TypeView = ({
         screenSize={screenSize}
         isDarkMode={isDarkMode}
       />
-      {!isTypesLoading && (
-        <div className={`${fontStyle} ${secondaryHeaderStyle}`}>
-          {typeData.name[0].toUpperCase() + typeData.name.slice(1)} Type
-        </div>
-      )}
-      {!isTypesLoading && (
-        <TypeInfoTable
-          isTypesLoading={isTypesLoading}
-          typeData={typeData}
-          getTypeIcon={getTypeIcon}
-          screenSize={screenSize}
-          isDarkMode={isDarkMode}
-        />
-      )}
-      <hr />
-      <DynamicTabOptions
-        tabLabels={tabLabels}
-        setActiveButton={setActiveButton}
-        activeButton={activeButton}
-        isDarkMode={isDarkMode}
-        screenSize={screenSize}
-      />
-      {activeTab === "Pokémon" && !isTypesLoading && (
-        <CardsTab
-          pokeResults={pokeResults}
-          setPokeResults={setPokeResults}
-          pokeCountTotal={pokeCountTotal}
-          filterByGen={filterByGen}
-          setFilterByGen={setFilterByGen}
-          typeData={typeData}
-          setTypeData={setTypeData}
-          // isTypesLoading={isTypesLoading}
-          // setIsTypesLoading={setIsTypesLoading}
-          sortBy={sortBy}
-          setSortBy={setSortBy}
+      <div
+        className={`typeview-container ${containerSize} ${
+          isDarkMode ? "background-dark" : "background-light"
+        }`}
+      >
+        {!isTypesLoading && (
+          <div className={`${fontStyle} ${secondaryHeaderStyle}`}>
+            {typeData.name[0].toUpperCase() + typeData.name.slice(1)} Type
+          </div>
+        )}
+        {!isTypesLoading && (
+          <TypeInfoTable
+            isTypesLoading={isTypesLoading}
+            typeData={typeData}
+            getTypeIcon={getTypeIcon}
+            screenSize={screenSize}
+            isDarkMode={isDarkMode}
+          />
+        )}
+        <hr />
+        <DynamicTabOptions
+          tabLabels={tabLabels}
+          setActiveButton={setActiveButton}
+          activeButton={activeButton}
           isDarkMode={isDarkMode}
           screenSize={screenSize}
         />
-      )}
-      {activeTab === "Moves" && !isTypesLoading && (
-        <MovesTab
-          typeData={typeData}
-          isTypesLoading={isTypesLoading}
-          getTypeIcon={getTypeIcon}
-          isDarkMode={isDarkMode}
-        />
-      )}
-      {activeTab === "Sprites" && !isTypesLoading && (
-        <SpritesTab
-          typeData={typeData}
-          screenSize={screenSize}
-          isDarkMode={isDarkMode}
-        />
-      )}
+        {activeTab === "Pokémon" && !isTypesLoading && (
+          <CardsTab
+            pokeResults={pokeResults}
+            setPokeResults={setPokeResults}
+            pokeCountTotal={pokeCountTotal}
+            filterByGen={filterByGen}
+            setFilterByGen={setFilterByGen}
+            typeData={typeData}
+            setTypeData={setTypeData}
+            // isTypesLoading={isTypesLoading}
+            // setIsTypesLoading={setIsTypesLoading}
+            sortBy={sortBy}
+            setSortBy={setSortBy}
+            isDarkMode={isDarkMode}
+            screenSize={screenSize}
+          />
+        )}
+        {activeTab === "Moves" && !isTypesLoading && (
+          <MovesTab
+            typeData={typeData}
+            isTypesLoading={isTypesLoading}
+            getTypeIcon={getTypeIcon}
+            isDarkMode={isDarkMode}
+          />
+        )}
+        {activeTab === "Sprites" && !isTypesLoading && (
+          <SpritesTab
+            typeData={typeData}
+            screenSize={screenSize}
+            isDarkMode={isDarkMode}
+          />
+        )}
+      </div>
       <Footer isDarkMode={isDarkMode} screenSize={screenSize} />
-    </div>
+    </>
   );
 };
 

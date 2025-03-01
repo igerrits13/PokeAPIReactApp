@@ -22,11 +22,18 @@ const SecondaryViewHeader = ({
   const secondaryHeaderContainerStyle =
     screenSize === "small"
       ? "secondary-header-container-small"
-      : "secondary-header-container";
+      : screenSize === "med"
+      ? "secondary-header-container secondary-header-container-med"
+      : "secondary-header-container secondary-header-container-large";
+  const headerBackgroundStyle = isDarkMode
+    ? "stats-progress-dark-min"
+    : "stats-progress-light-min";
 
   // Display to show the link to the home page and search bar
   return (
-    <div className={`${secondaryHeaderContainerStyle}`}>
+    <div
+      className={`${secondaryHeaderContainerStyle} ${headerBackgroundStyle}`}
+    >
       <Link to="/" className="clean-text">
         <motion.div
           className={`secondary-header ${secondaryHeaderStyle} ${fontStyle}`}
