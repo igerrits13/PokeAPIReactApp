@@ -31,6 +31,7 @@ import Footer from "../CommonComponents/Footer";
 const TypeView = ({
   pokeResults,
   setPokeResults,
+  setWhosThatPokemon,
   typesResults,
   fullPokeResults,
   pokeCountTotal,
@@ -99,7 +100,8 @@ const TypeView = ({
   useEffect(() => {
     setFilterByGen(["all"]);
     setSortBy("number");
-  }, [setFilterByGen, setSortBy]);
+    setWhosThatPokemon(false);
+  }, [setFilterByGen, setSortBy, setWhosThatPokemon]);
 
   // Map to match for each possible type case
   const typeMapping = {
@@ -187,8 +189,6 @@ const TypeView = ({
             setFilterByGen={setFilterByGen}
             typeData={typeData}
             setTypeData={setTypeData}
-            // isTypesLoading={isTypesLoading}
-            // setIsTypesLoading={setIsTypesLoading}
             sortBy={sortBy}
             setSortBy={setSortBy}
             isDarkMode={isDarkMode}

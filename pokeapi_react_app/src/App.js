@@ -12,6 +12,7 @@ function App() {
   const [fullPokeResults, setFullPokeResults] = useState([]);
   const [pokeResults, setPokeResults] = useState([]);
   const [isPokeResultsLoading, setIsPokeResultsLoading] = useState(false);
+  const [whosThatPokemon, setWhosThatPokemon] = useState(false);
   const [typesResults, setTypesResult] = useState([]);
   const [isTypesResultsLoading, setIsTypesResultsLoading] = useState(false);
   const [pokeCountTotal, setPokeCountTotal] = useState(1025);
@@ -135,6 +136,8 @@ function App() {
             <HomeView
               pokeResults={pokeResults}
               setPokeResults={setPokeResults}
+              whosThatPokemon={whosThatPokemon}
+              setWhosThatPokemon={setWhosThatPokemon}
               isPokeResultsLoading={isPokeResultsLoading}
               typesResults={typesResults}
               isTypesResultsLoading={isTypesResultsLoading}
@@ -157,6 +160,7 @@ function App() {
             <TypeView
               pokeResults={pokeResults}
               setPokeResults={setPokeResults}
+              setWhosThatPokemon={setWhosThatPokemon}
               typesResults={typesResults}
               fullPokeResults={fullPokeResults}
               pokeCountTotal={pokeCountTotal}
@@ -174,6 +178,8 @@ function App() {
           element={
             <PokeView
               fullPokeResults={fullPokeResults}
+              whosThatPokemon={whosThatPokemon}
+              setWhosThatPokemon={setWhosThatPokemon}
               typesResults={typesResults}
               screenSize={screenSize}
               isDarkMode={isDarkMode}
@@ -185,6 +191,7 @@ function App() {
           element={
             <NotFoundView
               fullPokeResults={fullPokeResults}
+              setWhosThatPokemon={setWhosThatPokemon}
               typesResults={typesResults}
               screenSize={screenSize}
               isDarkMode={isDarkMode}
@@ -196,6 +203,7 @@ function App() {
           element={
             <NotFoundView
               fullPokeResults={fullPokeResults}
+              setWhosThatPokemon={setWhosThatPokemon}
               typesResults={typesResults}
               screenSize={screenSize}
               isDarkMode={isDarkMode}

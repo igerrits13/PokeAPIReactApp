@@ -7,6 +7,7 @@ const FormsInfo = ({
   pokeData,
   setPokeId,
   pokeSpeciesData,
+  whosThatPokemon,
   screenSize,
   isDarkMode,
 }) => {
@@ -25,30 +26,45 @@ const FormsInfo = ({
   const formInfo = [
     {
       text: "Default Form",
-      info: pokeData.is_default === true ? "True" : "False",
+      info: whosThatPokemon
+        ? "????"
+        : pokeData.is_default === true
+        ? "True"
+        : "False",
       id: 0,
     },
     {
       text: "Form Descriptions",
-      info:
-        pokeSpeciesData.form_descriptions.find(
-          (obj) => obj.language.name === "en"
-        )?.description ?? "None",
+      info: whosThatPokemon
+        ? "????"
+        : pokeSpeciesData.form_descriptions.find(
+            (obj) => obj.language.name === "en"
+          )?.description ?? "None",
       id: 1,
     },
     {
       text: "Can Switch Forms",
-      info: pokeSpeciesData.forms_switchable === true ? "True" : "False",
+      info: whosThatPokemon
+        ? "????"
+        : pokeSpeciesData.forms_switchable === true
+        ? "True"
+        : "False",
       id: 2,
     },
     {
       text: "Alternate Forms",
-      info: <FormsInfoForms pokeData={pokeData} isDarkMode={isDarkMode} />,
+      info: whosThatPokemon ? (
+        "????"
+      ) : (
+        <FormsInfoForms pokeData={pokeData} isDarkMode={isDarkMode} />
+      ),
       id: 3,
     },
     {
       text: "Varieties",
-      info: (
+      info: whosThatPokemon ? (
+        "????"
+      ) : (
         <FormsInfoVarieties
           pokeData={pokeData}
           pokeSpeciesData={pokeSpeciesData}

@@ -4,6 +4,7 @@ import DynamicTableSection from "../../CommonComponents/DynamicComponents/Dynami
 const TrainingInfo = ({
   pokeData,
   pokeSpeciesData,
+  whosThatPokemon,
   screenSize,
   isDarkMode,
 }) => {
@@ -31,7 +32,9 @@ const TrainingInfo = ({
   const trainingInfo = [
     {
       text: "EV Stats",
-      info: (
+      info: whosThatPokemon ? (
+        "????"
+      ) : (
         <>
           {Object.entries(pokeData.stats)
             .map((stat) => {
@@ -49,33 +52,42 @@ const TrainingInfo = ({
       ),
       id: 0,
     },
-    { text: "Base XP", info: `${pokeData.base_experience} XP`, id: 1 },
+    {
+      text: "Base XP",
+      info: whosThatPokemon ? "????" : `${pokeData.base_experience} XP`,
+      id: 1,
+    },
     {
       text: "Base Happiness",
-      info: `${pokeSpeciesData.base_happiness} (${(
-        (pokeSpeciesData.base_happiness / 255) *
-        100
-      ).toFixed(0)}% Happy)`,
+      info: whosThatPokemon
+        ? "????"
+        : `${pokeSpeciesData.base_happiness} (${(
+            (pokeSpeciesData.base_happiness / 255) *
+            100
+          ).toFixed(0)}% Happy)`,
       id: 2,
     },
     {
       text: "Capture Rate",
-      info: `${pokeSpeciesData.capture_rate} (${(
-        (pokeSpeciesData.capture_rate / 255) *
-        100
-      ).toFixed(0)}% Chance)`,
+      info: whosThatPokemon
+        ? "????"
+        : `${pokeSpeciesData.capture_rate} (${(
+            (pokeSpeciesData.capture_rate / 255) *
+            100
+          ).toFixed(0)}% Chance)`,
       id: 3,
     },
     {
       text: "Held Items",
-      info:
-        Object.entries(pokeData.held_items).length !== 0
-          ? `${Object.entries(pokeData.held_items)
-              .map((item) => {
-                return `${getStatName(item[1].item.name)}`;
-              })
-              .join(", ")}`
-          : "None",
+      info: whosThatPokemon
+        ? "????"
+        : Object.entries(pokeData.held_items).length !== 0
+        ? `${Object.entries(pokeData.held_items)
+            .map((item) => {
+              return `${getStatName(item[1].item.name)}`;
+            })
+            .join(", ")}`
+        : "None",
       id: 4,
     },
   ];

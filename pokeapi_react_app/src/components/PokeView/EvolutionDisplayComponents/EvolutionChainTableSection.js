@@ -6,6 +6,7 @@ import EvolutionChainDetails from "./EvolutionChainDetails";
 const EvolutionChainTableSection = ({
   pokeChainData,
   getPokeNum,
+  whosThatPokemon,
   screenSize,
   isDarkMode,
 }) => {
@@ -68,6 +69,7 @@ const EvolutionChainTableSection = ({
                     <PokemonCard
                       obj={evolution[1].species}
                       i={getPokeNum(evolution[1].species.url)}
+                      whosThatPokemon={whosThatPokemon}
                       isDarkMode={isDarkMode}
                     />
                   </div>

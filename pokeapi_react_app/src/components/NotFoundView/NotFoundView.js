@@ -1,9 +1,11 @@
+import { useEffect } from "react";
 import ScrollToTop from "../CommonComponents/ScrollToTop";
 import SecondaryViewHeader from "../CommonComponents/SecondaryViewHeader";
 import Footer from "../CommonComponents/Footer";
 
 const NotFoundView = ({
   fullPokeResults,
+  setWhosThatPokemon,
   typesResults,
   screenSize,
   isDarkMode,
@@ -18,6 +20,11 @@ const NotFoundView = ({
       : screenSize === "medium"
       ? "notfound-med"
       : "notfound-large";
+
+  // Set Pokémon information to not be blank on load
+  useEffect(() => {
+    setWhosThatPokemon(false);
+  }, [setWhosThatPokemon]);
 
   // Get a random Pokémon number to display
   const randPokemonNum = Math.floor(Math.random() * fullPokeResults.length) + 1;

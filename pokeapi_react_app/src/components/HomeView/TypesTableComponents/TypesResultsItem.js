@@ -3,7 +3,13 @@ import { motion } from "motion/react";
 import DynamicSvgIcon from "../../CommonComponents/DynamicComponents/DynamicSvgIcon";
 
 // Display for each type base on screen size
-const TypesResultsItem = ({ obj, typeIcon, typeStyle, isDarkMode }) => {
+const TypesResultsItem = ({
+  obj,
+  typeIcon,
+  typeStyle,
+  isDisabled,
+  isDarkMode,
+}) => {
   // Setup the type results and text style based on if the user is using light or dark mode
   const typeResultsStyle = isDarkMode
     ? "component-background-dark component-outline-dark"
@@ -20,7 +26,15 @@ const TypesResultsItem = ({ obj, typeIcon, typeStyle, isDarkMode }) => {
   const typeIdUrl = `/types/${typeNum}`;
 
   return (
-    <Link className="clean-text" to={typeIdUrl}>
+    <Link
+      className="clean-text"
+      to={typeIdUrl}
+      onClick={(e) => {
+        if (isDisabled) {
+          e.preventDefault();
+        }
+      }}
+    >
       <motion.button
         className={`type-item hover-dim ${typeResultsStyle}`}
         whileHover={{ scale: 1.1, rotate: "-1.5deg" }}

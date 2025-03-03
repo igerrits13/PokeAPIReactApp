@@ -16,6 +16,7 @@ import { ReactComponent as PsychicType } from "../../icons/TypeIcons/psychic.svg
 import { ReactComponent as RockType } from "../../icons/TypeIcons/rock.svg";
 import { ReactComponent as SteelType } from "../../icons/TypeIcons/steel.svg";
 import { ReactComponent as WaterType } from "../../icons/TypeIcons/water.svg";
+import { ReactComponent as UnknownType } from "../../icons/TypeIcons/unknown.svg";
 import TypesResultsItem from "../../HomeView/TypesTableComponents/TypesResultsItem";
 import DynamicTableSection from "../../CommonComponents/DynamicComponents/DynamicTableSection";
 
@@ -23,6 +24,7 @@ import DynamicTableSection from "../../CommonComponents/DynamicComponents/Dynami
 const PokeBasicInfo = ({
   pokeData,
   pokeSpeciesData,
+  whosThatPokemon,
   screenSize,
   isDarkMode,
 }) => {
@@ -65,6 +67,7 @@ const PokeBasicInfo = ({
     rock: [RockType, "rock-type"],
     steel: [SteelType, "steel-type"],
     water: [WaterType, "water-type"],
+    unknown: [UnknownType, "unknown-type"],
   };
 
   // Set the type attributes for the current type based on type name and if the user is in dark mode or not
@@ -117,33 +120,51 @@ const PokeBasicInfo = ({
 
   // Lines to be displayed for the basic type information table
   const pokeInfo = [
-    { text: "Pokémon ID", info: `#${pokeSpeciesData.id}`, id: 0 },
+    {
+      text: "Pokémon ID",
+      info: whosThatPokemon ? "#????" : `#${pokeSpeciesData.id}`,
+      id: 0,
+    },
     {
       text: "Introduced",
-      info: `${getGenerationTitle(pokeSpeciesData.generation.name)}`,
+      info: whosThatPokemon
+        ? "????"
+        : `${getGenerationTitle(pokeSpeciesData.generation.name)}`,
       id: 1,
     },
     {
       text: "Classification",
-      info: `${genusInfo}`,
+      info: whosThatPokemon ? "????" : `${genusInfo}`,
       id: 2,
     },
-    { text: "Height", info: `${getHeight(pokeData.height)}`, id: 3 },
-    { text: "Weight", info: `${getWeight(pokeData.weight)}`, id: 4 },
+    {
+      text: "Height",
+      info: whosThatPokemon ? "????" : `${getHeight(pokeData.height)}`,
+      id: 3,
+    },
+    {
+      text: "Weight",
+      info: whosThatPokemon ? "????" : `${getWeight(pokeData.weight)}`,
+      id: 4,
+    },
     {
       text: "Shape",
-      info: `${
-        pokeSpeciesData.shape.name[0].toUpperCase() +
-        pokeSpeciesData.shape.name.slice(1)
-      }`,
+      info: whosThatPokemon
+        ? "????"
+        : `${
+            pokeSpeciesData.shape.name[0].toUpperCase() +
+            pokeSpeciesData.shape.name.slice(1)
+          }`,
       id: 5,
     },
     {
       text: "Color",
-      info: `${
-        pokeSpeciesData.color.name[0].toUpperCase() +
-        pokeSpeciesData.color.name.slice(1)
-      }`,
+      info: whosThatPokemon
+        ? "????"
+        : `${
+            pokeSpeciesData.color.name[0].toUpperCase() +
+            pokeSpeciesData.color.name.slice(1)
+          }`,
       id: 6,
     },
   ];
@@ -153,13 +174,16 @@ const PokeBasicInfo = ({
   const typeIconsHTML = (
     <div className="types-box">
       {Object.entries(pokeData.types).map((obj) => {
-        [typeIcon, typeStyle] = getTypeIcon(obj[1].type.name);
+        [typeIcon, typeStyle] = getTypeIcon(
+          whosThatPokemon ? "unknown" : obj[1].type.name
+        );
         return (
           <TypesResultsItem
             key={obj[0]}
-            obj={obj[1].type}
+            obj={whosThatPokemon ? { name: "????", url: "" } : obj[1].type}
             typeIcon={typeIcon}
             typeStyle={typeStyle}
+            isDisabled={true}
             isDarkMode={isDarkMode}
           />
         );
@@ -176,7 +200,7 @@ const PokeBasicInfo = ({
   return (
     <div className="secondary-table-conainer-50">
       <div className={`${fontStyle} ${secondaryHeaderStyle}`}>
-        {getPokeName(pokeData.species.name)}
+        {whosThatPokemon ? "????" : getPokeName(pokeData.species.name)}
       </div>
       {typeIconsHTML}
       <div
@@ -186,7 +210,7 @@ const PokeBasicInfo = ({
             : "description-box-large"
         } ${pokemonDescStyle} ${fontStyle}`}
       >
-        {flavorText}
+        {whosThatPokemon ? "????" : flavorText}
       </div>
       <DynamicTableSection sectionInfo={pokeInfo} isDarkMode={isDarkMode} />
     </div>

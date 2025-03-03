@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import ScrollToTop from "../CommonComponents/ScrollToTop";
 import SecondaryViewHeader from "../CommonComponents/SecondaryViewHeader";
@@ -12,6 +12,8 @@ import Footer from "../CommonComponents/Footer";
 // Temporary page while Pokémon page is not done
 const PokeView = ({
   fullPokeResults,
+  whosThatPokemon,
+  setWhosThatPokemon,
   typesResults,
   screenSize,
   isDarkMode,
@@ -27,6 +29,7 @@ const PokeView = ({
   const [babyTriggerItem, setBabyTriggerItem] = useState(null);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const hasRenderedRef = useRef(false);
 
   // Adjust the container style of the page based on the current screensize
   const containerSize =
@@ -106,6 +109,16 @@ const PokeView = ({
     setPokeSpeciesId(id);
   }, [id]);
 
+  // If the id changes while on the second render of the page, set Pokémon data to not be blank
+  useEffect(() => {
+    if (!hasRenderedRef.current) {
+      hasRenderedRef.current = true;
+      return;
+    }
+
+    setWhosThatPokemon(false);
+  }, [setWhosThatPokemon, id]);
+
   // If the API call returns an error, navigate to the page not found
   // (Redundant to inside fetch call to avoid compilation error)
   if (error) {
@@ -153,6 +166,8 @@ const PokeView = ({
             setPokeId={setPokeId}
             pokeData={pokeData}
             pokeSpeciesData={pokeSpeciesData}
+            whosThatPokemon={whosThatPokemon}
+            setWhosThatPokemon={setWhosThatPokemon}
             babyTriggerItem={babyTriggerItem}
             isDarkMode={isDarkMode}
             screenSize={screenSize}
@@ -170,6 +185,7 @@ const PokeView = ({
         {!isPokeSpeciesLoading && (
           <EvolutionChain
             pokeChainURL={pokeSpeciesData.evolution_chain.url}
+            whosThatPokemon={whosThatPokemon}
             setBabyTriggerItem={setBabyTriggerItem}
             screenSize={screenSize}
             isDarkMode={isDarkMode}
@@ -179,6 +195,7 @@ const PokeView = ({
         {!isPokeLoading && (
           <SpritesTable
             pokeData={pokeData}
+            whosThatPokemon={whosThatPokemon}
             screenSize={screenSize}
             isDarkMode={isDarkMode}
           />
@@ -187,6 +204,7 @@ const PokeView = ({
           <NavButtons
             id={pokeSpeciesData.id}
             fullPokeResults={fullPokeResults}
+            whosThatPokemon={whosThatPokemon}
             screenSize={screenSize}
             isDarkMode={isDarkMode}
           />

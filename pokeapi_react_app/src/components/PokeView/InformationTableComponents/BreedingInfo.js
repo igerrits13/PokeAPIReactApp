@@ -6,6 +6,7 @@ import egg from "../../icons/egg.png";
 // Breeding information section for the current Pokémon
 const BreedingInfo = ({
   pokeSpeciesData,
+  whosThatPokemon,
   babyTriggerItem,
   screenSize,
   isDarkMode,
@@ -63,15 +64,18 @@ const BreedingInfo = ({
   const breedingInfo = [
     {
       text: "Baby Trigger Item",
-      info:
-        babyTriggerItem !== null
-          ? `${getPokeName(babyTriggerItem.name)}`
-          : "None",
+      info: whosThatPokemon
+        ? "????"
+        : babyTriggerItem !== null
+        ? `${getPokeName(babyTriggerItem.name)}`
+        : "None",
       id: 0,
     },
     {
       text: "Egg Groups",
-      info: (
+      info: whosThatPokemon ? (
+        "????"
+      ) : (
         <div className="dyn-section-button-container">
           {pokeSpeciesData.egg_groups.map((obj, i) => {
             return (
@@ -97,74 +101,89 @@ const BreedingInfo = ({
     },
     {
       text: "Hatch Counter",
-      info: `${pokeSpeciesData.hatch_counter} Cycles (${getHatchCounter(
-        pokeSpeciesData.hatch_counter
-      ).toLocaleString()} Steps)`,
+      info: whosThatPokemon
+        ? "????"
+        : `${pokeSpeciesData.hatch_counter} Cycles (${getHatchCounter(
+            pokeSpeciesData.hatch_counter
+          ).toLocaleString()} Steps)`,
       id: 2,
     },
     {
       text: "Gender Rate",
-      info:
-        pokeSpeciesData.gender_rate === -1 ? (
-          "Genderless"
-        ) : (
-          <>
-            {(1 - pokeSpeciesData.gender_rate / 8) * 100}%{" "}
-            <i className="fa-solid fa-mars"></i> /{" "}
-            {(pokeSpeciesData.gender_rate / 8) * 100}%{" "}
-            <i className="fa-solid fa-venus"></i>
-          </>
-        ),
+      info: whosThatPokemon ? (
+        <>
+          ??% <i className="fa-solid fa-mars"></i> / ??%{" "}
+          <i className="fa-solid fa-venus"></i>
+        </>
+      ) : pokeSpeciesData.gender_rate === -1 ? (
+        "Genderless"
+      ) : (
+        <>
+          {(1 - pokeSpeciesData.gender_rate / 8) * 100}%{" "}
+          <i className="fa-solid fa-mars"></i> /{" "}
+          {(pokeSpeciesData.gender_rate / 8) * 100}%{" "}
+          <i className="fa-solid fa-venus"></i>
+        </>
+      ),
       id: 3,
     },
     {
       text: "Gender Differences",
-      info: pokeSpeciesData.has_gender_differences === true ? "True" : "False",
+      info: whosThatPokemon
+        ? "????"
+        : pokeSpeciesData.has_gender_differences === true
+        ? "True"
+        : "False",
       id: 4,
     },
     {
       text: "Evolves From",
-      info:
-        pokeSpeciesData.evolves_from_species !== undefined &&
+      info: whosThatPokemon ? (
+        "????"
+      ) : pokeSpeciesData.evolves_from_species !== undefined &&
         pokeSpeciesData.evolves_from_species !== null ? (
-          <Link
-            className={`clean-text`} // ${fontStyle}
-            to={`/pokemon/${pokeSpeciesData.evolves_from_species.name}`}
+        <Link
+          className={`clean-text`} // ${fontStyle}
+          to={`/pokemon/${pokeSpeciesData.evolves_from_species.name}`}
+        >
+          <motion.div
+            className="dyn-section-link"
+            whileHover={{ scale: 1.1, rotate: "-1.5deg" }}
+            whileTap={{ scale: 0.9, rotate: "5deg" }}
+            transition={{ duration: 0.1 }}
           >
-            <motion.div
-              className="dyn-section-link"
-              whileHover={{ scale: 1.1, rotate: "-1.5deg" }}
-              whileTap={{ scale: 0.9, rotate: "5deg" }}
-              transition={{ duration: 0.1 }}
-            >
-              {getPokeName(pokeSpeciesData.evolves_from_species.name)}
-            </motion.div>
-          </Link>
-        ) : (
-          "None"
-        ),
+            {getPokeName(pokeSpeciesData.evolves_from_species.name)}
+          </motion.div>
+        </Link>
+      ) : (
+        "None"
+      ),
       id: 5,
     },
     {
       text: "Growth Rate",
-      info: `${
-        pokeSpeciesData?.growth_rate?.name !== undefined &&
-        pokeSpeciesData?.growth_rate?.name !== null
-          ? pokeSpeciesData?.growth_rate?.name[0].toUpperCase() +
-            pokeSpeciesData?.growth_rate?.name.slice(1)
-          : "None"
-      }`,
+      info: whosThatPokemon
+        ? "????"
+        : `${
+            pokeSpeciesData?.growth_rate?.name !== undefined &&
+            pokeSpeciesData?.growth_rate?.name !== null
+              ? pokeSpeciesData?.growth_rate?.name[0].toUpperCase() +
+                pokeSpeciesData?.growth_rate?.name.slice(1)
+              : "None"
+          }`,
       id: 6,
     },
     {
       text: "Habitat",
-      info: `${
-        pokeSpeciesData?.habitat?.name !== undefined &&
-        pokeSpeciesData?.habitat?.name !== null
-          ? pokeSpeciesData.habitat.name[0].toUpperCase() +
-            pokeSpeciesData.habitat.name.slice(1)
-          : "None"
-      }`,
+      info: whosThatPokemon
+        ? "????"
+        : `${
+            pokeSpeciesData?.habitat?.name !== undefined &&
+            pokeSpeciesData?.habitat?.name !== null
+              ? pokeSpeciesData.habitat.name[0].toUpperCase() +
+                pokeSpeciesData.habitat.name.slice(1)
+              : "None"
+          }`,
       id: 7,
     },
   ];

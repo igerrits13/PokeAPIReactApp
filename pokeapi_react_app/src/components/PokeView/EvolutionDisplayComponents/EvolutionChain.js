@@ -5,6 +5,7 @@ import EvolutionChainTable from "./EvolutionChainTable";
 // Current Pokémon's evolution chain
 const EvolutionChain = ({
   pokeChainURL,
+  whosThatPokemon,
   setBabyTriggerItem,
   screenSize,
   isDarkMode,
@@ -64,6 +65,7 @@ const EvolutionChain = ({
       {!isPokeChainLoading && (
         <EvolutionChainTable
           pokeChainData={pokeChainData}
+          whosThatPokemon={whosThatPokemon}
           screenSize={screenSize}
           isDarkMode={isDarkMode}
         />

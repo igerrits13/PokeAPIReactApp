@@ -6,6 +6,7 @@ import SpriteTableSection from "./SpriteTableSection";
 const SpritesTableBasic = ({
   pokeData,
   getPokeName,
+  whosThatPokemon,
   isExpanded,
   setIsExpanded,
   isDarkMode,
@@ -35,6 +36,7 @@ const SpritesTableBasic = ({
             <SpriteTableImage
               pokeData={pokeData}
               getPokeName={getPokeName}
+              whosThatPokemon={whosThatPokemon}
               spriteUrl={spriteUrl}
               description={description}
             />

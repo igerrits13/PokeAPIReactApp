@@ -4,6 +4,7 @@ import SpriteTableImageLoading from "./SpriteTableImageLoading";
 const SpriteTableImage = ({
   pokeData,
   getPokeName,
+  whosThatPokemon,
   spriteUrl,
   description,
 }) => {
@@ -24,7 +25,9 @@ const SpriteTableImage = ({
         <img
           src={spriteUrl}
           alt={getPokeName(pokeData.name)}
-          className="sprites-table-img"
+          className={`sprites-table-img ${
+            whosThatPokemon ? "pokeview-image-dark" : ""
+          }`}
           onLoad={handleImageLoad}
         />
         {description}

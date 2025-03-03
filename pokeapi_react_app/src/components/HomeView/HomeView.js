@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import ScrollToTop from "../CommonComponents/ScrollToTop";
 import Title from "./Title";
 import SearchBar from "../CommonComponents/SearchBarComponents/SearchBar";
+import WhosThatPokemon from "./WhosThatPokemon";
 import TypeseTable from "./TypesTableComponents/TypesTable";
 import OptionGen from "../CommonComponents/OptionsComponents/OptionGen";
 import OptionType from "../CommonComponents/OptionsComponents/OptionType";
@@ -14,6 +15,8 @@ import Footer from "../CommonComponents/Footer";
 const HomeView = ({
   pokeResults,
   setPokeResults,
+  whosThatPokemon,
+  setWhosThatPokemon,
   isPokeResultsLoading,
   typesResults,
   isTypesResultsLoading,
@@ -41,7 +44,8 @@ const HomeView = ({
     setFilterByGen(["all"]);
     setFilterByType(["all"]);
     setSortBy("number");
-  }, [setFilterByGen, setFilterByType, setSortBy]);
+    setWhosThatPokemon(false);
+  }, [setFilterByGen, setFilterByType, setSortBy, setWhosThatPokemon]);
 
   // Options to be displayed in the home page Pokémon view
   const sortOptions = [
@@ -90,7 +94,13 @@ const HomeView = ({
           isDarkMode={isDarkMode}
         />
       )}
-      {screenSize !== "small" && <hr />}
+      {!isPokeResultsLoading && (
+        <WhosThatPokemon
+          whosThatPokemon={whosThatPokemon}
+          setWhosThatPokemon={setWhosThatPokemon}
+          pokeResults={pokeResults}
+        />
+      )}
       <TypeseTable
         screenSize={screenSize}
         typesResults={typesResults}

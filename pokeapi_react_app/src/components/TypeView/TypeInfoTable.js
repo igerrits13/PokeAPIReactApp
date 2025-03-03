@@ -25,10 +25,7 @@ const TypeInfoTable = ({
     : "component-background-light component-rounded-outline-thin-light";
 
   // Get the styling for the current type
-  // let typeIcon, typeStyle;
-  // if (!isTypesLoading) {
   const [typeIcon, typeStyle] = getTypeIcon(typeData.name);
-  // }
 
   // When the types have loaded, display the type information table showing basic information, damage relations and
   // the current type's icon
@@ -56,7 +53,7 @@ const TypeInfoTable = ({
           isDarkMode={isDarkMode}
         />
         {/* Only show the current types large icon when screen is large or x-large */}
-        {(screenSize === "large" || screenSize === "x-large") && (
+        {screenSize === "x-large" && (
           <div className={`secondary-table-conainer-20`}>
             <div className={`typeview-table-icon-outline ${iconStyle}`}>
               <DynamicSvgIcon

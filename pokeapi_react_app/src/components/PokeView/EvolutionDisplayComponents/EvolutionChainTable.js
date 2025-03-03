@@ -2,7 +2,12 @@ import React from "react";
 import PokemonCard from "../../CommonComponents/PokemonCardComponents/PokemonCard";
 import EvolutionChainTableSection from "./EvolutionChainTableSection";
 
-const EvolutionChainTable = ({ pokeChainData, screenSize, isDarkMode }) => {
+const EvolutionChainTable = ({
+  pokeChainData,
+  whosThatPokemon,
+  screenSize,
+  isDarkMode,
+}) => {
   // Setup the font style, and line style between information sections based on if the user is using light or dark mode
   const fontStyle = isDarkMode ? "font-dark" : "font-light";
 
@@ -41,6 +46,7 @@ const EvolutionChainTable = ({ pokeChainData, screenSize, isDarkMode }) => {
           <PokemonCard
             obj={pokeChainData.chain.species}
             i={getPokeNum(pokeChainData.chain.species.url)}
+            whosThatPokemon={whosThatPokemon}
             isDarkMode={isDarkMode}
           />
         </div>
@@ -56,6 +62,7 @@ const EvolutionChainTable = ({ pokeChainData, screenSize, isDarkMode }) => {
         <EvolutionChainTableSection
           pokeChainData={pokeChainData}
           getPokeNum={getPokeNum}
+          whosThatPokemon={whosThatPokemon}
           screenSize={screenSize}
           isDarkMode={isDarkMode}
         />

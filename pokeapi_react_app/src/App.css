@@ -845,6 +845,24 @@ const colours = {
   filter: brightness(1.25);
 }
 
+.unknown-type-light {
+  filter: drop-shadow(0 0 10px #1e201d);
+}
+
+.unknown-type-light path {
+  fill: #6bc694;
+  filter: brightness(1.25);
+}
+
+.unknown-type-dark {
+  filter: drop-shadow(0 0 8px #6bc694);
+}
+
+.unknown-type-dark path {
+  fill: #6bc694;
+  filter: brightness(1.25);
+}
+
 /* Sort options */
 
 .sortoptions-container-small {
@@ -1386,7 +1404,7 @@ const colours = {
   width: 60%;
 }
 
-.movestab-section-head {
+.movestab-section {
   display: flex;
   flex-direction: row;
   gap: 20px;
@@ -1396,14 +1414,12 @@ const colours = {
   justify-content: space-around;
 }
 
-.movestab-section {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  padding: 2rem;
-  width: 100%;
-  align-items: center;
-  justify-content: space-around;
+.movestab-section-top {
+  border-radius: 8px 8px 0 0;
+}
+
+.movestab-section-bottom {
+  border-radius: 0 0 8px 8px;
 }
 
 .movestab-item {
@@ -1552,6 +1568,10 @@ const colours = {
   width: 100%;
   max-height: 28rem;
   object-fit: contain;
+}
+
+.pokeview-image-dark {
+  filter: brightness(0%);
 }
 
 .pokeview-image-toggle {
@@ -1804,15 +1824,15 @@ const colours = {
 }
 
 .stats-progress-dark-max {
-  background-color: #fff9fc;
+  background-color: #c5c5c5;
 }
 
 .stats-progress-light-min {
-  background-color: #c2c0bf;
+  background-color: #a8a7a6;
 }
 
 .stats-progress-light-max {
-  background-color: #dad8d7;
+  background-color: #c2c0bf;
 }
 
 /* Evolution Chain Large */

@@ -9,6 +9,8 @@ const PokeInfoTable = ({
   setPokeId,
   pokeData,
   pokeSpeciesData,
+  whosThatPokemon,
+  setWhosThatPokemon,
   babyTriggerItem,
   isDarkMode,
   screenSize,
@@ -28,10 +30,16 @@ const PokeInfoTable = ({
       {/* Display the Pokémon image and basic information vertically on small screens, otherwise horizontally */}
       {screenSize === "small" || screenSize === "medium" ? (
         <>
-          <BattleImageToggle pokeData={pokeData} isDarkMode={isDarkMode} />
+          <BattleImageToggle
+            pokeData={pokeData}
+            whosThatPokemon={whosThatPokemon}
+            setWhosThatPokemon={setWhosThatPokemon}
+            isDarkMode={isDarkMode}
+          />
           <PokeBasicInfo
             pokeData={pokeData}
             pokeSpeciesData={pokeSpeciesData}
+            whosThatPokemon={whosThatPokemon}
             screenSize={screenSize}
             isDarkMode={isDarkMode}
           />
@@ -41,10 +49,16 @@ const PokeInfoTable = ({
           <PokeBasicInfo
             pokeData={pokeData}
             pokeSpeciesData={pokeSpeciesData}
+            whosThatPokemon={whosThatPokemon}
             screenSize={screenSize}
             isDarkMode={isDarkMode}
           />
-          <BattleImageToggle pokeData={pokeData} isDarkMode={isDarkMode} />
+          <BattleImageToggle
+            pokeData={pokeData}
+            whosThatPokemon={whosThatPokemon}
+            setWhosThatPokemon={setWhosThatPokemon}
+            isDarkMode={isDarkMode}
+          />
         </>
       )}
       {/* Display the next, in depth Pokémon information sections in a way that fits with enough room to fully show on screensize */}
@@ -58,6 +72,7 @@ const PokeInfoTable = ({
         <hr />
         <BreedingInfo
           pokeSpeciesData={pokeSpeciesData}
+          whosThatPokemon={whosThatPokemon}
           babyTriggerItem={babyTriggerItem}
           screenSize={screenSize}
           isDarkMode={isDarkMode}
@@ -65,6 +80,7 @@ const PokeInfoTable = ({
         <TrainingInfo
           pokeData={pokeData}
           pokeSpeciesData={pokeSpeciesData}
+          whosThatPokemon={whosThatPokemon}
           screenSize={screenSize}
           isDarkMode={isDarkMode}
         />
@@ -72,6 +88,7 @@ const PokeInfoTable = ({
           pokeData={pokeData}
           setPokeId={setPokeId}
           pokeSpeciesData={pokeSpeciesData}
+          whosThatPokemon={whosThatPokemon}
           screenSize={screenSize}
           isDarkMode={isDarkMode}
         />

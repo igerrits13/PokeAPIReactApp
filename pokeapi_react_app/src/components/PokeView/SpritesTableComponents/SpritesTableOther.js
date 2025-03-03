@@ -6,6 +6,7 @@ import SpriteTableSection from "./SpriteTableSection";
 const SpritesTableOther = ({
   pokeData,
   getPokeName,
+  whosThatPokemon,
   isExpanded,
   setIsExpanded,
   screenSize,
@@ -78,6 +79,7 @@ const SpritesTableOther = ({
             <SpriteTableImage
               pokeData={pokeData}
               getPokeName={getPokeName}
+              whosThatPokemon={whosThatPokemon}
               spriteUrl={spriteUrl}
               description={description}
             />
@@ -129,7 +131,7 @@ const SpritesTableOther = ({
     <>
       {hasNonNullValues(otherIconsHTML) && (
         <div className={`${fontStyle} ${tirtiaryHeaderStyle}`}>
-          Other {getPokeName(pokeData.name)} Sprites
+          Other {whosThatPokemon ? "????" : getPokeName(pokeData.name)} Sprites
         </div>
       )}
       <div>{otherIconsHTML}</div>

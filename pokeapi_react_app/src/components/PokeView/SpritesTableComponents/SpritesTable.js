@@ -5,7 +5,12 @@ import SpritesTableVersions from "./SpritesTableVersions";
 import SpritesTableOther from "./SpritesTableOther";
 
 // Basic table for displaying all of the current Pokémon's sprites
-const SpritesTable = ({ pokeData, screenSize, isDarkMode }) => {
+const SpritesTable = ({
+  pokeData,
+  whosThatPokemon,
+  screenSize,
+  isDarkMode,
+}) => {
   // Setup the sprites section style based on if the user is using light or dark mode
   const fontStyle = isDarkMode ? "font-dark" : "font-light";
   const secondaryHeaderStyle =
@@ -36,7 +41,7 @@ const SpritesTable = ({ pokeData, screenSize, isDarkMode }) => {
       <div
         className={`sprites-table-label ${fontStyle} ${secondaryHeaderStyle}`}
       >
-        {getPokeName(pokeData.name)} Sprites
+        {whosThatPokemon ? "????" : getPokeName(pokeData.name)} Sprites
         <CollapseExpandButton
           setIsExpanded={setIsExpanded}
           isDarkMode={isDarkMode}
@@ -46,6 +51,7 @@ const SpritesTable = ({ pokeData, screenSize, isDarkMode }) => {
         <SpritesTableBasic
           pokeData={pokeData}
           getPokeName={getPokeName}
+          whosThatPokemon={whosThatPokemon}
           isExpanded={isExpanded}
           setIsExpanded={setIsExpanded}
           isDarkMode={isDarkMode}
@@ -53,6 +59,7 @@ const SpritesTable = ({ pokeData, screenSize, isDarkMode }) => {
         <SpritesTableOther
           pokeData={pokeData}
           getPokeName={getPokeName}
+          whosThatPokemon={whosThatPokemon}
           isExpanded={isExpanded}
           setIsExpanded={setIsExpanded}
           screenSize={screenSize}
@@ -61,6 +68,7 @@ const SpritesTable = ({ pokeData, screenSize, isDarkMode }) => {
         <SpritesTableVersions
           pokeData={pokeData}
           getPokeName={getPokeName}
+          whosThatPokemon={whosThatPokemon}
           isExpanded={isExpanded}
           setIsExpanded={setIsExpanded}
           screenSize={screenSize}

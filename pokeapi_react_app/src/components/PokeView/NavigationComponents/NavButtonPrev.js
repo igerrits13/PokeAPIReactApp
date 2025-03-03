@@ -3,7 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
 
 // Button display to navigate to the previous Pokémon
-const NavButtonPrev = ({ fullPokeResults, id, isDarkMode }) => {
+const NavButtonPrev = ({
+  fullPokeResults,
+  whosThatPokemon,
+  id,
+  isDarkMode,
+}) => {
   // Setup the navigation button style based on if the user is using light or dark mode
   const fontStyle = isDarkMode ? "font-dark" : "font-light";
   const navButtonStyle = isDarkMode
@@ -31,6 +36,11 @@ const NavButtonPrev = ({ fullPokeResults, id, isDarkMode }) => {
     e.target(".dyn-section-button-img-container").style.display = "none";
   };
 
+  // Set data to not be blank and navigate to the previous Pokémon
+  const handleOnClick = () => {
+    navigate(`/pokemon/${id}`);
+  };
+
   // Display the previous button if the previous ID is valid
   return (
     id > 0 && (
@@ -38,7 +48,7 @@ const NavButtonPrev = ({ fullPokeResults, id, isDarkMode }) => {
         className={`nav-button nav-button-prev ${navButtonStyle}`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        onClick={() => navigate(`/pokemon/${id}`)}
+        onClick={() => handleOnClick()}
         whileHover={{ scale: 1.1, rotate: "-1.5deg" }}
         whileTap={{ scale: 0.9, rotate: "5deg" }}
         transition={{ duration: 0.1 }}
@@ -59,12 +69,15 @@ const NavButtonPrev = ({ fullPokeResults, id, isDarkMode }) => {
               repeatDelay: 0.2,
             }}
           />
-          {getPokeName(fullPokeResults[id - 1].name)} #{id}
+          {whosThatPokemon ? "????" : getPokeName(fullPokeResults[id - 1].name)}{" "}
+          #{whosThatPokemon ? "????" : id}
         </div>
         <motion.img
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`}
           alt={`Test`}
-          className="nav-button-img"
+          className={`nav-button-img ${
+            whosThatPokemon ? "pokeview-image-dark" : ""
+          }`}
           onError={handleImageError}
           animate={{
             scale: isHovered ? 1.3 : 1,

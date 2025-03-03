@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import PokemonCardLoading from "./PokemonCardLoading";
 
 // Create individual Pokémon cards
-const PokemonCard = ({ obj, i, isDarkMode }) => {
+const PokemonCard = ({ obj, i, whosThatPokemon, isDarkMode }) => {
   // Setup the search bar style based on if the user is using light or dark mode
   const cardStyle = isDarkMode
     ? "component-background-dark"
@@ -45,16 +45,18 @@ const PokemonCard = ({ obj, i, isDarkMode }) => {
         to={pokeIdURL}
       >
         <div className={`pokemon-card-title ${cardTitleStyle}`}>
-          {getPokeName(obj.name)}
+          {whosThatPokemon ? "????" : getPokeName(obj.name)}
         </div>
         <img
-          className="pokemon-image"
+          className={`pokemon-image ${
+            whosThatPokemon ? "pokeview-image-dark" : ""
+          }`}
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${i}.png`}
           alt={`${obj.name} card`}
           onLoad={handleImageLoad}
         />
         <div className={`pokemon-card-number ${cardTitleStyle}`}>
-          #{cardNum.slice(cardNum.length - 4)}
+          #{whosThatPokemon ? "????" : cardNum.slice(cardNum.length - 4)}
         </div>
       </Link>
     </motion.div>

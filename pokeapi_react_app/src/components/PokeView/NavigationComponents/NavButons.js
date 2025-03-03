@@ -2,7 +2,13 @@ import NavButtonPrev from "./NavButtonPrev";
 import NavButtonNext from "./NavButtonNext";
 
 // Container to hold the navigation buttons
-const NavButtons = ({ id, fullPokeResults, screenSize, isDarkMode }) => {
+const NavButtons = ({
+  id,
+  fullPokeResults,
+  whosThatPokemon,
+  screenSize,
+  isDarkMode,
+}) => {
   return (
     <div
       className={`nav-button-container ${
@@ -12,11 +18,13 @@ const NavButtons = ({ id, fullPokeResults, screenSize, isDarkMode }) => {
       <NavButtonPrev
         id={Number(id) - 1}
         fullPokeResults={fullPokeResults}
+        whosThatPokemon={whosThatPokemon}
         isDarkMode={isDarkMode}
       />
       <NavButtonNext
         id={Number(id) + 1}
         fullPokeResults={fullPokeResults}
+        whosThatPokemon={whosThatPokemon}
         isDarkMode={isDarkMode}
       />
     </div>

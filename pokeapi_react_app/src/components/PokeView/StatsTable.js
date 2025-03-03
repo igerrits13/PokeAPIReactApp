@@ -1,7 +1,7 @@
 import StatsTableSection from "./StatsTableSection";
 
 // Create a table section based on the input array of information
-const StatsTable = ({ statsInfo, screenSize, isDarkMode }) => {
+const StatsTable = ({ statsInfo, whosThatPokemon, screenSize, isDarkMode }) => {
   // Setup the line styling between information sections based on if the user is using light or dark mode
   const fontStyle = isDarkMode ? "font-dark" : "font-light";
   // const lineStyle = isDarkMode

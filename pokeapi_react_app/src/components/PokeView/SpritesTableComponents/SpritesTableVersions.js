@@ -6,6 +6,7 @@ import SpriteTableSection from "./SpriteTableSection";
 const SpritesTableVersions = ({
   pokeData,
   getPokeName,
+  whosThatPokemon,
   isExpanded,
   setIsExpanded,
   screenSize,
@@ -134,6 +135,7 @@ const SpritesTableVersions = ({
             <SpriteTableImage
               pokeData={pokeData}
               getPokeName={getPokeName}
+              whosThatPokemon={whosThatPokemon}
               spriteUrl={spriteUrl}
               description={description}
             />
@@ -232,7 +234,8 @@ const SpritesTableVersions = ({
     <>
       {hasNonNullValues(versionIconsHTML) && (
         <div className={`${fontStyle} ${tirtiaryHeaderStyle}`}>
-          {getPokeName(pokeData.name)} Sprites by Generation
+          {whosThatPokemon ? "????" : getPokeName(pokeData.name)} Sprites by
+          Generation
         </div>
       )}
       <div>{versionIconsHTML}</div>
