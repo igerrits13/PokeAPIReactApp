@@ -103,6 +103,7 @@ const BattleImageToggle = ({
         <WhosThatPokemonToggle
           whosThatPokemon={whosThatPokemon}
           setWhosThatPokemon={setWhosThatPokemon}
+          isDarkMode={isDarkMode}
         />
       )}
     </div>

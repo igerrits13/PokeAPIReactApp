@@ -99,6 +99,7 @@ const HomeView = ({
           whosThatPokemon={whosThatPokemon}
           setWhosThatPokemon={setWhosThatPokemon}
           pokeResults={pokeResults}
+          isDarkMode={isDarkMode}
         />
       )}
       <TypeseTable

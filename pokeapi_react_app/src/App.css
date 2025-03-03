@@ -2244,3 +2244,21 @@ const colours = {
 .expand-collapse-dropdown-text {
   width: 6rem;
 }
+
+/* Who's that Pokémon */
+
+.whos-that-button {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+  align-content: center;
+  margin: 3rem 0 0 0;
+  padding: 0.5rem 1rem;
+  width: fit-content;
+  align-self: center;
+}
+
+.whos-that-image {
+  height: 1.5rem;
+  object-fit: contain;
+}
