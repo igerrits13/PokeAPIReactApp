@@ -1,6 +1,6 @@
-import { useState } from "react";
-// import { motion } from "motion/react";
-// import BattleDisplay from "../BattleDisplayComponents/BattleDisplay";
+import { useState, useEffect } from "react";
+import { motion } from "motion/react";
+import BattleDisplay from "../BattleDisplayComponents/BattleDisplay";
 import WhosThatPokemonToggle from "./WhosThatPokemonToggle";
 import PokeImage from "./PokeImage";
 
@@ -21,19 +21,19 @@ const BattleImageToggle = ({
   const activeImageVersionFontStyle = isDarkMode
     ? "option-font-dark-active component-outline-dark"
     : "option-font-light-active component-outline-light";
-  // const battleToggleStyle = isDarkMode
-  //   ? "icon-dark component-outline-background-dark"
-  //   : "icon-light component-outline-background-light";
+  const battleToggleStyle = isDarkMode
+    ? "icon-dark component-outline-background-dark"
+    : "icon-light component-outline-background-light";
 
   // State to track which view should be showing
-  // const [battleView, setBattleView] = useState(true);
+  const [battleView, setBattleView] = useState(true);
   const [isNormalToggle, setIsNormalToggle] = useState(true);
 
-  // useEffect(() => {
-  //   setBattleView(
-  //     pokeData.sprites.other.showdown.front_default !== null ? true : false
-  //   );
-  // }, [pokeData]);
+  useEffect(() => {
+    setBattleView(
+      pokeData.sprites.other.showdown.front_default !== null ? true : false
+    );
+  }, [pokeData]);
 
   // Functions to handle toggling between normal and shiny mode
   const handleNormalMode = () => {
@@ -44,18 +44,23 @@ const BattleImageToggle = ({
     setIsNormalToggle(false);
   };
 
+  const handleOnClick = () => {
+    setBattleView(!battleView);
+    setIsNormalToggle(true);
+  };
+
   // Display the toggle and appropriate view
   return (
     <div className="secondary-table-conainer-50">
-      {/* {battleView ? (
+      {battleView ? (
         <BattleDisplay pokeData={pokeData} isNormalToggle={isNormalToggle} />
-      ) : ( */}
-      <PokeImage
-        pokeData={pokeData}
-        whosThatPokemon={whosThatPokemon}
-        isNormalToggle={isNormalToggle}
-      />
-      {/* )} */}
+      ) : (
+        <PokeImage
+          pokeData={pokeData}
+          whosThatPokemon={whosThatPokemon}
+          isNormalToggle={isNormalToggle}
+        />
+      )}
       <div className="pokeview-image-toggle">
         <button
           onClick={handleNormalMode}
@@ -82,13 +87,13 @@ const BattleImageToggle = ({
           </button>
         )}
       </div>
-      {/* {pokeData.sprites.other.showdown.front_default !== null && (
+      {pokeData.sprites.other.showdown.front_default !== null && (
         <div className="pokeview-toggle-container">
           Battle
           <div
             className={`pokeview-toggle ${battleToggleStyle}`}
             data-battleview={battleView}
-            onClick={() => setBattleView(!battleView)}
+            onClick={handleOnClick}
           >
             <motion.div
               className="pokeview-toggle-handle component-background-light"
@@ -98,7 +103,7 @@ const BattleImageToggle = ({
           </div>
           Artwork
         </div>
-      )} */}
+      )}
       {whosThatPokemon && (
         <WhosThatPokemonToggle
           whosThatPokemon={whosThatPokemon}
