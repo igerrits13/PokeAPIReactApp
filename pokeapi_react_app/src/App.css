@@ -105,6 +105,13 @@
   color: #fff9fc;
 }
 
+.font-dark-pixel {
+  font-family: pixel-operator, sans-serif;
+  text-shadow: -1px -1px 0 #201d1f, 1px -1px 0 #201d1f, -1px 1px 0 #201d1f,
+    1px 1px 0 #201d1f;
+  color: #fff9fc;
+}
+
 .font-dark-no-outline {
   font-family: josefinSans, sans-serif;
   color: #fff9fc;
@@ -1648,7 +1655,6 @@ const colours = {
   height: 100%;
   width: 100%;
   border-radius: 8px;
-  /* background-color: yellowgreen; */
   background: rgb(20, 157, 0);
   background: linear-gradient(
     0deg,
@@ -1668,12 +1674,11 @@ const colours = {
     "prompt prompt fight bag"
     "prompt prompt pokemon run";
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: auto;
-  place-items: center;
-  place-content: center;
-  gap: 10px;
+  grid-template-rows: repeat(2, 1fr);
+  gap: 0.5rem;
   padding: 0.25rem 0.5rem;
   width: 100%;
+  height: 8rem;
   bottom: 0;
   border-radius: 0 0 8px 8px;
   background: rgb(154, 154, 154);
@@ -1684,76 +1689,97 @@ const colours = {
     rgba(154, 154, 154, 1) 100%
   );
   border-top: 3px solid #2b2e2a;
+  font-size: 2.5rem;
+  line-height: 2.5rem;
 }
 
 .battle-display-info-item {
   display: flex;
   justify-content: center;
-  align-items: center;
-  width: 100%;
   height: 100%;
-  padding: 1rem;
+  width: 100%;
+  max-height: 100%;
+  max-width: 100%;
   border: none;
+  padding: 1px;
+  border-radius: 1rem;
 }
 
 .battle-display-info-prompt {
-  font-size: 3rem;
   padding: 3px;
   text-align: start;
   grid-area: prompt;
   border-radius: 8px;
   box-shadow: 0 0 0 3px #2b2e2a;
   background-color: #d7c69a;
+  height: 100%;
 }
 
 .battle-display-info-prompt-textbox {
-  font-size: 3rem;
   text-align: start;
-  grid-area: prompt;
+  align-content: center;
   border-radius: 8px;
   border: 6px solid #595761;
   background-color: #f8f8f8;
-  padding: 0 1.5rem;
+  padding: 0 1rem;
+  height: 100%;
+  overflow-y: auto;
 }
 
 .battle-display-info-fight {
-  font-size: 1rem;
-  padding: 3px;
-  text-align: center;
   grid-area: fight;
-  border-radius: 2rem;
   box-shadow: 0 0 0 3px #b84e3f;
   background-color: #f8f8f8;
 }
 
+.battle-display-info-fight-textbox {
+  border-radius: 1rem;
+  align-content: center;
+  height: 100%;
+  width: 100%;
+  background-color: #eaabac;
+}
+
 .battle-display-info-bag {
-  font-size: 1rem;
-  padding: 3px;
-  text-align: center;
   grid-area: bag;
-  border-radius: 2rem;
   box-shadow: 0 0 0 3px #2b2e2a;
   background-color: #f8f8f8;
+}
+
+.battle-display-info-bag-textbox {
+  border-radius: 1rem;
+  align-content: center;
+  height: 100%;
+  width: 100%;
+  background-color: #e19929;
 }
 
 .battle-display-info-pokemon {
-  font-size: 1rem;
-  padding: 3px;
-  text-align: center;
   grid-area: pokemon;
-  border-radius: 2rem;
   box-shadow: 0 0 0 3px #2b2e2a;
   background-color: #f8f8f8;
 }
 
+.battle-display-info-pokemon-textbox {
+  border-radius: 1rem;
+  align-content: center;
+  height: 100%;
+  width: 100%;
+  background-color: #59a945;
+}
+
 .battle-display-info-run {
-  font-size: 1rem;
-  padding: 3px;
-  text-align: center;
   grid-area: run;
-  border-radius: 2rem;
   box-shadow: 0 0 0 3px #2b2e2a;
   background-color: #f8f8f8;
+}
+
+.battle-display-info-run-textbox {
+  border-radius: 1rem;
+  align-content: center;
+  height: 100%;
+  width: 100%;
+  background-color: #2890c9;
 }
 
 /* Dynamic Section Buttons */

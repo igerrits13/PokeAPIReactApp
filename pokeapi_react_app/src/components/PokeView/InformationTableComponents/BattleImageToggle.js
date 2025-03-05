@@ -53,7 +53,7 @@ const BattleImageToggle = ({
   return (
     <div className="secondary-table-conainer-50">
       {battleView ? (
-        <BattleDisplay pokeData={pokeData} isNormalToggle={isNormalToggle} />
+        <BattleDisplay pokeData={pokeData} whosThatPokemon={whosThatPokemon} />
       ) : (
         <PokeImage
           pokeData={pokeData}
