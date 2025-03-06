@@ -4,7 +4,12 @@ import BattleDisplayAttack from "./BattleDisplayAttack";
 import BattleDisplayBag from "./BattleDisplayBag";
 import BattleDisplayTextbox from "./BattleDisplayTextbox";
 
-const BattleDisplay = ({ pokeData, pokeSpeciesData, whosThatPokemon }) => {
+const BattleDisplay = ({
+  pokeData,
+  pokeSpeciesData,
+  isNormalToggle,
+  whosThatPokemon,
+}) => {
   const [mainSection, setMainSection] = useState(true);
   const [fightSection, setFightSection] = useState(false);
   const [pokeSection, setPokeSection] = useState(false);
@@ -20,6 +25,44 @@ const BattleDisplay = ({ pokeData, pokeSpeciesData, whosThatPokemon }) => {
 
   return (
     <div className="battle-display-container">
+      {/*  */}
+      <div className="battle-display-field">
+        <div className="battle-display-field-pokemon-platform battle-display-field-pokemon-platform-front">
+          <div className="battle-display-field-pokemon-platform-ring"></div>
+        </div>
+        <div className="battle-display-field-pokemon-back-container">
+          <img
+            className="battle-display-field-pokemon-back"
+            src={
+              isNormalToggle
+                ? pokeData.sprites.other.showdown.back_default
+                : pokeData.sprites.other.showdown.back_shiny
+            }
+          />
+        </div>
+        <div className="battle-display-field-pokemon-platform battle-display-field-pokemon-platform-back">
+          <div className="battle-display-field-pokemon-platform-ring"></div>
+        </div>
+        <div className="battle-display-field-pokemon-front-container">
+          <img
+            className="battle-display-field-pokemon-front"
+            src={
+              isNormalToggle
+                ? pokeData.sprites.other.showdown.front_default
+                : pokeData.sprites.other.showdown.front_shiny
+            }
+          />
+        </div>
+        {/* <img
+          className="battle-display-field-pokemon-back"
+          src={pokeData.sprites.other.showdown.back_default}
+        />
+        <img
+          className="battle-display-field-pokemon-front"
+          src={pokeData.sprites.other.showdown.front_default}
+        /> */}
+      </div>
+      {/*  */}
       {/* Field for the pokemon to battle, display for Pokemon options */}
       {mainSection && (
         <BattleDisplayInfo

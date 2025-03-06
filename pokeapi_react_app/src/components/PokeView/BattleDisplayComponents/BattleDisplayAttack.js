@@ -21,9 +21,9 @@ const BattleDisplayAttack = ({ pokeData, setMainSection, setSection }) => {
       const response = await fetch(url);
       const data = await response.json();
       // Get the first English flavor text for the current Pokémon
-      const flavorText = data.flavor_text_entries
+      const flavorText = data.effect_entries
         .find((obj) => obj.language.name === "en")
-        ?.flavor_text.replace("\u000c", " ");
+        ?.effect.replace("\u000c", " ");
 
       // Update the flavor text state
       setFlavorText(flavorText);

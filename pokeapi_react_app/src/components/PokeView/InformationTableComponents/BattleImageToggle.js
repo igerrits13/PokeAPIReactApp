@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "motion/react";
 import BattleDisplay from "../BattleDisplayComponents/BattleDisplay";
 import WhosThatPokemonToggle from "./WhosThatPokemonToggle";
@@ -27,14 +27,14 @@ const BattleImageToggle = ({
     : "icon-light component-outline-background-light";
 
   // State to track which view should be showing
-  const [battleView, setBattleView] = useState(true);
+  const [battleView, setBattleView] = useState(false);
   const [isNormalToggle, setIsNormalToggle] = useState(true);
 
-  useEffect(() => {
-    setBattleView(
-      pokeData.sprites.other.showdown.front_default !== null ? true : false
-    );
-  }, [pokeData]);
+  // useEffect(() => {
+  //   setBattleView(
+  //     pokeData.sprites.other.showdown.front_default !== null ? true : false
+  //   );
+  // }, [pokeData]);
 
   // Functions to handle toggling between normal and shiny mode
   const handleNormalMode = () => {
@@ -52,11 +52,12 @@ const BattleImageToggle = ({
 
   // Display the toggle and appropriate view
   return (
-    <div className="secondary-table-conainer-50">
+    <div className="secondary-table-conainer-50 pokeview-display-container">
       {battleView ? (
         <BattleDisplay
           pokeData={pokeData}
           pokeSpeciesData={pokeSpeciesData}
+          isNormalToggle={isNormalToggle}
           whosThatPokemon={whosThatPokemon}
         />
       ) : (
