@@ -32,6 +32,7 @@ const PokeInfoTable = ({
         <>
           <BattleImageToggle
             pokeData={pokeData}
+            pokeSpeciesData={pokeSpeciesData}
             whosThatPokemon={whosThatPokemon}
             setWhosThatPokemon={setWhosThatPokemon}
             isDarkMode={isDarkMode}
@@ -55,6 +56,7 @@ const PokeInfoTable = ({
           />
           <BattleImageToggle
             pokeData={pokeData}
+            pokeSpeciesData={pokeSpeciesData}
             whosThatPokemon={whosThatPokemon}
             setWhosThatPokemon={setWhosThatPokemon}
             isDarkMode={isDarkMode}

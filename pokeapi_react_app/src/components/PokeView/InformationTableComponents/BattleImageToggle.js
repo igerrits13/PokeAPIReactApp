@@ -7,6 +7,7 @@ import PokeImage from "./PokeImage";
 // Allow user to toggle between the battle and art Poké display
 const BattleImageToggle = ({
   pokeData,
+  pokeSpeciesData,
   whosThatPokemon,
   setWhosThatPokemon,
   isDarkMode,
@@ -53,7 +54,11 @@ const BattleImageToggle = ({
   return (
     <div className="secondary-table-conainer-50">
       {battleView ? (
-        <BattleDisplay pokeData={pokeData} whosThatPokemon={whosThatPokemon} />
+        <BattleDisplay
+          pokeData={pokeData}
+          pokeSpeciesData={pokeSpeciesData}
+          whosThatPokemon={whosThatPokemon}
+        />
       ) : (
         <PokeImage
           pokeData={pokeData}

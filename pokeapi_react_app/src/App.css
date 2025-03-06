@@ -1655,32 +1655,26 @@ const colours = {
   height: 100%;
   width: 100%;
   border-radius: 8px;
-  background: rgb(20, 157, 0);
+  background: rgb(45, 201, 110);
   background: linear-gradient(
     0deg,
-    rgba(20, 157, 0, 1) 0%,
-    rgba(38, 164, 0, 1) 17%,
-    rgba(169, 215, 3, 1) 41%,
-    rgba(220, 235, 4, 1) 55%,
-    rgba(0, 255, 6, 1) 68%,
-    rgba(5, 240, 223, 1) 75%
+    rgba(45, 201, 110, 1) 17%,
+    rgba(177, 242, 150, 1) 55%,
+    rgba(119, 216, 110, 1) 68%,
+    rgba(66, 223, 200, 1) 75%
   );
 }
 
 .battle-display-info {
   position: absolute;
-  display: grid;
-  grid-template-areas:
-    "prompt prompt fight bag"
-    "prompt prompt pokemon run";
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 0.5rem;
-  padding: 0.25rem 0.5rem;
   width: 100%;
   height: 8rem;
+  font-size: 2.5rem;
+  line-height: 2.5rem;
+  padding: 0.25rem 0.5rem;
   bottom: 0;
   border-radius: 0 0 8px 8px;
+  border-top: 3px solid #2b2e2a;
   background: rgb(154, 154, 154);
   background: linear-gradient(
     0deg,
@@ -1688,98 +1682,113 @@ const colours = {
     rgba(247, 247, 247, 1) 50%,
     rgba(154, 154, 154, 1) 100%
   );
-  border-top: 3px solid #2b2e2a;
-  font-size: 2.5rem;
-  line-height: 2.5rem;
 }
 
-.battle-display-info-item {
-  display: flex;
-  justify-content: center;
+.battle-display-info-main {
+  display: grid;
+  grid-template-areas:
+    "prompt prompt fight bag"
+    "prompt prompt pokemon run";
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+.battle-display-info-section {
   height: 100%;
   width: 100%;
-  max-height: 100%;
-  max-width: 100%;
-  border: none;
-  padding: 1px;
-  border-radius: 1rem;
-}
-
-.battle-display-info-prompt {
   padding: 3px;
-  text-align: start;
-  grid-area: prompt;
   border-radius: 8px;
   box-shadow: 0 0 0 3px #2b2e2a;
   background-color: #d7c69a;
-  height: 100%;
 }
 
-.battle-display-info-prompt-textbox {
-  text-align: start;
-  align-content: center;
+.battle-display-info-textbox {
+  /* align-content: space-around; */
+  height: 100%;
+  padding: 0.5rem 1rem;
   border-radius: 8px;
   border: 6px solid #595761;
   background-color: #f8f8f8;
-  padding: 0 1rem;
-  height: 100%;
   overflow-y: auto;
 }
 
-.battle-display-info-fight {
+.battle-display-info-back {
+  width: fit-content;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.battle-display-info-section-prompt {
+  grid-area: prompt;
+}
+
+.battle-display-info-button {
+  padding: 1px;
+  border: none;
+  border-radius: 1rem;
+}
+
+.battle-display-info-button-default {
+  box-shadow: 0 0 0 3px #2b2e2a;
+  background-color: #f8f8f8;
+}
+
+.battle-display-info-button-textbox {
+  border-radius: 1rem;
+  align-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.battle-display-info-button-fight {
   grid-area: fight;
   box-shadow: 0 0 0 3px #b84e3f;
   background-color: #f8f8f8;
 }
 
 .battle-display-info-fight-textbox {
-  border-radius: 1rem;
-  align-content: center;
-  height: 100%;
-  width: 100%;
   background-color: #eaabac;
 }
 
-.battle-display-info-bag {
+.battle-display-info-button-bag {
   grid-area: bag;
-  box-shadow: 0 0 0 3px #2b2e2a;
-  background-color: #f8f8f8;
 }
 
 .battle-display-info-bag-textbox {
-  border-radius: 1rem;
-  align-content: center;
-  height: 100%;
-  width: 100%;
   background-color: #e19929;
 }
 
-.battle-display-info-pokemon {
+.battle-display-info-button-pokemon {
   grid-area: pokemon;
-  box-shadow: 0 0 0 3px #2b2e2a;
-  background-color: #f8f8f8;
 }
 
 .battle-display-info-pokemon-textbox {
-  border-radius: 1rem;
-  align-content: center;
-  height: 100%;
-  width: 100%;
   background-color: #59a945;
 }
 
-.battle-display-info-run {
+.battle-display-info-button-run {
   grid-area: run;
-  box-shadow: 0 0 0 3px #2b2e2a;
-  background-color: #f8f8f8;
 }
 
 .battle-display-info-run-textbox {
-  border-radius: 1rem;
-  align-content: center;
-  height: 100%;
-  width: 100%;
   background-color: #2890c9;
+}
+
+.battle-display-info-unknown-textbox {
+  background-color: #6bc694;
+}
+
+.battle-display-info-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 0.5rem;
+  overflow-y: auto;
+}
+
+.battle-display-detail-button {
+  background-color: #6390f0;
 }
 
 /* Dynamic Section Buttons */
