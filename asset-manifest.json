@@ -1,14 +1,13 @@
 {
   "files": {
-    "main.css": "/PokeAPIReactApp/static/css/main.5a014661.css",
-    "main.js": "/PokeAPIReactApp/static/js/main.02739b88.js",
+    "main.css": "/PokeAPIReactApp/static/css/main.eaff9062.css",
+    "main.js": "/PokeAPIReactApp/static/js/main.440f692a.js",
     "static/js/453.80de1486.chunk.js": "/PokeAPIReactApp/static/js/453.80de1486.chunk.js",
     "static/media/JosefinSans-Regular.ttf": "/PokeAPIReactApp/static/media/JosefinSans-Regular.c978665c44b59cf9c71f.ttf",
     "static/media/JosefinSans-Light.ttf": "/PokeAPIReactApp/static/media/JosefinSans-Light.c61c964657466399c9d2.ttf",
     "static/media/JosefinSans-Bold.ttf": "/PokeAPIReactApp/static/media/JosefinSans-Bold.0ec6d05a9917d9c58519.ttf",
     "static/media/PokeAPILogo.svg": "/PokeAPIReactApp/static/media/PokeAPILogo.5376209d72174c83f231e1bc0b25ad84.svg",
-    "static/media/Quicksand_Bold.otf": "/PokeAPIReactApp/static/media/Quicksand_Bold.90bf44d43965116d771b.otf",
-    "static/media/Quicksand_Book.otf": "/PokeAPIReactApp/static/media/Quicksand_Book.c86e224d3dd24efee96a.otf",
+    "static/media/PixelOperator.ttf": "/PokeAPIReactApp/static/media/PixelOperator.b42790276a8fc0c79bda.ttf",
     "static/media/dragon.svg": "/PokeAPIReactApp/static/media/dragon.9d32757b191cbbaea8d4d418ff5d4ed3.svg",
     "static/media/fire.svg": "/PokeAPIReactApp/static/media/fire.e0bd7fcab2121e7ac1ffbbe09a3ca5dd.svg",
     "static/media/psychic.svg": "/PokeAPIReactApp/static/media/psychic.67439878eaa68ee726de9944c7ff9757.svg",
@@ -29,12 +28,12 @@
     "static/media/electric.svg": "/PokeAPIReactApp/static/media/electric.bc35c5a3faf04b605c00967b94e93693.svg",
     "static/media/grass.svg": "/PokeAPIReactApp/static/media/grass.e09623e3345d5bf5286f5323dd923c60.svg",
     "static/media/normal.svg": "/PokeAPIReactApp/static/media/normal.2ba66dd583ebf70eb414a0cfd20a48be.svg",
-    "main.5a014661.css.map": "/PokeAPIReactApp/static/css/main.5a014661.css.map",
-    "main.02739b88.js.map": "/PokeAPIReactApp/static/js/main.02739b88.js.map",
+    "main.eaff9062.css.map": "/PokeAPIReactApp/static/css/main.eaff9062.css.map",
+    "main.440f692a.js.map": "/PokeAPIReactApp/static/js/main.440f692a.js.map",
     "453.80de1486.chunk.js.map": "/PokeAPIReactApp/static/js/453.80de1486.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5a014661.css",
-    "static/js/main.02739b88.js"
+    "static/css/main.eaff9062.css",
+    "static/js/main.440f692a.js"
   ]
 }
