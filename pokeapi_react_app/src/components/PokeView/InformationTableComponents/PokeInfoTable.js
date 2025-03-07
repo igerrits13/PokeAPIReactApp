@@ -35,6 +35,7 @@ const PokeInfoTable = ({
             pokeSpeciesData={pokeSpeciesData}
             whosThatPokemon={whosThatPokemon}
             setWhosThatPokemon={setWhosThatPokemon}
+            screenSize={screenSize}
             isDarkMode={isDarkMode}
           />
           <PokeBasicInfo
@@ -59,6 +60,7 @@ const PokeInfoTable = ({
             pokeSpeciesData={pokeSpeciesData}
             whosThatPokemon={whosThatPokemon}
             setWhosThatPokemon={setWhosThatPokemon}
+            screenSize={screenSize}
             isDarkMode={isDarkMode}
           />
         </>

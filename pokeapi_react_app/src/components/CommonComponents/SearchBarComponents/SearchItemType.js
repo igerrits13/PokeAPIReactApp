@@ -20,6 +20,7 @@ import { ReactComponent as WaterType } from "../../icons/TypeIcons/water.svg";
 import DynamicSvgIcon from "../DynamicComponents/DynamicSvgIcon";
 
 const SearchItemType = ({
+  setSearchText,
   activeSearchIndex,
   setActiveSearchIndex,
   setIsActiveDropdown,
@@ -80,6 +81,11 @@ const SearchItemType = ({
     return urlNum;
   };
 
+  const handleOnClick = () => {
+    setSearchText("");
+    setIsActiveDropdown(false);
+  };
+
   // Store informaiton for the current type item
   const typeIdURL = `/types/${getTypeNum(resultItem)}`;
   const [typeIcon, typeStyle] = getTypeIcon(resultItem.name);
@@ -93,7 +99,7 @@ const SearchItemType = ({
           : ""
       }`}
       to={typeIdURL}
-      onClick={() => setIsActiveDropdown(false)}
+      onClick={handleOnClick}
       onMouseEnter={() => setActiveSearchIndex(index)}
     >
       <div>

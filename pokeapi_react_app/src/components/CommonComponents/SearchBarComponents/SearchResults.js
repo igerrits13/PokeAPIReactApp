@@ -5,6 +5,7 @@ import SearchItemType from "./SearchItemType";
 // Display the dropdown search results from the search bar
 const SearchResults = ({
   searchText,
+  setSearchText,
   activeSearchIndex,
   setActiveSearchIndex,
   searchDropdownRef,
@@ -37,6 +38,7 @@ const SearchResults = ({
         fullPokeResults.slice(0, 12).map((resultItem, i) => {
           return (
             <SearchItem
+              setSearchText={setSearchText}
               activeSearchIndex={activeSearchIndex}
               setActiveSearchIndex={setActiveSearchIndex}
               setIsActiveDropdown={setIsActiveDropdown}
@@ -63,6 +65,7 @@ const SearchResults = ({
           .map((resultItem, i) => {
             return (
               <SearchItem
+                setSearchText={setSearchText}
                 activeSearchIndex={activeSearchIndex}
                 setActiveSearchIndex={setActiveSearchIndex}
                 setIsActiveDropdown={setIsActiveDropdown}
@@ -77,6 +80,7 @@ const SearchResults = ({
       );
     }
   }, [
+    setSearchText,
     activeSearchIndex,
     setActiveSearchIndex,
     setIsActiveDropdown,
@@ -104,6 +108,7 @@ const SearchResults = ({
             i += pokeResultsHTML.length;
             return (
               <SearchItemType
+                setSearchText={setSearchText}
                 activeSearchIndex={activeSearchIndex}
                 setActiveSearchIndex={setActiveSearchIndex}
                 setIsActiveDropdown={setIsActiveDropdown}
@@ -119,6 +124,7 @@ const SearchResults = ({
       );
     }
   }, [
+    setSearchText,
     activeSearchIndex,
     setActiveSearchIndex,
     setIsActiveDropdown,

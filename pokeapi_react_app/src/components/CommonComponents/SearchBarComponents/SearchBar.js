@@ -149,6 +149,7 @@ const SearchBar = ({
       </Link>
       <SearchResults
         searchText={searchText}
+        setSearchText={setSearchText}
         activeSearchIndex={activeSearchIndex}
         setActiveSearchIndex={setActiveSearchIndex}
         searchDropdownRef={searchDropdownRef}

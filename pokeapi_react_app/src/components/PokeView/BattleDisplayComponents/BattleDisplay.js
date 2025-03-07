@@ -9,6 +9,7 @@ const BattleDisplay = ({
   pokeSpeciesData,
   isNormalToggle,
   whosThatPokemon,
+  screenSize,
 }) => {
   const [mainSection, setMainSection] = useState(true);
   const [fightSection, setFightSection] = useState(false);
@@ -24,7 +25,15 @@ const BattleDisplay = ({
   const pokeText = whosThatPokemon ? "????" : flavorText;
 
   return (
-    <div className="battle-display-container">
+    <div
+      className={`battle-display-container ${
+        screenSize === "small"
+          ? "battle-display-info-small"
+          : screenSize === "med"
+          ? "battle-display-info-med"
+          : "battle-display-info-large"
+      }`}
+    >
       {/*  */}
       <div className="battle-display-field">
         <div className="battle-display-field-pokemon-platform battle-display-field-pokemon-platform-front">
@@ -32,12 +41,15 @@ const BattleDisplay = ({
         </div>
         <div className="battle-display-field-pokemon-back-container">
           <img
-            className="battle-display-field-pokemon-back"
+            className={`battle-display-field-pokemon-back ${
+              whosThatPokemon ? "pokeview-image-dark" : ""
+            }`}
             src={
               isNormalToggle
                 ? pokeData.sprites.other.showdown.back_default
                 : pokeData.sprites.other.showdown.back_shiny
             }
+            alt={`${pokeData.name} gif`}
           />
         </div>
         <div className="battle-display-field-pokemon-platform battle-display-field-pokemon-platform-back">
@@ -45,22 +57,17 @@ const BattleDisplay = ({
         </div>
         <div className="battle-display-field-pokemon-front-container">
           <img
-            className="battle-display-field-pokemon-front"
+            className={`battle-display-field-pokemon-front ${
+              whosThatPokemon ? "pokeview-image-dark" : ""
+            }`}
             src={
               isNormalToggle
                 ? pokeData.sprites.other.showdown.front_default
                 : pokeData.sprites.other.showdown.front_shiny
             }
+            alt={`${pokeData.name} gif`}
           />
         </div>
-        {/* <img
-          className="battle-display-field-pokemon-back"
-          src={pokeData.sprites.other.showdown.back_default}
-        />
-        <img
-          className="battle-display-field-pokemon-front"
-          src={pokeData.sprites.other.showdown.front_default}
-        /> */}
       </div>
       {/*  */}
       {/* Field for the pokemon to battle, display for Pokemon options */}
@@ -80,6 +87,7 @@ const BattleDisplay = ({
           pokeData={pokeData}
           setMainSection={setMainSection}
           setSection={setFightSection}
+          whosThatPokemon={whosThatPokemon}
         />
       )}
       {pokeSection && (
@@ -87,6 +95,7 @@ const BattleDisplay = ({
           setMainSection={setMainSection}
           setSection={setPokeSection}
           inputText={pokeText}
+          whosThatPokemon={whosThatPokemon}
         />
       )}
       {bagSection &&
@@ -94,13 +103,17 @@ const BattleDisplay = ({
           <BattleDisplayTextbox
             setMainSection={setMainSection}
             setSection={setBagSection}
-            inputText={"This Pokémon has no held items!"}
+            inputText={
+              whosThatPokemon ? "????" : "This Pokémon has no held items!"
+            }
+            whosThatPokemon={whosThatPokemon}
           />
         ) : (
           <BattleDisplayBag
             pokeData={pokeData}
             setMainSection={setMainSection}
             setSection={setBagSection}
+            whosThatPokemon={whosThatPokemon}
           />
         ))}
       {runSection && (

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 const SearchItem = ({
+  setSearchText,
   activeSearchIndex,
   setActiveSearchIndex,
   setIsActiveDropdown,
@@ -23,6 +24,11 @@ const SearchItem = ({
     return formattedName.join(" ");
   };
 
+  const handleOnClick = () => {
+    setSearchText("");
+    setIsActiveDropdown(false);
+  };
+
   // Extract the Pokémon number from the Pokémon URL
   const parts = resultItem.url.split("/");
   const cleanedParts = parts.filter((part) => part !== "");
@@ -39,7 +45,7 @@ const SearchItem = ({
           : ""
       }`}
       to={pokeIdURL}
-      onClick={() => setIsActiveDropdown(false)}
+      onClick={handleOnClick}
       onMouseEnter={() => setActiveSearchIndex(index)}
     >
       <div>

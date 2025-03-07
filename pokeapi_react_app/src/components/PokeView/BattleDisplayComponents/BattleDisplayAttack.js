@@ -2,7 +2,12 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import BattleDisplayTextbox from "./BattleDisplayTextbox";
 
-const BattleDisplayAttack = ({ pokeData, setMainSection, setSection }) => {
+const BattleDisplayAttack = ({
+  pokeData,
+  setMainSection,
+  setSection,
+  whosThatPokemon,
+}) => {
   // State to store the flavor text for BattleDisplayTextbox
   const [flavorText, setFlavorText] = useState(null);
 
@@ -17,6 +22,10 @@ const BattleDisplayAttack = ({ pokeData, setMainSection, setSection }) => {
 
   // Function to handle button click and make API call
   const handleButtonClick = async (url) => {
+    if (whosThatPokemon) {
+      setFlavorText("????");
+      return;
+    }
     try {
       const response = await fetch(url);
       const data = await response.json();
@@ -44,7 +53,7 @@ const BattleDisplayAttack = ({ pokeData, setMainSection, setSection }) => {
         onClick={() => handleButtonClick(item.ability.url)} // Trigger API call on click
       >
         <div className="battle-display-info-unknown-textbox battle-display-info-button-textbox hover-dim">
-          {getMoveName(item.ability.name)}
+          {whosThatPokemon ? "????" : getMoveName(item.ability.name)}
         </div>
       </motion.button>
     );
