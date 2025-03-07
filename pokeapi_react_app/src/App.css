@@ -1779,8 +1779,9 @@ const colours = {
 }
 
 .battle-display-info-small {
-  font-size: 1rem;
-  line-height: 1rem;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  transform: scale(1.1);
 }
 
 .battle-display-info-med {
