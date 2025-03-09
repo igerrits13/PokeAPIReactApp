@@ -107,7 +107,13 @@ const BattleDisplay = ({
           </div>
           <div className="battle-display-field-statusbar-back-hp-container">
             HP
-            <div className="battle-display-field-statusbar-back-hp-bar"></div>
+            <div
+              className={`battle-display-field-statusbar-back-hp-bar ${
+                screenSize === "small"
+                  ? "battle-display-field-statusbar-back-hp-bar-small"
+                  : "battle-display-field-statusbar-back-hp-bar-large"
+              }`}
+            ></div>
           </div>
           <div className="battle-display-field-statusbar-back-hp-number font-light-pixel">
             {hpText} / {hpText}
