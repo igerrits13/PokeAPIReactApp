@@ -1,15 +1,41 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { motion } from "motion/react";
 import PokemonCard from "../../CommonComponents/PokemonCardComponents/PokemonCard";
 import EvolutionChainDetails from "./EvolutionChainDetails";
 
 const EvolutionChainTableSection = ({
+  pokeSpeciesData,
   pokeChainData,
   getPokeNum,
   whosThatPokemon,
+  setLevel,
   screenSize,
   isDarkMode,
 }) => {
+  useEffect(() => {
+    Object.entries(pokeChainData)[1][1].evolves_to.forEach((base) => {
+      if (base.species.name === pokeSpeciesData.name) {
+        setLevel(
+          base.evolution_details[0].min_level === null
+            ? 1
+            : base.evolution_details[0].min_level
+        );
+      } else if (base.evolves_to.length !== 0) {
+        Object.entries(base.evolves_to).forEach((evolution) => {
+          if (evolution[1].species.name === pokeSpeciesData.name) {
+            setLevel(
+              evolution[1].evolution_details[0].min_level === null
+                ? base.evolution_details[0].min_level === null
+                  ? 1
+                  : base.evolution_details[0].min_level
+                : evolution[1].evolution_details[0].min_level
+            );
+          }
+        });
+      }
+    });
+  }, [pokeSpeciesData, pokeChainData, setLevel]);
+
   // Recursively get evolutions of the current Pokémon if there are any
   const getEvolutions = (evolutions) => {
     return (

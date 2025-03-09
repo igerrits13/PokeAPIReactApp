@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PokemonCard from "../../CommonComponents/PokemonCardComponents/PokemonCard";
 import EvolutionChainTableSection from "./EvolutionChainTableSection";
 
 const EvolutionChainTable = ({
+  pokeSpeciesData,
   pokeChainData,
   whosThatPokemon,
+  setLevel,
   screenSize,
   isDarkMode,
 }) => {
   // Setup the font style, and line style between information sections based on if the user is using light or dark mode
   const fontStyle = isDarkMode ? "font-dark" : "font-light";
+
+  useEffect(() => {
+    if (pokeChainData.chain.species.name === pokeSpeciesData.name) {
+      setLevel(1);
+    }
+  }, [pokeSpeciesData, pokeChainData, setLevel]);
 
   // Get the current Pokémons number from their url
   const getPokeNum = (pokeURL) => {
@@ -60,9 +68,11 @@ const EvolutionChainTable = ({
         }`}
       >
         <EvolutionChainTableSection
+          pokeSpeciesData={pokeSpeciesData}
           pokeChainData={pokeChainData}
           getPokeNum={getPokeNum}
           whosThatPokemon={whosThatPokemon}
+          setLevel={setLevel}
           screenSize={screenSize}
           isDarkMode={isDarkMode}
         />

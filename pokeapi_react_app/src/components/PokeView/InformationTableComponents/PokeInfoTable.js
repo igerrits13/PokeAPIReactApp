@@ -12,6 +12,7 @@ const PokeInfoTable = ({
   whosThatPokemon,
   setWhosThatPokemon,
   babyTriggerItem,
+  level,
   isDarkMode,
   screenSize,
 }) => {
@@ -35,6 +36,7 @@ const PokeInfoTable = ({
             pokeSpeciesData={pokeSpeciesData}
             whosThatPokemon={whosThatPokemon}
             setWhosThatPokemon={setWhosThatPokemon}
+            level={level}
             screenSize={screenSize}
             isDarkMode={isDarkMode}
           />
@@ -60,6 +62,7 @@ const PokeInfoTable = ({
             pokeSpeciesData={pokeSpeciesData}
             whosThatPokemon={whosThatPokemon}
             setWhosThatPokemon={setWhosThatPokemon}
+            level={level}
             screenSize={screenSize}
             isDarkMode={isDarkMode}
           />

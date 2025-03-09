@@ -10,6 +10,7 @@ const BattleImageToggle = ({
   pokeSpeciesData,
   whosThatPokemon,
   setWhosThatPokemon,
+  level,
   screenSize,
   isDarkMode,
 }) => {
@@ -60,6 +61,7 @@ const BattleImageToggle = ({
           pokeSpeciesData={pokeSpeciesData}
           isNormalToggle={isNormalToggle}
           whosThatPokemon={whosThatPokemon}
+          level={level}
           screenSize={screenSize}
         />
       ) : (

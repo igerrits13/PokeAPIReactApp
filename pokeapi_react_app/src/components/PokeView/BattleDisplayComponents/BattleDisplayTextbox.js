@@ -1,4 +1,3 @@
-// import { useState } from "react";
 import { motion } from "motion/react";
 
 const BattleDisplayTextbox = ({ setMainSection, setSection, inputText }) => {
@@ -6,18 +5,6 @@ const BattleDisplayTextbox = ({ setMainSection, setSection, inputText }) => {
     setMainSection(true);
     setSection(false);
   };
-
-  // const handleScroll = (e) => {
-  //   const threshold = 35; // Adjust this value to set how far from the bottom you want to trigger
-  //   const bottom =
-  //     e.target.scrollHeight - e.target.scrollTop - e.target.clientHeight <=
-  //     threshold;
-  //   if (bottom) {
-  //     console.log("bottom");
-  //   } else {
-  //     console.log("Not yet");
-  //   }
-  // };
 
   const resText = inputText.split("");
 

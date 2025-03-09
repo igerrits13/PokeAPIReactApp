@@ -552,6 +552,11 @@ const EvolutionChainDetails = ({ evolution, screenSize, isDarkMode }) => {
             <>at dusk</>,
             <i class="fa-solid fa-mountain-sun evolution-chain-image" />,
           ];
+        else if (detail[1] === "full-moon")
+          return [
+            <>during a full moon</>,
+            <i className="fa-solid fa-moon evolution-chain-image" />,
+          ];
         else if (detail[1] === "") return [<></>, []];
         else {
           return [<>Not found: {detail[1]}</>, ""];

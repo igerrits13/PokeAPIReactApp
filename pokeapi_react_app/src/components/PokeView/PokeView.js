@@ -27,6 +27,7 @@ const PokeView = ({
   const [pokeSpeciesData, setPokeSpeciesData] = useState(null);
   const [isPokeSpeciesLoading, setIsPokeSpeciesLoading] = useState(true);
   const [babyTriggerItem, setBabyTriggerItem] = useState(null);
+  const [level, setLevel] = useState(1);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const hasRenderedRef = useRef(false);
@@ -169,6 +170,7 @@ const PokeView = ({
             whosThatPokemon={whosThatPokemon}
             setWhosThatPokemon={setWhosThatPokemon}
             babyTriggerItem={babyTriggerItem}
+            level={level}
             isDarkMode={isDarkMode}
             screenSize={screenSize}
           />
@@ -184,9 +186,11 @@ const PokeView = ({
         <hr />
         {!isPokeSpeciesLoading && (
           <EvolutionChain
+            pokeSpeciesData={pokeSpeciesData}
             pokeChainURL={pokeSpeciesData.evolution_chain.url}
             whosThatPokemon={whosThatPokemon}
             setBabyTriggerItem={setBabyTriggerItem}
+            setLevel={setLevel}
             screenSize={screenSize}
             isDarkMode={isDarkMode}
           />

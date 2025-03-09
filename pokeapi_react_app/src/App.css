@@ -1669,8 +1669,8 @@ const colours = {
     0deg,
     rgba(45, 201, 110, 1) 12%,
     rgba(177, 242, 150, 1) 55%,
-    rgba(119, 216, 110, 1) 68%,
-    rgba(66, 223, 200, 1) 75%
+    rgba(119, 216, 110, 1) 58%,
+    rgba(66, 223, 200, 1) 70%
   );
 }
 
@@ -1680,8 +1680,15 @@ const colours = {
   height: 16rem;
   width: 18rem;
   bottom: -4rem;
-  left: -3rem;
   z-index: 2;
+}
+
+.battle-display-field-pokemon-back-container-small {
+  left: -7rem;
+}
+
+.battle-display-field-pokemon-back-container-large {
+  left: -3rem;
 }
 
 .battle-display-field-pokemon-front-container {
@@ -1689,9 +1696,16 @@ const colours = {
   text-align: center;
   height: 12rem;
   width: 14rem;
-  top: 4rem;
-  right: -1rem;
+  top: 2rem;
   z-index: 1;
+}
+
+.battle-display-field-pokemon-front-container-small {
+  right: -5rem;
+}
+
+.battle-display-field-pokemon-front-container-large {
+  right: -1rem;
 }
 
 .battle-display-field-pokemon-back {
@@ -1711,10 +1725,12 @@ const colours = {
 .battle-display-field-pokemon-platform {
   border-radius: 50%;
   background: #d8b77a;
+  border: 1px solid #2b2e2a;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
   position: relative;
   margin: 50px auto;
   z-index: 0;
+  image-rendering: pixelated;
 }
 
 .battle-display-field-pokemon-platform::before {
@@ -1735,11 +1751,11 @@ const colours = {
 }
 
 .battle-display-field-pokemon-platform-ring {
+  position: absolute;
   width: 100%;
   height: 100%;
   border-radius: 50%;
   border: 12px solid rgba(181, 225, 165, 0.75);
-  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -1757,8 +1773,129 @@ const colours = {
   position: absolute;
   height: 6rem;
   width: 24rem;
-  top: 9rem;
+  top: 7rem;
   right: -5rem;
+}
+
+/* Battle view status bars */
+
+.battle-display-field-statusbar-back {
+  position: absolute;
+  right: 0;
+  bottom: 1rem;
+  height: 25%;
+  width: 51%;
+  background: #2b2e2a;
+  z-index: 11;
+}
+
+.battle-display-field-statusbar-back:before {
+  position: absolute;
+  content: "";
+  right: 0;
+  bottom: 2.5%;
+  height: 95%;
+  width: 99%;
+  /* background: rgb(67, 73, 66);
+  background: linear-gradient(
+    0deg,
+    rgba(67, 73, 66, 1) 0%,
+    rgba(224, 224, 224, 1) 14%,
+    rgba(190, 190, 190, 1) 44%,
+    rgba(224, 224, 224, 1) 46%,
+    rgba(190, 190, 190, 1) 48%,
+    rgba(224, 224, 224, 1) 50%,
+    rgba(224, 224, 224, 1) 86%,
+    rgba(67, 73, 66, 1) 100%
+  ); */
+  background: rgb(67, 73, 66);
+  background: linear-gradient(
+    0deg,
+    rgba(67, 73, 66, 1) 0%,
+    rgba(224, 224, 224, 1) 14%,
+    rgba(190, 190, 190, 1) 50%,
+    rgba(224, 224, 224, 1) 54%,
+    rgba(190, 190, 190, 1) 58%,
+    rgba(224, 224, 224, 1) 60%,
+    rgba(224, 224, 224, 1) 86%,
+    rgba(67, 73, 66, 1) 100%
+  );
+}
+
+.battle-display-field-statusbar-back,
+.battle-display-field-statusbar-back:before {
+  -webkit-clip-path: polygon(10% 0, 100% 0, 100% 0, 100% 100%, 0 100%, 3% 95%);
+  clip-path: polygon(10% 0, 100% 0, 100% 0, 100% 100%, 0 100%, 4% 94%);
+}
+
+.battle-display-field-statusbar-back-detail {
+  position: absolute;
+  height: 1rem;
+  width: 40%;
+  right: 2.5%;
+  bottom: calc(1rem - 2%);
+  background: #eae8e9;
+  border: 4px solid #2b2e2a;
+  border-radius: 5px;
+  z-index: 10;
+}
+
+.battle-display-field-statusbar-back-name {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  top: 3%;
+  left: 15%;
+  width: 85%;
+  font-size: 1.5rem;
+  padding: 0 0.5rem;
+}
+
+.battle-display-field-statusbar-back-hp-container {
+  position: relative;
+  left: 45%;
+  top: 45%;
+  width: 50%;
+  height: 1rem;
+  font-size: 1rem;
+  line-height: 1rem;
+  border-radius: 4px;
+  padding: 2px 5px;
+  background-color: #2b2e2a;
+  color: #e7aa20;
+}
+
+.battle-display-field-statusbar-back-hp-bar {
+  position: absolute;
+  width: 78%;
+  left: 20%;
+  top: 15%;
+  height: 70%;
+  border-radius: 2px;
+  background: rgb(50, 108, 52);
+  background: linear-gradient(
+    0deg,
+    rgba(50, 108, 52, 1) 0%,
+    rgba(39, 175, 46, 1) 50%,
+    rgba(50, 108, 52, 1) 100%
+  );
+}
+
+.battle-display-field-statusbar-back-hp-number {
+  position: absolute;
+  width: 44%;
+  left: 53%;
+  /* top: 80%; */
+  bottom: 10%;
+  font-size: 1.5rem;
+  text-align: center;
+  line-height: 1.25rem;
+  height: 25%;
+  border-radius: 4px;
+  background: #e0e0e0;
+}
+
+.battle-display-field-statusbar-front {
 }
 
 .battle-display-info {
@@ -1781,7 +1918,6 @@ const colours = {
 .battle-display-info-small {
   font-size: 1.5rem;
   line-height: 1.5rem;
-  transform: scale(1.1);
 }
 
 .battle-display-info-med {

@@ -22,7 +22,7 @@ const WhosThatPokemon = ({
   const handleOnClick = () => {
     setWhosThatPokemon(!whosThatPokemon);
     const randPokemon = Math.floor(Math.random() * pokeResults.length);
-    navigate(`/pokemon/${pokeResults[randPokemon].name}`);
+    navigate(`/pokemon/${randPokemon + 1}`);
   };
 
   // Display the Who's that Pokémon button

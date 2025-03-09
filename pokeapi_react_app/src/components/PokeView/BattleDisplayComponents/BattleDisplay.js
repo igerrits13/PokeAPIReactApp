@@ -9,6 +9,7 @@ const BattleDisplay = ({
   pokeSpeciesData,
   isNormalToggle,
   whosThatPokemon,
+  level,
   screenSize,
 }) => {
   const [mainSection, setMainSection] = useState(true);
@@ -16,6 +17,22 @@ const BattleDisplay = ({
   const [pokeSection, setPokeSection] = useState(false);
   const [bagSection, setBagSection] = useState(false);
   const [runSection, setRunSection] = useState(false);
+
+  // Capitalize the first word of each part of the pokémon's name
+  const getPokeName = (name) => {
+    const formattedName = name.split("-").map((obj, i) => {
+      return obj[0].toUpperCase() + obj.slice(1);
+    });
+
+    return formattedName.join(" ");
+  };
+
+  // Get the first English flavor text for the current Pokémon
+  const hpBaseText = pokeData.stats.find(
+    (obj) => obj.stat.name === "hp"
+  )?.base_stat;
+
+  const hpText = whosThatPokemon ? "??" : hpBaseText;
 
   // Get the first English flavor text for the current Pokémon
   const flavorText = pokeSpeciesData.flavor_text_entries
@@ -39,7 +56,13 @@ const BattleDisplay = ({
         <div className="battle-display-field-pokemon-platform battle-display-field-pokemon-platform-front">
           <div className="battle-display-field-pokemon-platform-ring"></div>
         </div>
-        <div className="battle-display-field-pokemon-back-container">
+        <div
+          className={`battle-display-field-pokemon-back-container ${
+            screenSize === "small"
+              ? "battle-display-field-pokemon-back-container-small"
+              : "battle-display-field-pokemon-back-container-large"
+          }`}
+        >
           <img
             className={`battle-display-field-pokemon-back ${
               whosThatPokemon ? "pokeview-image-dark" : ""
@@ -51,11 +74,18 @@ const BattleDisplay = ({
             }
             alt={`${pokeData.name} gif`}
           />
+          <div className="battle-display-field-statusbar-front"></div>
         </div>
         <div className="battle-display-field-pokemon-platform battle-display-field-pokemon-platform-back">
           <div className="battle-display-field-pokemon-platform-ring"></div>
         </div>
-        <div className="battle-display-field-pokemon-front-container">
+        <div
+          className={`battle-display-field-pokemon-front-container ${
+            screenSize === "small"
+              ? "battle-display-field-pokemon-front-container-small"
+              : "battle-display-field-pokemon-front-container-large"
+          }`}
+        >
           <img
             className={`battle-display-field-pokemon-front ${
               whosThatPokemon ? "pokeview-image-dark" : ""
@@ -68,6 +98,22 @@ const BattleDisplay = ({
             alt={`${pokeData.name} gif`}
           />
         </div>
+        <div className="battle-display-field-statusbar-back">
+          <div className="battle-display-field-statusbar-back-name font-light-pixel">
+            <span>
+              {whosThatPokemon ? "????" : getPokeName(pokeSpeciesData.name)}
+            </span>
+            <span>Lv. {whosThatPokemon ? "??" : level}</span>
+          </div>
+          <div className="battle-display-field-statusbar-back-hp-container">
+            HP
+            <div className="battle-display-field-statusbar-back-hp-bar"></div>
+          </div>
+          <div className="battle-display-field-statusbar-back-hp-number font-light-pixel">
+            {hpText} / {hpText}
+          </div>
+        </div>
+        <div className="battle-display-field-statusbar-back-detail"></div>
       </div>
       {/*  */}
       {/* Field for the pokemon to battle, display for Pokemon options */}
