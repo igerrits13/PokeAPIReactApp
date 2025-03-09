@@ -74,7 +74,24 @@ const BattleDisplay = ({
             }
             alt={`${pokeData.name} gif`}
           />
-          <div className="battle-display-field-statusbar-front"></div>
+        </div>
+        <div className="battle-display-field-statusbar-front">
+          <div className="battle-display-field-statusbar-front-name font-light-pixel">
+            <span>
+              {whosThatPokemon ? "????" : getPokeName(pokeSpeciesData.name)}
+            </span>
+            <span>Lv. {whosThatPokemon ? "??" : level}</span>
+          </div>
+          <div className="battle-display-field-statusbar-front-hp-container">
+            HP
+            <div
+              className={`battle-display-field-statusbar-front-hp-bar ${
+                screenSize === "small"
+                  ? "battle-display-field-statusbar-front-hp-bar-small"
+                  : "battle-display-field-statusbar-front-hp-bar-large"
+              }`}
+            ></div>
+          </div>
         </div>
         <div className="battle-display-field-pokemon-platform battle-display-field-pokemon-platform-back">
           <div className="battle-display-field-pokemon-platform-ring"></div>
