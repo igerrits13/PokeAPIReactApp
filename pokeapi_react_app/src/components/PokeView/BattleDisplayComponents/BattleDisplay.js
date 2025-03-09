@@ -143,6 +143,7 @@ const BattleDisplay = ({
       {mainSection && (
         <BattleDisplayInfo
           pokeData={pokeData}
+          pokeSpeciesData={pokeSpeciesData}
           whosThatPokemon={whosThatPokemon}
           setMainSection={setMainSection}
           setFightSection={setFightSection}

@@ -1895,7 +1895,7 @@ const colours = {
   left: 0;
   top: 1rem;
   height: 20%;
-  width: 40%;
+  width: 50%;
   background: #2b2e2a;
   z-index: 11;
 }
@@ -1912,13 +1912,25 @@ const colours = {
     0deg,
     rgba(67, 73, 66, 1) 0%,
     rgba(224, 224, 224, 1) 14%,
+    rgba(190, 190, 190, 1) 40%,
+    rgba(224, 224, 224, 1) 42%,
+    rgba(190, 190, 190, 1) 44%,
+    rgba(224, 224, 224, 1) 46%,
+    rgba(224, 224, 224, 1) 86%,
+    rgba(67, 73, 66, 1) 100%
+  );
+  /* background: rgb(67, 73, 66);
+  background: linear-gradient(
+    0deg,
+    rgba(67, 73, 66, 1) 0%,
+    rgba(224, 224, 224, 1) 14%,
     rgba(190, 190, 190, 1) 50%,
     rgba(224, 224, 224, 1) 54%,
     rgba(190, 190, 190, 1) 58%,
     rgba(224, 224, 224, 1) 60%,
     rgba(224, 224, 224, 1) 86%,
     rgba(67, 73, 66, 1) 100%
-  );
+  ); */
 }
 
 .battle-display-field-statusbar-front,

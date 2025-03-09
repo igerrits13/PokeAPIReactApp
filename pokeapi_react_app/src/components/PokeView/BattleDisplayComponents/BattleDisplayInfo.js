@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 
 const BattleDisplayInfo = ({
   pokeData,
+  pokeSpeciesData,
   whosThatPokemon,
   setMainSection,
   setFightSection,
@@ -40,7 +41,7 @@ const BattleDisplayInfo = ({
 
   const promptText = whosThatPokemon
     ? "????".split("")
-    : `What will ${getPokeName(pokeData.name)} do?`.split("");
+    : `What will ${getPokeName(pokeSpeciesData.name)} do?`.split("");
 
   return (
     <div className="battle-display-info battle-display-info-main">
