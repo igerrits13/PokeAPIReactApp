@@ -183,7 +183,7 @@ const PokeBasicInfo = ({
             obj={whosThatPokemon ? { name: "????", url: "" } : obj[1].type}
             typeIcon={typeIcon}
             typeStyle={typeStyle}
-            isDisabled={true}
+            isDisabled={whosThatPokemon ? true : false}
             isDarkMode={isDarkMode}
           />
         );

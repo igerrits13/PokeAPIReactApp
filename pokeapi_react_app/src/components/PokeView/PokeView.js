@@ -110,6 +110,11 @@ const PokeView = ({
     setPokeSpeciesId(id);
   }, [id]);
 
+  // Scroll to top of page on load
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pokeData]);
+
   // If the id changes while on the second render of the page, set Pokémon data to not be blank
   useEffect(() => {
     if (!hasRenderedRef.current) {

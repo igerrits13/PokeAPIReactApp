@@ -21,6 +21,11 @@ const NotFoundView = ({
       ? "notfound-med"
       : "notfound-large";
 
+  // Scroll to top of page on load
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // Set Pokémon information to not be blank on load
   useEffect(() => {
     setWhosThatPokemon(false);

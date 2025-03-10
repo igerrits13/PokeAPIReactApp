@@ -66,11 +66,18 @@ const SearchBar = ({
     // When 'Tab' is pressed, autofill search text with the next filtered Pokémon
     if (e.key === "Tab") {
       e.preventDefault();
-      if (pokeResultsHTML.length > 0) {
-        setSearchText(pokeResultsHTML[0].props.resultItem.name);
-      } else if (typesResultsHTML.length > 0) {
-        setSearchText(typesResultsHTML[0].props.resultItem.name);
+      if (activeSearchIndex < pokeResultsHTML.length) {
+        setSearchText(pokeResultsHTML[activeSearchIndex].props.resultItem.name);
+      } else if (
+        activeSearchIndex <
+        pokeResultsHTML.length + typesResultsHTML.length
+      ) {
+        setSearchText(
+          typesResultsHTML[activeSearchIndex - pokeResultsHTML.length].props
+            .resultItem.name
+        );
       }
+      setActiveSearchIndex(0);
     }
     // When 'Enter' is pressed, search for the current text or ID of the Pokémon if it exists
     if (e.key === "Enter") {

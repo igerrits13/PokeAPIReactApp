@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 
+// Basic view for the battle view home section
 const BattleDisplayInfo = ({
-  pokeData,
   pokeSpeciesData,
   whosThatPokemon,
   setMainSection,
@@ -19,6 +19,7 @@ const BattleDisplayInfo = ({
     return formattedName.join(" ");
   };
 
+  // Handle navigation for clicking on each button
   const handleOnFightClick = () => {
     setMainSection(false);
     setFightSection(true);
@@ -39,10 +40,12 @@ const BattleDisplayInfo = ({
     setRunSection(true);
   };
 
+  // Setup the text to be displayed for the basic info display
   const promptText = whosThatPokemon
     ? "????".split("")
     : `What will ${getPokeName(pokeSpeciesData.name)} do?`.split("");
 
+  // Display the basic prompt and option buttons for the battle display
   return (
     <div className="battle-display-info battle-display-info-main">
       <div className="battle-display-info-section battle-display-info-section-prompt font-light-pixel">
@@ -62,6 +65,7 @@ const BattleDisplayInfo = ({
           ))}
         </div>
       </div>
+      {/* Buttons to be displayed */}
       <motion.button
         className="battle-display-info-button-fight battle-display-info-button font-dark-pixel"
         onClick={handleOnFightClick}

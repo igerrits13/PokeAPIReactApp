@@ -39,6 +39,11 @@ const HomeView = ({
       ? "homeview-med"
       : "homeview-large";
 
+  // Scroll to top of page on load
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // Reset sort options on initial page load
   useEffect(() => {
     setFilterByGen(["all"]);

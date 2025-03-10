@@ -2,16 +2,17 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import BattleDisplayTextbox from "./BattleDisplayTextbox";
 
+// Buttons for information on items the current Pokémon can be holding when encountered
 const BattleDisplayBag = ({
   pokeData,
   setMainSection,
   setSection,
   whosThatPokemon,
 }) => {
-  // State to store the flavor text for BattleDisplayTextbox
+  // State to store the flavor text for the current item
   const [flavorText, setFlavorText] = useState(null);
 
-  // Capitalize the first word of each part of the pokémon's name
+  // Capitalize the first word of each part of the item
   const getItemName = (name) => {
     const formattedName = name.split("-").map((obj, i) => {
       return obj[0].toUpperCase() + obj.slice(1);
@@ -20,7 +21,7 @@ const BattleDisplayBag = ({
     return formattedName.join(" ");
   };
 
-  // Function to handle button click and make API call
+  // Fetch the information to be displayed for the selected item
   const handleButtonClick = async (url) => {
     if (whosThatPokemon) {
       setFlavorText("????");
@@ -29,19 +30,16 @@ const BattleDisplayBag = ({
     try {
       const response = await fetch(url);
       const data = await response.json();
-      // Get the first English flavor text for the current Pokémon
       const flavorText = data.flavor_text_entries
         .find((obj) => obj.language.name === "en")
         ?.text.replace("\u000c", " ");
-
-      // Update the flavor text state
       setFlavorText(flavorText);
-      // You can update state or perform other actions here with the API response
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
 
+  // Buttons to be displayed for each item that the Pokémon cound be holding
   const buttonHTML = pokeData.held_items.map(({ item }, i) => {
     return (
       <motion.button
@@ -50,7 +48,7 @@ const BattleDisplayBag = ({
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         transition={{ duration: 0.1 }}
-        onClick={() => handleButtonClick(item.url)} // Trigger API call on click
+        onClick={() => handleButtonClick(item.url)}
       >
         <div className="battle-display-info-unknown-textbox battle-display-info-button-textbox hover-dim">
           {whosThatPokemon ? "????" : getItemName(item.name)}
@@ -59,6 +57,7 @@ const BattleDisplayBag = ({
     );
   });
 
+  // Display button options for items
   return (
     <div className="battle-display-info battle-display-info-buttons">
       {!flavorText && buttonHTML}
@@ -66,7 +65,7 @@ const BattleDisplayBag = ({
         <BattleDisplayTextbox
           setMainSection={setMainSection}
           setSection={setSection}
-          inputText={flavorText} // Pass the fetched flavor text to BattleDisplayTextbox
+          inputText={flavorText}
         />
       )}
     </div>

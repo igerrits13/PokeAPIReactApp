@@ -1,20 +1,21 @@
 import { motion } from "motion/react";
 
+// Text display for the battle view
 const BattleDisplayTextbox = ({ setMainSection, setSection, inputText }) => {
+  // Handle click navigation betweeen battle view button options
   const handleOnClick = () => {
     setMainSection(true);
     setSection(false);
   };
 
+  // Split the text to be displayed into an array for animating
   const resText = inputText.split("");
 
+  // Display the battle view text box with animated text
   return (
     <div className="battle-display-info">
       <div className="battle-display-info-section font-light-pixel">
-        <div
-          className="battle-display-info-textbox"
-          // onScroll={handleScroll}
-        >
+        <div className="battle-display-info-textbox">
           {resText.map((char, i) => (
             <motion.span
               initial={{ opacity: 0 }}

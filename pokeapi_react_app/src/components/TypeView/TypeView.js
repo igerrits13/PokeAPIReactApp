@@ -69,6 +69,11 @@ const TypeView = ({
       ? "typeview-med"
       : "typeview-large";
 
+  // Scroll to top of page on load
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [typesResults]);
+
   // Fetch data for the current type
   useEffect(() => {
     const fetchData = async () => {
