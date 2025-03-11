@@ -13,6 +13,8 @@ const BattleImageToggle = ({
   level,
   screenSize,
   isDarkMode,
+  callCount,
+  setCallCount,
 }) => {
   // Setup the type results and text style based on if the user is using light or dark mode
   const imageToggleStyle = isDarkMode
@@ -63,6 +65,8 @@ const BattleImageToggle = ({
           whosThatPokemon={whosThatPokemon}
           level={level}
           screenSize={screenSize}
+          callCount={callCount}
+          setCallCount={setCallCount}
         />
       ) : (
         <PokeImage

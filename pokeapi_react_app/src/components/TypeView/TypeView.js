@@ -41,6 +41,8 @@ const TypeView = ({
   setSortBy,
   screenSize,
   isDarkMode,
+  callCount,
+  setCallCount,
 }) => {
   // Setup data structures to get the id of the type, store type data of the current type,
   // setup the loading, error state for the API call and page navigation, and what tab is currently active
@@ -77,6 +79,8 @@ const TypeView = ({
   // Fetch data for the current type
   useEffect(() => {
     const fetchData = async () => {
+      setCallCount(callCount + 1);
+      console.log("Fetching type data: ", callCount);
       // Check if the id is within the valid types
       setIsTypesLoading(true);
       if ((id > 0 && id < 19) || isNaN(id)) {
@@ -198,6 +202,8 @@ const TypeView = ({
             setSortBy={setSortBy}
             isDarkMode={isDarkMode}
             screenSize={screenSize}
+            callCount={callCount}
+            setCallCount={setCallCount}
           />
         )}
         {activeTab === "Moves" && !isTypesLoading && (

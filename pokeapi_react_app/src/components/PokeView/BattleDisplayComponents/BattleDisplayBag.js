@@ -8,6 +8,8 @@ const BattleDisplayBag = ({
   setMainSection,
   setSection,
   whosThatPokemon,
+  callCount,
+  setCallCount,
 }) => {
   // State to store the flavor text for the current item
   const [flavorText, setFlavorText] = useState(null);
@@ -28,6 +30,8 @@ const BattleDisplayBag = ({
       return;
     }
     try {
+      setCallCount(callCount + 1);
+      console.log("Fetching Pokémon item data: ", callCount);
       const response = await fetch(url);
       const data = await response.json();
       const flavorText = data.flavor_text_entries

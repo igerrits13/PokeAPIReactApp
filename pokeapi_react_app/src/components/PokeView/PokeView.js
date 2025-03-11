@@ -17,6 +17,8 @@ const PokeView = ({
   typesResults,
   screenSize,
   isDarkMode,
+  setCallCount,
+  callCount,
 }) => {
   // Setup data structures to store various Pokemon and loading information
   const { id } = useParams();
@@ -44,6 +46,8 @@ const PokeView = ({
   useEffect(() => {
     if (fullPokeResults.length > 0) {
       const fetchData = async () => {
+        setCallCount(callCount + 1);
+        console.log("Fetching Pokémon species data: ", callCount);
         // Check if the id is within the valid Pokémon
         if (
           (pokeSpeciesId > 0 && pokeSpeciesId <= fullPokeResults.length) ||
@@ -82,6 +86,8 @@ const PokeView = ({
   useEffect(() => {
     if (fullPokeResults.length > 0) {
       const fetchData = async () => {
+        setCallCount(callCount + 1);
+        console.log("Fetching Pokémon data: ", callCount);
         setIsPokeLoading(true);
         try {
           const [response] = await Promise.all([
@@ -178,6 +184,8 @@ const PokeView = ({
             level={level}
             isDarkMode={isDarkMode}
             screenSize={screenSize}
+            callCount={callCount}
+            setCallCount={setCallCount}
           />
         )}
         <hr />
@@ -198,6 +206,8 @@ const PokeView = ({
             setLevel={setLevel}
             screenSize={screenSize}
             isDarkMode={isDarkMode}
+            callCount={callCount}
+            setCallCount={setCallCount}
           />
         )}
         <hr />

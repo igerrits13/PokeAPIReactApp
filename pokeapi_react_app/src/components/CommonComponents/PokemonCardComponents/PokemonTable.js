@@ -12,6 +12,8 @@ const PokemonTable = ({
   sortBy,
   sortOptions,
   isDarkMode,
+  callCount,
+  setCallCount,
 }) => {
   // Create states to keep track of what Pokémon cards are to be displayed given the current filters
   const [pokeTypes, setPokeTypes] = useState([]);
@@ -19,6 +21,8 @@ const PokemonTable = ({
   // Fetch the Pokémon information for all Pokémon cards if no gen is selected
   useEffect(() => {
     if (filterByGen[0] === "all") {
+      setCallCount(callCount + 1);
+      console.log("Fetching Pokémon cards data all gens: ", callCount);
       fetch(`https://pokeapi.co/api/v2/pokemon-species/?limit=5000`)
         .then((response) => response.json())
         .then((data) => {
@@ -31,6 +35,8 @@ const PokemonTable = ({
   useEffect(() => {
     if (filterByGen[0] !== "all") {
       const fetchGenData = filterByGen.map((gen) => {
+        setCallCount(callCount + 1);
+        console.log("Fetching Pokémon cards data some gens: ", callCount);
         return fetch(`https://pokeapi.co/api/v2/generation/${gen}/`)
           .then((response) => response.json())
           .then((data) => data.pokemon_species);
@@ -49,6 +55,8 @@ const PokemonTable = ({
   // If types are selected, fetch the Pokémon information of the requested types
   useEffect(() => {
     if (filterByType[0] !== "all") {
+      setCallCount(callCount + 1);
+      console.log("Fetching Pokémon cards data some types: ", callCount);
       const alreadyFetched = new Set();
       const fetchTypeData = filterByType.map((type) =>
         fetch(`https://pokeapi.co/api/v2/type/${type}/`)

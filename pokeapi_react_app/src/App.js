@@ -23,6 +23,8 @@ function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const navigate = useNavigate();
 
+  const [callCount, setCallCount] = useState(0);
+
   // Check screen size and orientation to see if types table should collapse (small, medium, large, x-large)
   useEffect(() => {
     const handleScreenResize = () => {
@@ -75,6 +77,8 @@ function App() {
   // Fetch the Pokémon information for all Pokémon as soon as the page is loaded
   useEffect(() => {
     const fetchData = async () => {
+      setCallCount(callCount + 1);
+      console.log("Fetching all species: ", callCount);
       setIsPokeResultsLoading(true);
       try {
         const response = await fetch(
@@ -104,6 +108,8 @@ function App() {
   // Fetch the Pokémon types
   useEffect(() => {
     const fetchData = async () => {
+      setCallCount(callCount + 1);
+      console.log("Fetching all types: ", callCount);
       setIsTypesResultsLoading(true);
       try {
         const response = await fetch(
@@ -151,6 +157,8 @@ function App() {
               setSortBy={setSortBy}
               screenSize={screenSize}
               isDarkMode={isDarkMode}
+              callCount={callCount}
+              setCallCount={setCallCount}
             />
           }
         />
@@ -170,6 +178,8 @@ function App() {
               setSortBy={setSortBy}
               screenSize={screenSize}
               isDarkMode={isDarkMode}
+              callCount={callCount}
+              setCallCount={setCallCount}
             />
           }
         />
@@ -183,6 +193,8 @@ function App() {
               typesResults={typesResults}
               screenSize={screenSize}
               isDarkMode={isDarkMode}
+              setCallCount={setCallCount}
+              callCount={callCount}
             />
           }
         />

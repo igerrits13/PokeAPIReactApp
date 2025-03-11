@@ -19,6 +19,8 @@ const CardsTab = ({
   setSortBy,
   isDarkMode,
   screenSize,
+  callCount,
+  setCallCount,
 }) => {
   // Options to be displayed in the home page Pokémon view
   const sortOptions = [
@@ -27,6 +29,8 @@ const CardsTab = ({
       filterByGen={filterByGen}
       setFilterByGen={setFilterByGen}
       isDarkMode={isDarkMode}
+      callCount={callCount}
+      setCallCount={setCallCount}
     />,
     <OptionSort
       key={1}
@@ -60,6 +64,8 @@ const CardsTab = ({
         sortOptions={sortOptions}
         screenSize={screenSize}
         isDarkMode={isDarkMode}
+        callCount={callCount}
+        setCallCount={setCallCount}
       />
     </div>
   );

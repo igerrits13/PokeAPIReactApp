@@ -14,6 +14,8 @@ const PokemonTypesCardCollection = ({
   sortOptions,
   screenSize,
   isDarkMode,
+  callCount,
+  setCallCount,
 }) => {
   const [isTypesLoading, setIsTypesLoading] = useState(true);
 
@@ -22,6 +24,8 @@ const PokemonTypesCardCollection = ({
     if (filterByGen[0] !== "all") {
       setIsTypesLoading(true);
       const fetchGenData = filterByGen.map((gen) => {
+        setCallCount(callCount + 1);
+        console.log("Fetching Pokémon cards data some gens: ", callCount);
         return fetch(`https://pokeapi.co/api/v2/generation/${gen}/`)
           .then((response) => response.json())
           .then((data) => data.pokemon_species);
@@ -37,6 +41,8 @@ const PokemonTypesCardCollection = ({
           setIsTypesLoading(false);
         });
     } else if (filterByGen[0] === "all") {
+      setCallCount(callCount + 1);
+      console.log("Fetching Pokémon cards data all gens: ", callCount);
       setIsTypesLoading(true);
       fetch(`https://pokeapi.co/api/v2/pokemon-species/?limit=5000`)
         .then((response) => response.json())

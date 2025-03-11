@@ -3,7 +3,13 @@ import { motion } from "motion/react";
 import OptionFilterItem from "./OptionFilterItem";
 
 // Handles the logic for filtering Pokémon by gen
-const OptionGen = ({ filterByGen, setFilterByGen, isDarkMode }) => {
+const OptionGen = ({
+  filterByGen,
+  setFilterByGen,
+  isDarkMode,
+  callCount,
+  setCallCount,
+}) => {
   // Setup the sort options style based on if the user is using light or dark mode
   const fontStyle = isDarkMode ? "font-dark" : "font-light";
   const optionStyle = isDarkMode
@@ -19,6 +25,8 @@ const OptionGen = ({ filterByGen, setFilterByGen, isDarkMode }) => {
 
   // Fetch the generations
   useEffect(() => {
+    setCallCount(callCount + 1);
+    console.log("Fetching generation data: ", callCount);
     fetch(`https://pokeapi.co/api/v2/generation/?limit=20`)
       .then((response) => response.json())
       .then((data) => {

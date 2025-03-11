@@ -30,6 +30,8 @@ const HomeView = ({
   setSortBy,
   screenSize,
   isDarkMode,
+  callCount,
+  setCallCount,
 }) => {
   // Set what the container size for the page should be based on viewport width
   const containerSize =
@@ -59,6 +61,8 @@ const HomeView = ({
       filterByGen={filterByGen}
       setFilterByGen={setFilterByGen}
       isDarkMode={isDarkMode}
+      callCount={callCount}
+      setCallCount={setCallCount}
     />,
     <OptionType
       key={1}
@@ -124,6 +128,8 @@ const HomeView = ({
         sortBy={sortBy}
         sortOptions={sortOptions}
         isDarkMode={isDarkMode}
+        callCount={callCount}
+        setCallCount={setCallCount}
       />
       <Footer isDarkMode={isDarkMode} screenSize={screenSize} />
     </div>
