@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import ScrollToTop from "../CommonComponents/ScrollToTop";
 import SecondaryViewHeader from "../CommonComponents/SecondaryViewHeader";
 import PokeInfoTable from "./InformationTableComponents/PokeInfoTable";
@@ -43,72 +44,145 @@ const PokeView = ({
       : "pokemonview-large";
 
   // Fetch data for the current Pokémon-Species
-  useEffect(() => {
-    if (fullPokeResults.length > 0) {
-      const fetchData = async () => {
-        setCallCount(callCount + 1);
-        console.log("Fetching Pokémon species data: ", callCount);
-        // Check if the id is within the valid Pokémon
-        if (
-          (pokeSpeciesId > 0 && pokeSpeciesId <= fullPokeResults.length) ||
-          isNaN(pokeSpeciesId)
-        ) {
-          setIsPokeSpeciesLoading(true);
-          try {
-            const [response] = await Promise.all([
-              fetch(
-                `https://pokeapi.co/api/v2/pokemon-species/${pokeSpeciesId}/`
-              ),
-            ]);
-            if (!response.ok) {
-              navigate("/notfound");
-              return;
-            }
-            const jsonData = await response.json();
-            setPokeSpeciesData(jsonData);
-          } catch (error) {
-            setError(error);
-          } finally {
-            setIsPokeSpeciesLoading(false);
-          }
-        } else {
-          setIsPokeSpeciesLoading(false);
-          navigate("/notfound");
-          return;
-        }
-      };
-
-      fetchData();
+  const fetchSpeciesInfo = async () => {
+    if (
+      fullPokeResults.length > 0
+      //   &&
+      //   pokeSpeciesId > 0 &&
+      //   pokeSpeciesId <= fullPokeResults.length) ||
+      // isNaN(pokeSpeciesId)
+    ) {
+      setCallCount((prev) => prev + 1);
+      console.log("Fetching Pokémon species data: ", callCount);
+      const response = await fetch(
+        `https://pokeapi.co/api/v2/pokemon-species/${pokeSpeciesId}/`
+      );
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+      // const data = await response.json();
+      return response.json();
     }
-  }, [pokeSpeciesId, navigate, fullPokeResults]);
+  };
+
+  const {
+    data: speciesInfoData,
+    isLoading: isSpeciesInfoLoading,
+    error: speciesInfoError,
+  } = useQuery({
+    queryKey: ["PokeSpeciesInfo", pokeSpeciesId],
+    queryFn: fetchSpeciesInfo,
+    staleTime: Infinity,
+    cacheTime: Infinity,
+    retry: false,
+  });
+
+  useEffect(() => {
+    if (speciesInfoData) {
+      setPokeSpeciesData(speciesInfoData);
+      setIsPokeSpeciesLoading(isSpeciesInfoLoading);
+    }
+  }, [speciesInfoData]);
+
+  //
+
+  // useEffect(() => {
+  //   if (fullPokeResults.length > 0) {
+  //     const fetchData = async () => {
+  //       setCallCount(callCount + 1);
+  //       console.log("Fetching Pokémon species data: ", callCount);
+  //       // Check if the id is within the valid Pokémon
+  //       if (
+  //         (pokeSpeciesId > 0 && pokeSpeciesId <= fullPokeResults.length) ||
+  //         isNaN(pokeSpeciesId)
+  //       ) {
+  //         setIsPokeSpeciesLoading(true);
+  //         try {
+  //           const [response] = await Promise.all([
+  //             fetch(
+  //               `https://pokeapi.co/api/v2/pokemon-species/${pokeSpeciesId}/`
+  //             ),
+  //           ]);
+  //           if (!response.ok) {
+  //             navigate("/notfound");
+  //             return;
+  //           }
+  //           const jsonData = await response.json();
+  //           setPokeSpeciesData(jsonData);
+  //         } catch (error) {
+  //           setError(error);
+  //         } finally {
+  //           setIsPokeSpeciesLoading(false);
+  //         }
+  //       } else {
+  //         setIsPokeSpeciesLoading(false);
+  //         navigate("/notfound");
+  //         return;
+  //       }
+  //     };
+
+  //     fetchData();
+  //   }
+  // }, [pokeSpeciesId, navigate, fullPokeResults]);
 
   // Fetch data for the current Pokémon
-  useEffect(() => {
-    if (fullPokeResults.length > 0) {
-      const fetchData = async () => {
-        setCallCount(callCount + 1);
-        console.log("Fetching Pokémon data: ", callCount);
-        setIsPokeLoading(true);
-        try {
-          const [response] = await Promise.all([
-            fetch(`https://pokeapi.co/api/v2/pokemon/${pokeId}/`),
-          ]);
-          if (!response) {
-            navigate("/notfound");
-            return;
-          }
-          const jsonData = await response.json();
-          setPokeData(jsonData);
-        } catch (error) {
-          setError(error);
-        } finally {
-          setIsPokeLoading(false);
-        }
-      };
-
-      fetchData();
+  const fetchPokeInfo = async () => {
+    setCallCount((prev) => prev + 1);
+    console.log("Fetching Pokémon data: ", callCount);
+    const response = await fetch(
+      `https://pokeapi.co/api/v2/pokemon/${pokeId}/`
+    );
+    if (!response.ok) {
+      throw new Error(`Error: ${response.statusText}`);
     }
-  }, [pokeId, navigate, fullPokeResults]);
+    return response.json();
+  };
+
+  const {
+    data: pokeInfoData,
+    isLoading: isPokeInfoLoading,
+    error: pokeInfoError,
+  } = useQuery({
+    queryKey: ["pokeInfo", pokeId],
+    queryFn: fetchPokeInfo,
+    staleTime: Infinity,
+    cacheTime: Infinity,
+    retry: false,
+  });
+
+  useEffect(() => {
+    if (pokeInfoData) {
+      setPokeData(pokeInfoData);
+      setIsPokeLoading(isPokeInfoLoading);
+    }
+  }, [pokeInfoData]);
+
+  // useEffect(() => {
+  //   if (fullPokeResults.length > 0) {
+  //     const fetchData = async () => {
+  //       setCallCount(callCount + 1);
+  //       console.log("Fetching Pokémon data: ", callCount);
+  //       setIsPokeLoading(true);
+  //       try {
+  //         const [response] = await Promise.all([
+  //           fetch(`https://pokeapi.co/api/v2/pokemon/${pokeId}/`),
+  //         ]);
+  //         if (!response) {
+  //           navigate("/notfound");
+  //           return;
+  //         }
+  //         const jsonData = await response.json();
+  //         setPokeData(jsonData);
+  //       } catch (error) {
+  //         setError(error);
+  //       } finally {
+  //         setIsPokeLoading(false);
+  //       }
+  //     };
+
+  //     fetchData();
+  //   }
+  // }, [pokeId, navigate, fullPokeResults]);
 
   // Reload Pokémon and Pokémon-speecies information if the search id changes
   useEffect(() => {
@@ -133,9 +207,14 @@ const PokeView = ({
 
   // If the API call returns an error, navigate to the page not found
   // (Redundant to inside fetch call to avoid compilation error)
-  if (error) {
+  // if (error) {
+  //   navigate("/notfound");
+  //   return;
+  // }
+
+  if (speciesInfoError || pokeInfoError) {
+    console.error("Error occured:", speciesInfoError || pokeInfoError);
     navigate("/notfound");
-    return;
   }
 
   const statsInfo = [

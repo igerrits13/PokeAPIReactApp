@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "motion/react";
 import OptionFilterItem from "./OptionFilterItem";
+import { useQuery } from "@tanstack/react-query";
 
 // Handles the logic for filtering Pokémon by gen
 const OptionGen = ({
@@ -24,15 +25,45 @@ const OptionGen = ({
   const filterButtonRef = useRef(null);
 
   // Fetch the generations
+  const fetchGens = async () => {
+    setCallCount((prev) => (prev = 1));
+    console.log("Fetching all gens: ", callCount);
+    const response = await fetch(
+      "https://pokeapi.co/api/v2/generation/?limit=20"
+    );
+    if (!response.ok) {
+      throw new Error(`Error: ${response.statusText}`);
+    }
+    return response.json();
+  };
+
+  const { data, error } = useQuery({
+    queryKey: ["gensAll"],
+    queryFn: fetchGens,
+    staleTime: Infinity,
+    cacheTime: Infinity,
+    onSuccess: () => setCallCount((prev) => prev + 1),
+  });
+
   useEffect(() => {
-    setCallCount(callCount + 1);
-    console.log("Fetching generation data: ", callCount);
-    fetch(`https://pokeapi.co/api/v2/generation/?limit=20`)
-      .then((response) => response.json())
-      .then((data) => {
-        setGenResults(data.results);
-      });
-  }, []);
+    if (data?.results) {
+      setGenResults(data.results);
+    }
+  }, [data]);
+
+  if (error) {
+    console.error("Error occurred:", error);
+  }
+
+  // useEffect(() => {
+  //   setCallCount(callCount + 1);
+  //   console.log("Fetching generation data: ", callCount);
+  //   fetch(`https://pokeapi.co/api/v2/generation/?limit=20`)
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setGenResults(data.results);
+  //     });
+  // }, []);
 
   // Close dropdown if user clicks outside of the dropdown
   useEffect(() => {

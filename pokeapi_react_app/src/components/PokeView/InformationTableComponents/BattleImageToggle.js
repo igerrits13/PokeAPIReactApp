@@ -41,12 +41,8 @@ const BattleImageToggle = ({
   // }, [pokeData]);
 
   // Functions to handle toggling between normal and shiny mode
-  const handleNormalMode = () => {
-    setIsNormalToggle(true);
-  };
-
-  const handleShinyMode = () => {
-    setIsNormalToggle(false);
+  const handleNormalToggle = () => {
+    setIsNormalToggle(!isNormalToggle);
   };
 
   const handleOnClick = () => {
@@ -77,7 +73,7 @@ const BattleImageToggle = ({
       )}
       <div className="pokeview-image-toggle">
         <button
-          onClick={handleNormalMode}
+          onClick={handleNormalToggle}
           className={`${
             pokeData.sprites.other["official-artwork"].front_shiny === null
               ? "pokeview-image-normal-only"
@@ -90,7 +86,7 @@ const BattleImageToggle = ({
         </button>
         {pokeData.sprites.other["official-artwork"].front_shiny && (
           <button
-            onClick={handleShinyMode}
+            onClick={handleNormalToggle}
             className={`pokeview-image-toggle-shiny ${imageToggleStyle} ${
               isNormalToggle
                 ? imageVersionFontStyle

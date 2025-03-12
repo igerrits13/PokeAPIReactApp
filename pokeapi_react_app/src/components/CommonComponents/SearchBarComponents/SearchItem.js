@@ -17,7 +17,7 @@ const SearchItem = ({
 
   // Capitalize the first word of each part of the pokémon's name
   const getPokeName = (name) => {
-    const formattedName = name.split(" ").map((obj) => {
+    const formattedName = name.split("-").map((obj) => {
       return obj[0].toUpperCase() + obj.slice(1);
     });
 

@@ -14,7 +14,10 @@ const EvolutionChainTableSection = ({
 }) => {
   useEffect(() => {
     Object.entries(pokeChainData)[1][1].evolves_to.forEach((base) => {
-      if (base.species.name === pokeSpeciesData.name) {
+      if (
+        base.species.name === pokeSpeciesData.name &&
+        base.evolution_details.length > 0
+      ) {
         setLevel(
           base.evolution_details[0].min_level === null
             ? 1
@@ -22,7 +25,10 @@ const EvolutionChainTableSection = ({
         );
       } else if (base.evolves_to.length !== 0) {
         Object.entries(base.evolves_to).forEach((evolution) => {
-          if (evolution[1].species.name === pokeSpeciesData.name) {
+          if (
+            evolution[1].species.name === pokeSpeciesData.name &&
+            evolution[1].evolution_details.length > 0
+          ) {
             setLevel(
               evolution[1].evolution_details[0].min_level === null
                 ? base.evolution_details[0].min_level === null

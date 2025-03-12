@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import { debounce } from "lodash";
 import HomeView from "./components/HomeView/HomeView";
 import TypeView from "./components/TypeView/TypeView";
@@ -21,7 +22,7 @@ function App() {
   const [sortBy, setSortBy] = useState("number");
   const [screenSize, setscreenSize] = useState("large");
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const [callCount, setCallCount] = useState(0);
 
@@ -75,61 +76,149 @@ function App() {
   }, []);
 
   // Fetch the Pokémon information for all Pokémon as soon as the page is loaded
-  useEffect(() => {
-    const fetchData = async () => {
-      setCallCount(callCount + 1);
-      console.log("Fetching all species: ", callCount);
-      setIsPokeResultsLoading(true);
-      try {
-        const response = await fetch(
-          `https://pokeapi.co/api/v2/pokemon-species/?limit=5000`
-        );
-        if (!response.ok) {
-          throw new Error(`Error: ${response.statusText}`);
-        }
-        const data = await response.json();
-        const updatedPokemonNames = data.results.map((pokemon) => ({
-          ...pokemon,
-          name: pokemon.name.replace(/-/g, " "),
-        }));
-        setFullPokeResults(updatedPokemonNames);
-        setPokeCountTotal(data.count);
-      } catch (error) {
-        console.error("Error occurred:", error);
-        navigate("/notfound");
-      } finally {
-        setIsPokeResultsLoading(false);
-      }
+  const fetchPokemonSpecies = async () => {
+    setCallCount((prev) => (prev = 1));
+    console.log("Fetching all species: ", callCount);
+    const response = await fetch(
+      "https://pokeapi.co/api/v2/pokemon-species/?limit=5000"
+    );
+    if (!response.ok) {
+      throw new Error(`Error: ${response.statusText}`);
+    }
+    const data = await response.json();
+    return {
+      results: data.results,
+      count: data.count,
     };
+  };
 
-    fetchData();
-  }, [navigate]);
+  const {
+    data: speciesData,
+    isLoading: isSpeciesLoading,
+    error: speciesError,
+  } = useQuery({
+    queryKey: ["allPokemonSpecies"],
+    queryFn: fetchPokemonSpecies,
+    staleTime: Infinity,
+    cacheTime: Infinity,
+    // onSuccess: (speciesData) => {
+    //   console.log("Success!");
+    //   console.log(speciesData.results);
+    //   setFullPokeResults(speciesData.results);
+    //   setPokeCountTotal(speciesData.count);
+    //   setCallCount((prev) => {
+    //     const newCount = prev + 1;
+    //     console.log("Fetching all species: ", newCount);
+    //     return newCount;
+    //   });
+    // },
+    // onSettled: () => setIsPokeResultsLoading(false),
+  });
+
+  useEffect(() => {
+    if (speciesData?.results) {
+      setFullPokeResults(speciesData.results);
+      setPokeCountTotal(speciesData.count);
+      setIsPokeResultsLoading(isSpeciesLoading);
+    }
+  }, [speciesData]);
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     setCallCount(callCount + 1);
+  //     console.log("Fetching all species: ", callCount);
+  //     setIsPokeResultsLoading(true);
+  //     try {
+  //       const response = await fetch(
+  //         `https://pokeapi.co/api/v2/pokemon-species/?limit=5000`
+  //       );
+  //       if (!response.ok) {
+  //         throw new Error(`Error: ${response.statusText}`);
+  //       }
+  //       const data = await response.json();
+  //       const updatedPokemonNames = data.results.map((pokemon) => ({
+  //         ...pokemon,
+  //         name: pokemon.name.replace(/-/g, " "),
+  //       }));
+  //       setFullPokeResults(updatedPokemonNames);
+  //       setPokeCountTotal(data.count);
+  //     } catch (error) {
+  //       console.error("Error occurred:", error);
+  //       navigate("/notfound");
+  //     } finally {
+  //       setIsPokeResultsLoading(false);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, [navigate]);
 
   // Fetch the Pokémon types
-  useEffect(() => {
-    const fetchData = async () => {
-      setCallCount(callCount + 1);
-      console.log("Fetching all types: ", callCount);
-      setIsTypesResultsLoading(true);
-      try {
-        const response = await fetch(
-          `https://pokeapi.co/api/v2/type/?limit=-1`
-        );
-        if (!response.ok) {
-          throw new Error(`Error: ${response.statusText}`);
-        }
-        const jsonData = await response.json();
-        setTypesResult(jsonData.results);
-      } catch (error) {
-        console.error("Error occurred:", error);
-        navigate("/notfound");
-      } finally {
-        setIsTypesResultsLoading(false);
-      }
-    };
+  const fetchTypes = async () => {
+    setCallCount((prev) => prev + 1);
+    console.log("Fetching all types: ", callCount);
+    const response = await fetch("https://pokeapi.co/api/v2/type/?limit=-1");
+    if (!response.ok) {
+      throw new Error(`Error: ${response.statusText}`);
+    }
+    return response.json();
+  };
 
-    fetchData();
-  }, [navigate]);
+  const {
+    data: typeData,
+    isLoading: isTypeLoading,
+    error: typeError,
+  } = useQuery({
+    queryKey: ["typesAll"],
+    queryFn: fetchTypes,
+    staleTime: Infinity,
+    cacheTime: Infinity,
+    // onSuccess: (typeData) => {
+    //   setTypesResult(typeData.results);
+    //   setCallCount((prev) => {
+    //     const newCount = prev + 1;
+    //     return newCount;
+    //   });
+    // },
+    // onSettled: () => setIsTypesResultsLoading(false),
+  });
+
+  useEffect(() => {
+    if (typeData?.results) {
+      setTypesResult(typeData.results);
+      setIsTypesResultsLoading(isTypeLoading);
+    }
+  }, [typeData]);
+
+  if (speciesError || typeError) {
+    console.error("Error occurred:", speciesError || typeError);
+    // navigate("/notfound");
+  }
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  // setCallCount(callCount + 1);
+  // console.log("Fetching all types: ", callCount);
+  //     setIsTypesResultsLoading(true);
+  //     try {
+  //       const response = await fetch(
+  //         `https://pokeapi.co/api/v2/type/?limit=-1`
+  //       );
+  //       if (!response.ok) {
+  //         throw new Error(`Error: ${response.statusText}`);
+  //       }
+  //       const jsonData = await response.json();
+  //       setTypesResult(jsonData.results);
+  //     } catch (error) {
+  //       console.error("Error occurred:", error);
+  //       navigate("/notfound");
+  //     } finally {
+  //       setIsTypesResultsLoading(false);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, [navigate]);
 
   // Provide routing for pages within the application
   return (

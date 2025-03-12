@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import { ReactComponent as BugType } from "../icons/TypeIcons/bug.svg";
 import { ReactComponent as DarkType } from "../icons/TypeIcons/dark.svg";
 import { ReactComponent as DragonType } from "../icons/TypeIcons/dragon.svg";
@@ -77,33 +78,71 @@ const TypeView = ({
   }, [typesResults]);
 
   // Fetch data for the current type
+  const fetchTypeInfo = async () => {
+    // Make sure to not have a page for the "Uknown" or "Stellar"
+    if (
+      id >= 19 ||
+      id.toLowerCase() === "stellar" ||
+      id.toLowerCase() === "unknown"
+    ) {
+      throw new Error(`Error: Invalid ID ${id}`);
+    }
+    setCallCount((prev) => prev + 1);
+    console.log(`Fetching type data: ${callCount}`);
+    const response = await fetch(`https://pokeapi.co/api/v2/type/${id}/`);
+    if (!response.ok) {
+      throw new Error(`Error: ${response.statusText}`);
+    }
+    return response.json();
+  };
+
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["typeInfo", id],
+    queryFn: fetchTypeInfo,
+    staleTime: Infinity,
+    cacheTime: Infinity,
+    retry: false,
+  });
+
   useEffect(() => {
-    const fetchData = async () => {
-      setCallCount(callCount + 1);
-      console.log("Fetching type data: ", callCount);
-      // Check if the id is within the valid types
-      setIsTypesLoading(true);
-      if ((id > 0 && id < 19) || isNaN(id)) {
-        try {
-          const response = await fetch(`https://pokeapi.co/api/v2/type/${id}/`);
-          if (!response.ok) {
-            throw new Error(`Error: ${response.statusText}`);
-          }
-          const jsonData = await response.json();
-          setTypeData(jsonData);
-        } catch (error) {
-          console.error("Error occurred:", error);
-          navigate("/notfound");
-        } finally {
-          setIsTypesLoading(false);
-        }
-      } else {
-        setIsTypesLoading(false);
-        navigate("/notfound");
-      }
-    };
-    fetchData();
-  }, [id, navigate]);
+    if (data) {
+      setTypeData(data);
+      setIsTypesLoading(isLoading);
+    }
+  }, [data]);
+
+  if (error) {
+    console.error("Error occured:", error);
+    navigate("/notfound");
+  }
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     setCallCount(callCount + 1);
+  //     console.log("Fetching type data: ", callCount);
+  //     // Check if the id is within the valid types
+  //     setIsTypesLoading(true);
+  //     if ((id > 0 && id < 19) || isNaN(id)) {
+  //       try {
+  //         const response = await fetch(`https://pokeapi.co/api/v2/type/${id}/`);
+  //         if (!response.ok) {
+  //           throw new Error(`Error: ${response.statusText}`);
+  //         }
+  //         const jsonData = await response.json();
+  //         setTypeData(jsonData);
+  //       } catch (error) {
+  //         console.error("Error occurred:", error);
+  //         navigate("/notfound");
+  //       } finally {
+  //         setIsTypesLoading(false);
+  //       }
+  //     } else {
+  //       setIsTypesLoading(false);
+  //       navigate("/notfound");
+  //     }
+  //   };
+  //   fetchData();
+  // }, [id, navigate]);
 
   // Reset sort options on initial page load
   useEffect(() => {
