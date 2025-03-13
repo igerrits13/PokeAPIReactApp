@@ -8,8 +8,6 @@ const BattleDisplayAttack = ({
   setMainSection,
   setSection,
   whosThatPokemon,
-  callCount,
-  setCallCount,
 }) => {
   // State to store the flavor text for the current ability
   const [flavorText, setFlavorText] = useState(null);
@@ -29,8 +27,6 @@ const BattleDisplayAttack = ({
       setFlavorText("????");
       return;
     }
-    setCallCount(callCount + 1);
-    console.log("Fetching Pokémon attack data: ", callCount);
     try {
       const response = await fetch(url);
       const data = await response.json();

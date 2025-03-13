@@ -18,8 +18,6 @@ const PokeView = ({
   typesResults,
   screenSize,
   isDarkMode,
-  setCallCount,
-  callCount,
 }) => {
   // Setup data structures to store various Pokemon and loading information
   const { id } = useParams();
@@ -44,17 +42,13 @@ const PokeView = ({
 
   // Fetch data for the current Pokémon-Species
   const fetchSpeciesInfo = async () => {
-    if (fullPokeResults.length > 0) {
-      setCallCount((prev) => prev + 1);
-      console.log("Fetching Pokémon species data: ", callCount);
-      const response = await fetch(
-        `https://pokeapi.co/api/v2/pokemon-species/${pokeSpeciesId}/`
-      );
-      if (!response.ok) {
-        throw new Error(`Error: ${response.statusText}`);
-      }
-      return response.json();
+    const response = await fetch(
+      `https://pokeapi.co/api/v2/pokemon-species/${pokeSpeciesId}/`
+    );
+    if (!response.ok) {
+      throw new Error(`Error: ${response.statusText}`);
     }
+    return response.json();
   };
 
   // Query the data for the current Pokémon species
@@ -79,8 +73,6 @@ const PokeView = ({
 
   // Fetch data for the current Pokémon
   const fetchPokeInfo = async () => {
-    setCallCount((prev) => prev + 1);
-    console.log("Fetching Pokémon data: ", callCount);
     const response = await fetch(
       `https://pokeapi.co/api/v2/pokemon/${pokeId}/`
     );
@@ -181,8 +173,6 @@ const PokeView = ({
             level={level}
             isDarkMode={isDarkMode}
             screenSize={screenSize}
-            callCount={callCount}
-            setCallCount={setCallCount}
           />
         )}
         <hr />
@@ -203,8 +193,6 @@ const PokeView = ({
             setLevel={setLevel}
             screenSize={screenSize}
             isDarkMode={isDarkMode}
-            callCount={callCount}
-            setCallCount={setCallCount}
           />
         )}
         <hr />

@@ -13,8 +13,6 @@ const BattleDisplay = ({
   whosThatPokemon,
   level,
   screenSize,
-  callCount,
-  setCallCount,
 }) => {
   // Store data to keep track of what section should currently be displayed
   const [mainSection, setMainSection] = useState(true);
@@ -66,8 +64,6 @@ const BattleDisplay = ({
           setMainSection={setMainSection}
           setSection={setFightSection}
           whosThatPokemon={whosThatPokemon}
-          callCount={callCount}
-          setCallCount={setCallCount}
         />
       )}
       {pokeSection && (
@@ -94,8 +90,6 @@ const BattleDisplay = ({
             setMainSection={setMainSection}
             setSection={setBagSection}
             whosThatPokemon={whosThatPokemon}
-            callCount={callCount}
-            setCallCount={setCallCount}
           />
         ))}
       {runSection && (

@@ -11,8 +11,6 @@ const EvolutionChain = ({
   setLevel,
   screenSize,
   isDarkMode,
-  callCount,
-  setCallCount,
 }) => {
   // Setup the font style, header style, and line style between information sections based on if the user is using light or dark mode
   const fontStyle = isDarkMode ? "font-dark" : "font-light";
@@ -31,8 +29,6 @@ const EvolutionChain = ({
 
   // Fetch data for the current Pokémon's chain
   const fetchEvoInfo = async () => {
-    setCallCount((prev) => prev + 1);
-    console.log("Fetching Pokémon evolution chain: ", callCount);
     const response = await fetch(`${pokeChainURL}`);
     if (!response.ok) {
       throw new Error(`Error: ${response.statusText}`);

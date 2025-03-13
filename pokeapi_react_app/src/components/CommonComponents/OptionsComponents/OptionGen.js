@@ -4,13 +4,7 @@ import OptionFilterItem from "./OptionFilterItem";
 import { useQuery } from "@tanstack/react-query";
 
 // Handles the logic for filtering Pokémon by gen
-const OptionGen = ({
-  filterByGen,
-  setFilterByGen,
-  isDarkMode,
-  callCount,
-  setCallCount,
-}) => {
+const OptionGen = ({ filterByGen, setFilterByGen, isDarkMode }) => {
   // Setup the sort options style based on if the user is using light or dark mode
   const fontStyle = isDarkMode ? "font-dark" : "font-light";
   const optionStyle = isDarkMode
@@ -26,8 +20,6 @@ const OptionGen = ({
 
   // Fetch the information for all Pokémon generations
   const fetchGens = async () => {
-    setCallCount((prev) => prev + 1);
-    console.log("Fetching all gens: ", callCount);
     const response = await fetch(
       "https://pokeapi.co/api/v2/generation/?limit=20"
     );
@@ -43,7 +35,6 @@ const OptionGen = ({
     queryFn: fetchGens,
     staleTime: Infinity,
     cacheTime: Infinity,
-    onSuccess: () => setCallCount((prev) => prev + 1),
   });
 
   useEffect(() => {

@@ -15,8 +15,6 @@ const PokeInfoTable = ({
   level,
   isDarkMode,
   screenSize,
-  callCount,
-  setCallCount,
 }) => {
   // Setup the font style based on if the user is using light or dark mode
   const fontStyle = isDarkMode ? "font-dark" : "font-light";
@@ -41,8 +39,6 @@ const PokeInfoTable = ({
             level={level}
             screenSize={screenSize}
             isDarkMode={isDarkMode}
-            callCount={callCount}
-            setCallCount={setCallCount}
           />
           <PokeBasicInfo
             pokeData={pokeData}
@@ -69,8 +65,6 @@ const PokeInfoTable = ({
             level={level}
             screenSize={screenSize}
             isDarkMode={isDarkMode}
-            callCount={callCount}
-            setCallCount={setCallCount}
           />
         </>
       )}

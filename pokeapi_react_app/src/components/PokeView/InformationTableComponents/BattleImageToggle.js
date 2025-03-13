@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import BattleDisplay from "../BattleDisplayComponents/BattleDisplay";
 import WhosThatPokemonToggle from "./WhosThatPokemonToggle";
@@ -13,8 +13,6 @@ const BattleImageToggle = ({
   level,
   screenSize,
   isDarkMode,
-  callCount,
-  setCallCount,
 }) => {
   // Setup the type results and text style based on if the user is using light or dark mode
   const imageToggleStyle = isDarkMode
@@ -34,11 +32,11 @@ const BattleImageToggle = ({
   const [battleView, setBattleView] = useState(false);
   const [isNormalToggle, setIsNormalToggle] = useState(true);
 
-  // useEffect(() => {
-  //   setBattleView(
-  //     pokeData.sprites.other.showdown.front_default !== null ? true : false
-  //   );
-  // }, [pokeData]);
+  // Reset artwork display on new page load
+  useEffect(() => {
+    setBattleView(false);
+    setIsNormalToggle(true);
+  }, [pokeData]);
 
   // Functions to handle toggling between normal and shiny mode
   const handleNormalToggle = () => {
@@ -62,8 +60,6 @@ const BattleImageToggle = ({
           whosThatPokemon={whosThatPokemon}
           level={level}
           screenSize={screenSize}
-          callCount={callCount}
-          setCallCount={setCallCount}
         />
       ) : (
         <PokeImage

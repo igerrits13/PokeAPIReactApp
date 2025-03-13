@@ -23,8 +23,6 @@ function App() {
   const [screenSize, setscreenSize] = useState("large");
   const [isDarkMode, setIsDarkMode] = useState(false);
 
-  const [callCount, setCallCount] = useState(0);
-
   // Check screen size and orientation to see if types table should collapse (small, medium, large, x-large)
   useEffect(() => {
     const handleScreenResize = () => {
@@ -76,8 +74,6 @@ function App() {
 
   // Fetch the information for all Pokémon as soon as the page is loaded
   const fetchPokemonSpecies = async () => {
-    setCallCount((prev) => prev + 1);
-    console.log("Fetching all species: ", callCount);
     const response = await fetch(
       "https://pokeapi.co/api/v2/pokemon-species/?limit=5000"
     );
@@ -113,8 +109,6 @@ function App() {
 
   // Fetch the information for all types as soon as the page is loaded
   const fetchTypes = async () => {
-    setCallCount((prev) => prev + 1);
-    console.log("Fetching all types: ", callCount);
     const response = await fetch("https://pokeapi.co/api/v2/type/?limit=-1");
     if (!response.ok) {
       throw new Error(`Error: ${response.statusText}`);
@@ -171,8 +165,6 @@ function App() {
               setSortBy={setSortBy}
               screenSize={screenSize}
               isDarkMode={isDarkMode}
-              callCount={callCount}
-              setCallCount={setCallCount}
             />
           }
         />
@@ -192,8 +184,6 @@ function App() {
               setSortBy={setSortBy}
               screenSize={screenSize}
               isDarkMode={isDarkMode}
-              callCount={callCount}
-              setCallCount={setCallCount}
             />
           }
         />
@@ -207,8 +197,6 @@ function App() {
               typesResults={typesResults}
               screenSize={screenSize}
               isDarkMode={isDarkMode}
-              setCallCount={setCallCount}
-              callCount={callCount}
             />
           }
         />

@@ -42,8 +42,6 @@ const TypeView = ({
   setSortBy,
   screenSize,
   isDarkMode,
-  callCount,
-  setCallCount,
 }) => {
   // Setup data structures to get the id of the type, store type data of the current type,
   // setup the loading, error state for the API call and page navigation, and what tab is currently active
@@ -87,8 +85,6 @@ const TypeView = ({
     ) {
       throw new Error(`Error: Invalid ID ${id}`);
     }
-    setCallCount((prev) => prev + 1);
-    console.log(`Fetching type data: ${callCount}`);
     const response = await fetch(`https://pokeapi.co/api/v2/type/${id}/`);
     if (!response.ok) {
       throw new Error(`Error: ${response.statusText}`);
@@ -214,8 +210,6 @@ const TypeView = ({
             setSortBy={setSortBy}
             isDarkMode={isDarkMode}
             screenSize={screenSize}
-            callCount={callCount}
-            setCallCount={setCallCount}
           />
         )}
         {activeTab === "Moves" && !isTypesLoading && (

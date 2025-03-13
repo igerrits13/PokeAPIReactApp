@@ -13,15 +13,11 @@ const PokemonTypesCardCollection = ({
   sortOptions,
   screenSize,
   isDarkMode,
-  callCount,
-  setCallCount,
 }) => {
   const [isTypesLoading, setIsTypesLoading] = useState(true);
 
   // Fetch the Pokémon information from all gens
   const fetchTypeAllGen = async () => {
-    setCallCount((prev) => prev + 1);
-    console.log(`Fetching Pokémon cards data all gens: ${callCount}`);
     const response = await fetch(
       "https://pokeapi.co/api/v2/pokemon-species/?limit=5000"
     );
@@ -46,10 +42,6 @@ const PokemonTypesCardCollection = ({
 
   // Fetch the Pokémon information from the selected gens
   const fetchTypeByGen = async () => {
-    setCallCount((prev) => prev + 1);
-    console.log(
-      `Fetching Pokémon cards data some gens: ${callCount} - ${filterByGen}`
-    );
     const results = await Promise.all(
       filterByGen.map(async (gen) => {
         const response = await fetch(
