@@ -19,7 +19,7 @@ const PokemonTable = ({
   // Create states to keep track of what Pokémon cards are to be displayed given the current filters
   const [pokeTypes, setPokeTypes] = useState([]);
 
-  // Fetch the Pokémon information for all Pokémon cards if no gen is selected
+  // Fetch the information for all Pokémon cards if no gen is selected
   const fetchAllPokemon = async () => {
     setCallCount((prev) => prev + 1);
     console.log("Fetching Pokémon cards data all gens: ", callCount);
@@ -36,42 +36,14 @@ const PokemonTable = ({
     };
   };
 
+  // Query the data for all Pokémon species
   const { data: allPokemonData, error: allPokemonError } = useQuery({
     queryKey: ["allPokemonSpecies"],
     queryFn: fetchAllPokemon,
     enabled: filterByGen[0] === "all",
     staleTime: Infinity,
     cacheTime: Infinity,
-    // onSuccess: (speciesData) => {
-    //   console.log("Success!");
-    //   console.log(speciesData.results);
-    //   setFullPokeResults(speciesData.results);
-    //   setPokeCountTotal(speciesData.count);
-    //   setCallCount((prev) => {
-    //     const newCount = prev + 1;
-    //     console.log("Fetching all species: ", newCount);
-    //     return newCount;
-    //   });
-    // },
-    // onSettled: () => setIsPokeResultsLoading(false),
   });
-
-  // useEffect(() => {
-  //   if (allSpeciesData?.results && filterByGen[0] === "all") {
-  //     setPokeResults(allSpeciesData.results);
-  //   }
-  // }, [allSpeciesData, filterByGen]);
-  // useEffect(() => {
-  //   if (filterByGen[0] === "all") {
-  //     setCallCount(callCount + 1);
-  //     console.log("Fetching Pokémon cards data all gens: ", callCount);
-  //     fetch(`https://pokeapi.co/api/v2/pokemon-species/?limit=5000`)
-  //       .then((response) => response.json())
-  //       .then((data) => {
-  //         setPokeResults(data.results);
-  //       });
-  //   }
-  // }, [filterByGen, setPokeResults]);
 
   // Otherwise, fetch the Pokémon information from the requested gens
   const fetchPokemonByGen = async () => {
@@ -97,13 +69,13 @@ const PokemonTable = ({
     return results.flat();
   };
 
+  // Query the data for Pokémon species within the specified gens
   const { data: genPokemon, error: genPokemonError } = useQuery({
     queryKey: ["pokemonSpecies", filterByGen],
     queryFn: fetchPokemonByGen,
-    enabled: filterByGen[0] !== "all", // Only fetch if a specific generation is selected
+    enabled: filterByGen[0] !== "all",
     staleTime: Infinity,
     cacheTime: Infinity,
-    // onSuccess: (data) => setPokeResults(data),
   });
 
   useEffect(() => {
@@ -112,27 +84,7 @@ const PokemonTable = ({
     } else if (genPokemon && filterByGen[0] !== "all") {
       setPokeResults(genPokemon);
     }
-  }, [allPokemonData, genPokemon, filterByGen]);
-
-  // useEffect(() => {
-  //   if (filterByGen[0] !== "all") {
-  //     const fetchGenData = filterByGen.map((gen) => {
-  //       setCallCount(callCount + 1);
-  //       console.log("Fetching Pokémon cards data some gens: ", callCount);
-  //       return fetch(`https://pokeapi.co/api/v2/generation/${gen}/`)
-  //         .then((response) => response.json())
-  //         .then((data) => data.pokemon_species);
-  //     });
-  //     Promise.all(fetchGenData)
-  //       .then((results) => {
-  //         const allPokemon = results.flat();
-  //         setPokeResults(allPokemon);
-  //       })
-  //       .catch((error) => {
-  //         console.error("Error fetching generation data:", error);
-  //       });
-  //   }
-  // }, [filterByGen, setPokeResults]);
+  }, [allPokemonData, genPokemon, filterByGen, setPokeResults]);
 
   // If types are selected, fetch the Pokémon information of the requested types
   const fetchPokemonByType = async () => {
@@ -164,13 +116,13 @@ const PokemonTable = ({
     return results.flat();
   };
 
+  // Query the data for Pokémon species within the specified types
   const { data: typePokemon, error: typePokemonError } = useQuery({
     queryKey: ["pokemonSpecies", filterByType],
     queryFn: fetchPokemonByType,
-    enabled: filterByType[0] !== "all", // Only fetch if a specific type is selected
+    enabled: filterByType[0] !== "all",
     staleTime: Infinity,
     cacheTime: Infinity,
-    // onSuccess: (data) => setPokeTypes(data),
   });
 
   useEffect(() => {
@@ -186,36 +138,6 @@ const PokemonTable = ({
       allPokemonError || genPokemonError || typePokemonError
     );
   }
-  // useEffect(() => {
-  //   if (filterByType[0] !== "all") {
-  //     setCallCount(callCount + 1);
-  //     console.log("Fetching Pokémon cards data some types: ", callCount);
-  //     const alreadyFetched = new Set();
-  //     const fetchTypeData = filterByType.map((type) =>
-  //       fetch(`https://pokeapi.co/api/v2/type/${type}/`)
-  //         .then((response) => response.json())
-  //         .then((data) => {
-  //           return data.pokemon.filter((pokemon) => {
-  //             const testInfo = pokemon.pokemon.name + pokemon.pokemon.url;
-  //             if (!alreadyFetched.has(testInfo)) {
-  //               alreadyFetched.add(testInfo);
-  //               return true;
-  //             }
-  //             return false;
-  //           });
-  //         })
-  //     );
-
-  //     Promise.all(fetchTypeData)
-  //       .then((results) => {
-  //         const allPokemon = results.flat();
-  //         setPokeTypes(allPokemon);
-  //       })
-  //       .catch((error) => {
-  //         console.log("Error fetching type data:", error);
-  //       });
-  //   }
-  // }, [filterByType]);
 
   // Create a set of Pokémon of the current type and use set to prevent duplicates
   let commonElementsSet = new Set();

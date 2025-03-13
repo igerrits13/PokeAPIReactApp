@@ -7,8 +7,6 @@ const PokemonTypesCardCollection = ({
   pokeResults,
   setPokeResults,
   typeData,
-  // isTypesLoading,
-  // setIsTypesLoading,
   pokeCountTotal,
   filterByGen,
   sortBy,
@@ -20,8 +18,7 @@ const PokemonTypesCardCollection = ({
 }) => {
   const [isTypesLoading, setIsTypesLoading] = useState(true);
 
-  // Fetch the Pokémon information from the requested gens if user has specified gens
-
+  // Fetch the Pokémon information from all gens
   const fetchTypeAllGen = async () => {
     setCallCount((prev) => prev + 1);
     console.log(`Fetching Pokémon cards data all gens: ${callCount}`);
@@ -34,6 +31,7 @@ const PokemonTypesCardCollection = ({
     return response.json();
   };
 
+  // Query the data for all gens
   const {
     data: allTypeData,
     isLoading: allTypeIsLoading,
@@ -46,6 +44,7 @@ const PokemonTypesCardCollection = ({
     cacheTime: Infinity,
   });
 
+  // Fetch the Pokémon information from the selected gens
   const fetchTypeByGen = async () => {
     setCallCount((prev) => prev + 1);
     console.log(
@@ -66,6 +65,7 @@ const PokemonTypesCardCollection = ({
     return results.flat();
   };
 
+  // Query the data for the selected gens
   const {
     data: genTypeData,
     isLoading: genTypeIsLoading,
@@ -86,44 +86,18 @@ const PokemonTypesCardCollection = ({
       setPokeResults(genTypeData);
       setIsTypesLoading(genTypeIsLoading);
     }
-  }, [allTypeData, genTypeData, filterByGen]);
+  }, [
+    setPokeResults,
+    allTypeData,
+    genTypeData,
+    filterByGen,
+    allTypeIsLoading,
+    genTypeIsLoading,
+  ]);
 
   if (allTypeError || genTypeError) {
     console.error("Error occurred:", allTypeError || genTypeError);
   }
-
-  // useEffect(() => {
-  //   if (filterByGen[0] !== "all") {
-  //     setIsTypesLoading(true);
-  //     const fetchGenData = filterByGen.map((gen) => {
-  //       setCallCount(callCount + 1);
-  //       console.log("Fetching Pokémon cards data some gens: ", callCount);
-  //       return fetch(`https://pokeapi.co/api/v2/generation/${gen}/`)
-  //         .then((response) => response.json())
-  //         .then((data) => data.pokemon_species);
-  //     });
-  //     Promise.all(fetchGenData)
-  //       .then((results) => {
-  //         const allPokemon = results.flat();
-  //         setPokeResults(allPokemon);
-  //         setIsTypesLoading(false);
-  //       })
-  //       .catch((error) => {
-  //         console.error("Error fetching generation data:", error);
-  //         setIsTypesLoading(false);
-  //       });
-  //   } else if (filterByGen[0] === "all") {
-  //     setCallCount(callCount + 1);
-  //     console.log("Fetching Pokémon cards data all gens: ", callCount);
-  //     setIsTypesLoading(true);
-  //     fetch(`https://pokeapi.co/api/v2/pokemon-species/?limit=5000`)
-  //       .then((response) => response.json())
-  //       .then((data) => {
-  //         setPokeResults(data.results);
-  //         setIsTypesLoading(false);
-  //       });
-  //   }
-  // }, [filterByGen, setPokeResults, setIsTypesLoading]);
 
   // Get the current Pokémons number from their url
   const getPokeNum = (pokeURL) => {

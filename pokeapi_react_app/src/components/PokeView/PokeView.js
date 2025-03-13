@@ -31,7 +31,6 @@ const PokeView = ({
   const [isPokeSpeciesLoading, setIsPokeSpeciesLoading] = useState(true);
   const [babyTriggerItem, setBabyTriggerItem] = useState(null);
   const [level, setLevel] = useState(1);
-  const [error, setError] = useState(null);
   const navigate = useNavigate();
   const hasRenderedRef = useRef(false);
 
@@ -45,13 +44,7 @@ const PokeView = ({
 
   // Fetch data for the current Pokémon-Species
   const fetchSpeciesInfo = async () => {
-    if (
-      fullPokeResults.length > 0
-      //   &&
-      //   pokeSpeciesId > 0 &&
-      //   pokeSpeciesId <= fullPokeResults.length) ||
-      // isNaN(pokeSpeciesId)
-    ) {
+    if (fullPokeResults.length > 0) {
       setCallCount((prev) => prev + 1);
       console.log("Fetching Pokémon species data: ", callCount);
       const response = await fetch(
@@ -60,11 +53,11 @@ const PokeView = ({
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`);
       }
-      // const data = await response.json();
       return response.json();
     }
   };
 
+  // Query the data for the current Pokémon species
   const {
     data: speciesInfoData,
     isLoading: isSpeciesInfoLoading,
@@ -82,48 +75,7 @@ const PokeView = ({
       setPokeSpeciesData(speciesInfoData);
       setIsPokeSpeciesLoading(isSpeciesInfoLoading);
     }
-  }, [speciesInfoData]);
-
-  //
-
-  // useEffect(() => {
-  //   if (fullPokeResults.length > 0) {
-  //     const fetchData = async () => {
-  //       setCallCount(callCount + 1);
-  //       console.log("Fetching Pokémon species data: ", callCount);
-  //       // Check if the id is within the valid Pokémon
-  //       if (
-  //         (pokeSpeciesId > 0 && pokeSpeciesId <= fullPokeResults.length) ||
-  //         isNaN(pokeSpeciesId)
-  //       ) {
-  //         setIsPokeSpeciesLoading(true);
-  //         try {
-  //           const [response] = await Promise.all([
-  //             fetch(
-  //               `https://pokeapi.co/api/v2/pokemon-species/${pokeSpeciesId}/`
-  //             ),
-  //           ]);
-  //           if (!response.ok) {
-  //             navigate("/notfound");
-  //             return;
-  //           }
-  //           const jsonData = await response.json();
-  //           setPokeSpeciesData(jsonData);
-  //         } catch (error) {
-  //           setError(error);
-  //         } finally {
-  //           setIsPokeSpeciesLoading(false);
-  //         }
-  //       } else {
-  //         setIsPokeSpeciesLoading(false);
-  //         navigate("/notfound");
-  //         return;
-  //       }
-  //     };
-
-  //     fetchData();
-  //   }
-  // }, [pokeSpeciesId, navigate, fullPokeResults]);
+  }, [speciesInfoData, isSpeciesInfoLoading]);
 
   // Fetch data for the current Pokémon
   const fetchPokeInfo = async () => {
@@ -138,6 +90,7 @@ const PokeView = ({
     return response.json();
   };
 
+  // Query the data for the current Pokémon
   const {
     data: pokeInfoData,
     isLoading: isPokeInfoLoading,
@@ -155,34 +108,7 @@ const PokeView = ({
       setPokeData(pokeInfoData);
       setIsPokeLoading(isPokeInfoLoading);
     }
-  }, [pokeInfoData]);
-
-  // useEffect(() => {
-  //   if (fullPokeResults.length > 0) {
-  //     const fetchData = async () => {
-  //       setCallCount(callCount + 1);
-  //       console.log("Fetching Pokémon data: ", callCount);
-  //       setIsPokeLoading(true);
-  //       try {
-  //         const [response] = await Promise.all([
-  //           fetch(`https://pokeapi.co/api/v2/pokemon/${pokeId}/`),
-  //         ]);
-  //         if (!response) {
-  //           navigate("/notfound");
-  //           return;
-  //         }
-  //         const jsonData = await response.json();
-  //         setPokeData(jsonData);
-  //       } catch (error) {
-  //         setError(error);
-  //       } finally {
-  //         setIsPokeLoading(false);
-  //       }
-  //     };
-
-  //     fetchData();
-  //   }
-  // }, [pokeId, navigate, fullPokeResults]);
+  }, [pokeInfoData, isPokeInfoLoading]);
 
   // Reload Pokémon and Pokémon-speecies information if the search id changes
   useEffect(() => {
@@ -201,16 +127,8 @@ const PokeView = ({
       hasRenderedRef.current = true;
       return;
     }
-
     setWhosThatPokemon(false);
   }, [setWhosThatPokemon, id]);
-
-  // If the API call returns an error, navigate to the page not found
-  // (Redundant to inside fetch call to avoid compilation error)
-  // if (error) {
-  //   navigate("/notfound");
-  //   return;
-  // }
 
   if (speciesInfoError || pokeInfoError) {
     console.error("Error occured:", speciesInfoError || pokeInfoError);

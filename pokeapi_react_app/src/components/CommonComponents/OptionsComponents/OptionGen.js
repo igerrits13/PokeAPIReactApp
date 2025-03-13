@@ -24,9 +24,9 @@ const OptionGen = ({
   const filterDropdownRef = useRef(null);
   const filterButtonRef = useRef(null);
 
-  // Fetch the generations
+  // Fetch the information for all Pokémon generations
   const fetchGens = async () => {
-    setCallCount((prev) => (prev = 1));
+    setCallCount((prev) => prev + 1);
     console.log("Fetching all gens: ", callCount);
     const response = await fetch(
       "https://pokeapi.co/api/v2/generation/?limit=20"
@@ -37,6 +37,7 @@ const OptionGen = ({
     return response.json();
   };
 
+  // Query the data for all Pokémon generations
   const { data, error } = useQuery({
     queryKey: ["gensAll"],
     queryFn: fetchGens,
@@ -54,16 +55,6 @@ const OptionGen = ({
   if (error) {
     console.error("Error occurred:", error);
   }
-
-  // useEffect(() => {
-  //   setCallCount(callCount + 1);
-  //   console.log("Fetching generation data: ", callCount);
-  //   fetch(`https://pokeapi.co/api/v2/generation/?limit=20`)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setGenResults(data.results);
-  //     });
-  // }, []);
 
   // Close dropdown if user clicks outside of the dropdown
   useEffect(() => {

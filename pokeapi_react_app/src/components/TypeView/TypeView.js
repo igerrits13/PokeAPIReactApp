@@ -96,6 +96,7 @@ const TypeView = ({
     return response.json();
   };
 
+  // Query the data for the current type
   const { data, isLoading, error } = useQuery({
     queryKey: ["typeInfo", id],
     queryFn: fetchTypeInfo,
@@ -109,40 +110,12 @@ const TypeView = ({
       setTypeData(data);
       setIsTypesLoading(isLoading);
     }
-  }, [data]);
+  }, [data, isLoading]);
 
   if (error) {
     console.error("Error occured:", error);
     navigate("/notfound");
   }
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     setCallCount(callCount + 1);
-  //     console.log("Fetching type data: ", callCount);
-  //     // Check if the id is within the valid types
-  //     setIsTypesLoading(true);
-  //     if ((id > 0 && id < 19) || isNaN(id)) {
-  //       try {
-  //         const response = await fetch(`https://pokeapi.co/api/v2/type/${id}/`);
-  //         if (!response.ok) {
-  //           throw new Error(`Error: ${response.statusText}`);
-  //         }
-  //         const jsonData = await response.json();
-  //         setTypeData(jsonData);
-  //       } catch (error) {
-  //         console.error("Error occurred:", error);
-  //         navigate("/notfound");
-  //       } finally {
-  //         setIsTypesLoading(false);
-  //       }
-  //     } else {
-  //       setIsTypesLoading(false);
-  //       navigate("/notfound");
-  //     }
-  //   };
-  //   fetchData();
-  // }, [id, navigate]);
 
   // Reset sort options on initial page load
   useEffect(() => {
