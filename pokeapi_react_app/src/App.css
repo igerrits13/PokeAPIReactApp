@@ -1664,6 +1664,7 @@ const colours = {
   height: calc(100% - 8rem);
   overflow: hidden;
   border-radius: 8px 8px 0 0;
+  border: 2px solid #2b2e2a;
   background: rgb(45, 201, 110);
   background: linear-gradient(
     0deg,
@@ -1919,18 +1920,6 @@ const colours = {
     rgba(224, 224, 224, 1) 86%,
     rgba(67, 73, 66, 1) 100%
   );
-  /* background: rgb(67, 73, 66);
-  background: linear-gradient(
-    0deg,
-    rgba(67, 73, 66, 1) 0%,
-    rgba(224, 224, 224, 1) 14%,
-    rgba(190, 190, 190, 1) 50%,
-    rgba(224, 224, 224, 1) 54%,
-    rgba(190, 190, 190, 1) 58%,
-    rgba(224, 224, 224, 1) 60%,
-    rgba(224, 224, 224, 1) 86%,
-    rgba(67, 73, 66, 1) 100%
-  ); */
 }
 
 .battle-display-field-statusbar-front,
@@ -1997,6 +1986,9 @@ const colours = {
   padding: 0.25rem 0.5rem;
   bottom: 0;
   border-radius: 0 0 8px 8px;
+  border-bottom: 2px solid #2b2e2a;
+  border-left: 2px solid #2b2e2a;
+  border-right: 2px solid #2b2e2a;
   border-top: 3px solid #2b2e2a;
   background: rgb(154, 154, 154);
   background: linear-gradient(

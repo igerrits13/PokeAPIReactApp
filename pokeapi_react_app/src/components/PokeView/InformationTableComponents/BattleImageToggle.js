@@ -42,7 +42,8 @@ const BattleImageToggle = ({
 
   // Functions to handle toggling between normal and shiny mode
   const handleNormalToggle = () => {
-    setIsNormalToggle(!isNormalToggle);
+    if (pokeData.sprites.other["official-artwork"].front_shiny)
+      setIsNormalToggle(!isNormalToggle);
   };
 
   const handleOnClick = () => {
