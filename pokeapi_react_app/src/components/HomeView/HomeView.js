@@ -39,6 +39,8 @@ const HomeView = ({
       ? "homeview-med"
       : "homeview-large";
 
+  console.log(screenSize);
+
   // Scroll to top of page on load
   useEffect(() => {
     window.scrollTo(0, 0);
