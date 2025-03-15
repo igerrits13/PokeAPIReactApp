@@ -6,7 +6,9 @@ const DynamicSortOptions = ({ sortOptions, screenSize }) => {
           ? "sortoptions-container-small"
           : "sortoptions-container-med-large"
       }`}
-    ></div>
+    >
+      {sortOptions}
+    </div>
   );
 };
 

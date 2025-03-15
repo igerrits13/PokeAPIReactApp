@@ -883,11 +883,12 @@ const colours = {
 
 .sortoptions-container-med-large {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   margin: 10px;
   width: 100%;
-  gap: 0 10px;
+  gap: 15px 10px;
 }
 
 .option-sort-dropdown-container {
